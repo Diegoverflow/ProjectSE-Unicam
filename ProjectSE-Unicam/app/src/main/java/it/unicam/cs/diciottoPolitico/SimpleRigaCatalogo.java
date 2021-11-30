@@ -17,6 +17,8 @@ public class SimpleRigaCatalogo implements RigaCatalogo {
      * @param ombrellone       l' ombrellone relativo alla prenotazione
      * @param prezzoOmbrellone il prezzo associato all' ombrellone
      * @param prenotazione     la prenotazione associata all' ombrellone
+     * @throws NullPointerException     se l' ombrellone o la prenotazione specificati &egrave; null
+     * @throws IllegalArgumentException se il prezzo specificato non &egrave; valido
      */
     public SimpleRigaCatalogo(Ombrellone ombrellone, double prezzoOmbrellone, Prenotazione prenotazione) {
         this(ombrellone, prezzoOmbrellone);
@@ -31,7 +33,8 @@ public class SimpleRigaCatalogo implements RigaCatalogo {
      *
      * @param ombrellone       l' ombrellone relativo alle prenotazioni
      * @param prezzoOmbrellone il prezzo associato all' ombrellone
-     * @param prenotazioni     la lista delle prenotazioni associate all' ombrellone
+     * @throws NullPointerException     se l' ombrellone o la lista delle prenotazioni specificati &egrave; null
+     * @throws IllegalArgumentException se il prezzo specificato non &egrave; valido
      */
     public SimpleRigaCatalogo(Ombrellone ombrellone, double prezzoOmbrellone, List<Prenotazione> prenotazioni) {
         this(ombrellone, prezzoOmbrellone);
@@ -47,16 +50,17 @@ public class SimpleRigaCatalogo implements RigaCatalogo {
      *
      * @param ombrellone       l' ombrellone da inserire nella riga catalogo
      * @param prezzoOmbrellone il prezzo associato all' ombrellone
+     * @throws NullPointerException     se l' ombrellone specificato &egrave; null
+     * @throws IllegalArgumentException se il prezzo specificato non &egrave; valido
      */
     public SimpleRigaCatalogo(Ombrellone ombrellone, double prezzoOmbrellone) {
         if (ombrellone == null)
             throw new NullPointerException("Ombrellone null!");
         if (prezzoOmbrellone < 0)
-            throw new IllegalArgumentException("Prezzo negativo!");
+            throw new IllegalArgumentException("Prezzo non valido!");
         this.ombrellone = ombrellone;
         this.prezzoOmbrellone = prezzoOmbrellone;
     }
-
 
     @Override
     public double getPrezzoOmbrellone() {
@@ -74,23 +78,29 @@ public class SimpleRigaCatalogo implements RigaCatalogo {
     }
 
     @Override
-    public boolean getDisponibilita(Date date, FasciaOraria fasciaOraria) {
-        // TODO: implementare
-        return false;
+    public boolean getDisponibilita(Date data, FasciaOraria fasciaOraria) {
+        if (data == null)
+            throw new NullPointerException("Data null!");
+        if (fasciaOraria == null)
+            throw new NullPointerException("Fascia oraria null!");
+        // TODO: Inserire controlli eccezione per data e fascia oraria non validi, ovvero se sono precedenti al giorno attuale
+        return this.prenotazioni.stream()
+                .anyMatch(p ->
+                        p.getDataPrenotazione().equals(data)
+                                && p.getFasciaOraria().equals(fasciaOraria));
     }
 
     @Override
-    public void setPrezzoOmbrellone(double prezzoOmbrellone) {
-        if (prezzoOmbrellone < 0)
-            throw new IllegalArgumentException("Prezzo negativo!");
-        this.prezzoOmbrellone = prezzoOmbrellone;
+    public void setPrezzoOmbrellone(double nuovoPrezzo) {
+        if (nuovoPrezzo < 0)
+            throw new IllegalArgumentException("Prezzo non valido!");
+        this.prezzoOmbrellone = nuovoPrezzo;
     }
 
     @Override
     public boolean addPrenotazione(Prenotazione prenotazione) {
         if (prenotazione == null)
             throw new NullPointerException("Prenotazione null!");
-
         return this.prenotazioni.add(prenotazione);
     }
 
