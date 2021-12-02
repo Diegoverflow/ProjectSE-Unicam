@@ -1,6 +1,6 @@
 package it.unicam.cs.diciottoPolitico;
 
-public class SimpleGestorePropriAcquisti implements GestoreVisualizzaPropriAcquisti {
+public class SimpleGestoreVisualizzaPropriAcquisti implements GestoreVisualizzaPropriAcquisti {
 
     @Override
     public String getAcquisti(Cliente cliente) {
