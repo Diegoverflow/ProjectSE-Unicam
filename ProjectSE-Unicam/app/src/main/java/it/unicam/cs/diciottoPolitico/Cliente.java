@@ -1,5 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
+import java.util.List;
+
 /**
  *Interfaccia che descrive un cliente.
  */
@@ -54,4 +56,10 @@ public interface Cliente {
      *         false altrimenti
      */
     boolean addPrenotazione(Prenotazione prenotazione);
+
+    /**
+     * Ottieni le prenotazioni di ombrelloni del cliente
+     * @return la lista di prenotazioni effettuate dal cliente
+     */
+    List<Prenotazione> getPrenotazioni();
 }
