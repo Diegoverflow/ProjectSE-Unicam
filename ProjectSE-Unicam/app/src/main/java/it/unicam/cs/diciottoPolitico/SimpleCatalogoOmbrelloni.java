@@ -62,8 +62,7 @@ public class SimpleCatalogoOmbrelloni implements CatalogoOmbrelloni {
         if (prezzo < 0)
             throw new IllegalArgumentException("Prezzo non valido!");
         List<RigaCatalogo> righeCatalogo = this.righe.stream()
-                .filter(r -> r.getPrezzoOmbrellone() == prezzo)
-                .collect(Collectors.toList());
+                .filter(r -> r.getPrezzoOmbrellone() == prezzo).toList();
         List<Ombrellone> ombrelloni = new ArrayList<>();
         for (RigaCatalogo r : righeCatalogo)
             ombrelloni.add(r.getOmbrellone());
