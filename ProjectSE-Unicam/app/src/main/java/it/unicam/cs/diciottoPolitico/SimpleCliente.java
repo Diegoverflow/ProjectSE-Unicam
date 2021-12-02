@@ -56,6 +56,11 @@ public class SimpleCliente implements Cliente{
     }
 
     @Override
+    public List<Prenotazione> getPrenotazioni() {
+        return this.prenotazioni;
+    }
+
+    @Override
     public void setNumero(String numero) {
         if (numero == null)
             throw new NullPointerException("Inserire un numero non nullo");
