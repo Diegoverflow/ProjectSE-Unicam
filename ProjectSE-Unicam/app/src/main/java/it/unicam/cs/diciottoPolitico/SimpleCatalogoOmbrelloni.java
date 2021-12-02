@@ -62,7 +62,7 @@ public class SimpleCatalogoOmbrelloni implements CatalogoOmbrelloni {
         if (prezzo < 0)
             throw new IllegalArgumentException("Prezzo non valido!");
         List<RigaCatalogo> righeCatalogo = this.righe.stream()
-                .filter(r -> r.getPrezzoOmbrellone() == prezzo).toList();
+                .filter(r -> r.getPrezzoOmbrellone() == prezzo).collect(Collectors.toList());
         List<Ombrellone> ombrelloni = new ArrayList<>();
         for (RigaCatalogo r : righeCatalogo)
             ombrelloni.add(r.getOmbrellone());
@@ -81,7 +81,7 @@ public class SimpleCatalogoOmbrelloni implements CatalogoOmbrelloni {
                 .filter(r -> r.getPrenotazioni()
                         .stream()
                         .filter(p -> p.getDataPrenotazione().equals(data)
-                                && p.getFasciaOraria().equals(fasciaOraria)).isParallel()).toList();
+                                && p.getFasciaOraria().equals(fasciaOraria)).isParallel()).collect(Collectors.toList());
         List<Ombrellone> ombrelloni = new ArrayList<>();
         for (RigaCatalogo r : rigaCatalogoStream)
             ombrelloni.add(r.getOmbrellone());
