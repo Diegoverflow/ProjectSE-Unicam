@@ -6,6 +6,17 @@ public class SimpleOmbrellone implements Ombrellone{
     private boolean isLibero;
     private Categoria categoria;
 
+    public SimpleOmbrellone(long id, boolean isLibero, Categoria categoria) {
+        this.id = id;
+        this.isLibero = isLibero;
+        this.categoria = categoria;
+    }
+
+    public SimpleOmbrellone(boolean isLibero, Categoria categoria) {
+        this.isLibero = isLibero;
+        this.categoria = categoria;
+    }
+
     @Override
     public long getId() {
         return this.id;
