@@ -66,6 +66,8 @@ public interface CatalogoOmbrelloni {
      * @throws NullPointerException se almeno uno dei parametri specificati &egrave; null
      */
     List<Ombrellone> getOmbrelloniBy(Date data, FasciaOraria fasciaOraria);
+    //tOdO List<RigaCatalogo> getOmbrelloniBy(GregorianCalendar data, FasciaOraria fasciaOraria);
+
 
     /**
      * Restituisce un Optional che descrive la riga catalogo in base all' ombrellone specificato.
