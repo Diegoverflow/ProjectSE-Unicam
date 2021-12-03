@@ -67,6 +67,7 @@ public interface CatalogoOmbrelloni {
      */
     List<Ombrellone> getOmbrelloniBy(Date data, FasciaOraria fasciaOraria);
     //tOdO List<RigaCatalogo> getOmbrelloniBy(GregorianCalendar data, FasciaOraria fasciaOraria);
+    // getOmbrelloneByCategoria
 
 
     /**
