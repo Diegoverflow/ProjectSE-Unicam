@@ -7,7 +7,7 @@ import java.util.List;
  * Rappresenta una riga di un catalogo ombrelloni.
  * La riga &egrave; una tripla formata da Ombrellone, prezzo e la lista delle prenotazioni dell' ombrellone.
  */
-public interface RigaCatalogo {
+public interface RigaCatalogoOmbrelloni {
 
     /**
      * Restituisce il prezzo associato all' ombrellone presente in questa riga.
