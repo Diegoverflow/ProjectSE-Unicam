@@ -13,7 +13,7 @@ public interface HandlerPrenotazioneAttivita {
      *
      * @return la lista di tutte le attivit&agrave; che lo chalet attualmente offre
      */
-    List<Object> getRigheAttivitaDisponibili(); // TODO: Refactor di Object con RigaAttivita
+    List<RigaCatalogoAttivita> getRigheAttivitaDisponibili();
 
     /**
      * Restituisce la lista di tutte le attivit&agrave; attualmente disponibili nello chalet
@@ -22,7 +22,7 @@ public interface HandlerPrenotazioneAttivita {
      * @param data l' istante temporale per filtrare le attivit&agrve;
      * @return la lista di tutte le attivit&agrave; attualmente disponibili offerte dallo chalet nell' istante temporale specificato
      */
-    List<Object> getRigheAttivitaDisponibiliBy(GregorianCalendar data); // TODO: Refactor di Object con RigaCatalogoAttivita
+    List<RigaCatalogoAttivita> getRigheAttivitaDisponibiliBy(GregorianCalendar data);
 
     /**
      * Crea una prenotazione dell' attivit&agrave; specificata per il cliente specificato.
@@ -32,6 +32,6 @@ public interface HandlerPrenotazioneAttivita {
      * @param cliente  il cliente che sta effettuando una prenotazione per l' attivit&agrave; specificata
      * @return true se la prenotazione viene creata con successo, altrimenti false
      */
-    boolean creaPrenotazioneAttivita(Object attivita, Cliente cliente); // TODO: Refactor di Object con Attivita
+    boolean creaPrenotazioneAttivita(Attivita attivita, Cliente cliente);
 
 }
