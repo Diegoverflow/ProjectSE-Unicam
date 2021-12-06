@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Rappresenta un gestore delle prenotazioni relative alle attivit&agrve; offerte dallo chalet.
  */
-public interface PrenotazioneAttivitaHandler {
+public interface HandlerPrenotazioneAttivita {
 
     /**
      * Restituisce la lista di tutte le attivit&agrave; attualmente disponibili nello chalet.

@@ -4,7 +4,7 @@ package it.unicam.cs.diciottoPolitico;
  * Rappresenta un gestore che manda notifiche a diverse tipologie di utenti.
  * Le notifiche contengono messaggi.
  */
-public interface NotificaHandler {
+public interface HandlerNotifica {
 
     /**
      * Invia la notifica con il messaggio specificato all' addetto bar specificato.

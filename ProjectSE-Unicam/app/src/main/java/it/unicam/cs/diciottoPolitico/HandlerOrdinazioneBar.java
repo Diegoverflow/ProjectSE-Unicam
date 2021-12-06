@@ -7,7 +7,7 @@ import java.util.List;
  * In particolare esso si occupa di gestire le ordinazioni effettuate al bar da parte
  * dei clienti e di notificare gli addetti del bar per, a loro volta,  gestire tali ordinazioni.
  */
-public interface OrdinazioneBarHandler {
+public interface HandlerOrdinazioneBar {
 
     /**
      * Restituisce una lista di righe catalogo bar.
