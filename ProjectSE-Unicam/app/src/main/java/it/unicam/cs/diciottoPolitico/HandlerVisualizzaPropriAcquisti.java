@@ -1,6 +1,6 @@
 package it.unicam.cs.diciottoPolitico;
 
 //TODO inserire le API
-public interface GestoreVisualizzaPropriAcquisti {
+public interface HandlerVisualizzaPropriAcquisti {
     String getAcquisti(Cliente cliente);
 }
