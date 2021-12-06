@@ -14,8 +14,7 @@ public interface HandlerOrdinazioneBar {
      *
      * @return la lista di righe catalogo bar
      */
-    List<Object> getRigheArticoliDisponibili();
-    // TODO: Refactor di Object con RigaCatalogoBar
+    List<RigaCatalogoBar> getRigheArticoliDisponibili();
 
     /**
      * Crea un' ordinazione bar secondo l' ordinazione bar ed il cliente specificati.
@@ -26,16 +25,16 @@ public interface HandlerOrdinazioneBar {
      * @param cliente        il cliente che ha effettuato l' ordinazione bar
      * @return true se la creazione dell' ordinazione va a buon fine, false altrimenti.
      */
-    boolean creaOrdinazione(Object ordinazioneBar, Cliente cliente);    // TODO: Refactor di Object con OrdinazioneBar
+    boolean creaOrdinazione(OrdinazioneBar ordinazioneBar, Cliente cliente);
 
     /**
      * Restituisce la lista di tutte le ordinazioni bar ancora da consegnare ai clienti.
      *
      * @return la lista di tutte le ordinazioni non consegnate.
      */
-    List<Object> getOrdinazioniDaConsegnare();  // TODO: Refactor di Object con OrdinazioneBar
+    List<OrdinazioneBar> getOrdinazioniDaConsegnare();
 
-    // TODO: Check per id ordinazione bar
+    // TODO: metodo Check per id ordinazione bar
 
     // TODO: metodo per aggiungere/modificare/rimuovere addetti bar
 
