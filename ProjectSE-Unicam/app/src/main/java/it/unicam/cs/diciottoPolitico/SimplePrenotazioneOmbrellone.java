@@ -12,7 +12,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     private final double costo;
     private final boolean statoPagamento;
     private static final int LIMITE_PRENOTAZIONE_MATTINA = 13;
-    private static final int LIMITE_PRENOTAZIONE_POMERIGGIO = 19;
+    private static final int LIMITE_PRENOTAZIONE_POMERIGGIO= 19;
 
     /**
      *Costruisce una prenotazione.

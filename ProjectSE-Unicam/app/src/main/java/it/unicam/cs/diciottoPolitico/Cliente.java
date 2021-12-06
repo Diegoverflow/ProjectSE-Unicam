@@ -49,17 +49,56 @@ public interface Cliente {
     void setNumero(String numero);
 
     /**
-     * Aggiunge una prenotazione alle prenotazioni associate al cliente e
+     * Ottieni le notifiche nella casella notifiche del cliente
+     * @return la lista di notifiche del cliente
+     */
+    List<Notifica> getNotifiche();
+
+    /**
+     * Aggiunge una notifica alla casella notifiche del cliente e
      * verifica che l'operazione sia stata effettuata correttamente.
-     * @param prenotazione che si vuole aggiungere
-     * @return true se la prenotazione &egrave; stata aggiunta,
+     * @param notifica da aggiungere alla casella notifiche del cliente
+     * @return true se la notifica &egrave; stata aggiunta,
      *         false altrimenti
      */
-    boolean addPrenotazione(PrenotazioneOmbrellone prenotazione);
+    boolean addNotica(Notifica notifica);
+
+    /**
+     * Rimuovi una notifica dalla casella notifiche del cliente e
+     * verifica che l'operazione sia stata effettuata correttamente.
+     * @param idNotifica da rimuovere dalla casella notifiche del cliente
+     * @return true se la notifica &egrave; stata rimossa,
+     *         false altrimenti
+     */
+    boolean removeNotifica(long idNotifica);
 
     /**
      * Ottieni le prenotazioni di ombrelloni del cliente
      * @return la lista di prenotazioni effettuate dal cliente
      */
-    List<PrenotazioneOmbrellone> getPrenotazioni();
+    List<PrenotazioneOmbrellone> getPrenotazioniOmbrelloni();
+
+    /**
+     * Aggiunge una prenotazione alle prenotazioni associate al cliente e
+     * verifica che l'operazione sia stata effettuata correttamente.
+     * @param prenotazione che si vuole aggiungere alla lista prenotazioni
+     * @return true se la prenotazione &egrave; stata aggiunta,
+     *         false altrimenti
+     */
+    boolean addPrenotazioneOmbrellone(PrenotazioneOmbrellone prenotazione);
+
+    /**
+     * Ottieni le attvit&agrave; prenotate dal cliente
+     * @return la lista di attvit&agrave; prenotate dal cliente
+     */
+    List<PrenotazioneAttivita> getPrenotazioniAttivita();
+
+    /**
+     * Aggiunge un'attvit&agrave; alle attvit&agrave; prenotate dal cliente e
+     * verifica che l'operazione sia stata effettuata correttamente.
+     * @param attivita che si vuole aggiungere alla lista prenotazioni attvit&agrave;
+     * @return true se l'attvit&agrave; &egrave; stata aggiunta,
+     *         false altrimenti
+     */
+    boolean addPrenotazioneAttivita(PrenotazioneAttivita attivita);
 }
