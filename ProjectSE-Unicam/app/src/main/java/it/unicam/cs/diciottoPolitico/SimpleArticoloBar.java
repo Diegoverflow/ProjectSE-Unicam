@@ -10,17 +10,6 @@ public class SimpleArticoloBar implements ArticoloBar{
     /**
      * Metodo Costruttore.
      *
-     * @param id id dell'articolo bar
-     * @param descrizione descrizione dell'articolo bar
-     */
-    public SimpleArticoloBar(long id, String descrizione) {
-        this.id = id;
-        this.descrizione = descrizione;
-    }
-
-    /**
-     * Metodo Costruttore senza id.
-     *
      * @param descrizione descrizione dell'articolo bar
      */
     public SimpleArticoloBar(String descrizione) {
