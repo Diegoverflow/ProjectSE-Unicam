@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
 import java.util.GregorianCalendar;
-
+//todo api
 public interface OrdinazioneBar {
     long getId();
     GregorianCalendar getDataAcquisto();

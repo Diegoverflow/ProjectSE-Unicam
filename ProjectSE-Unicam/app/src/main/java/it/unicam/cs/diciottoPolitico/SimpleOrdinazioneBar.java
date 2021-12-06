@@ -2,6 +2,7 @@ package it.unicam.cs.diciottoPolitico;
 
 import java.util.GregorianCalendar;
 
+//todo api
 public class SimpleOrdinazioneBar implements OrdinazioneBar{
     @Override
     public long getId() {
