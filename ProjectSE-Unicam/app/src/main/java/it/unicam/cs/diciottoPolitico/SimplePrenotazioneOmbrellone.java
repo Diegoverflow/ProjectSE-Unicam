@@ -2,7 +2,7 @@ package it.unicam.cs.diciottoPolitico;
 
 import java.util.GregorianCalendar;
 
-public class SimplePrenotazione implements Prenotazione{
+public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
 
     private long codice;
     private final FasciaOraria fasciaOraria;
