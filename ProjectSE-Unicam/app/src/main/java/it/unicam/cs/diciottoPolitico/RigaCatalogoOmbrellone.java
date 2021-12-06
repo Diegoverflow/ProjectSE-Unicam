@@ -28,7 +28,7 @@ public interface RigaCatalogoOmbrellone {
      *
      * @return la lista delle prenotazioni di questa riga
      */
-    List<Prenotazione> getPrenotazioni();
+    List<PrenotazioneOmbrellone> getPrenotazioni();
 
     /**
      * Determina se l' ombrellone di questa riga &egrave; disponibile in base alla data e la fascia oraria specificate.
@@ -57,5 +57,5 @@ public interface RigaCatalogoOmbrellone {
      * @return true se la prenotazione viene aggiunta con successo, false altrimenti.
      * @throws NullPointerException se la prenotazione specificata &egrave; null
      */
-    boolean addPrenotazione(Prenotazione prenotazione);
+    boolean addPrenotazione(PrenotazioneOmbrellone prenotazione);
 }

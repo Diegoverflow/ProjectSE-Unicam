@@ -7,7 +7,7 @@ import java.util.function.Predicate;
  * Interfaccia che descrive un catologo
  * @param <R> Righe Cataloghi
  */
-public interface Catalogo<S, R extends InterfaceRigaCatalogo<S>> {
+public interface Catalogo<S, R extends RigaCatalogo<S>> {
 
     boolean addRiga(R righa);
 

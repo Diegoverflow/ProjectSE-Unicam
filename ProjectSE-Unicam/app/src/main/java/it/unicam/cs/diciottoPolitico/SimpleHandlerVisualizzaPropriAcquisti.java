@@ -5,12 +5,13 @@ public class SimpleHandlerVisualizzaPropriAcquisti implements HandlerVisualizzaP
     @Override
     public String getAcquisti(Cliente cliente) {
         StringBuilder prenotazioni = new StringBuilder();
-        for (Prenotazione prenotazione: cliente.getPrenotazioni()) {
+        /*for (Prenotazione prenotazione: cliente.getPrenotazioni()) {
             prenotazioni.append(prenotazione.getDataPrenotazione().toString());
             prenotazioni.append(" ").append(prenotazione.getFasciaOraria());
             prenotazioni.append(" ").append(prenotazione.getCosto());
             prenotazioni.append(" ").append(prenotazione.getOmbrellone().getId());
         }
-        return prenotazioni.toString();
+        return prenotazioni.toString();*/
+        return null;
     }
 }

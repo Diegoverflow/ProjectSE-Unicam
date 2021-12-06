@@ -11,6 +11,8 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     private final GregorianCalendar dataAcquisto;
     private final double costo;
     private final boolean statoPagamento;
+    private static final int LIMITE_PRENOTAZIONE_MATTINA = 13;
+    private static final int LIMITE_PRENOTAZIONE_POMERIGGIO = 19;
 
     /**
      *Costruisce una prenotazione.
@@ -26,7 +28,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
      * @apiNote alla data di acquisto &egrave; assegnata la data odierna e
      *          allo stato di pagamento &egrave; assegnato false di default
      */
-    public SimplePrenotazione(long codice,
+    public SimplePrenotazioneOmbrellone(long codice,
                               FasciaOraria fasciaOraria,
                               Ombrellone ombrellonePrenotato,
                               GregorianCalendar dataPrenotazione,
@@ -40,15 +42,15 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
             throw new NullPointerException("Inserire una data di prenotazione non nulla");
         if (dataPrenotazione.before(this.dataAcquisto))
             throw new IllegalArgumentException("Inserire una data valida");
-        if (dataPrenotazioneValida(dataPrenotazione, dataAcquisto))
+        if (!this.dataPrenotazioneValida(dataPrenotazione, dataAcquisto))
             throw new IllegalArgumentException("Chiudiamo alle 19:00, scegliere un altro giorno");
         this.dataPrenotazione = dataPrenotazione;
         if (fasciaOraria == null)
             throw  new NullPointerException("Inserire una fascia orario non nulla");
         this.fasciaOraria = fasciaOraria;
-        if (!fasciaOrariaValida(fasciaOraria, this.dataPrenotazione, this.dataAcquisto))
+        if (!this.fasciaOrariaValida(fasciaOraria, this.dataPrenotazione, this.dataAcquisto))
             throw new IllegalArgumentException("Fascia oraria non valida: mattina dalle 08:00 alle 13:00 - " +
-                                                                            "pomeriggio dalle 14:00 alle 19:00");
+                    "pomeriggio dalle 14:00 alle 19:00");
         this.costo = costo;
         this.statoPagamento = false;
     }
@@ -66,7 +68,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
      * @apiNote alla data di acquisto &egrave; assegnata la data odierna e
      *          allo stato di pagamento &egrave; assegnato false di default
      */
-    public SimplePrenotazione(FasciaOraria fasciaOraria,
+    public SimplePrenotazioneOmbrellone(FasciaOraria fasciaOraria,
                               Ombrellone ombrellonePrenotato,
                               GregorianCalendar dataPrenotazione,
                               double costo) {
@@ -78,15 +80,15 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
             throw new NullPointerException("Inserire una data di prenotazione non nulla");
         if (dataPrenotazione.before(this.dataAcquisto))
             throw new IllegalArgumentException("Inserire una data valida");
-        if (dataPrenotazioneValida(dataPrenotazione, dataAcquisto))
+        if (!this.dataPrenotazioneValida(dataPrenotazione, this.dataAcquisto))
             throw new IllegalArgumentException("Chiudiamo alle 19:00, scegliere un altro giorno");
         this.dataPrenotazione = dataPrenotazione;
         if (fasciaOraria == null)
             throw  new NullPointerException("Inserire una fascia orario non nulla");
         this.fasciaOraria = fasciaOraria;
-        if (!fasciaOrariaValida(fasciaOraria, this.dataPrenotazione, this.dataAcquisto))
+        if (!this.fasciaOrariaValida(fasciaOraria, this.dataPrenotazione, this.dataAcquisto))
             throw new IllegalArgumentException("Fascia oraria non valida: mattina dalle 08:00 alle 13:00 - " +
-                                                                            "pomeriggio dalle 14:00 alle 19:00");
+                    "pomeriggio dalle 14:00 alle 19:00");
         this.costo = costo;
         this.statoPagamento = false;
     }
@@ -102,8 +104,8 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     private boolean dataPrenotazioneValida(GregorianCalendar dataPrenotazione, GregorianCalendar dataAcquisto){
         if (dataPrenotazione.get(GregorianCalendar.YEAR)==dataAcquisto.get(GregorianCalendar.YEAR) &&
                 dataPrenotazione.get(GregorianCalendar.MONTH)==dataAcquisto.get(GregorianCalendar.MONTH) &&
-                    dataPrenotazione.get(GregorianCalendar.DAY_OF_MONTH)==dataAcquisto.get(GregorianCalendar.DAY_OF_MONTH)) {
-            return dataAcquisto.get(GregorianCalendar.HOUR_OF_DAY) < 19;
+                dataPrenotazione.get(GregorianCalendar.DAY_OF_MONTH)==dataAcquisto.get(GregorianCalendar.DAY_OF_MONTH)) {
+            return dataAcquisto.get(GregorianCalendar.HOUR_OF_DAY) < SimplePrenotazioneOmbrellone.LIMITE_PRENOTAZIONE_POMERIGGIO;
         }
         return true;
     }
@@ -120,15 +122,12 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
                                        GregorianCalendar dataAcquisto){
         if (dataPrenotazione.get(GregorianCalendar.YEAR)==dataAcquisto.get(GregorianCalendar.YEAR) &&
                 dataPrenotazione.get(GregorianCalendar.MONTH)==dataAcquisto.get(GregorianCalendar.MONTH) &&
-                    dataPrenotazione.get(GregorianCalendar.DAY_OF_MONTH)==dataAcquisto.get(GregorianCalendar.DAY_OF_MONTH)) {
+                dataPrenotazione.get(GregorianCalendar.DAY_OF_MONTH)==dataAcquisto.get(GregorianCalendar.DAY_OF_MONTH)) {
             if (fasciaOraria.equals(FasciaOraria.MATTINO)) {
-                if (dataAcquisto.get(GregorianCalendar.HOUR_OF_DAY) >= 13)
+                if (dataAcquisto.get(GregorianCalendar.HOUR_OF_DAY) >= SimplePrenotazioneOmbrellone.LIMITE_PRENOTAZIONE_MATTINA)
                     return false;
             }
-            if (fasciaOraria.equals(FasciaOraria.POMERIGGIO) || fasciaOraria.equals(FasciaOraria.GIORNATA_INTERA)) {
-                if (dataAcquisto.get(GregorianCalendar.HOUR_OF_DAY) >= 19)
-                    return false;
-            }
+            return dataAcquisto.get(GregorianCalendar.HOUR_OF_DAY) < SimplePrenotazioneOmbrellone.LIMITE_PRENOTAZIONE_POMERIGGIO;
         }
         return true;
     }

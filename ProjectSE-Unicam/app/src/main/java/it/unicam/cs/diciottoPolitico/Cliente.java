@@ -55,11 +55,11 @@ public interface Cliente {
      * @return true se la prenotazione &egrave; stata aggiunta,
      *         false altrimenti
      */
-    boolean addPrenotazione(Prenotazione prenotazione);
+    boolean addPrenotazione(PrenotazioneOmbrellone prenotazione);
 
     /**
      * Ottieni le prenotazioni di ombrelloni del cliente
      * @return la lista di prenotazioni effettuate dal cliente
      */
-    List<Prenotazione> getPrenotazioni();
+    List<PrenotazioneOmbrellone> getPrenotazioni();
 }

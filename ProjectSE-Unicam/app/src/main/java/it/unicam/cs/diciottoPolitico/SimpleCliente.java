@@ -9,7 +9,7 @@ public class SimpleCliente implements Cliente{
     private String nome;
     private String cognome;
     private String numero;
-    private final List<Prenotazione> prenotazioni;
+    private final List<PrenotazioneOmbrellone> prenotazioni;
 
     public SimpleCliente(String codiceFiscale, String nome, String cognome, String numero) {
         if (codiceFiscale == null || nome == null || cognome == null || numero == null)
@@ -51,12 +51,12 @@ public class SimpleCliente implements Cliente{
     }
 
     @Override
-    public boolean addPrenotazione(Prenotazione prenotazione) {
+    public boolean addPrenotazione(PrenotazioneOmbrellone prenotazione) {
         return this.prenotazioni.add(prenotazione);
     }
 
     @Override
-    public List<Prenotazione> getPrenotazioni() {
+    public List<PrenotazioneOmbrellone> getPrenotazioni() {
         return this.prenotazioni;
     }
 
