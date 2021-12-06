@@ -4,7 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 //TODO inserire le API
-public interface GestorePrenotazioneOmbrellone {
+public interface HandlerPrenotazioneOmbrellone {
     List<RigaCatalogo> getRigheCatalogoBy(GregorianCalendar data, FasciaOraria fasciaOraria);
     boolean creaPrenotazione(GregorianCalendar data, FasciaOraria fasciaOraria, Ombrellone ombrellone);
     String getRiepilogo(GregorianCalendar data, FasciaOraria fasciaOraria, Ombrellone ombrellone);
