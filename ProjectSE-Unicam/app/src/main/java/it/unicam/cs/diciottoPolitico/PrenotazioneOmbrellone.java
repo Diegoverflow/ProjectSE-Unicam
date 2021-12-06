@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 /**
  * Interfaccia che descrive una prenotazione di un ombrellone.
  */
-public interface Prenotazione {
+public interface PrenotazioneOmbrellone {
 
     /**
      * Ottieni il codice associato all'ombrellone.
