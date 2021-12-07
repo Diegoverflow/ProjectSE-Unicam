@@ -24,8 +24,8 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
      * @throws IllegalArgumentException se il costo è negativo
      */
     public SimpleOrdinazioneBar(GregorianCalendar dataAcquisto, double costo) {
-        this.dataAcquisto = Objects.requireNonNull(dataAcquisto, "La data di acquisto non pu&ograve; essere nulla");
-        if (costo < 0) throw new IllegalArgumentException("Il costo non pu&ograve; essere negativo");
+        this.dataAcquisto = Objects.requireNonNull(dataAcquisto, "La data di acquisto non puo' essere nulla");
+        if (costo < 0) throw new IllegalArgumentException("Il costo non puo' essere negativo");
         this.costo = costo;
         this.consegnato = false;
         this.pagato = false;
@@ -75,5 +75,18 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     @Override
     public void setPresoInCarico(boolean presoIncarico) {
         this.presoIncarico = presoIncarico;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SimpleOrdinazioneBar)) return false;
+        SimpleOrdinazioneBar that = (SimpleOrdinazioneBar) o;
+        return getId() == that.getId() && Double.compare(that.getCosto(), getCosto()) == 0 && isConsegnato() == that.isConsegnato() && isPagato() == that.isPagato() && presoIncarico == that.presoIncarico && getDataAcquisto().equals(that.getDataAcquisto());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getDataAcquisto(), getCosto(), isConsegnato(), isPagato(), presoIncarico);
     }
 }

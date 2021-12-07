@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 public interface Catalogo<T, R extends RigaCatalogo<T>> {
 
     /**
-     * Aggiunge la riga catalogo specificata a questo catalogo.
+     * Se la riga catalogo non &egrave; presente nel catalogo, aggiunge la riga catalogo specificata a questo catalogo.
      * Restituisce {@code true} se la riga catalogo viene aggiunta, altrimenti {@code false}.
      *
      * @param riga la riga catalogo da aggiungere a questo catalogo
