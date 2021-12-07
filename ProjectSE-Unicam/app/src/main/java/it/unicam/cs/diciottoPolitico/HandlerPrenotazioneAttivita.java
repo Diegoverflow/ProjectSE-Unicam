@@ -21,6 +21,7 @@ public interface HandlerPrenotazioneAttivita {
      *
      * @param data l' istante temporale per filtrare le attivit&agrve;
      * @return la lista di tutte le attivit&agrave; attualmente disponibili offerte dallo chalet nell' istante temporale specificato
+     * @throws NullPointerException se la data specificata &egrave; null
      */
     List<RigaCatalogoAttivita> getRigheAttivitaDisponibiliBy(GregorianCalendar data);
 
