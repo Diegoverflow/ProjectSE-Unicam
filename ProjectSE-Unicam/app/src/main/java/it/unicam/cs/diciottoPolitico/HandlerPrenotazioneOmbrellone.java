@@ -6,7 +6,7 @@ import java.util.List;
 //TODO inserire le API
 
 /**
- *
+ * Rappresenta un gestore per la prenotazione di un ombrellone da parte di un cliente.
  */
 public interface HandlerPrenotazioneOmbrellone {
     /**

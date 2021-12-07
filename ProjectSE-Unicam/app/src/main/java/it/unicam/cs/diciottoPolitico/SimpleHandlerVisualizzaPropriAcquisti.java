@@ -1,7 +1,5 @@
 package it.unicam.cs.diciottoPolitico;
 
-import java.util.List;
-
 /**
  * Semplice implementazione dell'interfaccia HandlerVisualizzaPropriAcquisti.
  */
@@ -10,8 +8,9 @@ public class SimpleHandlerVisualizzaPropriAcquisti implements HandlerVisualizzaP
     @Override
     public String getAcquisti(Cliente cliente) {
         StringBuilder messaggio = new StringBuilder();
-        cliente.getPrenotazioniOmbrelloni().stream().sequential().forEach(p -> getAcquisti(p,messaggio));
-        cliente.getPrenotazioniAttivita().stream().sequential().forEach(p -> getAcquisti(p,messaggio));
+        cliente.getPrenotazioniOmbrelloni().stream().sequential().forEach(o -> getAcquisti(o,messaggio));
+        cliente.getPrenotazioniAttivita().stream().sequential().forEach(a -> getAcquisti(a,messaggio));
+        cliente.getOrdinazioniBar().stream().sequential().forEach(a -> getAcquisti(a,messaggio));
         return messaggio.toString();
     }
 
@@ -22,7 +21,7 @@ public class SimpleHandlerVisualizzaPropriAcquisti implements HandlerVisualizzaP
         messaggio.append(" ").append("data prenotazione: ").append(prenotazioneOmbrellone.getDataPrenotazione().toString()).append(" ");
         messaggio.append(" ").append(prenotazioneOmbrellone.getFasciaOraria());
         messaggio.append(" ").append(prenotazioneOmbrellone.getCosto());
-        messaggio.append(" ").append(prenotazioneOmbrellone.getStatoPagamento());
+        messaggio.append(" ").append("pagato: ").append(prenotazioneOmbrellone.getStatoPagamento());
         messaggio.append("\n");
     }
     private void getAcquisti(PrenotazioneAttivita prenotazioneAttivita,StringBuilder messaggio){
@@ -35,19 +34,17 @@ public class SimpleHandlerVisualizzaPropriAcquisti implements HandlerVisualizzaP
         messaggio.append(" ").append("posti totali: ").append(prenotazioneAttivita.getAttivita().getPostiTotali());
         messaggio.append(" ").append("descrizione: ").append(prenotazioneAttivita.getAttivita().getDescrizione());
         messaggio.append(" ").append(prenotazioneAttivita.getCosto());
-        messaggio.append(" ").append(prenotazioneAttivita.getStatoPagamento());
+        messaggio.append(" ").append("pagato: ").append(prenotazioneAttivita.getStatoPagamento());
         messaggio.append("\n");
     }
 
-    /*todo
-    private void getAcquisti(List<OrdinazioneBar> ordinazioniBar,StringBuilder messaggio){
-        for (PrenotazioneOmbrellone prenotazione: ordinazioniBar) {
-            messaggio.append(prenotazione.getOmbrellone().getId());
-            messaggio.append(" ").append(prenotazione.getDataPrenotazione().toString());
-            messaggio.append(" ").append(prenotazione.getFasciaOraria());
-            messaggio.append(" ").append(prenotazione.getCosto());
-            messaggio.append(" ").append(prenotazione.getStatoPagamento());
-            messaggio.append("\n");
-        }
-    }*/
+    private void getAcquisti(OrdinazioneBar ordinazioniBar,StringBuilder messaggio){
+        messaggio.append("id ordinazione: ").append(ordinazioniBar.getId());
+        messaggio.append(" ").append("id articolo bar: ").append(ordinazioniBar.getId());
+        messaggio.append(" ").append("data acquisto: ").append(ordinazioniBar.getDataAcquisto());
+        messaggio.append(" ").append("descrizione: ").append(ordinazioniBar.getArticoloBar().getDescrizione());
+        messaggio.append(" ").append("costo: ").append(ordinazioniBar.getCosto());
+        messaggio.append(" ").append("pagato: ").append(ordinazioniBar.isPagato());
+        messaggio.append("\n");
+    }
 }

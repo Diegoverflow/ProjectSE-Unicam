@@ -9,6 +9,7 @@ import java.util.Objects;
 public class SimpleOrdinazioneBar implements OrdinazioneBar {
 
     private long id;
+    private final ArticoloBar articoloBar;
     private final GregorianCalendar dataAcquisto;
     private final double costo;
     private boolean consegnato;
@@ -19,13 +20,15 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
      * Metodo costruttore.
      *
      * @param dataAcquisto data di acquisto dell'ordinazione bar
-     * @param costo        costo dell'ordinazione bar
-     * @throws NullPointerException     se la data di acquisto è nulla
+     * @param articoloBar l'articolo bar associato all'ordinazione
+     * @param costo costo dell'ordinazione bar
+     * @throws NullPointerException  se la data di acquisto o l'articolo bar sono nulli
      * @throws IllegalArgumentException se il costo è negativo
      */
-    public SimpleOrdinazioneBar(GregorianCalendar dataAcquisto, double costo) {
+    public SimpleOrdinazioneBar(GregorianCalendar dataAcquisto, ArticoloBar articoloBar,double costo) {
         this.dataAcquisto = Objects.requireNonNull(dataAcquisto, "La data di acquisto non puo' essere nulla");
         if (costo < 0) throw new IllegalArgumentException("Il costo non puo' essere negativo");
+        this.articoloBar = Objects.requireNonNull(articoloBar,"L'articolo bar non puo' essere nullo");
         this.costo = costo;
         this.consegnato = false;
         this.pagato = false;
@@ -35,6 +38,11 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     @Override
     public long getId() {
         return this.id;
+    }
+
+    @Override
+    public ArticoloBar getArticoloBar() {
+        return this.articoloBar;
     }
 
     @Override

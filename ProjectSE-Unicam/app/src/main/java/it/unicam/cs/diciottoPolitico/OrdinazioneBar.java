@@ -15,6 +15,13 @@ public interface OrdinazioneBar {
     long getId();
 
     /**
+     * Ritorna l'articolo bar associato all'ordinazione.
+     *
+     * @return l'articolo bar associato all'ordinazione
+     */
+    ArticoloBar getArticoloBar();
+
+    /**
      * Ritorna la data di acquisto dell'ordinazione bar.
      *
      * @return data di acquisto dell'ordinazione bar
@@ -69,4 +76,5 @@ public interface OrdinazioneBar {
      * @param presoInCarico true se l'ordinazione &egrave; stata presa in carico, false altrimenti
      */
     void setPresoInCarico(boolean presoInCarico);
+
 }
