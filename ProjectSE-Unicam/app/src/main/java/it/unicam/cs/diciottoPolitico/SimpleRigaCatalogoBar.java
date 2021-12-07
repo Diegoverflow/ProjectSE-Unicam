@@ -17,7 +17,7 @@ public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
     }
 
     @Override
-    public void setQuantita() {
+    public void setQuantita(double quantita) {
 
     }
 
