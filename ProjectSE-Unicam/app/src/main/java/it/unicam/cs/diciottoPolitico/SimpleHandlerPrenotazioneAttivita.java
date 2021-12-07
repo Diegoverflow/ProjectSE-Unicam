@@ -29,9 +29,9 @@ public class SimpleHandlerPrenotazioneAttivita implements HandlerPrenotazioneAtt
 
     @Override
     public synchronized boolean creaPrenotazioneAttivita(Attivita attivita, Cliente cliente) {
-        Objects.requireNonNull(attivita, "Attivita' null!");
         Objects.requireNonNull(cliente, "Cliente null!");
-        if (this.catalogoAttivita.getRigaBy(r -> r.getValore().equals(attivita)).isEmpty())
+        if (this.catalogoAttivita.getRigaBy(r -> r.getValore().equals(
+                Objects.requireNonNull(attivita, "Attivita' null!"))).isEmpty())
             throw new IllegalArgumentException("Attivita' non esistente!");
         attivita.setPostiOccupati(attivita.getPostiOccupati() + 1);
         return cliente.addPrenotazioneAttivita(
