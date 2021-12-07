@@ -2,23 +2,24 @@ package it.unicam.cs.diciottoPolitico;
 
 import java.util.GregorianCalendar;
 
-public class SimpleAttivita implements Attivita{
+public class SimpleAttivita implements Attivita {
 
     private long id;
     private final GregorianCalendar dataOrarioInizio;
     private final GregorianCalendar dataOrarioFine;
     private String descrizione;
     private final int postiTotali;
-    private final int postiOccupati;
+    private int postiOccupati;
 
     /**
      * Costruisce un'attvit&agrave;
-     * @param id attvit&agrave;
+     *
+     * @param id               attvit&agrave;
      * @param dataOrarioInizio dell'attvit&agrave;
-     * @param dataOrarioFine dell'attvit&agrave;
-     * @param descrizione dell'attvit&agrave;
-     * @param postiTotali dell'attvit&agrave;
-     * @param postiOccupati dell'attvit&agrave;
+     * @param dataOrarioFine   dell'attvit&agrave;
+     * @param descrizione      dell'attvit&agrave;
+     * @param postiTotali      dell'attvit&agrave;
+     * @param postiOccupati    dell'attvit&agrave;
      */
     public SimpleAttivita(long id,
                           GregorianCalendar dataOrarioInizio,
@@ -27,7 +28,7 @@ public class SimpleAttivita implements Attivita{
                           int postiTotali,
                           int postiOccupati) {
         if (dataOrarioInizio == null || dataOrarioFine == null || descrizione == null)
-            throw new NullPointerException ("Non è possibile inserire campi nulli");
+            throw new NullPointerException("Non è possibile inserire campi nulli");
         if (dataOrarioFine.before(dataOrarioFine) || dataOrarioInizio.equals(dataOrarioFine))
             throw new IllegalArgumentException("Orario inzio e fine attività non validi");
         this.id = id;
@@ -40,11 +41,12 @@ public class SimpleAttivita implements Attivita{
 
     /**
      * Costruisce un'attvit&agrave;
+     *
      * @param dataOrarioInizio dell'attvit&agrave;
-     * @param dataOrarioFine dell'attvit&agrave;
-     * @param descrizione dell'attvit&agrave;
-     * @param postiTotali dell'attvit&agrave;
-     * @param postiOccupati dell'attvit&agrave;
+     * @param dataOrarioFine   dell'attvit&agrave;
+     * @param descrizione      dell'attvit&agrave;
+     * @param postiTotali      dell'attvit&agrave;
+     * @param postiOccupati    dell'attvit&agrave;
      */
     public SimpleAttivita(GregorianCalendar dataOrarioInizio,
                           GregorianCalendar dataOrarioFine,
@@ -52,7 +54,7 @@ public class SimpleAttivita implements Attivita{
                           int postiTotali,
                           int postiOccupati) {
         if (dataOrarioInizio == null || dataOrarioFine == null || descrizione == null)
-            throw new NullPointerException ("Non è possibile inserire campi nulli");
+            throw new NullPointerException("Non è possibile inserire campi nulli");
         if (dataOrarioFine.before(dataOrarioFine) || dataOrarioInizio.equals(dataOrarioFine))
             throw new IllegalArgumentException("Orario inzio e fine attività non validi");
         this.dataOrarioInizio = dataOrarioInizio;
@@ -95,6 +97,14 @@ public class SimpleAttivita implements Attivita{
     @Override
     public int getPostiOccupati() {
         return this.postiOccupati;
+    }
+
+    @Override
+    public boolean aggiungiPostoOccupato() {
+        if (this.postiTotali == this.postiOccupati)
+            return false;
+        this.postiOccupati++;
+        return true;
     }
 
 }
