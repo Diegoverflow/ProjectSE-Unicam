@@ -49,7 +49,7 @@ public interface Cliente {
     void setNumero(String numero);
 
     /**
-     * Ottieni le notifiche nella casella notifiche del cliente
+     * Ottieni le notifiche nella casella notifiche del cliente.
      * @return la lista di notifiche del cliente
      */
     List<Notifica> getNotifiche();
@@ -73,7 +73,7 @@ public interface Cliente {
     boolean removeNotifica(long idNotifica);
 
     /**
-     * Ottieni le prenotazioni di ombrelloni del cliente
+     * Ottieni le prenotazioni di ombrelloni del cliente.
      * @return la lista di prenotazioni effettuate dal cliente
      */
     List<PrenotazioneOmbrellone> getPrenotazioniOmbrelloni();
@@ -88,7 +88,7 @@ public interface Cliente {
     boolean addPrenotazioneOmbrellone(PrenotazioneOmbrellone prenotazione);
 
     /**
-     * Ottieni le attvit&agrave; prenotate dal cliente
+     * Ottieni le attvit&agrave; prenotate dal cliente.
      * @return la lista di attvit&agrave; prenotate dal cliente
      */
     List<PrenotazioneAttivita> getPrenotazioniAttivita();
@@ -101,4 +101,19 @@ public interface Cliente {
      *         false altrimenti
      */
     boolean addPrenotazioneAttivita(PrenotazioneAttivita attivita);
+
+    /**
+     * Ottieni le ordinazioni bar effettuate dal cliente.
+     * @return la lista drlle ordinazioni bar effettuate dal cliente
+     */
+    List<OrdinazioneBar> getOrdinazioniBar();
+
+    /**
+     * Aggiunge un'ordinazione bar alle ordinazioni effettuate dal cliente e
+     * verifica che l'operazione sia stata svolta correttamente.
+     * @param ordinazioneBar che si vuole registrare
+     * @return true se ordinazione &egrave; stata registrata
+     *         false altrimenti
+     */
+    boolean addOrdinazioneBar(OrdinazioneBar ordinazioneBar);
 }

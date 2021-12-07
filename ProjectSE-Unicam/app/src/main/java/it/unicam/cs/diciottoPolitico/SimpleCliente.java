@@ -2,6 +2,9 @@ package it.unicam.cs.diciottoPolitico;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Logger;
 
 public class SimpleCliente implements Cliente{
 
@@ -12,7 +15,7 @@ public class SimpleCliente implements Cliente{
     private final List<Notifica> notifiche;
     private final List<PrenotazioneOmbrellone> prenotazioni;
     private final List<PrenotazioneAttivita> prenotazioniAttivita;
-
+    private final List<OrdinazioneBar> ordinazioniBar;
     /**
      * Costruisce un SimpleCliente
      * @param codiceFiscale del cliente
@@ -30,7 +33,7 @@ public class SimpleCliente implements Cliente{
         this.notifiche = new LinkedList<>();
         this.prenotazioni = new LinkedList<>();
         this.prenotazioniAttivita = new LinkedList<>();
-
+        this.ordinazioniBar = new LinkedList<>();
     }
 
     /**
@@ -48,7 +51,7 @@ public class SimpleCliente implements Cliente{
         this.notifiche = new LinkedList<>();
         this.prenotazioni = new LinkedList<>();
         this.prenotazioniAttivita = new LinkedList<>();
-
+        this.ordinazioniBar = new LinkedList<>();
     }
 
     @Override
@@ -142,6 +145,20 @@ public class SimpleCliente implements Cliente{
             throw new NullPointerException("Prenotazione nulla");
         if (!this.prenotazioniAttivita.contains(prenotazioneAttivita))
             return this.prenotazioniAttivita.add(prenotazioneAttivita);
+        return false;
+    }
+
+    @Override
+    public List<OrdinazioneBar> getOrdinazioniBar() {
+        return this.ordinazioniBar;
+    }
+
+    @Override
+    public boolean addOrdinazioneBar(OrdinazioneBar ordinazioneBar) {
+        if (ordinazioneBar == null)
+            throw new NullPointerException("Ordinazione bar nulla");
+        if (!this.ordinazioniBar.contains(ordinazioneBar))
+            return this.ordinazioniBar.add(ordinazioneBar);
         return false;
     }
 

@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
 public class SimpleAttivita implements Attivita {
 
@@ -107,4 +108,16 @@ public class SimpleAttivita implements Attivita {
         return true;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SimpleAttivita that = (SimpleAttivita) o;
+        return id == that.id && postiTotali == that.postiTotali && dataOrarioInizio.equals(that.dataOrarioInizio) && dataOrarioFine.equals(that.dataOrarioFine) && descrizione.equals(that.descrizione);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, dataOrarioInizio, dataOrarioFine, descrizione, postiTotali);
+    }
 }

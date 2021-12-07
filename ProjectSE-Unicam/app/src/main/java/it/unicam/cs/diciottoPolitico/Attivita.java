@@ -63,4 +63,8 @@ public interface Attivita {
      */
     boolean setPostiOccupati(int postiOccupati);
 
+    boolean equals(Object o);
+
+    int hashCode();
+
 }
