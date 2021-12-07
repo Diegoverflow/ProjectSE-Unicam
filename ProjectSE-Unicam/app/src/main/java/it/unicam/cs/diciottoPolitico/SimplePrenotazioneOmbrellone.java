@@ -133,7 +133,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     }
 
     @Override
-    public long getCodice() {
+    public long getId() {
         return this.codice;
     }
 

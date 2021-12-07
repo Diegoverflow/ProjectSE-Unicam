@@ -11,7 +11,7 @@ public interface PrenotazioneOmbrellone {
      * Ottieni il codice associato all'ombrellone.
      * @return il codice dell'ombrellone
      */
-    long getCodice();
+    long getId();
 
     /**
      * Ottieni la data in cui &egrave; riservata la prenotazione.
