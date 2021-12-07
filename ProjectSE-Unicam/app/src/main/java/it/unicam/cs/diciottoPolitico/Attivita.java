@@ -57,11 +57,11 @@ public interface Attivita {
     int getPostiOccupati();
 
     /**
-     * Aumenta di 1 il numero di posti occupati.
+     * Occupa un posto per questa attivit&agrave; e di conseguenza aumenta di 1 il numero di posti occupati.
      * Restituisce {@code true} se la modifica del numero di posti occupati &egrave; andata a buon fine, {@code false} altrimenti.
      *
      * @return {@code true} se il numero di posti occupati diventa uguale al numero di posti totali, {@code false} altrimenti
      */
-    boolean aggiungiPostoOccupato();
+    boolean occupaPosto();
 
 }

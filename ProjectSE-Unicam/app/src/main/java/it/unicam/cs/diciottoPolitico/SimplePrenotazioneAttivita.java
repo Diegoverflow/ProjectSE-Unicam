@@ -2,7 +2,7 @@ package it.unicam.cs.diciottoPolitico;
 
 import java.util.GregorianCalendar;
 
-public class SimplePrenotazioneAttivita implements PrenotazioneAttivita{
+public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
 
     private long id;
     private final GregorianCalendar dataAcquisto;
@@ -12,11 +12,12 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita{
 
     /**
      * Costruisce una prenotazione attivit&agrave;
-     * @param id della prenotazione
-     * @param costo della prenotazione
+     *
+     * @param id       della prenotazione
+     * @param costo    della prenotazione
      * @param attivita da associare alla prenotazione
      * @apiNote la data di acquisto &egrave; impostata automaticamente dal sistema alla data corrente
-     *          e lo stato di pagamento &egrave; impostato automaticamente a false
+     * e lo stato di pagamento &egrave; impostato automaticamente a {@code false}
      */
     public SimplePrenotazioneAttivita(long id, double costo, Attivita attivita) {
         if (attivita == null)
@@ -30,10 +31,11 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita{
 
     /**
      * Costruisce una prenotazione attivit&agrave;
-     * @param costo della prenotazione
+     *
+     * @param costo    della prenotazione
      * @param attivita da associare alla prenotazione
      * @apiNote la data di acquisto &egrave; impostata automaticamente dal sistema alla data corrente
-     *          e lo stato di pagamento &egrave; impostato automaticamente a false
+     * e lo stato di pagamento &egrave; impostato automaticamente a {@code false}
      */
     public SimplePrenotazioneAttivita(double costo, Attivita attivita) {
         this.dataAcquisto = new GregorianCalendar();
