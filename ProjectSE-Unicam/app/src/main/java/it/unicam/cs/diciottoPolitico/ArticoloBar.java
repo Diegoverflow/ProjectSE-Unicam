@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
 /**
- * Rappresenta un articolo bar
+ * Rappresenta un articolo bar.
  */
 public interface ArticoloBar {
 

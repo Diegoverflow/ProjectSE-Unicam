@@ -3,9 +3,9 @@ package it.unicam.cs.diciottoPolitico;
 import java.util.Objects;
 
 /**
- * Semplice implementazione dell'interfaccia ArticoloBar
+ * Semplice implementazione dell'interfaccia ArticoloBar.
  */
-public class SimpleArticoloBar implements ArticoloBar{
+public class SimpleArticoloBar implements ArticoloBar {
     private long id;
     private String descrizione;
 
@@ -16,7 +16,7 @@ public class SimpleArticoloBar implements ArticoloBar{
      * @throws NullPointerException se la descrizione &egrave; nulla
      */
     public SimpleArticoloBar(String descrizione) {
-        this.descrizione = Objects.requireNonNull(descrizione,"La descrizione deve essere non nulla");
+        this.descrizione = Objects.requireNonNull(descrizione, "La descrizione deve essere non nulla");
     }
 
     @Override
@@ -31,6 +31,6 @@ public class SimpleArticoloBar implements ArticoloBar{
 
     @Override
     public void setDescrizione(String descrizione) {
-        this.descrizione = Objects.requireNonNull(descrizione,"La descrizione deve essere non nulla");
+        this.descrizione = Objects.requireNonNull(descrizione, "La descrizione deve essere non nulla");
     }
 }
