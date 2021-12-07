@@ -28,16 +28,15 @@ public class SimpleHandlerPrenotazioneAttivita implements HandlerPrenotazioneAtt
 
     @Override
     public boolean creaPrenotazioneAttivita(Attivita attivita, Cliente cliente) {
-        /*Objects.requireNonNull(attivita, "Attivita' null!");
+        Objects.requireNonNull(attivita, "Attivita' null!");
         Objects.requireNonNull(cliente, "Cliente null!");
         if (this.catalogoAttivita.getRigaBy(r -> r.getValore().equals(attivita)).isEmpty())
             throw new IllegalArgumentException("Attivita' non esistente!");
-        attivita.occupaPosto();
+        attivita.setPostiOccupati(1);
         return cliente.addPrenotazioneAttivita(
                 new SimplePrenotazioneAttivita(attivita.getId(),
                         this.catalogoAttivita.getRigaBy(r -> r.getValore().equals(attivita)).get(0).getPrezzo(),
                         attivita
-                ));*/
-        return false;//ToDo
+                ));
     }
 }
