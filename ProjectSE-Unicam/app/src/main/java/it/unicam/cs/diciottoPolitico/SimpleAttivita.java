@@ -100,7 +100,7 @@ public class SimpleAttivita implements Attivita {
     }
 
     @Override
-    public boolean aggiungiPostoOccupato() {
+    public boolean occupaPosto() {
         if (this.postiTotali == this.postiOccupati)
             return false;
         this.postiOccupati++;
