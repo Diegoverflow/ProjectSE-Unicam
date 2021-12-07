@@ -26,11 +26,13 @@ public interface HandlerPrenotazioneAttivita {
 
     /**
      * Crea una prenotazione dell' attivit&agrave; specificata per il cliente specificato.
-     * Restituisce true se la prenotazione viene creata con successo, altrimenti false.
+     * Restituisce {@code true} se la prenotazione viene creata con successo, altrimenti {@code false}.
      *
      * @param attivita l' attivit&agrave; da creare
      * @param cliente  il cliente che sta effettuando una prenotazione per l' attivit&agrave; specificata
-     * @return true se la prenotazione viene creata con successo, altrimenti false
+     * @return {@code true} se la prenotazione viene creata con successo, altrimenti {@code false}
+     * @throws NullPointerException     se almeno uno dei parametri specificati &egrave; null
+     * @throws IllegalArgumentException se l' attivit&agrave; non esiste, ovvero non fa parte del catalogo attivit&agrave;
      */
     boolean creaPrenotazioneAttivita(Attivita attivita, Cliente cliente);
 
