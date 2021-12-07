@@ -14,10 +14,10 @@ public interface Catalogo<T, R extends RigaCatalogo<T>> {
 
     /**
      * Aggiunge la riga catalogo specificata a questo catalogo.
-     * Restituisce true se la riga catalogo viene aggiunta, altrimenti false.
+     * Restituisce {@code true} se la riga catalogo viene aggiunta, altrimenti {@code false}.
      *
      * @param riga la riga catalogo da aggiungere a questo catalogo
-     * @return true se la riga catalogo viene aggiunta, altrimenti false
+     * @return {@code true} se la riga catalogo viene aggiunta, altrimenti {@code false}
      */
     boolean addRiga(R riga);
 
@@ -31,7 +31,7 @@ public interface Catalogo<T, R extends RigaCatalogo<T>> {
     boolean remove(R riga);
 
     /**
-     * Restituisce una lista di righe castalogo filtrate tramite il predicato specificato.
+     * Restituisce una lista di righe catalogo filtrate tramite il predicato specificato.
      *
      * @param predicate il predicato con cui filtrare le righe catalogo
      * @return la lista delle righe catalogo filtrate tramite il predicato specificato
