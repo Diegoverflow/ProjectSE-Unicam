@@ -23,7 +23,8 @@ public class SimpleHandlerPrenotazioneAttivita implements HandlerPrenotazioneAtt
 
     @Override
     public List<RigaCatalogoAttivita> getRigheAttivitaDisponibiliBy(GregorianCalendar data) {
-        return this.catalogoAttivita.getRigaBy(a -> a.getValore().getDataOrarioInizio().equals(data));
+        return this.catalogoAttivita.getRigaBy(a -> a.getValore().getDataOrarioInizio().equals(
+                Objects.requireNonNull(data, "Data null!")));
     }
 
     @Override
