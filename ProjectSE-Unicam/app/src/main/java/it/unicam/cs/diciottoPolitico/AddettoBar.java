@@ -8,10 +8,10 @@ package it.unicam.cs.diciottoPolitico;
 public interface AddettoBar {
 
     /**
-     * Restituisce {@code true} se l' ordinazione relativa all'id specificato viene consegnata
+     * Restituisce {@code true} se l' ordinazione relativa all' id specificato viene consegnata
      * con successo, {@code false} altrimenti.
      *
-     * @param idOrdinazione l'id dell' ordinazione da consegnare
+     * @param idOrdinazione l' id dell' ordinazione da consegnare
      * @return {@code true} se l' ordinazione viene consegnata con successo, {@code false} altrimenti
      */
     boolean consegnaOrdine(long idOrdinazione);
@@ -20,7 +20,7 @@ public interface AddettoBar {
      * Restituisce {@code true} se l' ordinazione relativa all' id specificato viene presa in carico,
      * {@code false} altrimenti.
      *
-     * @param idOrdinazione l'id dell' ordinazione da prendere in carico
+     * @param idOrdinazione l' id dell' ordinazione da prendere in carico
      * @return {@code true} se l' ordinazione viene presa in carico, {@code false} altrimenti
      */
     boolean prendiInCarico(long idOrdinazione);
@@ -29,7 +29,7 @@ public interface AddettoBar {
      * Una volta che l' ordine &egrave; stato preso in carico, elimina la notifica relativa a quest' ordine.
      * Restituisce {@code true} se la notifica viene eliminata, {@code false} altrimenti.
      *
-     * @param idNotifica l'id della notifica da eliminare
+     * @param idNotifica l' id della notifica da eliminare
      * @return {@code true} se la notifica viene eliminata, {@code false} altrimenti
      */
     boolean removeNotifica(long idNotifica);
