@@ -13,7 +13,7 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
 
     private final Set<AddettoBar> addettiBar;
     private final Set<RigaCatalogoBar> articoliDisponibili;
-    private final Catalogo<OrdinazioneBar, RigaCatalogo<OrdinazioneBar>> catalogoBar;
+    private final Catalogo<ArticoloBar, RigaCatalogoBar> catalogoBar;
     private final Map<OrdinazioneBar, AddettoBar> ordinazioniDaGestire;
 
     /**
@@ -22,7 +22,7 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
     public SimpleHandlerOrdinazioneBar() {
         this.addettiBar = new HashSet<>();
         this.articoliDisponibili = new HashSet<>();
-        this.catalogoBar = null;    // TODO: inizializzare a new SimpleCatalogoBar
+        this.catalogoBar = new CatalogoBar();
         this.ordinazioniDaGestire = new HashMap<>();
     }
 
