@@ -41,7 +41,7 @@ public class SimpleAddettoBar implements AddettoBar {
 
     @Override
     public boolean consegnaOrdine(long idOrdinazione) {
-        Optional<OrdinazioneBar> ordinazioneBar = this.handlerOrdinazioneBar.getOrdinazioniDaConsegnare().stream()
+        Optional<OrdinazioneBar> ordinazioneBar = this.handlerOrdinazioneBar.getOrdinazioniNonPreseInCarico().stream()
                 .filter(o -> o.getId() == id).findFirst();
         if (ordinazioneBar.isEmpty())
             return false;
@@ -54,7 +54,7 @@ public class SimpleAddettoBar implements AddettoBar {
 
     @Override
     public boolean prendiInCarico(long idOrdinazione) {
-        Optional<OrdinazioneBar> ordinazioneBar = this.handlerOrdinazioneBar.getOrdinazioniDaConsegnare().stream()
+        Optional<OrdinazioneBar> ordinazioneBar = this.handlerOrdinazioneBar.getOrdinazioniNonPreseInCarico().stream()
                 .filter(o -> o.getId() == idOrdinazione && !o.isPresoInCarico()).findFirst();
         if (ordinazioneBar.isEmpty())
             return false;

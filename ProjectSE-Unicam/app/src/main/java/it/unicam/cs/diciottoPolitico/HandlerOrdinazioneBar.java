@@ -50,7 +50,7 @@ public interface HandlerOrdinazioneBar {
      *
      * @return la lista di tutte le ordinazioni non consegnate
      */
-    List<OrdinazioneBar> getOrdinazioniDaConsegnare();
+    List<OrdinazioneBar> getOrdinazioniNonPreseInCarico();
 
     /**
      * Aggiunge l' addetto bar specificato all' insieme di tutti gli addetti bar.

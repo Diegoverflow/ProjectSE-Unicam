@@ -44,7 +44,7 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
     }
 
     @Override
-    public List<OrdinazioneBar> getOrdinazioniDaConsegnare() {
+    public List<OrdinazioneBar> getOrdinazioniNonPreseInCarico() {
         List<OrdinazioneBar> ordinazioniDaConsegnare = new LinkedList<>();
         this.ordinazioniDaGestire.forEach((ordinazioneBar, addettoBar) -> this.aggiungiOrdinazione(ordinazioneBar, addettoBar, ordinazioniDaConsegnare));
         return ordinazioniDaConsegnare;
