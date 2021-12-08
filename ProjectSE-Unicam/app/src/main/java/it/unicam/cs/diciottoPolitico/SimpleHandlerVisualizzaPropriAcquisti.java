@@ -13,10 +13,10 @@ public class SimpleHandlerVisualizzaPropriAcquisti implements HandlerVisualizzaP
         cliente.getOrdinazioniBar().stream().sequential().forEach(a -> getAcquisti(a,messaggio));
         return messaggio.toString();
     }
-
+//todo
     private void getAcquisti(PrenotazioneOmbrellone prenotazioneOmbrellone,StringBuilder messaggio){
         messaggio.append("id prenotazione: ").append(prenotazioneOmbrellone.getId());
-        messaggio.append(" ").append("id ombrellone: ").append(prenotazioneOmbrellone.getOmbrellone().getId());
+        messaggio.append(" ").append("ombrellone: ").append(prenotazioneOmbrellone.getOmbrellone().getId());
         messaggio.append(" ").append("data acquisto: ").append(prenotazioneOmbrellone.getDataAcquisto().toString());
         messaggio.append(" ").append("data prenotazione: ").append(prenotazioneOmbrellone.getDataPrenotazione().toString()).append(" ");
         messaggio.append(" ").append(prenotazioneOmbrellone.getFasciaOraria());
