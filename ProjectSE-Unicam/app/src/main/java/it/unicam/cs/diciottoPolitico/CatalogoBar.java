@@ -35,6 +35,6 @@ public class CatalogoBar implements Catalogo<ArticoloBar, RigaCatalogoBar> {
 
     @Override
     public List<RigaCatalogoBar> getRigaBy(Predicate<RigaCatalogoBar> predicate) {
-        return this.righeCatalogoBar.stream().filter(predicate).collect(Collectors.toList());
+        return this.righeCatalogoBar.stream().filter(Objects.requireNonNull(predicate,"Il predicato non puo' essere nullo")).collect(Collectors.toList());
     }
 }
