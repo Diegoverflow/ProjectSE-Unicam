@@ -1,38 +1,14 @@
 package it.unicam.cs.diciottoPolitico;
 
+// TODO: Modificare javadoc
+
+
 /**
  * Rappresenta un addetto bar che si occupa di effettuare principalmente operazioni inerenti
  * alle ordinazioni bar. In particolare si occoupa  di prendere in carico un' ordinazione del bar,
  * di consegnarla al cliente e di eliminare la notifica relativa a quell' ordine.
  */
 public interface AddettoBar {
-
-    /**
-     * Restituisce {@code true} se l' ordinazione relativa all' id specificato viene consegnata
-     * con successo, {@code false} altrimenti.
-     *
-     * @param idOrdinazione l' id dell' ordinazione da consegnare
-     * @return {@code true} se l' ordinazione viene consegnata con successo, {@code false} altrimenti
-     */
-    boolean consegnaOrdine(long idOrdinazione);
-
-    /**
-     * Restituisce {@code true} se l' ordinazione relativa all' id specificato viene presa in carico,
-     * {@code false} altrimenti.
-     *
-     * @param idOrdinazione l' id dell' ordinazione da prendere in carico
-     * @return {@code true} se l' ordinazione viene presa in carico, {@code false} altrimenti
-     */
-    boolean prendiInCarico(long idOrdinazione);
-
-    /**
-     * Una volta che l' ordine &egrave; stato preso in carico, elimina la notifica relativa a quest' ordine.
-     * Restituisce {@code true} se la notifica viene eliminata, {@code false} altrimenti.
-     *
-     * @param idNotifica l' id della notifica da eliminare
-     * @return {@code true} se la notifica viene eliminata, {@code false} altrimenti
-     */
-    boolean removeNotifica(long idNotifica);
 
     /**
      * Restituisce l' id di questo addetto bar
@@ -82,6 +58,20 @@ public interface AddettoBar {
      * @param password la password da impostare all' addetto bar
      */
     void setPassword(String password);
+
+    /**
+     * Aggiunge una notifica inviata dall' handler a questo addetto bar.
+     *
+     * @param notifica la notifica specificata da aggiungere all' insieme delle notifiche di questo addetto bar
+     */
+    void addNotifica(Notifica notifica);
+
+    /**
+     * Rimuove la notifica specificata dall' insieme delle notifiche di questo addetto bar.
+     *
+     * @param notifica la notifica da rimuovere dall' insieme delle notifiche di questo addetto bar
+     */
+    boolean removeNotifica(Notifica notifica);
 
 
     /**
