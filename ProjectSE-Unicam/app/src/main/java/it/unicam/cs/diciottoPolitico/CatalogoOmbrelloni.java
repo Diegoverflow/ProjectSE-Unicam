@@ -36,4 +36,9 @@ public class CatalogoOmbrelloni implements Catalogo<Ombrellone,RigaCatalogoOmbre
     public List<RigaCatalogoOmbrellone> getRigaBy(Predicate<RigaCatalogoOmbrellone> predicate) {
         return this.righeCatalogoOmbrellone.stream().filter(Objects.requireNonNull(predicate,"Il predicato non puo' essere nullo")).collect(Collectors.toList());
     }
+
+    @Override
+    public List<RigaCatalogoOmbrellone> getAllRighe() {
+        return this.righeCatalogoOmbrellone;
+    }
 }

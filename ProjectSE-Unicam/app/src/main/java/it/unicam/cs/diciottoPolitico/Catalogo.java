@@ -39,4 +39,11 @@ public interface Catalogo<T, R extends RigaCatalogo<T>> {
      */
     List<R> getRigaBy(Predicate<R> predicate);
 
+    /**
+     * Ritorna tutte le righe del catalogo.
+     *
+     * @return tutte le righe del catalogo
+     */
+    List<R> getAllRighe();
+
 }

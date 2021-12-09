@@ -36,4 +36,9 @@ public class SimpleCatalogoAttivita implements Catalogo<Attivita, RigaCatalogoAt
         return this.righeCatologoAttivita.stream().parallel().filter(predicate).collect(Collectors.toList());
     }
 
+    @Override
+    public List<RigaCatalogoAttivita> getAllRighe() {
+        return this.righeCatologoAttivita;
+    }
+
 }
