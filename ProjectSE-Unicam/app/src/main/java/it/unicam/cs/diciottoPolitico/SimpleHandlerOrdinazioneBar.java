@@ -22,7 +22,7 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
     public SimpleHandlerOrdinazioneBar() {
         this.addettiBar = new HashSet<>();
         this.articoliDisponibili = new HashSet<>();
-        this.catalogoBar = new CatalogoBar();
+        this.catalogoBar = new SimpleCatalogo<>();
         this.ordinazioniDaGestire = new HashMap<>();
     }
 

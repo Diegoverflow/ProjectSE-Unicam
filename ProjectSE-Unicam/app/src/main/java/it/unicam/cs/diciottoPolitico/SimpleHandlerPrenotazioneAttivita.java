@@ -13,7 +13,7 @@ public class SimpleHandlerPrenotazioneAttivita implements HandlerPrenotazioneAtt
     private final Catalogo<Attivita, RigaCatalogoAttivita> catalogoAttivita;
 
     public SimpleHandlerPrenotazioneAttivita() {
-        this.catalogoAttivita = new SimpleCatalogoAttivita();
+        this.catalogoAttivita = new SimpleCatalogo<>();
     }
 
     @Override

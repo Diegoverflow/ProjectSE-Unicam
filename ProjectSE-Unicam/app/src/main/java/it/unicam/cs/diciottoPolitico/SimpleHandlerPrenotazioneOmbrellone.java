@@ -13,7 +13,7 @@ public class SimpleHandlerPrenotazioneOmbrellone implements HandlerPrenotazioneO
      * Metodo Costruttore.
      */
     public SimpleHandlerPrenotazioneOmbrellone() {
-        this.catalogoOmbrelloni = new CatalogoOmbrelloni();
+        this.catalogoOmbrelloni = new SimpleCatalogo<>();
     }
 
     @Override
