@@ -61,17 +61,6 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
         return this.addettiBar.add(addettoBar);
     }
 
-    @Override
-    public boolean modifyAddetto(long id, String nome, String cognome, String password) {
-        // TODO: da testare perchè non sono sicurissimo che funzioni
-        AddettoBar addettoModificato = new SimpleAddettoBar(id, nome, cognome, password, this);
-        return this.addettiBar.addAll(
-                this.addettiBar.stream()
-                        .filter(a -> a.equals(addettoModificato))
-                        .map(a -> addettoModificato)
-                        .collect(Collectors.toSet())
-        );
-    }
 
     @Override
     public boolean removeAddetto(long id) {

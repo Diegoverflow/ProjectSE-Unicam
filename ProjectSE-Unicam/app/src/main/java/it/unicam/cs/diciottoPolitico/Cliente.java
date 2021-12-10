@@ -5,7 +5,7 @@ import java.util.List;
 /**
  *Interfaccia che descrive un cliente.
  */
-public interface Cliente {
+public interface Cliente extends UtenteLoggato{
     /**
      * Ottieni il codice fiscale del cliente.
      * @return il codice fiscale del cliente
@@ -13,64 +13,12 @@ public interface Cliente {
     String getCodiceFiscale();
 
     /**
-     * Ottieni il nome del cliente.
-     * @return il nome del cliente
+     * Imposta il codice fiscale.
+     *
+     * @param codiceFiscale il nuovo codice fiscale del cliente
+     * @throws NullPointerException se il codice fiscale &egrave; nullo
      */
-    String getNome();
-
-    /**
-     * Ottieni il cognome del cliente.
-     * @return il cognome del cliente
-     */
-    String getCognome();
-
-    /**
-     * Ottieni il numero del cliente.
-     * @return il numero del cliente
-     */
-    String getNumero();
-
-    /**
-     * Modifica il nome del cliente in base al nome passato come parametro.
-     * @param nome con il quale si vuole aggiornare il nome del cliente
-     */
-    void setNome(String nome);
-
-    /**
-     * Modifica il cognome del cliente in base al cognome passato come parametro.
-     * @param cognome con il quale si vuole aggiornare il cognome del cliente
-     */
-    void setCognome(String cognome);
-
-    /**
-     * Modifica il numero del cliente in base al numero passato come parametro.
-     * @param numero con il quale si vuole aggiornare il numero del cliente
-     */
-    void setNumero(String numero);
-
-    /**
-     * Ottieni le notifiche nella casella notifiche del cliente.
-     * @return la lista di notifiche del cliente
-     */
-    List<Notifica> getNotifiche();
-
-    /**
-     * Aggiunge una notifica alla casella notifiche del cliente e
-     * verifica che l'operazione sia stata effettuata correttamente.
-     * @param notifica da aggiungere alla casella notifiche del cliente
-     * @return true se la notifica &egrave; stata aggiunta,
-     *         false altrimenti
-     */
-    boolean addNotica(Notifica notifica);
-
-    /**
-     * Rimuovi una notifica dalla casella notifiche del cliente e
-     * verifica che l'operazione sia stata effettuata correttamente.
-     * @param idNotifica da rimuovere dalla casella notifiche del cliente
-     * @return true se la notifica &egrave; stata rimossa,
-     *         false altrimenti
-     */
-    boolean removeNotifica(long idNotifica);
+    void setCodiceFiscale(String codiceFiscale);
 
     /**
      * Ottieni le prenotazioni di ombrelloni del cliente.
@@ -101,6 +49,7 @@ public interface Cliente {
      *         false altrimenti
      */
     boolean addPrenotazioneAttivita(PrenotazioneAttivita attivita);
+
 
     /**
      * Ottieni le ordinazioni bar effettuate dal cliente.

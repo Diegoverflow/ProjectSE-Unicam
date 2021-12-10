@@ -63,18 +63,6 @@ public interface HandlerOrdinazioneBar {
     boolean addAddetto(AddettoBar addettoBar);  // TODO: Fa un po' caca addAddetto come nome
 
     /**
-     * Modifica l' addetto bar avente l' id specificato, aggiornando nome, utente e password attuali con quelli specificati.
-     * Restituisce {@code true} se l' addetto bar viene modificato, altrimenti {@code false}.
-     *
-     * @param id       l' id dell' addetto bar da modificare nell' insieme degli addetti bar
-     * @param nome     il nome dell' addetto bar da modificare
-     * @param cognome  il cognome dell' addetto bar da modificare
-     * @param password la password dell' addetto bar da modificare
-     * @return {@code true} se l' addetto bar dell' id specificato viene modificato, altrimenti {@code false}
-     */
-    boolean modifyAddetto(long id, String nome, String cognome, String password);
-
-    /**
      * Rimuove l' addetto bar avente l' id specificato.
      * Restitusice {@code true} se l' addetto bar viene rimosso, altrimenti {@code false}.
      *

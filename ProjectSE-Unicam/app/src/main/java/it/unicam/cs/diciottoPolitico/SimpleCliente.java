@@ -2,49 +2,51 @@ package it.unicam.cs.diciottoPolitico;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
-import java.util.logging.Logger;
+import java.util.Objects;
+import java.util.Queue;
 
+/**
+ * Semplice implementazione dell'interfaccia Cliente
+ */
 public class SimpleCliente implements Cliente{
 
+    private long id;
     private String codiceFiscale;
     private String nome;
     private String cognome;
     private String numero;
-    private final List<Notifica> notifiche;
+    private String password;
+    private final Queue<Notifica> notifiche;
     private final List<PrenotazioneOmbrellone> prenotazioni;
     private final List<PrenotazioneAttivita> prenotazioniAttivita;
     private final List<OrdinazioneBar> ordinazioniBar;
     /**
      * Costruisce un SimpleCliente
      * @param codiceFiscale del cliente
+     * @param password del cliente
      * @param nome del cliente
      * @param cognome del cliente
      * @param numero del cliente
      */
-    public SimpleCliente(String codiceFiscale, String nome, String cognome, String numero) {
-        if (codiceFiscale == null || nome == null || cognome == null || numero == null)
-            throw new NullPointerException("Inserire dei dati non nulli");
-        this.codiceFiscale = codiceFiscale;
-        this.nome = nome;
-        this.cognome = cognome;
-        this.numero = numero;
-        this.notifiche = new LinkedList<>();
-        this.prenotazioni = new LinkedList<>();
-        this.prenotazioniAttivita = new LinkedList<>();
-        this.ordinazioniBar = new LinkedList<>();
+    public SimpleCliente(long id , String codiceFiscale,String password, String nome, String cognome, String numero) {
+        this(codiceFiscale,password,nome,cognome,numero);
+        this.id = id;
     }
 
     /**
      * Costruisce un SimpleCliente
+     * @param codiceFiscale del cliente
+     * @param password del cliente
      * @param nome del cliente
      * @param cognome del cliente
      * @param numero del cliente
      */
-    public SimpleCliente(String nome, String cognome, String numero) {
-        if (nome == null || cognome == null || numero == null)
+    public SimpleCliente(String codiceFiscale,String password, String nome, String cognome, String numero) {
+        if (codiceFiscale == null || password == null || nome == null || cognome == null || numero == null) {
             throw new NullPointerException("Inserire dei dati non nulli");
+        }
+        this.codiceFiscale = codiceFiscale;
+        this.password = password;
         this.nome = nome;
         this.cognome = cognome;
         this.numero = numero;
@@ -57,6 +59,26 @@ public class SimpleCliente implements Cliente{
     @Override
     public String getCodiceFiscale() {
         return this.codiceFiscale;
+    }
+
+    @Override
+    public void setCodiceFiscale(String codiceFiscale) {
+        this.codiceFiscale = Objects.requireNonNull(codiceFiscale,"Il codice non puo' essere nullo");
+    }
+
+    @Override
+    public long getId() {
+        return this.id;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public void setPassword(String password) {
+        this.password = Objects.requireNonNull(password,"La password non puo' essere nulla");
     }
 
     @Override
@@ -96,7 +118,7 @@ public class SimpleCliente implements Cliente{
     }
 
     @Override
-    public List<Notifica> getNotifiche() {
+    public Queue<Notifica> getNotifiche() {
         return this.notifiche;
     }
 
@@ -110,11 +132,11 @@ public class SimpleCliente implements Cliente{
     }
 
     @Override
-    public boolean removeNotifica(long idNotifica) {
+    public boolean removeNotifica(Notifica notifica) {
         int sizeNotifiche = this.notifiche.size();
         this.notifiche.stream()
                 .parallel()
-                .filter(notifica -> notifica.getId()==idNotifica)
+                .filter(n -> n.equals(notifica))
                 .findFirst()
                 .ifPresent(this.notifiche::remove);
         return this.notifiche.size() < sizeNotifiche;
@@ -161,6 +183,5 @@ public class SimpleCliente implements Cliente{
             return this.ordinazioniBar.add(ordinazioneBar);
         return false;
     }
-
 
 }
