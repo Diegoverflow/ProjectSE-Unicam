@@ -21,7 +21,7 @@ public class SimpleCatalogo<T,R extends RigaCatalogo<T>> implements Catalogo<T,R
     }
 
     @Override
-    public boolean addRiga(R riga) {
+    public boolean add(R riga) {
         if (this.righeCatalogo.contains(Objects.requireNonNull(riga,"La riga non puo' essere nulla")))
             return false;
         return this.righeCatalogo.add(riga);

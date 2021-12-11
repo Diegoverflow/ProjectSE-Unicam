@@ -19,7 +19,7 @@ public interface Catalogo<T, R extends RigaCatalogo<T>> {
      * @param riga la riga catalogo da aggiungere a questo catalogo
      * @return {@code true} se la riga catalogo viene aggiunta, altrimenti {@code false}
      */
-    boolean addRiga(R riga);
+    boolean add(R riga);
 
     /**
      * Rimuove la riga catalogo specificata da questo catalogo.
