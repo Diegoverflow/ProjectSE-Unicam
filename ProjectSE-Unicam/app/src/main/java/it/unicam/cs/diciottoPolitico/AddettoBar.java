@@ -17,6 +17,6 @@ public interface AddettoBar extends UtenteLoggato{
      *
      * @return una coda di una ordini consegnati dall'addetto bar.
      */
-    Queue<OrdinazioneBar> getOrdinazione();
+    Queue<OrdinazioneBar> getordinazioniBarConsegnate();
 
 }
