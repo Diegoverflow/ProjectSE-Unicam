@@ -90,11 +90,11 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
         if (this == o) return true;
         if (!(o instanceof SimpleOrdinazioneBar)) return false;
         SimpleOrdinazioneBar that = (SimpleOrdinazioneBar) o;
-        return getId() == that.getId() && Double.compare(that.getCosto(), getCosto()) == 0 && isConsegnato() == that.isConsegnato() && isPagato() == that.isPagato() && presoIncarico == that.presoIncarico && getDataAcquisto().equals(that.getDataAcquisto());
+        return getId() == that.getId() && Double.compare(that.getCosto(), getCosto()) == 0 && getArticoloBar().equals(that.getArticoloBar()) && getDataAcquisto().equals(that.getDataAcquisto());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDataAcquisto(), getCosto(), isConsegnato(), isPagato(), presoIncarico);
+        return Objects.hash(getId(), getArticoloBar(), getDataAcquisto(), getCosto());
     }
 }
