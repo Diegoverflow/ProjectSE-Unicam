@@ -12,7 +12,7 @@ public interface HandlerNotifica {
      * @param messaggio  il messaggio da inserire nella notifica
      * @param addettoBar l' addetto bar destinatario a cui inviare la notifica
      */
-    void notifica(String messaggio, AddettoBar addettoBar);
+    boolean notifica(Notifica notifica, AddettoBar addettoBar);
 
     /**
      * Invia la notifica con il messaggio specificato al cliente.
@@ -20,6 +20,6 @@ public interface HandlerNotifica {
      * @param messaggio il messaggio da inserire nella notifica
      * @param cliente   il cliente destinatario a cui inviare la notifica
      */
-    void notifica(String messaggio, Cliente cliente);
+    boolean notifica(Notifica notifica, Cliente cliente);
 
 }
