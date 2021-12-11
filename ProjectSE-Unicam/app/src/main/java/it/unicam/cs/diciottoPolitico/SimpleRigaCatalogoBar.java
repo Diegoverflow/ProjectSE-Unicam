@@ -16,6 +16,7 @@ public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
      * @param articoloBar l'articolo bar associato alla riga
      * @param prezzo il prezzo associato alla riga
      * @param quantita la quantit&agrave; di articoli bar contenuti nella riga
+     * @throws NullPointerException se l'articolo &egrave; nullo
      */
     public SimpleRigaCatalogoBar(ArticoloBar articoloBar, double prezzo, int quantita) {
         this.articoloBar = Objects.requireNonNull(articoloBar,"L'articolo bar non puo' essere nullo");
