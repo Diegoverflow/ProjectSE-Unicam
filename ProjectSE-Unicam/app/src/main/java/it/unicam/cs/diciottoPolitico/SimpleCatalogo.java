@@ -16,6 +16,9 @@ public class SimpleCatalogo<T,R extends RigaCatalogo<T>> implements Catalogo<T,R
 
     private final List<R> righeCatalogo;
 
+    /**
+     * Metodo costruttore.
+     */
     public SimpleCatalogo() {
         this.righeCatalogo = new ArrayList<>();
     }
