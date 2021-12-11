@@ -38,7 +38,7 @@ public class SimpleCatalogo<T,R extends RigaCatalogo<T>> implements Catalogo<T,R
     }
 
     @Override
-    public List<R> getRigaBy(Predicate<R> predicate) {
+    public List<R> getRigheBy(Predicate<R> predicate) {
         return this.righeCatalogo.stream().filter(Objects.requireNonNull(predicate,"Il predicato non puo' essere nullo")).collect(Collectors.toList());
     }
 
