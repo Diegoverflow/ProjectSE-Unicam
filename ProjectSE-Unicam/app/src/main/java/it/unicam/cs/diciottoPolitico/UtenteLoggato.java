@@ -1,6 +1,5 @@
 package it.unicam.cs.diciottoPolitico;
 
-import java.util.List;
 import java.util.Queue;
 
 //TODO moficicare le API
@@ -76,7 +75,7 @@ public interface UtenteLoggato {
      * @return true se la notifica &egrave; stata aggiunta,
      *         false altrimenti
      */
-    boolean addNotica(Notifica notifica);
+    boolean addNotifica(Notifica notifica);
 
     /**
      * Rimuovi una notifica dalla casella notifiche del cliente e

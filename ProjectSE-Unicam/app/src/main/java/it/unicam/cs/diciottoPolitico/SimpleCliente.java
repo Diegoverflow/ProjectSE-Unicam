@@ -123,7 +123,7 @@ public class SimpleCliente implements Cliente{
     }
 
     @Override
-    public boolean addNotica(Notifica notifica) {
+    public boolean addNotifica(Notifica notifica) {
         if (notifica == null)
             throw new NullPointerException("Notifica nulla");
         if (!this.notifiche.contains(notifica))
