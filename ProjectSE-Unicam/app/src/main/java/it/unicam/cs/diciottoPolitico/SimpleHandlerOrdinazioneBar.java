@@ -14,7 +14,6 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
     private final Set<AddettoBar> addettiBar;
     private final Catalogo<ArticoloBar, RigaCatalogoBar> catalogoBar;
     private final Map<OrdinazioneBar, Optional<AddettoBar>> ordinazioniDaGestire;
-    private final HandlerNotifica handlerNotifica;
 
     /**
      * Crea un semplice gestore di ordinazioni bar.
@@ -23,7 +22,6 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
         this.addettiBar = new HashSet<>();
         this.catalogoBar = new SimpleCatalogo<>();
         this.ordinazioniDaGestire = new HashMap<>();
-        this.handlerNotifica = new SimpleHandlerNotifica();
     }
 
     @Override
@@ -76,7 +74,7 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
     }
 
     private void notificaTuttiGliAddetti(Notifica notifica) {
-        this.addettiBar.forEach(a -> this.handlerNotifica.notifica(notifica, a));
+        this.addettiBar.forEach(a -> HandlerNotifica.notifica(notifica, a));
     }
 
 }
