@@ -1,7 +1,9 @@
 package it.unicam.cs.diciottoPolitico;
 
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
+// TODO: javadoc
 public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
 
     private long id;
@@ -20,13 +22,11 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
      * e lo stato di pagamento &egrave; impostato automaticamente a {@code false}
      */
     public SimplePrenotazioneAttivita(long id, double costo, Attivita attivita) {
-        if (attivita == null)
-            throw new NullPointerException("Attivita nulla non valida");
         this.id = id;
         this.dataAcquisto = new GregorianCalendar();
         this.statoPagamento = false;
         this.costo = costo;
-        this.attivita = attivita;
+        this.attivita = Objects.requireNonNull(attivita, "Attivita nulla non valida");
     }
 
     /**
