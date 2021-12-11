@@ -7,19 +7,13 @@ package it.unicam.cs.diciottoPolitico;
 public interface HandlerNotifica {
 
     /**
-     * Invia la notifica con il messaggio specificato all' addetto bar specificato.
+     * Invia la notifica con il messaggio specificato all' utente loggato.
      *
-     * @param messaggio  il messaggio da inserire nella notifica
-     * @param addettoBar l' addetto bar destinatario a cui inviare la notifica
+     * @param notifica      la notifica da inviare all' utente loggato
+     * @param utenteLoggato l' utente destinatario che riceve la notifica
      */
-    boolean notifica(Notifica notifica, AddettoBar addettoBar);
-
-    /**
-     * Invia la notifica con il messaggio specificato al cliente.
-     *
-     * @param messaggio il messaggio da inserire nella notifica
-     * @param cliente   il cliente destinatario a cui inviare la notifica
-     */
-    boolean notifica(Notifica notifica, Cliente cliente);
+    static void notifica(Notifica notifica, UtenteLoggato utenteLoggato) {
+        utenteLoggato.addNotifica(notifica);
+    }
 
 }
