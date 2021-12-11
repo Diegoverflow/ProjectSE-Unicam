@@ -63,6 +63,14 @@ public interface Attivita {
      */
     boolean setPostiOccupati(int postiOccupati);
 
+    /**
+     * Aggiunge (o sottrae) il numero di posti specificato.
+     *
+     * @param numPosti il numero di posti da aggiungere (o sottrarre)
+     * @return
+     */
+    boolean addPosti(int numPosti);
+
     boolean equals(Object o);
 
     int hashCode();

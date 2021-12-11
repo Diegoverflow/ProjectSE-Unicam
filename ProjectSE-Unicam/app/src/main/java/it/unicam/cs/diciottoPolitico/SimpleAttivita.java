@@ -109,6 +109,14 @@ public class SimpleAttivita implements Attivita {
     }
 
     @Override
+    public boolean addPosti(int numPosti) {
+        if (this.postiOccupati + numPosti < 0 || this.postiOccupati + numPosti > this.postiTotali)
+            return false;
+        this.postiOccupati += numPosti;
+        return true;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
