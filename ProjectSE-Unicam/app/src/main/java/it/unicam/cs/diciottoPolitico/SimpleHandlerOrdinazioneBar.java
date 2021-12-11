@@ -12,53 +12,64 @@ import java.util.stream.Collectors;
 public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
 
     private final Set<AddettoBar> addettiBar;
-    private final Set<RigaCatalogoBar> articoliDisponibili;
     private final Catalogo<ArticoloBar, RigaCatalogoBar> catalogoBar;
-    private final Map<OrdinazioneBar, AddettoBar> ordinazioniDaGestire;
+    private final Map<OrdinazioneBar, Optional<AddettoBar>> ordinazioniDaGestire;
+    private final HandlerNotifica handlerNotifica;
 
     /**
      * Crea un semplice gestore di ordinazioni bar.
      */
     public SimpleHandlerOrdinazioneBar() {
         this.addettiBar = new HashSet<>();
-        this.articoliDisponibili = new HashSet<>();
         this.catalogoBar = new SimpleCatalogo<>();
         this.ordinazioniDaGestire = new HashMap<>();
+        this.handlerNotifica = new SimpleHandlerNotifica();
     }
 
     @Override
-    public Map<OrdinazioneBar, AddettoBar> getOrdinazioniDaGestire() {
+    public Map<OrdinazioneBar, Optional<AddettoBar>> getOrdinazioniDaGestire() {
         return this.ordinazioniDaGestire;
     }
 
     @Override
-    public Set<RigaCatalogoBar> getRigheArticoliDisponibili() {
-        return this.articoliDisponibili;
+    public List<ArticoloBar> getArticoliDisponibili() {
+        List<RigaCatalogoBar> righeCatalogoBar = this.catalogoBar.getAllRighe();
+        List<ArticoloBar> articoliBar = new LinkedList<>();
+        for (RigaCatalogoBar rigaCatalogoBar : righeCatalogoBar)
+            articoliBar.add(rigaCatalogoBar.getValore());
+        return articoliBar;
+    }
+
+    @Override
+    public Optional<OrdinazioneBar> getOrdinazioneBarBy(long idOrdinazione) {
+        return this.ordinazioniDaGestire.keySet().stream().filter(o -> o.getId() == idOrdinazione).findFirst();
     }
 
     @Override
     public boolean creaOrdinazione(OrdinazioneBar ordinazioneBar, Cliente cliente) {
-        // TODO: Chiedere come fare
-        // TODO: implementare   Cliente conosce la lista delle sue ordinazioni (ci pensa Dieghito babe)
-        return false;
+        this.ordinazioniDaGestire.put(ordinazioneBar, Optional.empty());
+        this.notificaTuttiGliAddetti(new SimpleNotifica(ordinazioneBar.getId(), ordinazioneBar.toString()));
+        return Objects.requireNonNull(cliente, "Cliente null!").addOrdinazioneBar(ordinazioneBar);
     }
 
     @Override
     public List<OrdinazioneBar> getOrdinazioniNonPreseInCarico() {
         List<OrdinazioneBar> ordinazioniDaConsegnare = new LinkedList<>();
-        this.ordinazioniDaGestire.forEach((ordinazioneBar, addettoBar) -> this.aggiungiOrdinazione(ordinazioneBar, addettoBar, ordinazioniDaConsegnare));
+        this.ordinazioniDaGestire.forEach((ordinazioneBar, addettoBar) -> {
+            if (addettoBar.isEmpty())
+                this.aggiungiOrdinazione(ordinazioneBar, ordinazioniDaConsegnare);
+        });
         return ordinazioniDaConsegnare;
     }
 
-    private void aggiungiOrdinazione(OrdinazioneBar ordinazioneBar, AddettoBar addettoBar, List<OrdinazioneBar> ordinazioni) {
-        if (addettoBar == null)
-            ordinazioni.add(ordinazioneBar);
+    private void aggiungiOrdinazione(OrdinazioneBar ordinazioneBar, List<OrdinazioneBar> ordinazioni) {
+        ordinazioni.add(ordinazioneBar);
     }
 
     @Override
     public boolean addAddetto(AddettoBar addettoBar) {
-        Objects.requireNonNull(addettoBar, "Addetto bar null!");
-        return this.addettiBar.add(addettoBar);
+        return this.addettiBar.add(Objects.requireNonNull(addettoBar, "Addetto bar null!");
+);
     }
 
 
@@ -70,12 +81,11 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
 
     @Override
     public Optional<AddettoBar> getAddettoBy(long id) {
-        return this.addettiBar.stream()
-                .filter(a -> a.getId() == id).findFirst();
+        return this.addettiBar.stream().filter(a -> a.getId() == id).findFirst();
     }
 
-    private void notificaTuttiGliAddetti(String messaggio) {
-        // TODO: implementare
+    private void notificaTuttiGliAddetti(Notifica notifica) {
+        this.addettiBar.forEach(a -> this.handlerNotifica.notifica(notifica, a));
     }
 
 }

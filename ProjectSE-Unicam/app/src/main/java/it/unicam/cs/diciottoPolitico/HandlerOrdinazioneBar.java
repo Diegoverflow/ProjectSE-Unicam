@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+// TODO: Modifica javadoc
+
+
 /**
  * Rappresenta un gestore di ordinazioni bar.
  * In particolare esso si occupa di gestire le ordinazioni effettuate al bar da parte
@@ -25,14 +28,17 @@ public interface HandlerOrdinazioneBar {
      *
      * @return la mappa di tutte le ordinazioni da gestire, ovvero tutte quelle ordinazioni da prendere in carico, prese in carico e da consegnare
      */
-    Map<OrdinazioneBar, AddettoBar> getOrdinazioniDaGestire();
+    Map<OrdinazioneBar, Optional<AddettoBar>> getOrdinazioniDaGestire();
 
     /**
      * Restituisce l' insieme di righe catalogo bar.
      *
      * @return l' insieme di righe catalogo bar
      */
-    Set<RigaCatalogoBar> getRigheArticoliDisponibili();
+    List<ArticoloBar> getArticoliDisponibili();
+
+    // TODO: Javadoc
+    Optional<OrdinazioneBar> getOrdinazioneBarBy(long idOrdinazione);
 
     /**
      * Crea un' ordinazione bar secondo l' ordinazione bar ed il cliente specificati.
