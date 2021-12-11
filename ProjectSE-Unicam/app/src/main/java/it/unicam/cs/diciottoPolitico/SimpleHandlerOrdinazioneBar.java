@@ -33,11 +33,9 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
 
     @Override
     public List<ArticoloBar> getArticoliDisponibili() {
-        List<RigaCatalogoBar> righeCatalogoBar = this.catalogoBar.getAllRighe();
-        List<ArticoloBar> articoliBar = new LinkedList<>();
-        for (RigaCatalogoBar rigaCatalogoBar : righeCatalogoBar)
-            articoliBar.add(rigaCatalogoBar.getValore());
-        return articoliBar;
+        return this.catalogoBar.getAllRighe().stream()
+                .map(RigaCatalogo::getValore)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -54,16 +52,10 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
 
     @Override
     public List<OrdinazioneBar> getOrdinazioniNonPreseInCarico() {
-        List<OrdinazioneBar> ordinazioniDaConsegnare = new LinkedList<>();
-        this.ordinazioniDaGestire.forEach((ordinazioneBar, addettoBar) -> {
-            if (addettoBar.isEmpty())
-                this.aggiungiOrdinazione(ordinazioneBar, ordinazioniDaConsegnare);
-        });
-        return ordinazioniDaConsegnare;
-    }
-
-    private void aggiungiOrdinazione(OrdinazioneBar ordinazioneBar, List<OrdinazioneBar> ordinazioni) {
-        ordinazioni.add(ordinazioneBar);
+        return this.ordinazioniDaGestire.entrySet().stream()
+                .filter(entry -> entry.getValue().isEmpty())
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
     }
 
     @Override
