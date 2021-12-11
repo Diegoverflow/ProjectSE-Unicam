@@ -2,6 +2,7 @@ package it.unicam.cs.diciottoPolitico;
 
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -37,6 +38,6 @@ public class SimpleHandlerPrenotazioneOmbrellone implements HandlerPrenotazioneO
 
     @Override
     public String getRiepilogo(GregorianCalendar data, FasciaOraria fasciaOraria, Ombrellone ombrellone) {
-        return data.toString()+"\n"+fasciaOraria.toString()+"\n"+ombrellone.getId();
+        return data.getTime()+"\n"+fasciaOraria.toString()+"\n"+ombrellone.getId();
     }
 }
