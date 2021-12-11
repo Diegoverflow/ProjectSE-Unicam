@@ -68,8 +68,7 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
 
     @Override
     public boolean addAddetto(AddettoBar addettoBar) {
-        return this.addettiBar.add(Objects.requireNonNull(addettoBar, "Addetto bar null!");
-);
+        return this.addettiBar.add(Objects.requireNonNull(addettoBar, "Addetto bar null!"));
     }
 
 
