@@ -32,7 +32,7 @@ public class SimpleCliente implements Cliente{
         this(codiceFiscale,password,nome,cognome,numero);
         this.id = id;
     }
-//todo togliere codiceFiscale
+//todo togliere codiceFiscale e aggiungere mail
     /**
      * Costruisce un SimpleCliente
      * @param codiceFiscale del cliente
