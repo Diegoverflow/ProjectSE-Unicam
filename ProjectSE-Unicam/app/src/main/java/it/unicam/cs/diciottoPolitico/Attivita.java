@@ -64,15 +64,32 @@ public interface Attivita {
     boolean setPostiOccupati(int postiOccupati);
 
     /**
-     * Aggiunge (o sottrae) il numero di posti specificato.
+     * Aggiunge (o sottrae) il numero di posti specificato di
+     * Restituisce {@code true} se il numero di posti viene modificato
      *
      * @param numPosti il numero di posti da aggiungere (o sottrarre)
-     * @return
+     * @return {@code true} se il numero di posti viene modificato, altrimenti {@code false}
      */
     boolean addPosti(int numPosti);
 
+    /**
+     * Confronta l' elemento specificato con questa attivit&agrave;
+     * Restituisce {@code true} se l' elemento specificato &egrave; anch' esso un' attivit&agrave; ed
+     * ha le stesse caratteristiche di questa attivit&agrave;.
+     * (Due elementi {@code e1} e {@code e2} sono <i>uguali</i> se {@code Objects.equals(e1,e2)}.)
+     *
+     * @param o l' elemento da essere confrontato per l' uguaglianza con questa attivit&agrave;
+     * @return {@code true} se l' elemento specificato &egrave; uguale a questa attivit&agrave;
+     */
     boolean equals(Object o);
 
+    /**
+     * Restituisce l' hashCode per questa attivit&agrave;
+     *
+     * @return l' hashCode per questa attivit&agrave;
+     * @see Object#equals(Object)
+     * @see #equals(Object)
+     */
     int hashCode();
 
 }
