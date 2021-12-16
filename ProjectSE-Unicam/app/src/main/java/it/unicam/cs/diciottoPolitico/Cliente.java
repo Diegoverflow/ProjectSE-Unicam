@@ -3,11 +3,12 @@ package it.unicam.cs.diciottoPolitico;
 import java.util.List;
 
 /**
- *Interfaccia che descrive un cliente.
+ * Interfaccia che descrive un cliente.
  */
-public interface Cliente extends UtenteLoggato{
+public interface Cliente extends UtenteLoggato {
     /**
      * Ottieni il codice fiscale del cliente.
+     *
      * @return il codice fiscale del cliente
      */
     String getCodiceFiscale();
@@ -22,6 +23,7 @@ public interface Cliente extends UtenteLoggato{
 
     /**
      * Ottieni le prenotazioni di ombrelloni del cliente.
+     *
      * @return la lista di prenotazioni effettuate dal cliente
      */
     List<PrenotazioneOmbrellone> getPrenotazioniOmbrelloni();
@@ -29,14 +31,16 @@ public interface Cliente extends UtenteLoggato{
     /**
      * Aggiunge una prenotazione alle prenotazioni associate al cliente e
      * verifica che l'operazione sia stata effettuata correttamente.
+     *
      * @param prenotazione che si vuole aggiungere alla lista prenotazioni
-     * @return true se la prenotazione &egrave; stata aggiunta,
-     *         false altrimenti
+     * @return {@code true} se la prenotazione &egrave; stata aggiunta,
+     * {@code false} altrimenti
      */
     boolean addPrenotazioneOmbrellone(PrenotazioneOmbrellone prenotazione);
 
     /**
      * Ottieni le attvit&agrave; prenotate dal cliente.
+     *
      * @return la lista di attvit&agrave; prenotate dal cliente
      */
     List<PrenotazioneAttivita> getPrenotazioniAttivita();
@@ -44,15 +48,17 @@ public interface Cliente extends UtenteLoggato{
     /**
      * Aggiunge un'attvit&agrave; alle attvit&agrave; prenotate dal cliente e
      * verifica che l'operazione sia stata effettuata correttamente.
+     *
      * @param attivita che si vuole aggiungere alla lista prenotazioni attvit&agrave;
-     * @return true se l'attvit&agrave; &egrave; stata aggiunta,
-     *         false altrimenti
+     * @return {@code true} se l'attvit&agrave; &egrave; stata aggiunta,
+     * {@code false} altrimenti
      */
     boolean addPrenotazioneAttivita(PrenotazioneAttivita attivita);
 
 
     /**
      * Ottieni le ordinazioni bar effettuate dal cliente.
+     *
      * @return la lista drlle ordinazioni bar effettuate dal cliente
      */
     List<OrdinazioneBar> getOrdinazioniBar();
@@ -60,9 +66,10 @@ public interface Cliente extends UtenteLoggato{
     /**
      * Aggiunge un'ordinazione bar alle ordinazioni effettuate dal cliente e
      * verifica che l'operazione sia stata svolta correttamente.
+     *
      * @param ordinazioneBar che si vuole registrare
-     * @return true se ordinazione &egrave; stata registrata
-     *         false altrimenti
+     * @return {@code true} se ordinazione &egrave; stata registrata
+     * {@code false} altrimenti
      */
     boolean addOrdinazioneBar(OrdinazioneBar ordinazioneBar);
 }
