@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 /**
  * Rappresenta un generico catologo.
- * Questo catalogo &egrave; formato da righe catalogo di tipo <R> che contengono principalmente oggetti di tipo <T>.
+ * Questo catalogo &egrave; formato da righe ({@link RigaCatalogo}) di tipo <R> che contengono principalmente oggetti di tipo <T>.
  *
  * @param <T> il tipo parametrico per la tipologia di oggetti relativi alle righe del catalogo.
  * @param <R> il tipo parametrico per le righe catalogo di questo generico catalogo.
@@ -23,10 +23,10 @@ public interface Catalogo<T, R extends RigaCatalogo<T>> {
 
     /**
      * Rimuove la riga catalogo specificata da questo catalogo.
-     * Restituisce true se la riga catalogo viene rimossa, altrimenti false.
+     * Restituisce {@code true} se la riga catalogo viene rimossa, altrimenti {@code false}.
      *
      * @param riga la riga da rimuovere da questo catalogo
-     * @return true se la riga catalogo viene rimossa, altrimenti false
+     * @return {@code true} se la riga catalogo viene rimossa, altrimenti {@code false}
      */
     boolean remove(R riga);
 
@@ -40,9 +40,9 @@ public interface Catalogo<T, R extends RigaCatalogo<T>> {
     List<R> getRigheBy(Predicate<R> predicate);
 
     /**
-     * Ritorna tutte le righe del catalogo.
+     * Ritorna una lista contenente tutte le righe di questo catalogo.
      *
-     * @return tutte le righe del catalogo
+     * @return la lista di tutte le righe di questo catalogo
      */
     List<R> getAllRighe();
 
