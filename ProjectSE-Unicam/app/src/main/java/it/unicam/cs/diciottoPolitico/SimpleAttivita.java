@@ -3,6 +3,13 @@ package it.unicam.cs.diciottoPolitico;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
+/**
+ * Semplice implementazione di un' {@link Attivita}.
+ * Un' attivit&agrave; ha una data ed un orario in cui inizia e una data ed un orario in cui termina.
+ * Inoltre ha un numero di posti totali di clienti che possono partciparne ed un numero di posti occupati per sapere quanti partecipanti ci sono
+ * attualmente per questa attivit&agrave;.
+ * Infine ha un proprio id univoco ed una descrizione che appunto descrive cosa fa quest' attivit&agrave;.
+ */
 public class SimpleAttivita implements Attivita {
 
     private long id;
@@ -21,6 +28,8 @@ public class SimpleAttivita implements Attivita {
      * @param descrizione      dell'attvit&agrave;
      * @param postiTotali      dell'attvit&agrave;
      * @param postiOccupati    dell'attvit&agrave;
+     * @throws NullPointerException     se la {@code dataOrarioInizio}, {@code dataOrarioFine} o la {@code descrizione} sono {@code null}
+     * @throws IllegalArgumentException se la {@code dataOrarioFine} precede la {@code dataOrarioInizio} oppure se {@code dataOrarioInizio} e {@code dataOrarioFine} sono uguali secondo il meotodo equals
      */
     public SimpleAttivita(long id,
                           GregorianCalendar dataOrarioInizio,
@@ -28,16 +37,8 @@ public class SimpleAttivita implements Attivita {
                           String descrizione,
                           int postiTotali,
                           int postiOccupati) {
-        if (dataOrarioInizio == null || dataOrarioFine == null || descrizione == null)
-            throw new NullPointerException("Non è possibile inserire campi nulli");
-        if (dataOrarioFine.before(dataOrarioFine) || dataOrarioInizio.equals(dataOrarioFine))
-            throw new IllegalArgumentException("Orario inzio e fine attività non validi");
+        this(dataOrarioInizio, dataOrarioFine, descrizione, postiTotali, postiOccupati);
         this.id = id;
-        this.dataOrarioInizio = dataOrarioInizio;
-        this.dataOrarioFine = dataOrarioFine;
-        this.descrizione = descrizione;
-        this.postiTotali = postiTotali;
-        this.postiOccupati = postiOccupati;
     }
 
     /**
@@ -48,7 +49,10 @@ public class SimpleAttivita implements Attivita {
      * @param descrizione      dell'attvit&agrave;
      * @param postiTotali      dell'attvit&agrave;
      * @param postiOccupati    dell'attvit&agrave;
+     * @throws NullPointerException     se la {@code dataOrarioInizio}, {@code dataOrarioFine} o la {@code descrizione} sono {@code null}
+     * @throws IllegalArgumentException se la {@code dataOrarioFine} precede la {@code dataOrarioInizio} oppure se {@code dataOrarioInizio} e {@code dataOrarioFine} sono uguali secondo il meotodo equals
      */
+
     public SimpleAttivita(GregorianCalendar dataOrarioInizio,
                           GregorianCalendar dataOrarioFine,
                           String descrizione,

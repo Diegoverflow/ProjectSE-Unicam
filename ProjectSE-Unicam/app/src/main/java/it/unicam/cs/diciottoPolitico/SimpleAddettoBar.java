@@ -2,10 +2,8 @@ package it.unicam.cs.diciottoPolitico;
 
 import java.util.*;
 
-//TODO: Modifica javadoc
-
 /**
- * Implementazione di un semplice addetto bar.
+ * Implementazione di un semplice {@link AddettoBar}.
  */
 public class SimpleAddettoBar implements AddettoBar {
 
@@ -24,7 +22,7 @@ public class SimpleAddettoBar implements AddettoBar {
      * @param nome     il nome dell' addetto bar da creare
      * @param cognome  il cognome dell' addetto bar da creare
      * @param password la password dell' addetto bar da creare
-     * @throws NullPointerException se uno dei parametri &egrave; nullo
+     * @throws NullPointerException se almeno uno dei parametri &egrave; {@code null}
      */
 
     public SimpleAddettoBar(long id, String nome, String numero, String cognome, String password) {

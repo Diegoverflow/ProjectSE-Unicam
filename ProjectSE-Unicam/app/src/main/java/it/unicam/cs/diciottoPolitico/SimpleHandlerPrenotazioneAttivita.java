@@ -8,6 +8,12 @@ import java.util.stream.Collectors;
 /**
  * Implementazione di un semplice gestore per le prenotazioni effettuate dai clienti relative alle
  * attivit&agrave; offerte dallo chalet.
+ *
+ * @see PrenotazioneAttivita
+ * @see Attivita
+ * @see Cliente
+ * @see Catalogo
+ * @see RigaCatalogoAttivita
  */
 public class SimpleHandlerPrenotazioneAttivita implements HandlerPrenotazioneAttivita {
 

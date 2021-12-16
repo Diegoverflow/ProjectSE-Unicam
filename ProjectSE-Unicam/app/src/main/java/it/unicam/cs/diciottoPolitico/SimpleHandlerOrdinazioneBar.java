@@ -8,6 +8,12 @@ import java.util.stream.Collectors;
  * Questo gestore ha un insieme di addetti bar, che a loro volta si occupano di gestire le ordinazioni
  * bar effettuate.
  * Il gestore tiene traccia esclusivamente di tutte le ordinazioni ancora da consegnare.
+ *
+ * @see OrdinazioneBar
+ * @see ArticoloBar
+ * @see AddettoBar
+ * @see Catalogo
+ * @see RigaCatalogoBar
  */
 public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
 

@@ -1,7 +1,8 @@
 package it.unicam.cs.diciottoPolitico;
 
 /**
- * Semplice implementazione dell'interfaccia HandlerVisualizzaPropriAcquisti.
+ * Semplice implementazione dell'interfaccia {@link HandlerVisualizzaPropriAcquisti}.
+ * @see Cliente
  */
 public class SimpleHandlerVisualizzaPropriAcquisti implements HandlerVisualizzaPropriAcquisti {
 

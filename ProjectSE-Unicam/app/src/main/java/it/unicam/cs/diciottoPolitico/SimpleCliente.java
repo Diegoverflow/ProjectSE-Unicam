@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
 
+// TODO: completare javadoc
+
 /**
- * Semplice implementazione dell'interfaccia Cliente
+ * Semplice implementazione dell'interfaccia {@link Cliente}
  */
-public class SimpleCliente implements Cliente{
+public class SimpleCliente implements Cliente {
 
     private long id;
     private String codiceFiscale;
@@ -20,28 +22,32 @@ public class SimpleCliente implements Cliente{
     private final List<PrenotazioneOmbrellone> prenotazioni;
     private final List<PrenotazioneAttivita> prenotazioniAttivita;
     private final List<OrdinazioneBar> ordinazioniBar;
+
     /**
      * Costruisce un SimpleCliente
+     *
      * @param codiceFiscale del cliente
-     * @param password del cliente
-     * @param nome del cliente
-     * @param cognome del cliente
-     * @param numero del cliente
+     * @param password      del cliente
+     * @param nome          del cliente
+     * @param cognome       del cliente
+     * @param numero        del cliente
      */
-    public SimpleCliente(long id , String codiceFiscale,String password, String nome, String cognome, String numero) {
-        this(codiceFiscale,password,nome,cognome,numero);
+    public SimpleCliente(long id, String codiceFiscale, String password, String nome, String cognome, String numero) {
+        this(codiceFiscale, password, nome, cognome, numero);
         this.id = id;
     }
 //todo togliere codiceFiscale e aggiungere mail
+
     /**
      * Costruisce un SimpleCliente
+     *
      * @param codiceFiscale del cliente
-     * @param password del cliente
-     * @param nome del cliente
-     * @param cognome del cliente
-     * @param numero del cliente
+     * @param password      del cliente
+     * @param nome          del cliente
+     * @param cognome       del cliente
+     * @param numero        del cliente
      */
-    public SimpleCliente(String codiceFiscale,String password, String nome, String cognome, String numero) {
+    public SimpleCliente(String codiceFiscale, String password, String nome, String cognome, String numero) {
         if (codiceFiscale == null || password == null || nome == null || cognome == null || numero == null) {
             throw new NullPointerException("Inserire dei dati non nulli");
         }
@@ -63,7 +69,7 @@ public class SimpleCliente implements Cliente{
 
     @Override
     public void setCodiceFiscale(String codiceFiscale) {
-        this.codiceFiscale = Objects.requireNonNull(codiceFiscale,"Il codice non puo' essere nullo");
+        this.codiceFiscale = Objects.requireNonNull(codiceFiscale, "Il codice non puo' essere nullo");
     }
 
     @Override
@@ -78,7 +84,7 @@ public class SimpleCliente implements Cliente{
 
     @Override
     public void setPassword(String password) {
-        this.password = Objects.requireNonNull(password,"La password non puo' essere nulla");
+        this.password = Objects.requireNonNull(password, "La password non puo' essere nulla");
     }
 
     @Override
