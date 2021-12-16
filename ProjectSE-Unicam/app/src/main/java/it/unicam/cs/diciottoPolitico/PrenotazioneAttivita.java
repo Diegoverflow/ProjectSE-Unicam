@@ -4,6 +4,8 @@ import java.util.GregorianCalendar;
 
 /**
  * Interfaccia che descrive una prenotazione di un'attivit&agrave;
+ *
+ * @see Attivita
  */
 public interface PrenotazioneAttivita {
 
@@ -16,32 +18,38 @@ public interface PrenotazioneAttivita {
 
     /**
      * Ottieni la data di acquisto della prenotazione
+     *
      * @return la data di acquisto della prenotazione
      */
     GregorianCalendar getDataAcquisto();
 
     /**
      * Ottieni lo stato del pagamento della prenotazione
-     * @return true se la prenotazione &egrave; stata saldata,
-     *         false altrimenti
+     *
+     * @return {@code true} se la prenotazione &egrave; stata saldata,
+     * {@code false} altrimenti
      */
     boolean getStatoPagamento();
 
     /**
      * Imposta lo stato di pagamento della prenotazione attivit&agrave;
+     *
      * @param statoPagamento da impostare
      */
     void setStatoPagamento(boolean statoPagamento);
 
     /**
      * Ottieni il costo di una prenotazione attivit&agrave;
+     *
      * @return il costo della prenotazione
      */
     double getCosto();
 
     /**
      * Ottieni l'attivit&agrave; associata alla prenotazione
+     *
      * @return l'attivit&agrave; associata alla prenotazione
+     * @see Attivita
      */
     Attivita getAttivita();
 

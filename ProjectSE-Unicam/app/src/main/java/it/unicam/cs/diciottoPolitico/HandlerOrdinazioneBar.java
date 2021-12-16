@@ -83,7 +83,7 @@ public interface HandlerOrdinazioneBar {
      *
      * @param addettoBar l' addetto bar da aggiungere all' insieme di tutti gli addetti bar
      * @return {@code true} se l' addetto bar specificato viene aggiunto, altrimenti {@code false}
-     * @throws NullPointerException se l' addetto bar specificato &egrave; null
+     * @throws NullPointerException se l' addetto bar specificato &egrave; {@code null}
      * @see AddettoBar
      * @see #getAddettoBy(long)
      */

@@ -17,7 +17,7 @@ public interface Cliente extends UtenteLoggato {
      * Imposta il codice fiscale.
      *
      * @param codiceFiscale il nuovo codice fiscale del cliente
-     * @throws NullPointerException se il codice fiscale &egrave; nullo
+     * @throws NullPointerException se il codice fiscale &egrave; {@code null}
      */
     void setCodiceFiscale(String codiceFiscale);
 

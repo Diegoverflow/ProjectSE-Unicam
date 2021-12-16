@@ -14,12 +14,12 @@ public interface Ombrellone {
     /**
      * Specifica se l'ombrellone &egrave; libero.
      *
-     * @return true se l'ombrellone &egrave; libero, false altrimenti
+     * @return {@code true} se l'ombrellone &egrave; libero, {@code false} altrimenti
      */
     boolean isLibero();
 
     /**
-     * Ritorna la categoria dell'ombrellone.
+     * Ritorna la {@link Categoria} dell'ombrellone.
      *
      * @return la categoria dell'ombrellone
      */
@@ -28,7 +28,7 @@ public interface Ombrellone {
     /**
      * Imposta lo stato di disponibilit&agrave; dell'ombrellone.
      *
-     * @param libero true se l'ombrellone &egrave; libero, false altrimenti
+     * @param libero {@code true} se l'ombrellone &egrave; libero, {@code false} altrimenti
      */
     void setLibero(boolean libero);
 
@@ -36,7 +36,7 @@ public interface Ombrellone {
      * Imposta la categoria dell'ombrellone.
      *
      * @param categoria la nuova categoria dell'ombrellone
-     * @throws NullPointerException se la categoria &egrave; nulla
+     * @throws NullPointerException se la categoria &egrave; {@code null}
      */
     void setCategoria(Categoria categoria);
 }

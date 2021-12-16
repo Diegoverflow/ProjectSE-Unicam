@@ -4,6 +4,8 @@ import java.util.GregorianCalendar;
 
 /**
  * Rappresenta un'ordinazione bar.
+ *
+ * @see ArticoloBar
  */
 public interface OrdinazioneBar {
 
@@ -15,9 +17,10 @@ public interface OrdinazioneBar {
     long getId();
 
     /**
-     * Ritorna l'articolo bar associato all'ordinazione.
+     * Ritorna l' {@link ArticoloBar} associato all'ordinazione.
      *
      * @return l'articolo bar associato all'ordinazione
+     * @see ArticoloBar
      */
     ArticoloBar getArticoloBar();
 
@@ -38,42 +41,42 @@ public interface OrdinazioneBar {
     /**
      * Specifica se un'ordinazione &egrave; stata consegnata.
      *
-     * @return true se l'ordinazione &egrave; stata consegnata, false altrimenti
+     * @return {@code true} se l'ordinazione &egrave; stata consegnata, {@code false} altrimenti
      */
     boolean isConsegnato();
 
     /**
      * Specifica se un'ordinazione &egrave; stata pagata.
      *
-     * @return true se l'ordinazione &egrave; stata pagata, false altrimenti
+     * @return {@code true} se l'ordinazione &egrave; stata pagata, {@code false} altrimenti
      */
     boolean isPagato();
 
     /**
      * Specifica se un'ordinazione &egrave; stata presa in carico.
      *
-     * @return true se l'ordinazione &egrave; stata presa in carico, false altrimenti
+     * @return {@code true} se l'ordinazione &egrave; stata presa in carico, {@code false} altrimenti
      */
     boolean isPresoInCarico();
 
     /**
      * Imposta lo stato di pagamento dell'ordinazione bar.
      *
-     * @param pagato true se l'ordinazione &egrave; stata pagata, false altrimenti
+     * @param pagato {@code true} se l'ordinazione &egrave; stata pagata, {@code false} altrimenti
      */
     void setPagato(boolean pagato);
 
     /**
      * Imposta lo stato di consegna dell'ordinazione bar.
      *
-     * @param consegnato true se l'ordinazione &egrave; stata consegnata, false altrimenti
+     * @param consegnato {@code true} se l'ordinazione &egrave; stata consegnata, {@code false} altrimenti
      */
     void setConsegnato(boolean consegnato);
 
     /**
      * Imposta lo stato stato di presa in carico dell'ordinazione bar
      *
-     * @param presoInCarico true se l'ordinazione &egrave; stata presa in carico, false altrimenti
+     * @param presoInCarico {@code true} se l'ordinazione &egrave; stata presa in carico, {@code false} altrimenti
      */
     void setPresoInCarico(boolean presoInCarico);
 

@@ -23,7 +23,7 @@ public interface ArticoloBar {
      * Imposta una nuova descrizione per l'articolo bar.
      *
      * @param descrizione nuova descrizione
-     * @throws NullPointerException se la descrizione &egrave; nulla
+     * @throws NullPointerException se la descrizione &egrave; {@code null}
      */
     void setDescrizione(String descrizione);
 }

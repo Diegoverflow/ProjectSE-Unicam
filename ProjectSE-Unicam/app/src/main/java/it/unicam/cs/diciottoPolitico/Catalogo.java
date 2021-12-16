@@ -35,7 +35,7 @@ public interface Catalogo<T, R extends RigaCatalogo<T>> {
      *
      * @param predicate il predicato con cui filtrare le righe catalogo
      * @return la lista delle righe catalogo filtrate tramite il predicato specificato
-     * @throws NullPointerException se il predicato &egrave; nullo
+     * @throws NullPointerException se il predicato &egrave; {@code null}
      */
     List<R> getRigheBy(Predicate<R> predicate);
 
