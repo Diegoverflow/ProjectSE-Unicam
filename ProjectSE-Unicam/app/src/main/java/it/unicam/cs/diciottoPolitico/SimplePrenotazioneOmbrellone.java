@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
 public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
 
@@ -12,7 +13,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     private final double costo;
     private final boolean statoPagamento;
     private static final int LIMITE_PRENOTAZIONE_MATTINA = 13;
-    private static final int LIMITE_PRENOTAZIONE_POMERIGGIO = 19;
+    private static final int LIMITE_PRENOTAZIONE_POMERIGGIO= 19;
 
     /**
      *Costruisce una prenotazione.
@@ -133,7 +134,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     }
 
     @Override
-    public long getCodice() {
+    public long getId() {
         return this.codice;
     }
 
@@ -165,5 +166,18 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     @Override
     public FasciaOraria getFasciaOraria() {
         return this.fasciaOraria;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SimplePrenotazioneOmbrellone)) return false;
+        SimplePrenotazioneOmbrellone that = (SimplePrenotazioneOmbrellone) o;
+        return getFasciaOraria() == that.getFasciaOraria() && getOmbrellone().equals(that.getOmbrellone()) && getDataPrenotazione().equals(that.getDataPrenotazione());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFasciaOraria(), getOmbrellone(), getDataPrenotazione());
     }
 }

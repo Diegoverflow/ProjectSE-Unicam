@@ -1,17 +1,22 @@
 package it.unicam.cs.diciottoPolitico;
 
+/**
+ * Semplice implementazione dell'interfaccia {@link HandlerVisualizzaPropriAcquisti}.
+ * @see Cliente
+ */
 public class SimpleHandlerVisualizzaPropriAcquisti implements HandlerVisualizzaPropriAcquisti {
 
     @Override
     public String getAcquisti(Cliente cliente) {
-        StringBuilder prenotazioni = new StringBuilder();
-        /*for (Prenotazione prenotazione: cliente.getPrenotazioni()) {
-            prenotazioni.append(prenotazione.getDataPrenotazione().toString());
-            prenotazioni.append(" ").append(prenotazione.getFasciaOraria());
-            prenotazioni.append(" ").append(prenotazione.getCosto());
-            prenotazioni.append(" ").append(prenotazione.getOmbrellone().getId());
-        }
-        return prenotazioni.toString();*/
-        return null;
+        StringBuilder messaggio = new StringBuilder();
+        cliente.getPrenotazioniOmbrelloni().stream().sequential().forEach(o -> getAcquisti(o,messaggio));
+        cliente.getPrenotazioniAttivita().stream().sequential().forEach(a -> getAcquisti(a,messaggio));
+        cliente.getOrdinazioniBar().stream().sequential().forEach(a -> getAcquisti(a,messaggio));
+        return messaggio.toString();
+    }
+
+    private void getAcquisti(Object o,StringBuilder messaggio){
+        messaggio.append(o.toString());
+        messaggio.append("\n");
     }
 }

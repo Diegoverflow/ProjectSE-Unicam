@@ -1,20 +1,24 @@
 package it.unicam.cs.diciottoPolitico;
 
+import java.util.Objects;
+
+/**
+ * Semplice implementazione dell'interfaccia Ombrellone.
+ */
 public class SimpleOmbrellone implements Ombrellone{
 
     private long id;
     private boolean isLibero;
     private Categoria categoria;
 
-    public SimpleOmbrellone(long id, boolean isLibero, Categoria categoria) {
-        this.id = id;
-        this.isLibero = isLibero;
-        this.categoria = categoria;
-    }
-
-    public SimpleOmbrellone(boolean isLibero, Categoria categoria) {
-        this.isLibero = isLibero;
-        this.categoria = categoria;
+    /**
+     * Metodo costruttore.
+     *
+     * @param categoria la categoria dell'ombrellone
+     */
+    public SimpleOmbrellone(Categoria categoria) {
+        this.isLibero = false;
+        this.categoria = Objects.requireNonNull(categoria,"La categoria non puo' essere nulla");
     }
 
     @Override
@@ -23,7 +27,7 @@ public class SimpleOmbrellone implements Ombrellone{
     }
 
     @Override
-    public boolean getLibero() {
+    public boolean isLibero() {
         return this.isLibero;
     }
 
@@ -39,6 +43,19 @@ public class SimpleOmbrellone implements Ombrellone{
 
     @Override
     public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+        this.categoria = Objects.requireNonNull(categoria,"La categoria non puo' essere nulla");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SimpleOmbrellone)) return false;
+        SimpleOmbrellone that = (SimpleOmbrellone) o;
+        return getId() == that.getId() && isLibero() == that.isLibero() && getCategoria() == that.getCategoria();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), isLibero(), getCategoria());
     }
 }
