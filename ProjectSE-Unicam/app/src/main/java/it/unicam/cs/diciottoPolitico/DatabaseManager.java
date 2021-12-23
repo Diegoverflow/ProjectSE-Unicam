@@ -25,5 +25,5 @@ public interface DatabaseManager {
      * @return {@code true} se il cliente &egrave; stato aggiunto,
      *         {@code false} altrimenti.
      */
-    boolean addNuovoCliente (Cliente cliente);
+    boolean addNuovoCliente (Cliente cliente);  // TODO: Non bisognerebbe metere Utente come tipo?
 }
