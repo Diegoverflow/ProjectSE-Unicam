@@ -23,6 +23,7 @@ public class SimpleHandlerCreaUtente implements HandlerCreaUtente {
         Objects.requireNonNull(tipologia, "Tipologia null!");
         Objects.requireNonNull(utente, "Utente null!");
         // TODO: verificaDati non si può fare qui se gli passiamo l' utente...quiundi o gli passiamo tutti i dati singoli o bho
+        // Nel caso di eventuali controlli, viene lanciata la UserNotCreatedException
         return this.dbManager.addNuovoCliente(utente);
     }
 
