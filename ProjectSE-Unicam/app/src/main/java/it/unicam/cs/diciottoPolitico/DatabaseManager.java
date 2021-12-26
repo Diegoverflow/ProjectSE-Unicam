@@ -23,10 +23,10 @@ public interface DatabaseManager {
     boolean verificaPresenza (String email, String password);
 
     /**
-     * Aggiunge un cliente al database del sistema.
-     * @param cliente da aggiungere.
+     * Aggiunge un utente al database del sistema.
+     * @param utente da aggiungere.
      * @return {@code true} se il cliente &egrave; stato aggiunto,
      *         {@code false} altrimenti.
      */
-    boolean addNuovoCliente (Cliente cliente);  // TODO: Non bisognerebbe metere Utente come tipo?
+    boolean addNuovoUtente (UtenteLoggato utente);  // TODO: Non bisognerebbe metere Utente come tipo?
 }
