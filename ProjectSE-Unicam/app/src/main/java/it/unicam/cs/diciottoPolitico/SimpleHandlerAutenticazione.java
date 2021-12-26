@@ -1,5 +1,8 @@
 package it.unicam.cs.diciottoPolitico;
 
+/**
+ * Semplice implementazione dell'interfacia HandlerAutenticazione.
+ */
 public class SimpleHandlerAutenticazione implements HandlerAutenticazione{
 
     private final DatabaseManager databaseManager;

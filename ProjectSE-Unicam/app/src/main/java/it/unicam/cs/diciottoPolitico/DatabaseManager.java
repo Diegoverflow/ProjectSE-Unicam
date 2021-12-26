@@ -1,5 +1,8 @@
 package it.unicam.cs.diciottoPolitico;
 
+/**
+ * Rappresenta un manager che si interagire con il database.
+ */
 public interface DatabaseManager {
 
     /**
