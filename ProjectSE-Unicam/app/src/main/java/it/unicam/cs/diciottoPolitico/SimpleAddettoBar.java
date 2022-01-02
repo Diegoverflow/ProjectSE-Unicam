@@ -7,11 +7,11 @@ import java.util.*;
  */
 public class SimpleAddettoBar implements AddettoBar {
 
-    private final long id;
+    private long id;
     private String nome;
     private String cognome;
     private String password;
-    private String numero;
+    private String cellulare;
     private final Queue<Notifica> notifiche;
     private final Queue<OrdinazioneBar> ordinazioniBarConsegnate;
 
@@ -20,17 +20,37 @@ public class SimpleAddettoBar implements AddettoBar {
      *
      * @param id       l' id dell' addetto bar da creare
      * @param nome     il nome dell' addetto bar da creare
+     * @param cellulare  cellulare dell'addetto bar
      * @param cognome  il cognome dell' addetto bar da creare
      * @param password la password dell' addetto bar da creare
      * @throws NullPointerException se almeno uno dei parametri &egrave; {@code null}
      */
 
-    public SimpleAddettoBar(long id, String nome, String numero, String cognome, String password) {
+    public SimpleAddettoBar(long id, String nome, String cellulare, String cognome, String password) {
         this.id = id;
         this.nome = Objects.requireNonNull(nome, "Nome null!");
         this.cognome = Objects.requireNonNull(cognome, "Cognome null!");
         this.password = Objects.requireNonNull(password, "Password null!");
-        this.numero = Objects.requireNonNull(numero, "Il numero non puo' essere nullo");
+        this.cellulare = Objects.requireNonNull(cellulare, "Il cellulare non puo' essere nullo");
+        this.notifiche = new LinkedList<>();
+        this.ordinazioniBarConsegnate = new LinkedList<>();
+    }
+
+    /**
+     * Crea un semplice addetto bar in base al nome, cognome e password specificati.
+     *
+     * @param nome     il nome dell' addetto bar da creare
+     * @param cellulare  cellulare dell'addetto bar
+     * @param cognome  il cognome dell' addetto bar da creare
+     * @param password la password dell' addetto bar da creare
+     * @throws NullPointerException se almeno uno dei parametri &egrave; {@code null}
+     */
+
+    public SimpleAddettoBar(String nome, String cellulare, String cognome, String password) {
+        this.nome = Objects.requireNonNull(nome, "Nome null!");
+        this.cognome = Objects.requireNonNull(cognome, "Cognome null!");
+        this.password = Objects.requireNonNull(password, "Password null!");
+        this.cellulare = Objects.requireNonNull(cellulare, "Il cellulare non puo' essere nullo");
         this.notifiche = new LinkedList<>();
         this.ordinazioniBarConsegnate = new LinkedList<>();
     }
@@ -51,8 +71,8 @@ public class SimpleAddettoBar implements AddettoBar {
     }
 
     @Override
-    public String getNumero() {
-        return this.numero;
+    public String getCellulare() {
+        return this.cellulare;
     }
 
     @Override
@@ -71,8 +91,8 @@ public class SimpleAddettoBar implements AddettoBar {
     }
 
     @Override
-    public void setNumero(String numero) {
-        this.numero = Objects.requireNonNull(numero, "Il numero non puo' essere nullo");
+    public void setCellulare(String cellulare) {
+        this.cellulare = Objects.requireNonNull(cellulare, "Il cellulare non puo' essere nullo");
     }
 
     @Override

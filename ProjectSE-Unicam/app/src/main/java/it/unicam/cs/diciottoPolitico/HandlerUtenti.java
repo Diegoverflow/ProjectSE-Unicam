@@ -1,9 +1,10 @@
 package it.unicam.cs.diciottoPolitico;
 
+import java.util.List;
+
 /**
- * Rappresenta un gestore per la creazione di un utente loggato.
- * Questo gestore si occupa di far selezionare una tipologia di utente da creare e, in base a questa,
- * di creare l' utente che il gestore desidera creare.
+ * Rappresenta un gestore di utenti.
+ * L'implementazione di questa interfaccia deve essere fatta attraverso una classe singleton.
  *
  * @see TipologiaUtente
  * @see UtenteLoggato
@@ -11,19 +12,55 @@ package it.unicam.cs.diciottoPolitico;
 public interface HandlerUtenti {
 
     /**
-     * Crea un {@link Cliente} in base al cliente e la tipologia specificati.
+     * Crea un {@link Cliente}.
      *
-     * @param tipologia la tipologia a cui il cliente deve appartenere
-     * @param cliente   il cliente da creare
-     * @return {@code true} se il cliente viene creato con successo, {@code false} altrimenti.
+     * @param password password del cliente
+     * @param nome nome del cliente
+     * @param cognome cognome del cliente
+     * @param cellulare cellulare del cliente
+     * @return true se il cliente non era già stato creato, false altrimenti
      */
-    boolean creaCliente(TipologiaUtente tipologia, Cliente cliente);
+    boolean creaCliente(String password, String nome, String cognome, String cellulare, String email);
 
     /**
-     * Restituisce un array di tutte le tipologie utente.
+     * Crea un {@link AddettoBar}.
      *
-     * @return l' array di tutte le tipologie utente.
+     * @param password password dell'addetto bar
+     * @param nome nome dell'addetto bar
+     * @param cognome cognome dell'addetto bar
+     * @param cellulare cellulare dell'addetto bar
+     * @return true se l'addetto bar non era già stato creato, false altrimenti
+     * @throws NullPointerException se uno dei parametri &egrave; null
      */
-    TipologiaUtente[] mostraTipologieUtente();
+    boolean creaAddettoBar(String password, String nome, String cognome, String cellulare);
+
+    /**
+     * Ritorna tutti i clienti creati.
+     *
+     * @return tutti i clienti creati
+     */
+    List<Cliente> getClienti();
+
+    /**
+     * Ritorna tutti gli addetti bar creati.
+     *
+     * @return tutti gli addetti bar creati
+     */
+    List<AddettoBar> getAddettiBar();
+
+    /**
+     * Elimina un utente.
+     *
+     * @param id id dell'utente da eliminare
+     * @return true se l'utente &egrave; stato eliminato
+     */
+    boolean eliminaUtente(long id);
+
+    /**
+     * Ritorna l'istanza di un HandlerUtenti.
+     *
+     * @return l'istanza di un HandlerUtenti
+     */
+    HandlerUtenti getInstance();
 
 }

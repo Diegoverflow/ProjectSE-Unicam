@@ -43,11 +43,11 @@ public interface UtenteLoggato {
     String getCognome();
 
     /**
-     * Ottieni il numero del cliente.
+     * Ottieni il cellulare dell'utente.
      *
-     * @return il numero del cliente
+     * @return il cellulare dell'utente
      */
-    String getNumero();
+    String getCellulare();
 
     /**
      * Modifica il nome del cliente in base al nome passato come parametro.
@@ -64,11 +64,11 @@ public interface UtenteLoggato {
     void setCognome(String cognome);
 
     /**
-     * Modifica il numero del cliente in base al numero passato come parametro.
+     * Modifica il cellulare dell'utente in base al numero passato come parametro.
      *
-     * @param numero con il quale si vuole aggiornare il numero del cliente
+     * @param cellulare con il quale si vuole aggiornare il numero del cliente
      */
-    void setNumero(String numero);
+    void setCellulare(String cellulare);
 
     /**
      * Ottieni le notifiche nella casella notifiche del cliente.
