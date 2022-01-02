@@ -2,6 +2,10 @@ package it.unicam.cs.diciottoPolitico;
 
 import java.util.List;
 
+/**
+ * Semplice implementazione dell'interfaccia HandlerUtenti.
+ * Questa classe &egrave; una classe singleton.
+ */
 public class SimpleHandlerUtenti implements HandlerUtenti{
 
     private static SimpleHandlerUtenti instance;
