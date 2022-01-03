@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class SimpleHandlerUtenti implements HandlerUtenti{
 
-    private static SimpleHandlerUtenti instance;
+    private static HandlerUtenti instance;
     private List<Cliente> clienti;
     private List<AddettoBar> addettiBar;
 
@@ -47,8 +47,12 @@ public class SimpleHandlerUtenti implements HandlerUtenti{
         return this.clienti.removeIf(c->c.getId() == id) || this.addettiBar.removeIf(a->a.getId() == id);
     }
 
-    @Override
-    public HandlerUtenti getInstance() {
+    /**
+     * Ritorna l'istanza di un HandlerUtenti.
+     *
+     * @return l'istanza di un HandlerUtenti
+     */
+    public static HandlerUtenti getInstance() {
         if (instance == null)
             instance = new SimpleHandlerUtenti();
         return instance;
