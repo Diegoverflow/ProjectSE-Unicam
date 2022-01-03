@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Semplice implementazione dell'interfaccia HandlerUtenti.
@@ -17,7 +18,7 @@ public class SimpleHandlerUtenti implements HandlerUtenti{
 
     @Override
     public boolean creaCliente(String password, String nome, String cognome, String cellulare, String email) {
-        Cliente cliente = new SimpleCliente(email,password,nome,cognome,cellulare);
+        Cliente cliente = new SimpleCliente(Objects.requireNonNull(email),Objects.requireNonNull(password),Objects.requireNonNull(nome),Objects.requireNonNull(cognome),Objects.requireNonNull(cellulare));
         if (this.clienti.contains(cliente))
             return false;
         return this.clienti.add(cliente);
@@ -25,7 +26,7 @@ public class SimpleHandlerUtenti implements HandlerUtenti{
 
     @Override
     public boolean creaAddettoBar(String password, String nome, String cognome, String cellulare) {
-        AddettoBar addettoBar = new SimpleAddettoBar(nome,cellulare,cognome,password);
+        AddettoBar addettoBar = new SimpleAddettoBar(Objects.requireNonNull(nome),Objects.requireNonNull(cellulare),Objects.requireNonNull(cognome),Objects.requireNonNull(password));
         if (this.addettiBar.contains(addettoBar))
             return false;
         return this.addettiBar.add(addettoBar);

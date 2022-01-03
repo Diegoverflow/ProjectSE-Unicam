@@ -19,6 +19,7 @@ public interface HandlerUtenti {
      * @param cognome cognome del cliente
      * @param cellulare cellulare del cliente
      * @return true se il cliente non era già stato creato, false altrimenti
+     * @throws NullPointerException se uno dei parametri &egrave; null
      */
     boolean creaCliente(String password, String nome, String cognome, String cellulare, String email);
 
