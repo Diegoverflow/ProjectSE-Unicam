@@ -49,9 +49,8 @@ public class SimpleHandlerUtenti implements HandlerUtenti{
 
     @Override
     public HandlerUtenti getInstance() {
-        if (instance == null) {
+        if (instance == null)
             instance = new SimpleHandlerUtenti();
-        }
         return instance;
     }
 }
