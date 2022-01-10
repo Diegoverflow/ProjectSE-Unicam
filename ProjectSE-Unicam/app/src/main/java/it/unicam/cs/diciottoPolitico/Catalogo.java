@@ -18,6 +18,7 @@ public interface Catalogo<T, R extends RigaCatalogo<T>> {
      *
      * @param riga la riga catalogo da aggiungere a questo catalogo
      * @return {@code true} se la riga catalogo viene aggiunta, altrimenti {@code false}
+     * @throws NullPointerException se la riga specificata &egrave; {@code null}
      */
     boolean add(R riga);
 
@@ -27,6 +28,7 @@ public interface Catalogo<T, R extends RigaCatalogo<T>> {
      *
      * @param riga la riga da rimuovere da questo catalogo
      * @return {@code true} se la riga catalogo viene rimossa, altrimenti {@code false}
+     * @throws NullPointerException se la riga specificata &egrave; {@code null}
      */
     boolean remove(R riga);
 
