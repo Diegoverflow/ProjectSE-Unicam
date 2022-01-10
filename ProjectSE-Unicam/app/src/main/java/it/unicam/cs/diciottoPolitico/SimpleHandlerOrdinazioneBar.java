@@ -80,7 +80,8 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
     }
 
     private void notificaTuttiGliAddetti(Notifica notifica) {
-        this.addettiBar.forEach(a -> HandlerNotifica.notifica(notifica, a));
+        this.addettiBar.
+                forEach(addettoBar -> SimpleHandlerNotifica.getInstance().notifica(notifica,addettoBar));
     }
 
 }

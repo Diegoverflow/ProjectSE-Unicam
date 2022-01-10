@@ -14,8 +14,6 @@ public interface HandlerNotifica {
      * @see Notifica
      * @see UtenteLoggato
      */
-    static void notifica(Notifica notifica, UtenteLoggato utenteLoggato) {
-        utenteLoggato.addNotifica(notifica);
-    }
+    void notifica(Notifica notifica, UtenteLoggato utenteLoggato);
 
 }

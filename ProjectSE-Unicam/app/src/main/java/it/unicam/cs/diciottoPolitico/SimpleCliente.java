@@ -13,10 +13,10 @@ import java.util.Queue;
 public class SimpleCliente implements Cliente {
 
     private long id;
-    private String codiceFiscale;
+    private String email;
     private String nome;
     private String cognome;
-    private String numero;
+    private String cellulare;
     private String password;
     private final Queue<Notifica> notifiche;
     private final List<PrenotazioneOmbrellone> prenotazioni;
@@ -26,36 +26,35 @@ public class SimpleCliente implements Cliente {
     /**
      * Costruisce un SimpleCliente
      *
-     * @param codiceFiscale del cliente
-     * @param password      del cliente
-     * @param nome          del cliente
-     * @param cognome       del cliente
-     * @param numero        del cliente
+     * @param email    del cliente
+     * @param password del cliente
+     * @param nome     del cliente
+     * @param cognome  del cliente
+     * @param cellulare   del cliente
      */
-    public SimpleCliente(long id, String codiceFiscale, String password, String nome, String cognome, String numero) {
-        this(codiceFiscale, password, nome, cognome, numero);
+    public SimpleCliente(long id, String email, String password, String nome, String cognome, String cellulare) {
+        this(email, password, nome, cognome, cellulare);
         this.id = id;
     }
-//todo togliere codiceFiscale e aggiungere mail
 
     /**
      * Costruisce un SimpleCliente
      *
-     * @param codiceFiscale del cliente
-     * @param password      del cliente
-     * @param nome          del cliente
-     * @param cognome       del cliente
-     * @param numero        del cliente
+     * @param email    del cliente
+     * @param password del cliente
+     * @param nome     del cliente
+     * @param cognome  del cliente
+     * @param cellulare   del cliente
      */
-    public SimpleCliente(String codiceFiscale, String password, String nome, String cognome, String numero) {
-        if (codiceFiscale == null || password == null || nome == null || cognome == null || numero == null) {
+    public SimpleCliente(String email, String password, String nome, String cognome, String cellulare) {
+        if (email == null || password == null || nome == null || cognome == null || cellulare == null) {
             throw new NullPointerException("Inserire dei dati non nulli");
         }
-        this.codiceFiscale = codiceFiscale;
+        this.email = email;
         this.password = password;
         this.nome = nome;
         this.cognome = cognome;
-        this.numero = numero;
+        this.cellulare = cellulare;
         this.notifiche = new LinkedList<>();
         this.prenotazioni = new LinkedList<>();
         this.prenotazioniAttivita = new LinkedList<>();
@@ -63,13 +62,13 @@ public class SimpleCliente implements Cliente {
     }
 
     @Override
-    public String getCodiceFiscale() {
-        return this.codiceFiscale;
+    public String getEmail() {
+        return this.email;
     }
 
     @Override
     public void setCodiceFiscale(String codiceFiscale) {
-        this.codiceFiscale = Objects.requireNonNull(codiceFiscale, "Il codice non puo' essere nullo");
+        this.email = Objects.requireNonNull(codiceFiscale, "Il codice non puo' essere nullo");
     }
 
     @Override
@@ -112,15 +111,15 @@ public class SimpleCliente implements Cliente {
     }
 
     @Override
-    public String getNumero() {
-        return this.numero;
+    public String getCellulare() {
+        return this.cellulare;
     }
 
     @Override
-    public void setNumero(String numero) {
-        if (numero == null)
+    public void setCellulare(String cellulare) {
+        if (cellulare == null)
             throw new NullPointerException("Inserire un numero non nullo");
-        this.numero = numero;
+        this.cellulare = cellulare;
     }
 
     @Override

@@ -11,7 +11,7 @@ public interface Cliente extends UtenteLoggato {
      *
      * @return il codice fiscale del cliente
      */
-    String getCodiceFiscale();
+    String getEmail();
 
     /**
      * Imposta il codice fiscale.
