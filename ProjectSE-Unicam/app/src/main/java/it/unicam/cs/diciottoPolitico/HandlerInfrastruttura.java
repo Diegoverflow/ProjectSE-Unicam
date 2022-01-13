@@ -11,13 +11,25 @@ import java.util.Optional;
  */
 public class HandlerInfrastruttura {
 
+    private static HandlerInfrastruttura instance = null;
     private final List<AreaInfrastruttura> infrastruttura;
 
     /**
      * Crea un gestore dell' infrastruttura.
      */
-    public HandlerInfrastruttura() {
+    private HandlerInfrastruttura() {
         this.infrastruttura = new ArrayList<>();
+    }
+
+    /**
+     * Restituisce l' istanza di questa classe Singleton.
+     *
+     * @return l' istanza di questa classe Singleton
+     */
+    public static HandlerInfrastruttura getInstance() {
+        if (instance == null)
+            instance = new HandlerInfrastruttura();
+        return instance;
     }
 
     /**
