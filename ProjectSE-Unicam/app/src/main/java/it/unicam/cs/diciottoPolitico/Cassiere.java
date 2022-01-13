@@ -5,10 +5,9 @@ import java.util.Objects;
 import java.util.Queue;
 
 /**
- * Rappresenta un addetto bar che si occupa di tenere traccia delle ordinazioni da lui consegnate
- * e di essere notificato quando arrivano ordinazioni e/o devono essere consegnate all' ombrellone.
+ * Rappresenta un cassiere che si occupa di far pagare i clienti che richiedono di saldare una vendita.
  */
-public class AddettoBar implements Utente {
+public class Cassiere implements Utente {
 
     private final long id;
     private String nome;
@@ -17,30 +16,28 @@ public class AddettoBar implements Utente {
     private RuoloUtente ruolo;
     private String cellulare;
     private String email;
-    private final Queue<Notifica> notifiche;
-    private final Queue<OrdinazioneBar> ordinazioniBarConsegnate;
+    private final Queue<Notifica> notifiche; // TODO: rimuovere notifiche oppure no? UnsupportedOperationException
 
     /**
-     * Crea un addetto bar in base a id, nome, cognome, password, cellulare ed email specificati.
+     * Crea un cassiere in base a id, nome, cognome, password, cellulare ed email specificati.
      *
-     * @param id        l' id associato a questo addetto bar
-     * @param nome      il nome a questo addetto bar
-     * @param cognome   il cognome associato a questo addetto bar
-     * @param password  la password di questo addetto bar
-     * @param cellulare il cellulare di questo addetto bar
-     * @param email     l' email di questo addetto bar
+     * @param id        l' id associato a questo cassiere
+     * @param nome      il nome a questo cassiere
+     * @param cognome   il cognome associato a questo cassiere
+     * @param password  la password di questo cassiere
+     * @param cellulare il cellulare di questo cassiere
+     * @param email     l' email di questo cassiere
      * @throws NullPointerException se almeno uno sei parametri specificati &egrave; {@code null}
      */
-    public AddettoBar(long id, String nome, String cognome, String password, String cellulare, String email) {
+    public Cassiere(long id, String nome, String cognome, String password, String cellulare, String email) {
         this.id = id;
         this.nome = Objects.requireNonNull(nome, "Nome null!");
         this.cognome = Objects.requireNonNull(cognome, "Cognome null!");
         this.password = Objects.requireNonNull(password, "Password null!");
-        this.ruolo = RuoloUtente.ADDETTO_BAR;
+        this.ruolo = RuoloUtente.CASSIERE;
         this.cellulare = Objects.requireNonNull(cellulare, "Cellulare null!");
         this.email = Objects.requireNonNull(email, "Email null!");
         this.notifiche = new LinkedList<>();
-        this.ordinazioniBarConsegnate = new LinkedList<>();
     }
 
     @Override
@@ -110,26 +107,29 @@ public class AddettoBar implements Utente {
 
     @Override
     public Queue<Notifica> getNotifiche() {
-        return this.notifiche;
+        //return this.notifiche;
+        throw new UnsupportedOperationException("Il cassiere non ha notifiche");
     }
 
     @Override
     public boolean addNotifica(Notifica notifica) {
-        if (!this.notifiche.contains(Objects.requireNonNull(notifica, "Notifica null!")))
+        /*if (!this.notifiche.contains(Objects.requireNonNull(notifica, "Notifica null!")))
             return this.notifiche.add(notifica);
-        return false;
+        return false;*/
+        throw new UnsupportedOperationException("Il cassiere non aggiunge notifiche");
     }
 
     @Override
     public boolean removeNotifica(Notifica notifica) {
-        return this.notifiche.remove(notifica);
+        //return this.notifiche.remove(notifica);
+        throw new UnsupportedOperationException("Il cassiere non rimuove notifiche");
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AddettoBar)) return false;
-        AddettoBar that = (AddettoBar) o;
+        if (!(o instanceof Cassiere)) return false;
+        Cassiere that = (Cassiere) o;
         return getId() == that.getId() && getNome().equals(that.getNome()) && getCognome().equals(that.getCognome());
     }
 
@@ -138,13 +138,4 @@ public class AddettoBar implements Utente {
         return Objects.hash(getId(), getNome(), getCognome());
     }
 
-    /**
-     * Restituisce la coda delle ordinazioni bar consegnate da questo addetto bar.
-     * Le ordinazioni bar consegnate sono restituite in ordine cronologico.
-     *
-     * @return la coda delle ordinazioni bar consegnate da questo addetto bar
-     */
-    public Queue<OrdinazioneBar> getOrdinazioniBarConsegnate() {
-        return this.ordinazioniBarConsegnate;
-    }
 }
