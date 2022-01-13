@@ -1,6 +1,5 @@
 package it.unicam.cs.diciottoPolitico;
 
-import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Queue;
 
@@ -9,14 +8,13 @@ import java.util.Queue;
  */
 public class Gestore implements Utente {
 
+    public static final RuoloUtente ruolo = RuoloUtente.GESTORE;
     private final long id;
     private String nome;
     private String cognome;
     private String password;
-    private RuoloUtente ruolo;
     private String cellulare;
     private String email;
-    private final Queue<Notifica> notifiche; // TODO: rimuovere notifiche oppure no? UnsupportedOperationException
 
     /**
      * Crea un gestore in base a id, nome, cognome, password, cellulare ed email specificati.
@@ -34,10 +32,8 @@ public class Gestore implements Utente {
         this.nome = Objects.requireNonNull(nome, "Nome null!");
         this.cognome = Objects.requireNonNull(cognome, "Cognome null!");
         this.password = Objects.requireNonNull(password, "Password null!");
-        this.ruolo = RuoloUtente.GESTORE;
         this.cellulare = Objects.requireNonNull(cellulare, "Cellulare null!");
         this.email = Objects.requireNonNull(email, "Email null!");
-        this.notifiche = new LinkedList<>();
     }
 
     @Override
@@ -53,16 +49,6 @@ public class Gestore implements Utente {
     @Override
     public void setPassword(String password) {
         this.password = Objects.requireNonNull(password, "Password null!");
-    }
-
-    @Override
-    public RuoloUtente getRuolo() {
-        return this.ruolo;
-    }
-
-    @Override
-    public void setRuolo(RuoloUtente ruolo) {
-        this.ruolo = Objects.requireNonNull(ruolo, "Ruolo null!");
     }
 
     @Override
@@ -107,21 +93,17 @@ public class Gestore implements Utente {
 
     @Override
     public Queue<Notifica> getNotifiche() {
-        //return this.notifiche;
         throw new UnsupportedOperationException("Il gestore non ha notifiche");
     }
 
     @Override
     public boolean addNotifica(Notifica notifica) {
-        /*if (!this.notifiche.contains(Objects.requireNonNull(notifica, "Notifica null!")))
-            return this.notifiche.add(notifica);
-        return false;*/
+
         throw new UnsupportedOperationException("Il gestore non aggiunge notifiche");
     }
 
     @Override
     public boolean removeNotifica(Notifica notifica) {
-        //return this.notifiche.remove(notifica);
         throw new UnsupportedOperationException("Il gestore non rimuove notifiche");
     }
 

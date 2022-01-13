@@ -10,11 +10,11 @@ import java.util.Queue;
  */
 public class AddettoBar implements Utente {
 
+    public static final RuoloUtente ruolo = RuoloUtente.ADDETTO_BAR;
     private final long id;
     private String nome;
     private String cognome;
     private String password;
-    private RuoloUtente ruolo;
     private String cellulare;
     private String email;
     private final Queue<Notifica> notifiche;
@@ -36,7 +36,6 @@ public class AddettoBar implements Utente {
         this.nome = Objects.requireNonNull(nome, "Nome null!");
         this.cognome = Objects.requireNonNull(cognome, "Cognome null!");
         this.password = Objects.requireNonNull(password, "Password null!");
-        this.ruolo = RuoloUtente.ADDETTO_BAR;
         this.cellulare = Objects.requireNonNull(cellulare, "Cellulare null!");
         this.email = Objects.requireNonNull(email, "Email null!");
         this.notifiche = new LinkedList<>();
@@ -56,16 +55,6 @@ public class AddettoBar implements Utente {
     @Override
     public void setPassword(String password) {
         this.password = Objects.requireNonNull(password, "Password null!");
-    }
-
-    @Override
-    public RuoloUtente getRuolo() {
-        return this.ruolo;
-    }
-
-    @Override
-    public void setRuolo(RuoloUtente ruolo) {
-        this.ruolo = Objects.requireNonNull(ruolo, "Ruolo null!");
     }
 
     @Override

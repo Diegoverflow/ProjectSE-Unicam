@@ -29,21 +29,6 @@ public interface Utente {
     void setPassword(String password);
 
     /**
-     * Restituisce il ruolo che l' utente ricopre.
-     *
-     * @return il ruolo ricoperto dall' utente
-     */
-    RuoloUtente getRuolo();
-
-    /**
-     * Imposta il ruolo specificato all' utente.
-     *
-     * @param ruolo il ruolo che l' utente dovr&agrave; ricoprire
-     * @throws NullPointerException se il ruolo &egrave; {@code null}
-     */
-    void setRuolo(RuoloUtente ruolo);
-
-    /**
      * Restituisce il nome dell' utente.
      *
      * @return il nome dell' utente
