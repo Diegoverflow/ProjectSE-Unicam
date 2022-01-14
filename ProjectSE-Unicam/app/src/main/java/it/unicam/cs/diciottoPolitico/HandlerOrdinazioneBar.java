@@ -56,7 +56,7 @@ public interface HandlerOrdinazioneBar {
      * @see OrdinazioneBar
      * @see Cliente
      */
-    boolean creaOrdinazione(RigaCatalogoBar rigaCatalogoBar, Utente utente);
+    boolean creaOrdinazioneBar(RigaCatalogoBar rigaCatalogoBar, Utente utente);
 
     /**
      * Ritorna tutte le ordinazioni bar effettuate.
@@ -64,6 +64,20 @@ public interface HandlerOrdinazioneBar {
      * @return tutte le ordinazioni bar effettuate
      */
     List<OrdinazioneBar> getOrdinazioniBar();
+
+    /**
+     * Ritorna tutte le ordinazioni bar da prendere in carico.
+     *
+     * @return tutte le ordinazioni bar da prendere in carico
+     */
+    List<OrdinazioneBar> getOrdinazioniDaPrendereInCarico();
+
+    /**
+     * Ritorna tutte le ordinazioni bar da consegnare.
+     *
+     * @return tutte le ordinazioni bar da consegnare
+     */
+    List<OrdinazioneBar> getOrdinazioniDaConsegnare();
 
     /**
      * Rimuove una ordinazione bar.

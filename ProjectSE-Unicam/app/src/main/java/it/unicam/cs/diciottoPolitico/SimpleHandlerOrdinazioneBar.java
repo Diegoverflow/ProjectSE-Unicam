@@ -47,7 +47,7 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
     }
 
     @Override
-    public boolean creaOrdinazione(RigaCatalogoBar rigaCatalogoBar, Utente utente) {
+    public boolean creaOrdinazioneBar(RigaCatalogoBar rigaCatalogoBar, Utente utente) {
         if (rigaCatalogoBar == null || utente == null)
             throw new NullPointerException("Nessun parametro puo' essere nullo");
         if(this.catalogoBar.getAllRighe().contains(rigaCatalogoBar) && rigaCatalogoBar.getQuantita() >0){
@@ -61,6 +61,20 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
     @Override
     public List<OrdinazioneBar> getOrdinazioniBar() {
         return this.ordinazioniBar;
+    }
+
+    @Override
+    public List<OrdinazioneBar> getOrdinazioniDaPrendereInCarico() {
+        return this.ordinazioniBar.stream()
+                .filter(ordinazione -> ordinazione.getStatus() == StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<OrdinazioneBar> getOrdinazioniDaConsegnare() {
+        return this.ordinazioniBar.stream()
+                .filter(ordinazione -> ordinazione.getStatus() == StatusOrdinazioneBar.PRESO_IN_CARICO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -78,4 +92,7 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
         }
         return false;
     }
+
+    //todo
+    private void notificaTuttiGliAddetti(String messaggio){};
 }

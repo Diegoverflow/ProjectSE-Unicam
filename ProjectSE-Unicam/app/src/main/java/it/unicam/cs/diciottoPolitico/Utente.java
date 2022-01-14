@@ -136,4 +136,10 @@ public interface Utente {
      */
     int hashCode();
 
+    /**
+     * Ritorna il ruolo dell'utente.
+     *
+     * @return il ruolo dell'utente
+     */
+    RuoloUtente getRuolo();
 }
