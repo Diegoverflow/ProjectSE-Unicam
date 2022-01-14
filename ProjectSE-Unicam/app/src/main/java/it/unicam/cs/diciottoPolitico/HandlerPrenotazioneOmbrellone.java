@@ -36,7 +36,7 @@ public interface HandlerPrenotazioneOmbrellone {
      * @see RigaCatalogoOmbrellone
      * @see Cliente
      */
-    boolean creaPrenotazione(GregorianCalendar dataPrenotazione, FasciaOraria fasciaOraria, RigaCatalogoOmbrellone rigaCatalogoOmbrellone, Cliente cliente);
+    boolean creaPrenotazione(GregorianCalendar dataPrenotazione, FasciaOraria fasciaOraria, RigaCatalogoOmbrellone rigaCatalogoOmbrellone, Utente cliente);
 
     /**
      * Ritorna un riepilogo dei dati di prenotazione.

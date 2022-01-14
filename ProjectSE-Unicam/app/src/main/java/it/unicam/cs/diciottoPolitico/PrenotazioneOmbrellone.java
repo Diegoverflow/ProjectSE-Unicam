@@ -60,4 +60,11 @@ public interface PrenotazioneOmbrellone {
      * @return la fascia oraria della prenotazione
      */
     FasciaOraria getFasciaOraria();
+
+    /**
+     * Ritorna l'utente che ha effettuato la prenotazione.
+     *
+     * @return l'utente che ha effettuato la prenotazione
+     */
+    Utente getUtente();
 }
