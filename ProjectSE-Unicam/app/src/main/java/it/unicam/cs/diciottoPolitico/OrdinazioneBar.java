@@ -39,25 +39,11 @@ public interface OrdinazioneBar {
     double getCosto();
 
     /**
-     * Specifica se un'ordinazione &egrave; stata consegnata.
-     *
-     * @return {@code true} se l'ordinazione &egrave; stata consegnata, {@code false} altrimenti
-     */
-    boolean isConsegnato();
-
-    /**
      * Specifica se un'ordinazione &egrave; stata pagata.
      *
      * @return {@code true} se l'ordinazione &egrave; stata pagata, {@code false} altrimenti
      */
     boolean isPagato();
-
-    /**
-     * Specifica se un'ordinazione &egrave; stata presa in carico.
-     *
-     * @return {@code true} se l'ordinazione &egrave; stata presa in carico, {@code false} altrimenti
-     */
-    boolean isPresoInCarico();
 
     /**
      * Imposta lo stato di pagamento dell'ordinazione bar.
@@ -67,17 +53,25 @@ public interface OrdinazioneBar {
     void setPagato(boolean pagato);
 
     /**
-     * Imposta lo stato di consegna dell'ordinazione bar.
+     * Ritorna lo stato dell'ordinazione bar.
      *
-     * @param consegnato {@code true} se l'ordinazione &egrave; stata consegnata, {@code false} altrimenti
+     * @return lo stato dell'ordinazione bar
      */
-    void setConsegnato(boolean consegnato);
+    StatusOrdinazioneBar getStatus();
 
     /**
-     * Imposta lo stato stato di presa in carico dell'ordinazione bar
+     * Imposta lo status dell'ordinazione bar.
      *
-     * @param presoInCarico {@code true} se l'ordinazione &egrave; stata presa in carico, {@code false} altrimenti
+     * @param statusOrdinazioneBar il nuovo status dell'ordinazione bar
+     * @throws NullPointerException se lo status &egrave; nullo
      */
-    void setPresoInCarico(boolean presoInCarico);
+    void setStatus(StatusOrdinazioneBar statusOrdinazioneBar);
+
+    /**
+     * Ritorna l'utente che ha effettuato l'ordinazione bar.
+     *
+     * @return l'utente che ha effettuato l'ordinazione bar
+     */
+    Utente getUtente();
 
 }

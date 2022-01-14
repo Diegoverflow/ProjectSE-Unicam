@@ -5,10 +5,10 @@ package it.unicam.cs.diciottoPolitico;
  * @see Cliente
  */
 public class SimpleHandlerVisualizzaPropriAcquisti implements HandlerVisualizzaPropriAcquisti {
-
+//todo rifare metodo
     @Override
     public String getAcquisti(Cliente cliente) {
-        StringBuilder messaggio = new StringBuilder();
+       /* StringBuilder messaggio = new StringBuilder();
         cliente.getPrenotazioniOmbrelloni().stream().sequential().forEach(o -> getAcquisti(o,messaggio));
         cliente.getPrenotazioniAttivita().stream().sequential().forEach(a -> getAcquisti(a,messaggio));
         cliente.getOrdinazioniBar().stream().sequential().forEach(a -> getAcquisti(a,messaggio));
@@ -18,5 +18,6 @@ public class SimpleHandlerVisualizzaPropriAcquisti implements HandlerVisualizzaP
     private void getAcquisti(Object o,StringBuilder messaggio){
         messaggio.append(o.toString());
         messaggio.append("\n");
+    */return  null;
     }
 }

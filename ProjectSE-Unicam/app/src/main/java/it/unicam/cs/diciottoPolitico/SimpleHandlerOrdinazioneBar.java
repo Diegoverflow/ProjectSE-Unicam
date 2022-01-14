@@ -17,70 +17,65 @@ import java.util.stream.Collectors;
  */
 public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
 
-    private final Set<AddettoBar> addettiBar;
     private final Catalogo<ArticoloBar, RigaCatalogoBar> catalogoBar;
-    private final Map<OrdinazioneBar, Optional<AddettoBar>> ordinazioniDaGestire;
+    private final List<OrdinazioneBar> ordinazioniBar;
 
     /**
      * Crea un semplice gestore di ordinazioni bar.
      */
     public SimpleHandlerOrdinazioneBar() {
-        this.addettiBar = new HashSet<>();
         this.catalogoBar = new SimpleCatalogo<>();
-        this.ordinazioniDaGestire = new HashMap<>();
-    }
-
-    @Override
-    public Map<OrdinazioneBar, Optional<AddettoBar>> getOrdinazioniDaGestire() {
-        return this.ordinazioniDaGestire;
+        this.ordinazioniBar = new ArrayList<>();
     }
 
     @Override
     public List<ArticoloBar> getArticoliDisponibili() {
         return this.catalogoBar.getAllRighe().stream()
+                .filter(riga -> riga.getQuantita()>0)
                 .map(RigaCatalogo::getValore)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<OrdinazioneBar> getOrdinazioneBarBy(long idOrdinazione) {
-        return this.ordinazioniDaGestire.keySet().stream().filter(o -> o.getId() == idOrdinazione).findFirst();
+    public boolean prendiInCaricoOrdinazioneBar(OrdinazioneBar ordinazioneBar) {
+        return cambiaStatusOrdinazioneBar(ordinazioneBar, StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO,StatusOrdinazioneBar.PRESO_IN_CARICO);
     }
 
     @Override
-    public boolean creaOrdinazione(OrdinazioneBar ordinazioneBar, Cliente cliente) {
-        this.ordinazioniDaGestire.put(ordinazioneBar, Optional.empty());
-        this.notificaTuttiGliAddetti(new SimpleNotifica(ordinazioneBar.getId(), ordinazioneBar.toString()));
-        return Objects.requireNonNull(cliente, "Cliente null!").addOrdinazioneBar(ordinazioneBar);
+    public boolean consegnaOrdinazioneBar(OrdinazioneBar ordinazioneBar) {
+        return cambiaStatusOrdinazioneBar(ordinazioneBar, StatusOrdinazioneBar.PRESO_IN_CARICO, StatusOrdinazioneBar.CONSEGNATO);
     }
 
     @Override
-    public List<OrdinazioneBar> getOrdinazioniNonPreseInCarico() {
-        return this.ordinazioniDaGestire.entrySet().stream()
-                .filter(entry -> entry.getValue().isEmpty())
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+    public boolean creaOrdinazione(RigaCatalogoBar rigaCatalogoBar, Utente utente) {
+        if (rigaCatalogoBar == null || utente == null)
+            throw new NullPointerException("Nessun parametro puo' essere nullo");
+        if(this.catalogoBar.getAllRighe().contains(rigaCatalogoBar) && rigaCatalogoBar.getQuantita() >0){
+            rigaCatalogoBar.setQuantita(rigaCatalogoBar.getQuantita()-1);
+            return this.ordinazioniBar.add(new SimpleOrdinazioneBar(rigaCatalogoBar.getValore(),rigaCatalogoBar.getPrezzo(),utente));
+        }
+        return false;
+        //todo manca notificare i clienti
     }
 
     @Override
-    public boolean addAddetto(AddettoBar addettoBar) {
-        return this.addettiBar.add(Objects.requireNonNull(addettoBar, "Addetto bar null!"));
-    }
-
-
-    @Override
-    public boolean removeAddetto(long id) {
-        Optional<AddettoBar> addettoBar = this.getAddettoBy(id);
-        return addettoBar.isPresent() && this.addettiBar.remove(addettoBar.get());
+    public List<OrdinazioneBar> getOrdinazioniBar() {
+        return this.ordinazioniBar;
     }
 
     @Override
-    public Optional<AddettoBar> getAddettoBy(long id) {
-        return this.addettiBar.stream().filter(a -> a.getId() == id).findFirst();
+    public boolean removeOrdinazioneBar(OrdinazioneBar ordinazioneBar) {
+        Objects.requireNonNull(ordinazioneBar,"L'ordinazione bar non puo' essere nulla");
+        return this.ordinazioniBar.removeIf(prenotazione -> prenotazione.equals(ordinazioneBar));
     }
 
-    private void notificaTuttiGliAddetti(Notifica notifica) {
-        this.addettiBar.forEach(a -> HandlerNotifica.notifica(notifica, a));
+    private boolean cambiaStatusOrdinazioneBar(OrdinazioneBar ordinazioneBar,StatusOrdinazioneBar vecchioStatus, StatusOrdinazioneBar nuovoStatus){
+        if(!this.ordinazioniBar.contains(Objects.requireNonNull(ordinazioneBar,"L'ordinazione bar non puo' essere nulla")))
+            throw new IllegalArgumentException("L'ordinazione bar non e' presente");
+        if(ordinazioneBar.getStatus() == vecchioStatus){
+            ordinazioneBar.setStatus(nuovoStatus);
+            return true;
+        }
+        return false;
     }
-
 }

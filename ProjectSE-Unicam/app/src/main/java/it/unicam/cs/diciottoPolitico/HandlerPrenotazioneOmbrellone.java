@@ -29,14 +29,14 @@ public interface HandlerPrenotazioneOmbrellone {
      * @param dataPrenotazione       data di prenotazione
      * @param fasciaOraria           fascia oraria di prenotazione
      * @param rigaCatalogoOmbrellone riga contenente l'ombrellone scelto per la prenotazione
-     * @param cliente                cliente associato alla prenotazione
-     * @return {@code true} se la prenotazione &egrave; stata creata, {@false} altrimenti
+     * @param utente                utente associato alla prenotazione
+     * @return {@code true} se la prenotazione &egrave; stata creata, {@code false} altrimenti
      * @throws NullPointerException se uno qualsiasi dei parametri &egrave; nullo
      * @see FasciaOraria
      * @see RigaCatalogoOmbrellone
      * @see Cliente
      */
-    boolean creaPrenotazione(GregorianCalendar dataPrenotazione, FasciaOraria fasciaOraria, RigaCatalogoOmbrellone rigaCatalogoOmbrellone, Utente cliente);
+    boolean creaPrenotazione(GregorianCalendar dataPrenotazione, FasciaOraria fasciaOraria, RigaCatalogoOmbrellone rigaCatalogoOmbrellone, Utente utente);
 
     /**
      * Ritorna un riepilogo dei dati di prenotazione.
@@ -60,6 +60,7 @@ public interface HandlerPrenotazioneOmbrellone {
     /**
      * Rimuove una prenotazione ombrellone.
      *
+     * @param prenotazioneOmbrellone la prenotazione ombrellone da rimuovere
      * @return true se la prenotazione ombrellone &egrave; stata rimossa, false se la prenotazione ombrellone non era presente
      * @throws NullPointerException se la prenotazione ombrellone &egrave; nulla
      */

@@ -1,8 +1,6 @@
 package it.unicam.cs.diciottoPolitico;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
 
@@ -21,7 +19,6 @@ public class Cliente implements Utente {
     private String cellulare;
     private String email;
     private final Queue<Notifica> notifiche;
-    private final List<OrdinazioneBar> ordinazioniBar;
 
     /**
      * Crea un cliente in base a id, nome, cognome, password, cellulare ed email specificati.
@@ -42,7 +39,6 @@ public class Cliente implements Utente {
         this.cellulare = Objects.requireNonNull(cellulare, "Cellulare null!");
         this.email = Objects.requireNonNull(email, "Email null!");
         this.notifiche = new LinkedList<>();
-        this.ordinazioniBar = new ArrayList<>();
     }
 
     @Override
@@ -67,12 +63,12 @@ public class Cliente implements Utente {
 
     @Override
     public void setNome(String nome) {
-        this.nome = Objects.requireNonNull("Nome null!");
+        this.nome = Objects.requireNonNull(nome,"Nome null!");
     }
 
     @Override
     public void setCognome(String cognome) {
-        this.cognome = Objects.requireNonNull("Cognome null!");
+        this.cognome = Objects.requireNonNull(cognome,"Cognome null!");
     }
 
     @Override
@@ -128,31 +124,6 @@ public class Cliente implements Utente {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getNome(), getCognome());
-    }
-
-    /**
-     * Restituisce la lista delle ordinazioni bar effettuate da questo cliente.
-     *
-     * @return la lista di tutte le ordinazioni bar effettuate da questo cliente
-     */
-    public List<OrdinazioneBar> getOrdinazioniBar() {
-        return this.ordinazioniBar;
-    }
-
-    /**
-     * Aggiunge l' {@link OrdinazioneBar} specificata alle ordinazioni effettuate da questo cliente.
-     * Restituisce {@code true} se l' ordinazione specificata viene aggiunta con successo,
-     * {@code false} altrimenti.
-     *
-     * @param ordinazione l' ordinazione da aggiungere alle ordinazioni di questo cliente
-     * @return {@code true} se la prenotazione viene aggiunta alle ordinazioni effettuate
-     * da questo cliente, {@code false} altrimenti
-     */
-    public boolean addOrdinazioneBar(OrdinazioneBar ordinazione) {
-        Objects.requireNonNull(ordinazione, "Ordinazione bar null!");
-        if (!this.ordinazioniBar.contains(ordinazione))
-            return this.ordinazioniBar.add(ordinazione);
-        return false;
     }
 
 }

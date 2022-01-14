@@ -56,6 +56,7 @@ public interface HandlerPrenotazioneAttivita {
     /**
      * Rimuove una prenotazione attivit&agrave;.
      *
+     * @param prenotazioneAttivita la prenotazione attivit&agrave; da rimuovere
      * @return true se la prenotazione attivit&agrave; &egrave; stata rimossa, false se la prenotazione attivit&agrave; non era presente
      * @throws NullPointerException se la prenotazione attivit&agrave; &egrave; nulla
      */

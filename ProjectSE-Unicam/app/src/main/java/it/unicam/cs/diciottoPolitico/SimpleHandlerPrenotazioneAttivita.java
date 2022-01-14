@@ -63,5 +63,4 @@ public class SimpleHandlerPrenotazioneAttivita implements HandlerPrenotazioneAtt
         return this.prenotazioniAttivita.removeIf(prenotazione -> prenotazione.equals(prenotazioneAttivita));
     }
 
-
 }
