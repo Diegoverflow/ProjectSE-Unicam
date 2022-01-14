@@ -3,7 +3,9 @@ package it.unicam.cs.diciottoPolitico;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
-// TODO: javadoc
+/**
+ * Semplice implementazione dell'interfaccia PrenotazioneAttivita.
+ */
 public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
 
     private long id;
@@ -11,6 +13,7 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
     private boolean statoPagamento;
     private final double costo;
     private final Attivita attivita;
+    private final Utente utente;
 
     /**
      * Costruisce una prenotazione attivit&agrave;
@@ -18,15 +21,17 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
      * @param id       della prenotazione
      * @param costo    della prenotazione
      * @param attivita da associare alla prenotazione
+     * @throws NullPointerException se l'attivit&agrave; o l'utente sono nulli
      * @apiNote la data di acquisto &egrave; impostata automaticamente dal sistema alla data corrente
      * e lo stato di pagamento &egrave; impostato automaticamente a {@code false}
      */
-    public SimplePrenotazioneAttivita(long id, double costo, Attivita attivita) {
+    public SimplePrenotazioneAttivita(long id, double costo, Attivita attivita, Utente utente) {
         this.id = id;
         this.dataAcquisto = new GregorianCalendar();
         this.statoPagamento = false;
         this.costo = costo;
         this.attivita = Objects.requireNonNull(attivita, "Attivita nulla non valida");
+        this.utente = Objects.requireNonNull(utente,"L'utente non puo' essere nullo");
     }
 
     /**
@@ -34,14 +39,16 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
      *
      * @param costo    della prenotazione
      * @param attivita da associare alla prenotazione
+     * @throws NullPointerException se l'attivit&agrave; o l'utente sono nulli
      * @apiNote la data di acquisto &egrave; impostata automaticamente dal sistema alla data corrente
      * e lo stato di pagamento &egrave; impostato automaticamente a {@code false}
      */
-    public SimplePrenotazioneAttivita(double costo, Attivita attivita) {
+    public SimplePrenotazioneAttivita(double costo, Attivita attivita, Utente utente) {
         this.dataAcquisto = new GregorianCalendar();
         this.statoPagamento = false;
         this.costo = costo;
         this.attivita = attivita;
+        this.utente = Objects.requireNonNull(utente,"L'utente non puo' essere nullo");
     }
 
     @Override
@@ -72,5 +79,10 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
     @Override
     public Attivita getAttivita() {
         return this.attivita;
+    }
+
+    @Override
+    public Utente getUtente() {
+        return this.utente;
     }
 }

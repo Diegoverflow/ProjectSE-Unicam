@@ -21,7 +21,6 @@ public class Cliente implements Utente {
     private String cellulare;
     private String email;
     private final Queue<Notifica> notifiche;
-    private final List<PrenotazioneAttivita> prenotazioniAttivita;
     private final List<OrdinazioneBar> ordinazioniBar;
 
     /**
@@ -43,7 +42,6 @@ public class Cliente implements Utente {
         this.cellulare = Objects.requireNonNull(cellulare, "Cellulare null!");
         this.email = Objects.requireNonNull(email, "Email null!");
         this.notifiche = new LinkedList<>();
-        this.prenotazioniAttivita = new ArrayList<>();
         this.ordinazioniBar = new ArrayList<>();
     }
 
@@ -130,32 +128,6 @@ public class Cliente implements Utente {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getNome(), getCognome());
-    }
-
-
-    /**
-     * Restituisce la lista delle prenotazioni delle attivit&agrave; effettuate da questo cliente.
-     *
-     * @return la lista delle prenotazioni delle attivit&agrave; effettuate da questo cliente
-     */
-    public List<PrenotazioneAttivita> getPrenotazioniAttivita() {
-        return this.prenotazioniAttivita;
-    }
-
-    /**
-     * Aggiunge la {@link PrenotazioneAttivita} specificata alle prenotazioni delle attivit&agrave; di questo cliente.
-     * Restituisce {@code true} se la prenotazione specificata viene aggiunta con successo,
-     * {@code false} altrimenti.
-     *
-     * @param prenotazione la prenotazione da aggiungere alle prenotazioni di questo cliente
-     * @return {@code true} se la prenotazione viene aggiunta alle prenotazioni delle attivit&agrave;
-     * di questo cliente, {@code false} altrimenti
-     */
-    public boolean addPrenotazioneAttivita(PrenotazioneAttivita prenotazione) {
-        Objects.requireNonNull(prenotazione, "Prenotazione null!");
-        if (!this.prenotazioniAttivita.contains(prenotazione))
-            return this.prenotazioniAttivita.add(prenotazione);
-        return false;
     }
 
     /**

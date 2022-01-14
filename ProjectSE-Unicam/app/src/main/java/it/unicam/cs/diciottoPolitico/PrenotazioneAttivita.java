@@ -53,4 +53,11 @@ public interface PrenotazioneAttivita {
      */
     Attivita getAttivita();
 
+    /**
+     * Ritorna l'utente che ha effettuato la prenotazione dell'attivit&agrave;.
+     *
+     * @return l'utente che ha effettuato la prenotazione dell'attivit&agrave;
+     */
+    Utente getUtente();
+
 }

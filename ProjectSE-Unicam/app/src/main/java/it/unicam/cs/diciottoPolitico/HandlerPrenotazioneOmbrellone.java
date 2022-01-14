@@ -53,7 +53,16 @@ public interface HandlerPrenotazioneOmbrellone {
     /**
      * Ritorna tutte le prenotazioni ombrellone fatte.
      *
-     * @return tutte le prenotazioni ombrellone
+     * @return tutte le prenotazioni ombrellone fatte
      */
     List<PrenotazioneOmbrellone> getPrenotazioniOmbrellone();
+
+    /**
+     * Rimuove una prenotazione ombrellone.
+     *
+     * @return true se la prenotazione ombrellone &egrave; stata rimossa, false se la prenotazione ombrellone non era presente
+     * @throws NullPointerException se la prenotazione ombrellone &egrave; nulla
+     */
+    boolean removePrenotazioneOmbrellone(PrenotazioneOmbrellone prenotazioneOmbrellone);
+
 }

@@ -62,9 +62,9 @@ public interface PrenotazioneOmbrellone {
     FasciaOraria getFasciaOraria();
 
     /**
-     * Ritorna l'utente che ha effettuato la prenotazione.
+     * Ritorna l'utente che ha effettuato la prenotazione dell'ombrellone.
      *
-     * @return l'utente che ha effettuato la prenotazione
+     * @return l'utente che ha effettuato la prenotazione dell'ombrellone
      */
     Utente getUtente();
 }

@@ -49,4 +49,10 @@ public class SimpleHandlerPrenotazioneOmbrellone implements HandlerPrenotazioneO
     public List<PrenotazioneOmbrellone> getPrenotazioniOmbrellone() {
         return this.prenotazioniOmbrelloni;
     }
+
+    @Override
+    public boolean removePrenotazioneOmbrellone(PrenotazioneOmbrellone prenotazioneOmbrellone) {
+        Objects.requireNonNull(prenotazioneOmbrellone,"La prenotazione ombrellone non puo' essere nulla");
+        return this.prenotazioniOmbrelloni.removeIf(prenotazione -> prenotazione.equals(prenotazioneOmbrellone));
+    }
 }

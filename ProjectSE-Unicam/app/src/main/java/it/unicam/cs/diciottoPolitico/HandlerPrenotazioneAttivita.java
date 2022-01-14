@@ -37,13 +37,27 @@ public interface HandlerPrenotazioneAttivita {
      * Restituisce {@code true} se la prenotazione viene creata con successo, altrimenti {@code false}.
      *
      * @param attivita l' attivit&agrave; da creare
-     * @param cliente  il cliente che sta effettuando una prenotazione per l' attivit&agrave; specificata
+     * @param utente  l'utente che sta effettuando una prenotazione per l' attivit&agrave; specificata
      * @return {@code true} se la prenotazione viene creata con successo, altrimenti {@code false}
      * @throws NullPointerException     se almeno uno dei parametri specificati &egrave; {@code null}
      * @throws IllegalArgumentException se l' attivit&agrave; non esiste, ovvero non fa parte del catalogo attivit&agrave;
      * @see Attivita
      * @see Cliente
      */
-    boolean creaPrenotazioneAttivita(Attivita attivita, Cliente cliente);
+    boolean creaPrenotazioneAttivita(Attivita attivita, Utente utente);
 
+    /**
+     * Ritorna tutte le prenotazioni attivit&agrave; fatte.
+     *
+     * @return tutte le prenotazioni ombrellone attivit&agrave; fatte
+     */
+    List<PrenotazioneAttivita> getPrenotazioniAttivita();
+
+    /**
+     * Rimuove una prenotazione attivit&agrave;.
+     *
+     * @return true se la prenotazione attivit&agrave; &egrave; stata rimossa, false se la prenotazione attivit&agrave; non era presente
+     * @throws NullPointerException se la prenotazione attivit&agrave; &egrave; nulla
+     */
+    boolean removePrenotazioneAttivita(PrenotazioneAttivita prenotazioneAttivita);
 }
