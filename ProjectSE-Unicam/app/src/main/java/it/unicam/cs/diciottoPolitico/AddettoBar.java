@@ -127,6 +127,11 @@ public class AddettoBar implements Utente {
         return Objects.hash(getId(), getNome(), getCognome());
     }
 
+    @Override
+    public RuoloUtente getRuolo() {
+        return AddettoBar.ruolo;
+    }
+
     /**
      * Restituisce la coda delle ordinazioni bar consegnate da questo addetto bar.
      * Le ordinazioni bar consegnate sono restituite in ordine cronologico.

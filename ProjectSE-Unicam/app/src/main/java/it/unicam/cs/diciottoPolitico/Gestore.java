@@ -120,4 +120,9 @@ public class Gestore implements Utente {
         return Objects.hash(getId(), getNome(), getCognome());
     }
 
+    @Override
+    public RuoloUtente getRuolo() {
+        return Gestore.ruolo;
+    }
+
 }

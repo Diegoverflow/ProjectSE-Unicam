@@ -126,4 +126,9 @@ public class Cliente implements Utente {
         return Objects.hash(getId(), getNome(), getCognome());
     }
 
+    @Override
+    public RuoloUtente getRuolo() {
+        return Cliente.ruolo;
+    }
+
 }

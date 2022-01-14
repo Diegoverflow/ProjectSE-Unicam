@@ -119,4 +119,9 @@ public class Cassiere implements Utente {
         return Objects.hash(getId(), getNome(), getCognome());
     }
 
+    @Override
+    public RuoloUtente getRuolo() {
+        return Cassiere.ruolo;
+    }
+
 }
