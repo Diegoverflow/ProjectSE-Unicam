@@ -50,4 +50,10 @@ public interface HandlerPrenotazioneOmbrellone {
      */
     String getRiepilogo(GregorianCalendar data, FasciaOraria fasciaOraria, Ombrellone ombrellone);
 
+    /**
+     * Ritorna tutte le prenotazioni ombrellone fatte.
+     *
+     * @return tutte le prenotazioni ombrellone
+     */
+    List<PrenotazioneOmbrellone> getPrenotazioniOmbrellone();
 }

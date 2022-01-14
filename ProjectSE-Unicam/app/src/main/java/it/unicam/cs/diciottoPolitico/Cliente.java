@@ -21,7 +21,6 @@ public class Cliente implements Utente {
     private String cellulare;
     private String email;
     private final Queue<Notifica> notifiche;
-    private final List<PrenotazioneOmbrellone> prenotazioniOmbrelloni;
     private final List<PrenotazioneAttivita> prenotazioniAttivita;
     private final List<OrdinazioneBar> ordinazioniBar;
 
@@ -44,7 +43,6 @@ public class Cliente implements Utente {
         this.cellulare = Objects.requireNonNull(cellulare, "Cellulare null!");
         this.email = Objects.requireNonNull(email, "Email null!");
         this.notifiche = new LinkedList<>();
-        this.prenotazioniOmbrelloni = new ArrayList<>();
         this.prenotazioniAttivita = new ArrayList<>();
         this.ordinazioniBar = new ArrayList<>();
     }
@@ -134,30 +132,6 @@ public class Cliente implements Utente {
         return Objects.hash(getId(), getNome(), getCognome());
     }
 
-    /**
-     * Restituisce la lista delle prenotazioni degli ombrelloni effettuate da questo cliente.
-     *
-     * @return la lista di tutte le prenotazioni ombrelloni effettuate da questo cliente
-     */
-    public List<PrenotazioneOmbrellone> getPrenotazioniOmbrelloni() {
-        return this.prenotazioniOmbrelloni;
-    }
-
-    /**
-     * Aggiunge la {@link PrenotazioneOmbrellone} specificata alle prenotazioni degli ombrelloni di questo cliente.
-     * Restituisce {@code true} se la prenotazione specificata viene aggiunta con successo,
-     * {@code false} altrimenti.
-     *
-     * @param prenotazione la prenotazione da aggiungere alle prenotazioni di questo cliente
-     * @return {@code true} se la prenotazione viene aggiunta alle prenotazioni degli ombrelloni
-     * di questo cliente, {@code false} altrimenti
-     */
-    public boolean addPrenotazioneOmbrellone(PrenotazioneOmbrellone prenotazione) {
-        Objects.requireNonNull(prenotazione, "Prenotazione null!");
-        if (!this.prenotazioniOmbrelloni.contains(prenotazione))
-            return this.prenotazioniOmbrelloni.add(prenotazione);
-        return false;
-    }
 
     /**
      * Restituisce la lista delle prenotazioni delle attivit&agrave; effettuate da questo cliente.

@@ -1,38 +1,41 @@
 package it.unicam.cs.diciottoPolitico;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-// TODO: inserire javadoc
-
+/**
+ * Semplice implementazione dell'interfaccia HandlerPrenotazioneOmbrellone.
+ */
 public class SimpleHandlerPrenotazioneOmbrellone implements HandlerPrenotazioneOmbrellone {
 
     private final Catalogo<Ombrellone, RigaCatalogoOmbrellone> catalogoOmbrelloni;
+    private final List<PrenotazioneOmbrellone> prenotazioniOmbrelloni;
 
     /**
      * Metodo Costruttore.
      */
     public SimpleHandlerPrenotazioneOmbrellone() {
         this.catalogoOmbrelloni = new SimpleCatalogo<>();
+        this.prenotazioniOmbrelloni = new ArrayList<>();
     }
 
     @Override
     public List<RigaCatalogoOmbrellone> getRigheCatalogoBy(GregorianCalendar data, FasciaOraria fasciaOraria) {
         return this.catalogoOmbrelloni.getAllRighe().stream()
-                .filter(riga -> riga.getDisponibilita(data, fasciaOraria))
+                .filter(riga -> riga.getDisponibilita(Objects.requireNonNull(data,"La data non puo' essere nulla"), Objects.requireNonNull(fasciaOraria,"La fascia oraria non puo' essere nulla")))
                 .collect(Collectors.toList());
     }
 
-    //todo synchronized qui o sul controller?
+    //todo prenotazione salvata doppiamente sia su catalogo che sull'handler, riga 36
     @Override
     public boolean creaPrenotazione(GregorianCalendar data, FasciaOraria fasciaOraria, RigaCatalogoOmbrellone rigaCatalogoOmbrellone, Cliente cliente) {
-        if (rigaCatalogoOmbrellone.getDisponibilita(data, fasciaOraria)) {
+        if (rigaCatalogoOmbrellone.getDisponibilita(Objects.requireNonNull(data,"La data non puo' essere nulla"), Objects.requireNonNull(fasciaOraria,"La fascia oraria non puo' essere nulla"))) {
             PrenotazioneOmbrellone prenotazioneOmbrellone = new SimplePrenotazioneOmbrellone(fasciaOraria, rigaCatalogoOmbrellone.getValore(), data, rigaCatalogoOmbrellone.getPrezzoOmbrellone());
             rigaCatalogoOmbrellone.addPrenotazione(prenotazioneOmbrellone);
-            cliente.addPrenotazioneOmbrellone(prenotazioneOmbrellone);
-            return true;
+            return this.prenotazioniOmbrelloni.add(prenotazioneOmbrellone);
         }
         return false;
     }
@@ -40,5 +43,10 @@ public class SimpleHandlerPrenotazioneOmbrellone implements HandlerPrenotazioneO
     @Override
     public String getRiepilogo(GregorianCalendar data, FasciaOraria fasciaOraria, Ombrellone ombrellone) {
         return data.getTime() + "\n" + fasciaOraria.toString() + "\n" + ombrellone.getId();
+    }
+
+    @Override
+    public List<PrenotazioneOmbrellone> getPrenotazioniOmbrellone() {
+        return this.prenotazioniOmbrelloni;
     }
 }
