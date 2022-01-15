@@ -34,7 +34,7 @@ public interface HandlerUtenti {
     List<Utente> getGestori();
 
     /**
-     * Crea un Cliente
+     * Crea un Cliente e lo aggiunge alla lista corrispondente
      * @param nome del cliente
      * @param cognome del cliente
      * @param password del cliente
@@ -50,7 +50,7 @@ public interface HandlerUtenti {
                          String email);
 
     /**
-     * Crea un membro del Personale Bar
+     * Crea un membro del Personale Bar e lo aggiunge alla lista corrispondente
      * @param nome del Personale Bar
      * @param cognome del Personale Bar
      * @param password del Personale Bar
@@ -66,7 +66,7 @@ public interface HandlerUtenti {
                          String email);
 
     /**
-     * Crea un Cassiere
+     * Crea un Cassiere e lo aggiunge alla lista corrispondente
      * @param nome del Cassiere
      * @param cognome del Cassiere
      * @param password del Cassiere
@@ -82,7 +82,7 @@ public interface HandlerUtenti {
                          String email);
 
     /**
-     * Crea un Gestore
+     * Crea un Gestore e lo aggiunge alla lista corrispondente
      * @param nome del Gestore
      * @param cognome del Gestore
      * @param password del Gestore
@@ -98,7 +98,7 @@ public interface HandlerUtenti {
                          String email);
 
     /**
-     * Elimina un Utente
+     * Elimina un Utente dal Sistema
      * @param codice dell'Utente che si vuole eliminare
      * @return {@code true} se l'Utente viene eliminato,
      *         {@code false} altrimenti
