@@ -6,10 +6,10 @@ package it.unicam.cs.diciottoPolitico;
 public interface HandlerVisualizzaPropriAcquisti {
 
     /**
-     * Ritorna una stringa contenente tutti gli acquisti effettuati da un {@link Cliente}.
+     * Ritorna una stringa contenente tutti gli acquisti effettuati da un {@link Utente}.
      *
      * @param cliente il cliente di cui si vogliono visulizzare gli acquisti
      * @return una stringa contenente tutti gli acquisti del cliente
      */
-    String getAcquisti(Cliente cliente);
+    String getAcquisti(Utente cliente);
 }

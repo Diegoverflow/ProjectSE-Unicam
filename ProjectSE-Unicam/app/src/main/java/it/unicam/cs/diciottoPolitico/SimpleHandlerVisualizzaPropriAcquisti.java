@@ -2,12 +2,11 @@ package it.unicam.cs.diciottoPolitico;
 
 /**
  * Semplice implementazione dell'interfaccia {@link HandlerVisualizzaPropriAcquisti}.
- * @see Cliente
  */
 public class SimpleHandlerVisualizzaPropriAcquisti implements HandlerVisualizzaPropriAcquisti {
 //todo rifare metodo
     @Override
-    public String getAcquisti(Cliente cliente) {
+    public String getAcquisti(Utente cliente) {
        /* StringBuilder messaggio = new StringBuilder();
         cliente.getPrenotazioniOmbrelloni().stream().sequential().forEach(o -> getAcquisti(o,messaggio));
         cliente.getPrenotazioniAttivita().stream().sequential().forEach(a -> getAcquisti(a,messaggio));
