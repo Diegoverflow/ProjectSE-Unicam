@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
  *
  * @see PrenotazioneAttivita
  * @see Attivita
- * @see Cliente
  * @see Catalogo
  * @see RigaCatalogoAttivita
  */

@@ -52,7 +52,7 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
     }
 
     @Override
-    public long getId() {
+    public long getCodice() {
         return this.id;
     }
 
@@ -62,12 +62,12 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
     }
 
     @Override
-    public boolean getStatoPagamento() {
+    public boolean isPagata() {
         return this.statoPagamento;
     }
 
     @Override
-    public void setStatoPagamento(boolean statoPagamento) {
+    public void setIsPagata(boolean statoPagamento) {
         this.statoPagamento = statoPagamento;
     }
 

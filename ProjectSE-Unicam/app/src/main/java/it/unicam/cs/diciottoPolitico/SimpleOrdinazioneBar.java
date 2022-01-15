@@ -36,7 +36,7 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     }
 
     @Override
-    public long getId() {
+    public long getCodice() {
         return this.id;
     }
 
@@ -56,12 +56,12 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     }
 
     @Override
-    public boolean isPagato() {
+    public boolean isPagata() {
         return this.pagato;
     }
 
     @Override
-    public void setPagato(boolean pagato) {
+    public void setIsPagata(boolean pagato) {
         this.pagato = pagato;
     }
 
@@ -80,12 +80,12 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
         if (this == o) return true;
         if (!(o instanceof SimpleOrdinazioneBar)) return false;
         SimpleOrdinazioneBar that = (SimpleOrdinazioneBar) o;
-        return getId() == that.getId() && Double.compare(that.getCosto(), getCosto()) == 0 && getArticoloBar().equals(that.getArticoloBar()) && getDataAcquisto().equals(that.getDataAcquisto());
+        return getCodice() == that.getCodice() && Double.compare(that.getCosto(), getCosto()) == 0 && getArticoloBar().equals(that.getArticoloBar()) && getDataAcquisto().equals(that.getDataAcquisto());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getArticoloBar(), getDataAcquisto(), getCosto());
+        return Objects.hash(getCodice(), getArticoloBar(), getDataAcquisto(), getCosto());
     }
 
     @Override

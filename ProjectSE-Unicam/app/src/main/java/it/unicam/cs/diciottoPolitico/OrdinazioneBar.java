@@ -7,14 +7,7 @@ import java.util.GregorianCalendar;
  *
  * @see ArticoloBar
  */
-public interface OrdinazioneBar {
-
-    /**
-     * Ritorna l'id dell'ordinazione bar.
-     *
-     * @return id dell'ordinazione bar
-     */
-    long getId();
+public interface OrdinazioneBar extends Vendita{
 
     /**
      * Ritorna l' {@link ArticoloBar} associato all'ordinazione.
@@ -23,34 +16,6 @@ public interface OrdinazioneBar {
      * @see ArticoloBar
      */
     ArticoloBar getArticoloBar();
-
-    /**
-     * Ritorna la data di acquisto dell'ordinazione bar.
-     *
-     * @return data di acquisto dell'ordinazione bar
-     */
-    GregorianCalendar getDataAcquisto();
-
-    /**
-     * Ritorna il costo dell'ordinazione bar.
-     *
-     * @return costo dell'ordinazione bar
-     */
-    double getCosto();
-
-    /**
-     * Specifica se un'ordinazione &egrave; stata pagata.
-     *
-     * @return {@code true} se l'ordinazione &egrave; stata pagata, {@code false} altrimenti
-     */
-    boolean isPagato();
-
-    /**
-     * Imposta lo stato di pagamento dell'ordinazione bar.
-     *
-     * @param pagato {@code true} se l'ordinazione &egrave; stata pagata, {@code false} altrimenti
-     */
-    void setPagato(boolean pagato);
 
     /**
      * Ritorna lo stato dell'ordinazione bar.
