@@ -11,7 +11,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     private final GregorianCalendar dataPrenotazione;
     private final GregorianCalendar dataAcquisto;
     private final double costo;
-    private final boolean statoPagamento;
+    private boolean statoPagamento;
     private final Utente utente;
     private static final int LIMITE_PRENOTAZIONE_MATTINA = 13;
     private static final int LIMITE_PRENOTAZIONE_POMERIGGIO= 19;
@@ -137,7 +137,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     }
 
     @Override
-    public long getId() {
+    public long getCodice() {
         return this.codice;
     }
 
@@ -152,8 +152,13 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     }
 
     @Override
-    public boolean getStatoPagamento() {
+    public boolean isPagata() {
         return this.statoPagamento;
+    }
+
+    @Override
+    public void setIsPagata(boolean statoPagamento) {
+        this.statoPagamento = statoPagamento;
     }
 
     @Override
