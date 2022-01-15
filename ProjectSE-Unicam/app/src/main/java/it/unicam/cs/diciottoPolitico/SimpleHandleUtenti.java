@@ -33,7 +33,7 @@ public class SimpleHandleUtenti implements  HandlerUtenti{
 
     @Override
     public boolean creaCliente(String nome, String cognome, String password, String cellulare, String email) {
-        return false;
+        return this.clienti.add(new SimpleUtente(nome, cognome, password, cellulare, email, RuoloUtente.CLIENTE));
     }
 
     @Override

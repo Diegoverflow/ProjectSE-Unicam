@@ -9,7 +9,7 @@ import java.util.Queue;
  */
 public class SimpleUtente implements Utente {
 
-    private final long id;
+    private long id;
     private String nome;
     private String cognome;
     private String password;
@@ -17,6 +17,27 @@ public class SimpleUtente implements Utente {
     private String email;
     private final RuoloUtente ruoloUtente;
     private final Queue<Notifica> notifiche;
+
+    /**
+     * Crea un utente in base a id, nome, cognome, password, cellulare ed email specificati.
+     *
+     * @param nome      il nome a questo addetto bar
+     * @param cognome   il cognome associato a questo addetto bar
+     * @param password  la password di questo addetto bar
+     * @param cellulare il cellulare di questo addetto bar
+     * @param email     l' email di questo addetto bar
+     * @param ruoloUtente il ruolo dell'utente
+     * @throws NullPointerException se almeno uno sei parametri specificati &egrave; {@code null}
+     */
+    public SimpleUtente(String nome, String cognome, String password, String cellulare, String email, RuoloUtente ruoloUtente) {
+        this.nome = Objects.requireNonNull(nome, "Nome null!");
+        this.cognome = Objects.requireNonNull(cognome, "Cognome null!");
+        this.password = Objects.requireNonNull(password, "Password null!");
+        this.cellulare = Objects.requireNonNull(cellulare, "Cellulare null!");
+        this.email = Objects.requireNonNull(email, "Email null!");
+        this.ruoloUtente = Objects.requireNonNull(ruoloUtente,"Ruolo null!");
+        this.notifiche = new LinkedList<>();
+    }
 
     /**
      * Crea un utente in base a id, nome, cognome, password, cellulare ed email specificati.
@@ -31,14 +52,8 @@ public class SimpleUtente implements Utente {
      * @throws NullPointerException se almeno uno sei parametri specificati &egrave; {@code null}
      */
     public SimpleUtente(long id, String nome, String cognome, String password, String cellulare, String email, RuoloUtente ruoloUtente) {
+        this(nome, cognome, password, cellulare, email, ruoloUtente);
         this.id = id;
-        this.nome = Objects.requireNonNull(nome, "Nome null!");
-        this.cognome = Objects.requireNonNull(cognome, "Cognome null!");
-        this.password = Objects.requireNonNull(password, "Password null!");
-        this.cellulare = Objects.requireNonNull(cellulare, "Cellulare null!");
-        this.email = Objects.requireNonNull(email, "Email null!");
-        this.ruoloUtente = Objects.requireNonNull(ruoloUtente,"Ruolo null!");
-        this.notifiche = new LinkedList<>();
     }
 
     @Override
@@ -116,14 +131,14 @@ public class SimpleUtente implements Utente {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Cliente)) return false;
-        Cliente that = (Cliente) o;
-        return getId() == that.getId() && getNome().equals(that.getNome()) && getCognome().equals(that.getCognome());
+        if (o == null || getClass() != o.getClass()) return false;
+        SimpleUtente that = (SimpleUtente) o;
+        return id == that.id && nome.equals(that.nome) && cognome.equals(that.cognome) && password.equals(that.password) && cellulare.equals(that.cellulare) && email.equals(that.email) && ruoloUtente == that.ruoloUtente;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNome(), getCognome());
+        return Objects.hash(id, nome, cognome, password, cellulare, email, ruoloUtente);
     }
 
     @Override
