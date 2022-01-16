@@ -2,16 +2,41 @@ package it.unicam.cs.diciottoPolitico;
 
 import java.util.List;
 
+/**
+ * Interfaccia che descrive un gestore Vendite
+ */
 public interface HandlerVendita {
 
-    List<Vendita> getVendite();
+    /**
+     * Ottieni tutte le vendite da saldare
+     * @return le vendite da saldare
+     */
+    List<Vendita> getVenditeDaSaldare();
 
-    List<Vendita> getPrenotazioniOmbrellone();
+    /**
+     * Ottieni tutte le prenotazioni ombrellone da saldare
+     * @return le prenotazioni ombrellone da saldare
+     */
+    List<Vendita> getPrenotazioniOmbrelloneDaSaldare();
 
-    List<Vendita> getOrdinazioniBar();
+    /**
+     * Ottierni tutte le ordinazioni Bar da saldare
+     * @return tutte le ordinazioni Bar da saldare
+     */
+    List<Vendita> getOrdinazioniBarDaSaldare();
 
-    List<Vendita> getPrenotazioniAttiivita();
+    /**
+     * Ottieni tutte le prenotazioni attivit&agrave; da saldare
+     * @return le prenotazioni attivit&agrave; da saldare
+     */
+    List<Vendita> getPrenotazioniAttivitaDaSaldare();
 
+    /**
+     * Salda una vedita impostando lo stato del pagamento a {@code true}
+     * @param vendita da saldare
+     * @return {@code true} se la vendita &egrave; stata saldata
+     *         {@code false} altrimenti
+     */
     boolean saldaVendita(Vendita vendita);
 
 }
