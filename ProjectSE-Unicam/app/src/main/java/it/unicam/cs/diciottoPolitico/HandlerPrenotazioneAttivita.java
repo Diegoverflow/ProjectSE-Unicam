@@ -8,7 +8,6 @@ import java.util.List;
  *
  * @see PrenotazioneAttivita
  * @see Attivita
- * @see Cliente
  * @see RigaCatalogoAttivita
  */
 public interface HandlerPrenotazioneAttivita {

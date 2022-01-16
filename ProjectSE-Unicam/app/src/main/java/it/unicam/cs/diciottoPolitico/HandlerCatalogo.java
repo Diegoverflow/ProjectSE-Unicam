@@ -29,6 +29,6 @@ public interface HandlerCatalogo <R> {
      * @return {@code true} se il prezzo della riga &grave; stato aggiornato
      *         {@code false} altrimenti
      */
-    boolean modificaPrezzoRigaCatalogo(R rigaCatalogo, double nuovoPrezzo);
+    void modificaPrezzoRigaCatalogo(R rigaCatalogo, double nuovoPrezzo);
 
 }

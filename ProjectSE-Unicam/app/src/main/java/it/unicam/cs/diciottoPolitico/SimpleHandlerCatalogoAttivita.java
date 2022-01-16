@@ -1,10 +1,18 @@
 package it.unicam.cs.diciottoPolitico;
 
+import java.util.Objects;
+
 public class SimpleHandlerCatalogoAttivita implements HandlerCatalogo<RigaCatalogoAttivita>{
+
+    Catalogo<Attivita, RigaCatalogoAttivita> catalogoAttivita;
+
+    public SimpleHandlerCatalogoAttivita(Catalogo<Attivita, RigaCatalogoAttivita> catalogoAttivita) {
+        this.catalogoAttivita = catalogoAttivita;
+    }
 
     @Override
     public boolean aggiungiRigaCatalogo(RigaCatalogoAttivita rigaDaAggiungere) {
-        return false;
+        return this.catalogoAttivita.add(rigaDaAggiungere);
     }
 
     @Override
@@ -13,7 +21,7 @@ public class SimpleHandlerCatalogoAttivita implements HandlerCatalogo<RigaCatalo
     }
 
     @Override
-    public boolean modificaPrezzoRigaCatalogo(RigaCatalogoAttivita rigaCatalogo, double nuovoPrezzo) {
-        return false;
+    public void modificaPrezzoRigaCatalogo(RigaCatalogoAttivita rigaCatalogo, double nuovoPrezzo) {
+
     }
 }
