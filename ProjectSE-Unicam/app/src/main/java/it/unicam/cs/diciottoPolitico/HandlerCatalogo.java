@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
-public interface HandlerCatalogo {
+public interface HandlerCatalogo <R> {
 
+    boolean aggiungiRigaCatalogo(R rigaDaAggiungere);
 
 }
