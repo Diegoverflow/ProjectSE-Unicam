@@ -12,12 +12,12 @@ public class SimpleHandlerCatalogoAttivita implements HandlerCatalogo<RigaCatalo
 
     @Override
     public boolean aggiungiRigaCatalogo(RigaCatalogoAttivita rigaDaAggiungere) {
-        return this.catalogoAttivita.add(rigaDaAggiungere);
+        return this.catalogoAttivita.add(Objects.requireNonNull(rigaDaAggiungere, "riga catalogo nulla"));
     }
 
     @Override
     public boolean rimuoviRigaCatalogo(RigaCatalogoAttivita rigaDaEliminare) {
-        return this.catalogoAttivita.remove(rigaDaEliminare);
+        return this.catalogoAttivita.remove(Objects.requireNonNull(rigaDaEliminare, "riga catalogo nulla"));
     }
 
 

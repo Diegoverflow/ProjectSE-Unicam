@@ -1,16 +1,18 @@
 package it.unicam.cs.diciottoPolitico;
 
+import java.util.Objects;
+
 public class SimpleHandlerCatalogoOmbrelloni implements HandlerCatalogo<RigaCatalogoOmbrellone>{
 
-    private final Catalogo<Ombrellone, RigaCatalogoOmbrellone> rigaCatalogoOmbrellone;
+    private final Catalogo<Ombrellone, RigaCatalogoOmbrellone> catalogoOmbrelloni;
 
-    public SimpleHandlerCatalogoOmbrelloni(Catalogo<Ombrellone, RigaCatalogoOmbrellone> rigaCatalogoOmbrellone) {
-        this.rigaCatalogoOmbrellone = rigaCatalogoOmbrellone;
+    public SimpleHandlerCatalogoOmbrelloni(Catalogo<Ombrellone, RigaCatalogoOmbrellone> catalogoOmbrelloni) {
+        this.catalogoOmbrelloni = catalogoOmbrelloni;
     }
 
     @Override
     public boolean aggiungiRigaCatalogo(RigaCatalogoOmbrellone rigaDaAggiungere) {
-        return false;
+        return this.catalogoOmbrelloni.add(Objects.requireNonNull(rigaDaAggiungere, "Riga catologo nulla"));
     }
 
     @Override
