@@ -17,7 +17,7 @@ public class SimpleHandlerCatalogoAttivita implements HandlerCatalogo<RigaCatalo
 
     @Override
     public boolean rimuoviRigaCatalogo(RigaCatalogoAttivita rigaDaEliminare) {
-        return false;
+        return this.catalogoAttivita.remove(rigaDaEliminare);
     }
 
     @Override
