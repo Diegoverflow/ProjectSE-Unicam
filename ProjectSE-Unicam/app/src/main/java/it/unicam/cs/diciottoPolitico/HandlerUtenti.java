@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Interfaccia che descrive un gestore utenti per la creazione di utenza e la verifica delle credenziali
@@ -13,25 +14,25 @@ public interface HandlerUtenti {
      * Ottieni la lista dei clienti dello Chalet
      * @return la lista dei clienti
      */
-    List<Utente> getClienti();
+    Set<Utente> getClienti();
 
     /**
      * Ottieni la lista del Personale Bar dello Chalet
      * @return la lista del Personale Bar
      */
-    List<Utente> getPersonaleBar();
+    Set<Utente> getPersonaleBar();
 
     /**
      * Ottieni la lista dei Cassieri dello Chalet
      * @return la lista dei Cassieri
      */
-    List<Utente> getCassieri();
+    Set<Utente> getCassieri();
 
     /**
      * Ottieni la lista dei Gestori dello Chalet
      * @return la lista dei Gestori
      */
-    List<Utente> getGestori();
+    Set<Utente> getGestori();
 
     /**
      * Crea un Cliente e lo aggiunge alla lista corrispondente
