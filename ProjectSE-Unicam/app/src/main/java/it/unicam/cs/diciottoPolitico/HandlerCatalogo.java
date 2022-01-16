@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
 /**
- * Interfaccia per aggiornare un generico Catalogo
+ * Interfaccia generica per aggiornare un Catalogo
  * @param <R> tipo delle righe presenti nel catalogo
  */
 public interface HandlerCatalogo <R> {
