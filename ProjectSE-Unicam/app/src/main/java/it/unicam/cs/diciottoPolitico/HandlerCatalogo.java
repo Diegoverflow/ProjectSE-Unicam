@@ -4,4 +4,7 @@ public interface HandlerCatalogo <R> {
 
     boolean aggiungiRigaCatalogo(R rigaDaAggiungere);
 
+    boolean rimuoviRigaCatalogo(R rigaDaEliminare);
+
+
 }
