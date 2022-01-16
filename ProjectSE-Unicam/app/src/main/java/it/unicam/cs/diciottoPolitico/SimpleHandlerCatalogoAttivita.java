@@ -20,8 +20,14 @@ public class SimpleHandlerCatalogoAttivita implements HandlerCatalogo<RigaCatalo
         return this.catalogoAttivita.remove(rigaDaEliminare);
     }
 
+
     @Override
     public void modificaPrezzoRigaCatalogo(RigaCatalogoAttivita rigaCatalogo, double nuovoPrezzo) {
-
+        this.catalogoAttivita.
+                getRigheBy(p-> p.equals(Objects.requireNonNull(rigaCatalogo, "riga catalogo nulla"))).
+                stream().
+                findFirst().
+                ifPresent(p->p.setPrezzo(nuovoPrezzo));
     }
+
 }
