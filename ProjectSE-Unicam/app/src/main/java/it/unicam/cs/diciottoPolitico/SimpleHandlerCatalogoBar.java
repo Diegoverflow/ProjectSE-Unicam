@@ -1,5 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
+import java.util.Objects;
+
 public class SimpleHandlerCatalogoBar implements HandlerCatalgoBar{
 
     Catalogo<ArticoloBar, RigaCatalogoBar> catalogoBar;
@@ -10,12 +12,12 @@ public class SimpleHandlerCatalogoBar implements HandlerCatalgoBar{
 
     @Override
     public boolean modificaQuantitaArticoli(int quantita) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean aggiungiRigaCatalogo(RigaCatalogoBar rigaDaAggiungere) {
-        return false;
+        return this.catalogoBar.add(Objects.requireNonNull(rigaDaAggiungere, "riga catalogo nulla"));
     }
 
     @Override
