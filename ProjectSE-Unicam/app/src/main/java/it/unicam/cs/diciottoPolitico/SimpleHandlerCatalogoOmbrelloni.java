@@ -17,11 +17,15 @@ public class SimpleHandlerCatalogoOmbrelloni implements HandlerCatalogo<RigaCata
 
     @Override
     public boolean rimuoviRigaCatalogo(RigaCatalogoOmbrellone rigaDaEliminare) {
-        return false;
+        return this.catalogoOmbrelloni.add(Objects.requireNonNull(rigaDaEliminare, "Riga catalogo nulla"));
     }
 
     @Override
     public void modificaPrezzoRigaCatalogo(RigaCatalogoOmbrellone rigaCatalogo, double nuovoPrezzo) {
-
+        this.catalogoOmbrelloni.
+                getRigheBy(p->p.equals(Objects.requireNonNull(rigaCatalogo, "riga catalogo nulla"))).
+                stream().
+                findFirst().
+                ifPresent(r->r.setPrezzoOmbrellone(nuovoPrezzo));
     }
 }

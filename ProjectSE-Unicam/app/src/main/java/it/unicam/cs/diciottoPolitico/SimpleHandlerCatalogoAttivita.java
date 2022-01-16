@@ -27,7 +27,7 @@ public class SimpleHandlerCatalogoAttivita implements HandlerCatalogo<RigaCatalo
                 getRigheBy(p-> p.equals(Objects.requireNonNull(rigaCatalogo, "riga catalogo nulla"))).
                 stream().
                 findFirst().
-                ifPresent(p->p.setPrezzo(nuovoPrezzo));
+                ifPresent(r->r.setPrezzo(nuovoPrezzo));
     }
 
 }
