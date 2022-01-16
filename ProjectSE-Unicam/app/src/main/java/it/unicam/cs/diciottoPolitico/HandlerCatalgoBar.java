@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico;
 
-public interface HandlerCatalgoBar extends HandlerCatalogo{
+public interface HandlerCatalgoBar extends HandlerCatalogo<RigaCatalogoBar>{
 
-    boolean modificaQuantitaArticoli();
+    boolean modificaQuantitaArticoli(int quantita);
 
 }
