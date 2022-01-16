@@ -2,8 +2,11 @@ package it.unicam.cs.diciottoPolitico;
 
 public class SimpleHandlerCatalogoOmbrelloni implements HandlerCatalogo<RigaCatalogoOmbrellone>{
 
-    Catalogo<Ombrellone, RigaCatalogoOmbrellone> rigaCatalogoOmbrellone;
+    private final Catalogo<Ombrellone, RigaCatalogoOmbrellone> rigaCatalogoOmbrellone;
 
+    public SimpleHandlerCatalogoOmbrelloni(Catalogo<Ombrellone, RigaCatalogoOmbrellone> rigaCatalogoOmbrellone) {
+        this.rigaCatalogoOmbrellone = rigaCatalogoOmbrellone;
+    }
 
     @Override
     public boolean aggiungiRigaCatalogo(RigaCatalogoOmbrellone rigaDaAggiungere) {

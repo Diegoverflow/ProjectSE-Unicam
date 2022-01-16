@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class SimpleHandlerCatalogoAttivita implements HandlerCatalogo<RigaCatalogoAttivita>{
 
-    Catalogo<Attivita, RigaCatalogoAttivita> catalogoAttivita;
+    private final Catalogo<Attivita, RigaCatalogoAttivita> catalogoAttivita;
 
     public SimpleHandlerCatalogoAttivita(Catalogo<Attivita, RigaCatalogoAttivita> catalogoAttivita) {
         this.catalogoAttivita = catalogoAttivita;
