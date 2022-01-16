@@ -7,4 +7,5 @@ public interface HandlerCatalogo <R> {
     boolean rimuoviRigaCatalogo(R rigaDaEliminare);
 
     boolean modificaPrezzoRigaCatalogo(R rigaCatalogo, double nuovoPrezzo);
+
 }
