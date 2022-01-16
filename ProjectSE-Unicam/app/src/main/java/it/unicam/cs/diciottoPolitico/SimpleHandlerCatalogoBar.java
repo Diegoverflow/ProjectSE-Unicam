@@ -22,11 +22,15 @@ public class SimpleHandlerCatalogoBar implements HandlerCatalgoBar{
 
     @Override
     public boolean rimuoviRigaCatalogo(RigaCatalogoBar rigaDaEliminare) {
-        return false;
+        return this.catalogoBar.add(Objects.requireNonNull(rigaDaEliminare, "Riga catalogo nulla"));
     }
 
     @Override
     public void modificaPrezzoRigaCatalogo(RigaCatalogoBar rigaCatalogo, double nuovoPrezzo) {
-
+        this.catalogoBar.
+                getRigheBy(p->p.equals(Objects.requireNonNull(rigaCatalogo, "riga catalogo nulla"))).
+                stream().
+                findFirst().
+                ifPresent(r->r.setPrezzo(nuovoPrezzo));
     }
 }
