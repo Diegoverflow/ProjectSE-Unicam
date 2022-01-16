@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
  *
  * @see OrdinazioneBar
  * @see ArticoloBar
- * @see AddettoBar
  * @see Catalogo
  * @see RigaCatalogoBar
  */
