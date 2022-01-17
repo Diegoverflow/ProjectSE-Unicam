@@ -9,7 +9,7 @@ public interface HandlerNotifica {
     /**
      * Invia la notifica con il messaggio specificato all' utente.
      *
-     * @param notifica      la notifica da inviare all' utente loggato
+     * @param notifica      la notifica da inviare all' utente
      * @param utente l' utente destinatario che riceve la notifica
      * @see Notifica
      * @see Utente
