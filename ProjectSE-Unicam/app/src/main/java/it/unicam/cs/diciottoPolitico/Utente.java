@@ -88,7 +88,6 @@ public interface Utente {
      * Restituisce le notifiche presenti nella casella notifiche dell' utente.
      *
      * @return la lista di notifiche dell' utente
-     * @throws UnsupportedOperationException se l' utente non &egrave; abilitato ad effettuare l' operazione
      */
     Queue<Notifica> getNotifiche();
 
@@ -100,7 +99,6 @@ public interface Utente {
      * @return {@code true} se la notifica &egrave; stata aggiunta,
      * {@code false} altrimenti
      * @throws NullPointerException          se la notifica specificata &egraveM {@code null}
-     * @throws UnsupportedOperationException se l' utente non &egrave; abilitato ad effettuare l' operazione
      */
     boolean addNotifica(Notifica notifica); // TODO: spostare su HandlerUtenti
 
@@ -112,7 +110,6 @@ public interface Utente {
      * @return {@code true} se la notifica &egrave; stata rimossa,
      * {@code false} altrimenti
      * @throws NullPointerException          se la notifica specificata &egraveM {@code null}
-     * @throws UnsupportedOperationException se l' utente non &egrave; abilitato ad effettuare l' operazione
      */
     boolean removeNotifica(Notifica notifica);  // TODO: Spostare su HandlerUtenti
 

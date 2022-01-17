@@ -7,7 +7,7 @@ package it.unicam.cs.diciottoPolitico;
 public interface HandlerNotifica {
 
     /**
-     * Invia la notifica con il messaggio specificato all' utente loggato.
+     * Invia la notifica con il messaggio specificato all' utente.
      *
      * @param notifica      la notifica da inviare all' utente loggato
      * @param utente l' utente destinatario che riceve la notifica

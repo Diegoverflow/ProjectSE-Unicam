@@ -8,8 +8,6 @@ import java.util.Set;
  */
 public interface HandlerUtenti {
 
-    // TODO: 15/01/22   il vpp ha le liste parametrizzate con CLIENTE CASSIERE ETC
-
     /**
      * Ottieni la lista dei clienti dello Chalet
      * @return la lista dei clienti
