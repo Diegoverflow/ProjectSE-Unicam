@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Queue;
 
 /**
- * Semplice implementazione dell'interfaccia Utente.
+ * Semplice implementazione dell' interfaccia Utente.
  */
 public class SimpleUtente implements Utente {
 
@@ -19,13 +19,13 @@ public class SimpleUtente implements Utente {
     private final Queue<Notifica> notifiche;
 
     /**
-     * Crea un utente in base a id, nome, cognome, password, cellulare ed email specificati.
+     * Crea un utente in base a id, nome, cognome, password, cellulare, email e ruolo utente specificati.
      *
-     * @param nome      il nome a questo addetto bar
-     * @param cognome   il cognome associato a questo addetto bar
-     * @param password  la password di questo addetto bar
-     * @param cellulare il cellulare di questo addetto bar
-     * @param email     l' email di questo addetto bar
+     * @param nome        il nome a questo addetto bar
+     * @param cognome     il cognome associato a questo addetto bar
+     * @param password    la password di questo addetto bar
+     * @param cellulare   il cellulare di questo addetto bar
+     * @param email       l' email di questo addetto bar
      * @param ruoloUtente il ruolo dell'utente
      * @throws NullPointerException se almeno uno sei parametri specificati &egrave; {@code null}
      */
@@ -35,19 +35,19 @@ public class SimpleUtente implements Utente {
         this.password = Objects.requireNonNull(password, "Password null!");
         this.cellulare = Objects.requireNonNull(cellulare, "Cellulare null!");
         this.email = Objects.requireNonNull(email, "Email null!");
-        this.ruoloUtente = Objects.requireNonNull(ruoloUtente,"Ruolo null!");
+        this.ruoloUtente = Objects.requireNonNull(ruoloUtente, "Ruolo null!");
         this.notifiche = new LinkedList<>();
     }
 
     /**
-     * Crea un utente in base a id, nome, cognome, password, cellulare ed email specificati.
+     * Crea un utente in base a id, nome, cognome, password, cellulare, email e ruolo utente specificati.
      *
-     * @param id        l' id associato a questo addetto bar
-     * @param nome      il nome a questo addetto bar
-     * @param cognome   il cognome associato a questo addetto bar
-     * @param password  la password di questo addetto bar
-     * @param cellulare il cellulare di questo addetto bar
-     * @param email     l' email di questo addetto bar
+     * @param id          l' id associato a questo addetto bar
+     * @param nome        il nome a questo addetto bar
+     * @param cognome     il cognome associato a questo addetto bar
+     * @param password    la password di questo addetto bar
+     * @param cellulare   il cellulare di questo addetto bar
+     * @param email       l' email di questo addetto bar
      * @param ruoloUtente il ruolo dell'utente
      * @throws NullPointerException se almeno uno sei parametri specificati &egrave; {@code null}
      */
@@ -78,12 +78,12 @@ public class SimpleUtente implements Utente {
 
     @Override
     public void setNome(String nome) {
-        this.nome = Objects.requireNonNull(nome,"Nome null!");
+        this.nome = Objects.requireNonNull(nome, "Nome null!");
     }
 
     @Override
     public void setCognome(String cognome) {
-        this.cognome = Objects.requireNonNull(cognome,"Cognome null!");
+        this.cognome = Objects.requireNonNull(cognome, "Cognome null!");
     }
 
     @Override
