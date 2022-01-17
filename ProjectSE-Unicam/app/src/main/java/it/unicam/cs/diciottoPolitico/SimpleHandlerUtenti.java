@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class SimpleHandleUtenti implements  HandlerUtenti{
+public class SimpleHandlerUtenti implements  HandlerUtenti{
 
     // TODO: 15/01/22 rendere Singleton
 
