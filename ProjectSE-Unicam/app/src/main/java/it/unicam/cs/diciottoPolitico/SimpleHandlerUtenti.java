@@ -1,4 +1,4 @@
-package it.unicam.cs.diciottoPolitico;
+    package it.unicam.cs.diciottoPolitico;
 
 import java.util.Optional;
 import java.util.Set;
@@ -8,7 +8,16 @@ public class SimpleHandlerUtenti implements  HandlerUtenti{
 
     // TODO: 15/01/22 rendere Singleton
 
-    private Set<Utente> utenti;
+    private final Set<Utente> utenti;
+    private HandlerUtenti uniqueIstance;
+
+    private SimpleHandlerUtenti (Set<Utente> utenti){
+        this.utenti = utenti;
+    }
+
+    public static HandlerUtenti getIstance(Set<Utente> utenti){
+        return null;
+    }
 
     @Override
     public Set<Utente> getClienti() {
@@ -39,23 +48,8 @@ public class SimpleHandlerUtenti implements  HandlerUtenti{
     }
 
     @Override
-    public boolean creaCliente(String nome, String cognome, String password, String cellulare, String email) {
-        return this.utenti.add(new SimpleUtente(nome, cognome, password, cellulare, email, RuoloUtente.CLIENTE));
-    }
-
-    @Override
-    public boolean creaPersonaleBar(String nome, String cognome, String password, String cellulare, String email) {
-        return this.utenti.add(new SimpleUtente(nome, cognome, password, cellulare, email, RuoloUtente.ADDETTO_BAR));
-    }
-
-    @Override
-    public boolean creaCassiere(String nome, String cognome, String password, String cellulare, String email) {
-        return this.utenti.add(new SimpleUtente(nome, cognome, password, cellulare, email, RuoloUtente.CASSIERE));
-    }
-
-    @Override
-    public boolean creaGestore(String nome, String cognome, String password, String cellulare, String email) {
-        return this.utenti.add(new SimpleUtente(nome, cognome, password, cellulare, email, RuoloUtente.GESTORE));
+    public boolean creaUtente(String nome, String cognome, String password, String cellulare, String email, RuoloUtente ruoloUtente) {
+        return this.utenti.add(new SimpleUtente(nome, cognome, password, cellulare, email, ruoloUtente));
     }
 
     @Override

@@ -1,9 +1,20 @@
 package it.unicam.cs.diciottoPolitico;
 
 import java.util.List;
+import java.util.Set;
 
 // TODO: 16/01/22 completare 
 public class SimpleHandlerVendita implements HandlerVendita{
+
+    private Set<Vendita> prenotazioniOmbrellone;
+    private Set<Vendita> ordinazioniBar;
+    private Set<Vendita> prenotaziniAttivita;
+
+    public SimpleHandlerVendita (Set<Vendita> prenotazioniOmbrellone, Set<Vendita> ordinazioniBar, Set<Vendita> prenotaziniAttivita){
+        this.prenotazioniOmbrellone = prenotazioniOmbrellone;
+        this.ordinazioniBar = ordinazioniBar;
+        this.prenotaziniAttivita = prenotaziniAttivita;
+    }
 
     @Override
     public List<Vendita> getVenditeDaSaldare() {
