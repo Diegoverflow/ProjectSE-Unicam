@@ -3,7 +3,7 @@ package it.unicam.cs.diciottoPolitico;
 import java.util.Queue;
 
 /**
- * Rappresenta un utente che si &egrave; che utilizza il sistema.
+ * Rappresenta un utente che utilizza il sistema.
  */
 public interface Utente {
 
