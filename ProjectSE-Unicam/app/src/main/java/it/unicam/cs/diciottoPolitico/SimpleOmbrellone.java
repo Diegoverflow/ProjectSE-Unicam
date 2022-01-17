@@ -10,20 +10,40 @@ public class SimpleOmbrellone implements Ombrellone{
     private long id;
     private boolean isLibero;
     private Categoria categoria;
+    private final String codiceSpiaggia;
 
     /**
-     * Metodo costruttore.
-     *
-     * @param categoria la categoria dell'ombrellone
+     * Costruisce un Ombrellone secondo i seguenti parametri:
+     * @param id dell'ombrellone
+     * @param isLibero dell'ombrellone
+     * @param categoria dell'ombrellone
+     * @param codiceSpiaggia dell'ombrellone
      */
-    public SimpleOmbrellone(Categoria categoria) {
-        this.isLibero = false;
-        this.categoria = Objects.requireNonNull(categoria,"La categoria non puo' essere nulla");
+    public SimpleOmbrellone(long id, boolean isLibero, Categoria categoria, String codiceSpiaggia) {
+        this(isLibero, categoria, codiceSpiaggia);
+        this.id = id;
+    }
+
+    /**
+     * Costruisce un Ombrellone secondo i seguenti parametri:
+     * @param isLibero dell'ombrellone
+     * @param categoria dell'ombrellone
+     * @param codiceSpiaggia dell'ombrellone
+     */
+    public SimpleOmbrellone(boolean isLibero, Categoria categoria, String codiceSpiaggia) {
+        this.isLibero = isLibero;
+        this.categoria = categoria;
+        this.codiceSpiaggia = codiceSpiaggia;
     }
 
     @Override
     public long getId() {
         return this.id;
+    }
+
+    @Override
+    public String getCodiceSpiaggia() {
+        return this.codiceSpiaggia;
     }
 
     @Override

@@ -4,12 +4,20 @@ package it.unicam.cs.diciottoPolitico;
  * Rappresenta un ombrellone.
  */
 public interface Ombrellone {
+
     /**
      * Ritorna l'id dell'ombrellone.
      *
      * @return id dell'ombrellone
      */
     long getId();
+
+    /**
+     * Ottieni il codice identificativo dell'ombrellone sulla spieggia
+     *
+     * @return il codice dell'ombrellone
+     */
+    String getCodiceSpiaggia();
 
     /**
      * Specifica se l'ombrellone &egrave; libero.
