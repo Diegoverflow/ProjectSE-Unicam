@@ -33,68 +33,22 @@ public interface HandlerUtenti {
     Set<Utente> getGestori();
 
     /**
-     * Crea un Cliente e lo aggiunge alla lista corrispondente
-     * @param nome del cliente
-     * @param cognome del cliente
-     * @param password del cliente
-     * @param cellulare del cliente
-     * @param email del cliente
+     * Crea un Utente e lo aggiunge alla lista corrispondente
+     * @param nome dell'Utente
+     * @param cognome dell'Utente
+     * @param password dell'Utente
+     * @param cellulare dell'Utente
+     * @param email dell'Utente
+     * @param ruoloUtente dell'Utente
      * @return {@code true} se il cliente viene creato correttamente,
      *         {@code false} altrimenti
      */
-    boolean creaCliente( String nome,
+    boolean creaUtente( String nome,
                          String cognome,
                          String password,
                          String cellulare,
-                         String email);
-
-    /**
-     * Crea un membro del Personale Bar e lo aggiunge alla lista corrispondente
-     * @param nome del Personale Bar
-     * @param cognome del Personale Bar
-     * @param password del Personale Bar
-     * @param cellulare del Personale Bar
-     * @param email del Personale Bar
-     * @return {@code true} se il membro del Personale Bar viene creato correttamente,
-     *         {@code false} altrimenti
-     */
-    boolean creaPersonaleBar( String nome,
-                         String cognome,
-                         String password,
-                         String cellulare,
-                         String email);
-
-    /**
-     * Crea un Cassiere e lo aggiunge alla lista corrispondente
-     * @param nome del Cassiere
-     * @param cognome del Cassiere
-     * @param password del Cassiere
-     * @param cellulare del Cassiere
-     * @param email del Cassiere
-     * @return {@code true} se il Cassiere viene creato correttamente,
-     *         {@code false} altrimenti
-     */
-    boolean creaCassiere( String nome,
-                         String cognome,
-                         String password,
-                         String cellulare,
-                         String email);
-
-    /**
-     * Crea un Gestore e lo aggiunge alla lista corrispondente
-     * @param nome del Gestore
-     * @param cognome del Gestore
-     * @param password del Gestore
-     * @param cellulare del Gestore
-     * @param email del Gestore
-     * @return {@code true} se il Gestore  viene creato correttamente,
-     *         {@code false} altrimenti
-     */
-    boolean creaGestore( String nome,
-                         String cognome,
-                         String password,
-                         String cellulare,
-                         String email);
+                         String email,
+                         RuoloUtente ruoloUtente);
 
     /**
      * Elimina un Utente dal Sistema
