@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
  */
 public interface Vendita {
 
-    @// TODO: 18/01/22 merge 
+    // TODO: 18/01/22 merge
     /**
      * Ottieni il codice univoco associato alla vendita
      * @return il codice identificativo della vendita
