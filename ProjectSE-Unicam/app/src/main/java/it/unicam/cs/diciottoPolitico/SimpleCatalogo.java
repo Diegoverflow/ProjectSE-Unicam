@@ -47,4 +47,5 @@ public class SimpleCatalogo<T, R extends RigaCatalogo<T>> implements Catalogo<T,
     public List<R> getAllRighe() {
         return this.righeCatalogo;
     }
+
 }

@@ -1,39 +1,31 @@
 package it.unicam.cs.diciottoPolitico;
 
-import java.util.List;
+import java.util.Objects;
 
-/**
- * Implementazione di un semplice gestore per il Catalogo degli ombrelloni che lo chalet
- * mette a disposizione per i clienti.
- */
-public class SimpleHandlerCatalogoOmbrelloni implements HandlerCatalogo<Ombrellone, RigaCatalogoOmbrellone> {
+public class SimpleHandlerCatalogoOmbrelloni implements HandlerCatalogo<RigaCatalogoOmbrellone>{
 
     private final Catalogo<Ombrellone, RigaCatalogoOmbrellone> catalogoOmbrelloni;
 
-    /**
-     * Crea un semplice gestore per il catalogo degli ombrelloni.
-     */
-    public SimpleHandlerCatalogoOmbrelloni() {
-        this.catalogoOmbrelloni = new SimpleCatalogo<>();
+    public SimpleHandlerCatalogoOmbrelloni(Catalogo<Ombrellone, RigaCatalogoOmbrellone> catalogoOmbrelloni) {
+        this.catalogoOmbrelloni = catalogoOmbrelloni;
     }
 
     @Override
-    public boolean aggiungiRiga(RigaCatalogoOmbrellone riga) {
-        return this.catalogoOmbrelloni.add(riga);
+    public boolean aggiungiRigaCatalogo(RigaCatalogoOmbrellone rigaDaAggiungere) {
+        return this.catalogoOmbrelloni.add(Objects.requireNonNull(rigaDaAggiungere, "Riga catologo nulla"));
     }
 
     @Override
-    public boolean rimuoviRiga(RigaCatalogoOmbrellone riga) {
-        return this.catalogoOmbrelloni.remove(riga);
+    public boolean rimuoviRigaCatalogo(RigaCatalogoOmbrellone rigaDaEliminare) {
+        return this.catalogoOmbrelloni.add(Objects.requireNonNull(rigaDaEliminare, "Riga catalogo nulla"));
     }
 
     @Override
-    public void modificaPrezzoRigaCatalogo(RigaCatalogoOmbrellone riga, double nuovoPrezzo) {
-        riga.setPrezzoOmbrellone(nuovoPrezzo);
-    }
-
-    @Override
-    public List<RigaCatalogoOmbrellone> getAllRighe() {
-        return this.catalogoOmbrelloni.getAllRighe();
+    public void modificaPrezzoRigaCatalogo(RigaCatalogoOmbrellone rigaCatalogo, double nuovoPrezzo) {
+        this.catalogoOmbrelloni.
+                getRigheBy(p->p.equals(Objects.requireNonNull(rigaCatalogo, "riga catalogo nulla"))).
+                stream().
+                findFirst().
+                ifPresent(r->r.setPrezzoOmbrellone(nuovoPrezzo));
     }
 }

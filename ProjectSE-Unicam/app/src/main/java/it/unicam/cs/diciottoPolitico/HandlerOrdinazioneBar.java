@@ -17,27 +17,6 @@ import java.util.Optional;
 public interface HandlerOrdinazioneBar {
 
     /**
-     * Restituisce la mappa di tutte le ordinazioni: sia qulle prese in carico dall' associato addetto bar sia quelle ancora da prendere in carico.
-     * La mappa mappa un {@link OrdinazioneBar} a un {@link AddettoBar} come di seguito:
-     * <ul>
-     * <li>
-     * (o1, a1): ordinazione bar o1 presa in carico dall' addetto a1
-     * </li>
-     * <li>
-     * (o1, empty {@link Optional}): ordinazione bar o1 ancora da prendere in carico
-     * </li>
-     * </ul>
-     * Nella mappa sono presenti sia tutte le ordinazioni prese in carico che non.
-     * Nel momento in cui un' ordinazione viene consegnata, viene rimossa dalla mappa.
-     *
-     * @return la mappa di tutte le ordinazioni da gestire, ovvero tutte quelle ordinazioni da prendere in carico, prese in carico e da consegnare
-     * @see OrdinazioneBar
-     * @see AddettoBar
-     * @see Optional
-     */
-    Map<OrdinazioneBar, Optional<AddettoBar>> getOrdinazioniDaGestire();
-
-    /**
      * Restituisce una lista degli articoli bar disponibili.
      *
      * @return la lista degli articoli bar disponibili
@@ -46,66 +25,66 @@ public interface HandlerOrdinazioneBar {
     List<ArticoloBar> getArticoliDisponibili();
 
     /**
-     * Restituisce un {@link Optional} che descrive l' {@link OrdinazioneBar} associata all' id specificato.
+     * Prende in carico un'ordinazione bar.
      *
-     * @param idOrdinazione l' id dell' ordinazione bar che si vuole cercare
-     * @return un {@link Optional} che descrive l' {@link OrdinazioneBar} trovata tramite l' id specificato, un empty {@link Optional} altrimenti
-     * @see OrdinazioneBar
+     * @param ordinazioneBar l'ordinazione bar da prendere in carico
+     * @return true se lo status dell'ordinazione bar &egrave; stato impostato in PRESO_IN_CARICO
+     * @throws NullPointerException se l'ordinazione bar &egrave; nulla
+     * @throws IllegalArgumentException se l'ordinazione bar non &egrave; presente tra le ordinazioni effettuate
      */
-    Optional<OrdinazioneBar> getOrdinazioneBarBy(long idOrdinazione);
+    boolean prendiInCaricoOrdinazioneBar(OrdinazioneBar ordinazioneBar);
 
     /**
-     * Crea {@link OrdinazioneBar} secondo l' ordinazione bar ed il {@link Cliente} specificati.
-     * Precisamente il cliente specificato &egrave; colui che ha effettuato l' ordinazione bar specificata.
+     * Consegna un'ordinazione bar.
+     *
+     * @param ordinazioneBar l'ordinazione bar da consegnare
+     * @return true se lo status dell'ordinazione bar &egrave; stato impostato in CONSEGNATO
+     * @throws NullPointerException se l'ordinazione bar &egrave; nulla
+     * @throws IllegalArgumentException se l'ordinazione bar non &egrave; presente tra le ordinazioni effettuate
+     */
+    boolean consegnaOrdinazioneBar(OrdinazioneBar ordinazioneBar);
+
+    /**
+     * Crea {@link OrdinazioneBar} secondo la riga catalogo bar ed il {@link Cliente} specificati.
+     * Precisamente il cliente specificato &egrave; colui che ha effettuato l' ordinazione bar.
      * Restituisce {@code true} se la creazione dell' ordinazione bar va a buon fine, {@code false} altrimenti.
      *
-     * @param ordinazioneBar l' ordinazione bar da creare
-     * @param cliente        il cliente che ha effettuato l' ordinazione bar
+     * @param rigaCatalogoBar la riga usata per creare l'ordinazione bar
+     * @param utente        l'utente che ha effettuato l' ordinazione bar
      * @return {@code true} se la creazione dell' ordinazione va a buon fine, {@code false} altrimenti
+     * @throws NullPointerException se uno qualsiasi dei parametri &egrave; nullo
      * @see OrdinazioneBar
      * @see Cliente
      */
-    boolean creaOrdinazione(OrdinazioneBar ordinazioneBar, Cliente cliente);
+    boolean creaOrdinazioneBar(RigaCatalogoBar rigaCatalogoBar, Utente utente);
 
     /**
-     * Restituisce la lista di tutte le ordinazioni bar ancora da consegnare ai clienti.
-     * Questa lista contiene tutte le ordinazioni bar che nessun {@link AddettoBar} ha per il momento preso in carico.
+     * Ritorna tutte le ordinazioni bar effettuate.
      *
-     * @return la lista di tutte le ordinazioni non consegnate
-     * @see OrdinazioneBar
-     * @see AddettoBar
+     * @return tutte le ordinazioni bar effettuate
      */
-    List<OrdinazioneBar> getOrdinazioniNonPreseInCarico();
+    List<OrdinazioneBar> getOrdinazioniBar();
 
     /**
-     * Aggiunge l' addetto bar specificato all' insieme di tutti gli addetti bar.
-     * Restituisce {@code true} se l' addetto bar specificato viene aggiunto, altrimenti {@code false}.
+     * Ritorna tutte le ordinazioni bar da prendere in carico.
      *
-     * @param addettoBar l' addetto bar da aggiungere all' insieme di tutti gli addetti bar
-     * @return {@code true} se l' addetto bar specificato viene aggiunto, altrimenti {@code false}
-     * @throws NullPointerException se l' addetto bar specificato &egrave; {@code null}
-     * @see AddettoBar
-     * @see #getAddettoBy(long)
+     * @return tutte le ordinazioni bar da prendere in carico
      */
-    boolean addAddetto(AddettoBar addettoBar);
+    List<OrdinazioneBar> getOrdinazioniDaPrendereInCarico();
 
     /**
-     * Rimuove l' addetto bar avente l' id specificato.
-     * Restitusice {@code true} se l' addetto bar viene rimosso, altrimenti {@code false}.
+     * Ritorna tutte le ordinazioni bar da consegnare.
      *
-     * @param id l' id dell' addetto bar da rimuovere dall' insieme degli addetti bar
-     * @return {@code true} se l' addetto bar viene rimosso, altrimenti {@code false}
-     * @see AddettoBar
+     * @return tutte le ordinazioni bar da consegnare
      */
-    boolean removeAddetto(long id);
+    List<OrdinazioneBar> getOrdinazioniDaConsegnare();
 
     /**
-     * Restituisce un {@link Optional} che descrive l' addetto bar in base all' id specificato.
-     * Se non viene trovato nessun addetto bar con l' id specificato viene restituito un empty {@code Optional}.
+     * Rimuove una ordinazione bar.
      *
-     * @param id l'id dell' addetto bar da restituire
-     * @return un {@code Optional} che descrive l' addetto bar con quell' id specificato, altrimenti un empty {@code Optional} se non viene trovato nessun addetto bar con quell' id
-     * @see AddettoBar
+     * @param ordinazioneBar l'ordinazione bar da rimuovere
+     * @return true se l'ordinazione bar &egrave; stata rimossa, false se la l'ordinazione bar non era presente
+     * @throws NullPointerException se l'ordinazione bar &egrave; nulla
      */
-    Optional<AddettoBar> getAddettoBy(long id);
+    boolean removeOrdinazioneBar(OrdinazioneBar ordinazioneBar);
 }

@@ -12,31 +12,31 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     private final ArticoloBar articoloBar;
     private final GregorianCalendar dataAcquisto;
     private final double costo;
-    private boolean consegnato;
     private boolean pagato;
-    private boolean presoIncarico;
+    private StatusOrdinazioneBar statusOrdinazioneBar;
+    private final Utente utente;
 
     /**
      * Metodo costruttore.
      *
-     * @param dataAcquisto data di acquisto dell'ordinazione bar
      * @param articoloBar l'articolo bar associato all'ordinazione
      * @param costo costo dell'ordinazione bar
-     * @throws NullPointerException  se la data di acquisto o l'articolo bar sono nulli
+     * @param utente l'utente che ha effettuato l'ordinazione bar
+     * @throws NullPointerException  se l'articolo bar o l'utente sono nulli
      * @throws IllegalArgumentException se il costo è negativo
      */
-    public SimpleOrdinazioneBar(GregorianCalendar dataAcquisto, ArticoloBar articoloBar,double costo) {
-        this.dataAcquisto = Objects.requireNonNull(dataAcquisto, "La data di acquisto non puo' essere nulla");
+    public SimpleOrdinazioneBar(ArticoloBar articoloBar,double costo,Utente utente) {
+        this.dataAcquisto = new GregorianCalendar();
         if (costo < 0) throw new IllegalArgumentException("Il costo non puo' essere negativo");
         this.articoloBar = Objects.requireNonNull(articoloBar,"L'articolo bar non puo' essere nullo");
         this.costo = costo;
-        this.consegnato = false;
         this.pagato = false;
-        this.presoIncarico = false;
+        this.statusOrdinazioneBar = StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO;
+        this.utente = utente;
     }
 
     @Override
-    public long getId() {
+    public long getCodice() {
         return this.id;
     }
 
@@ -56,33 +56,23 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     }
 
     @Override
-    public boolean isConsegnato() {
-        return this.consegnato;
-    }
-
-    @Override
-    public boolean isPagato() {
+    public boolean isPagata() {
         return this.pagato;
     }
 
     @Override
-    public boolean isPresoInCarico() {
-        return this.presoIncarico;
-    }
-
-    @Override
-    public void setPagato(boolean pagato) {
+    public void setIsPagata(boolean pagato) {
         this.pagato = pagato;
     }
 
     @Override
-    public void setConsegnato(boolean consegnato) {
-        this.consegnato = consegnato;
+    public StatusOrdinazioneBar getStatus() {
+        return null;
     }
 
     @Override
-    public void setPresoInCarico(boolean presoIncarico) {
-        this.presoIncarico = presoIncarico;
+    public void setStatus(StatusOrdinazioneBar statusOrdinazioneBar) {
+        this.statusOrdinazioneBar = Objects.requireNonNull(statusOrdinazioneBar,"Lo status non puo' essere nullo");
     }
 
     @Override
@@ -90,11 +80,16 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
         if (this == o) return true;
         if (!(o instanceof SimpleOrdinazioneBar)) return false;
         SimpleOrdinazioneBar that = (SimpleOrdinazioneBar) o;
-        return getId() == that.getId() && Double.compare(that.getCosto(), getCosto()) == 0 && getArticoloBar().equals(that.getArticoloBar()) && getDataAcquisto().equals(that.getDataAcquisto());
+        return getCodice() == that.getCodice() && Double.compare(that.getCosto(), getCosto()) == 0 && getArticoloBar().equals(that.getArticoloBar()) && getDataAcquisto().equals(that.getDataAcquisto());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getArticoloBar(), getDataAcquisto(), getCosto());
+        return Objects.hash(getCodice(), getArticoloBar(), getDataAcquisto(), getCosto());
+    }
+
+    @Override
+    public Utente getUtente() {
+        return this.utente;
     }
 }

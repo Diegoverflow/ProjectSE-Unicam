@@ -1,46 +1,36 @@
 package it.unicam.cs.diciottoPolitico;
 
-import java.util.List;
 import java.util.Objects;
 
-/**
- * Implementazione di un semplice gestore per il Catalogo bar che lo chalet
- * mette a disposizione per i clienti.
- */
-public class SimpleHandlerCatalogoBar implements HandlerCatalogoBar {
+public class SimpleHandlerCatalogoBar implements HandlerCatalgoBar{
 
-    private final Catalogo<ArticoloBar, RigaCatalogoBar> catalogoBar;
+    Catalogo<ArticoloBar, RigaCatalogoBar> catalogoBar;
 
-    /**
-     * Crea un semplice gestore per il catalogo bar.
-     */
-    public SimpleHandlerCatalogoBar() {
-        this.catalogoBar = new SimpleCatalogo<>();
+    public SimpleHandlerCatalogoBar(Catalogo<ArticoloBar, RigaCatalogoBar> catalogoBar) {
+        this.catalogoBar = catalogoBar;
     }
 
     @Override
-    public boolean aggiungiRiga(RigaCatalogoBar riga) {
-        return this.catalogoBar.add(riga);
+    public boolean modificaQuantitaArticoli(int quantita) {
+        return true;
     }
 
     @Override
-    public boolean rimuoviRiga(RigaCatalogoBar riga) {
-        return this.catalogoBar.remove(riga);
+    public boolean aggiungiRigaCatalogo(RigaCatalogoBar rigaDaAggiungere) {
+        return this.catalogoBar.add(Objects.requireNonNull(rigaDaAggiungere, "riga catalogo nulla"));
     }
 
     @Override
-    public void modificaPrezzoRigaCatalogo(RigaCatalogoBar riga, double nuovoPrezzo) {
-        riga.setPrezzo(nuovoPrezzo);
+    public boolean rimuoviRigaCatalogo(RigaCatalogoBar rigaDaEliminare) {
+        return this.catalogoBar.add(Objects.requireNonNull(rigaDaEliminare, "Riga catalogo nulla"));
     }
 
     @Override
-    public List<RigaCatalogoBar> getAllRighe() {
-        return this.catalogoBar.getAllRighe();
-    }
-
-    @Override
-    public void modificaRigaCatalogoBar(RigaCatalogoBar riga, int quantita) {
-        Objects.requireNonNull(riga, "Riga specificata null!");
-        riga.setQuantita(quantita);
+    public void modificaPrezzoRigaCatalogo(RigaCatalogoBar rigaCatalogo, double nuovoPrezzo) {
+        this.catalogoBar.
+                getRigheBy(p->p.equals(Objects.requireNonNull(rigaCatalogo, "riga catalogo nulla"))).
+                stream().
+                findFirst().
+                ifPresent(r->r.setPrezzo(nuovoPrezzo));
     }
 }

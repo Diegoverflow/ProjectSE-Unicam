@@ -1,39 +1,33 @@
 package it.unicam.cs.diciottoPolitico;
 
-import java.util.List;
+import java.util.Objects;
 
-/**
- * Implementazione di un semplice gestore per il Catalogo delle attivit&agrave; che lo chalet
- * mette a disposizione per i clienti.
- */
-public class SimpleHandlerCatalogoAttivita implements HandlerCatalogo<Attivita, RigaCatalogoAttivita> {
+public class SimpleHandlerCatalogoAttivita implements HandlerCatalogo<RigaCatalogoAttivita>{
 
     private final Catalogo<Attivita, RigaCatalogoAttivita> catalogoAttivita;
 
-    /**
-     * Crea un gestore per il catalogo attivit&agrave;
-     */
-    public SimpleHandlerCatalogoAttivita() {
-        this.catalogoAttivita = new SimpleCatalogo<>();
+    public SimpleHandlerCatalogoAttivita(Catalogo<Attivita, RigaCatalogoAttivita> catalogoAttivita) {
+        this.catalogoAttivita = catalogoAttivita;
     }
 
     @Override
-    public boolean aggiungiRiga(RigaCatalogoAttivita riga) {
-        return this.catalogoAttivita.add(riga);
+    public boolean aggiungiRigaCatalogo(RigaCatalogoAttivita rigaDaAggiungere) {
+        return this.catalogoAttivita.add(Objects.requireNonNull(rigaDaAggiungere, "riga catalogo nulla"));
     }
 
     @Override
-    public boolean rimuoviRiga(RigaCatalogoAttivita riga) {
-        return this.catalogoAttivita.remove(riga);
+    public boolean rimuoviRigaCatalogo(RigaCatalogoAttivita rigaDaEliminare) {
+        return this.catalogoAttivita.remove(Objects.requireNonNull(rigaDaEliminare, "riga catalogo nulla"));
     }
 
-    @Override
-    public void modificaPrezzoRigaCatalogo(RigaCatalogoAttivita riga, double nuovoPrezzo) {
-        riga.setPrezzo(nuovoPrezzo);
-    }
 
     @Override
-    public List<RigaCatalogoAttivita> getAllRighe() {
-        return this.catalogoAttivita.getAllRighe();
+    public void modificaPrezzoRigaCatalogo(RigaCatalogoAttivita rigaCatalogo, double nuovoPrezzo) {
+        this.catalogoAttivita.
+                getRigheBy(p-> p.equals(Objects.requireNonNull(rigaCatalogo, "riga catalogo nulla"))).
+                stream().
+                findFirst().
+                ifPresent(r->r.setPrezzo(nuovoPrezzo));
     }
+
 }

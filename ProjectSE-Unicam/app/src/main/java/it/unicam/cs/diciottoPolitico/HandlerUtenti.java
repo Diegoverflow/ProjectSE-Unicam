@@ -1,59 +1,71 @@
 package it.unicam.cs.diciottoPolitico;
 
 import java.util.List;
+import java.util.Set;
 
 /**
- * Rappresenta un gestore di utenti.
- *
- * @see TipologiaUtente
- * @see UtenteLoggato
+ * Interfaccia che descrive un gestore utenti per la creazione di utenza e la verifica delle credenziali
  */
 public interface HandlerUtenti {
 
     /**
-     * Crea un {@link Cliente}.
-     *
-     * @param password password del cliente
-     * @param nome nome del cliente
-     * @param cognome cognome del cliente
-     * @param cellulare cellulare del cliente
-     * @return true se il cliente non era già stato creato, false altrimenti
-     * @throws NullPointerException se uno dei parametri &egrave; null
+     * Ottieni la lista dei clienti dello Chalet
+     * @return la lista dei clienti
      */
-    boolean creaCliente(String password, String nome, String cognome, String cellulare, String email);
+    Set<Utente> getClienti();
 
     /**
-     * Crea un {@link AddettoBar}.
-     *
-     * @param password password dell'addetto bar
-     * @param nome nome dell'addetto bar
-     * @param cognome cognome dell'addetto bar
-     * @param cellulare cellulare dell'addetto bar
-     * @return true se l'addetto bar non era già stato creato, false altrimenti
-     * @throws NullPointerException se uno dei parametri &egrave; null
+     * Ottieni la lista del Personale Bar dello Chalet
+     * @return la lista del Personale Bar
      */
-    boolean creaAddettoBar(String password, String nome, String cognome, String cellulare);
+    Set<Utente> getPersonaleBar();
 
     /**
-     * Ritorna tutti i clienti creati.
-     *
-     * @return tutti i clienti creati
+     * Ottieni la lista dei Cassieri dello Chalet
+     * @return la lista dei Cassieri
      */
-    List<Cliente> getClienti();
+    Set<Utente> getCassieri();
 
     /**
-     * Ritorna tutti gli addetti bar creati.
-     *
-     * @return tutti gli addetti bar creati
+     * Ottieni la lista dei Gestori dello Chalet
+     * @return la lista dei Gestori
      */
-    List<AddettoBar> getAddettiBar();
+    Set<Utente> getGestori();
 
     /**
-     * Elimina un utente.
-     *
-     * @param id id dell'utente da eliminare
-     * @return true se l'utente &egrave; stato eliminato
+     * Crea un Utente e lo aggiunge alla lista corrispondente
+     * @param nome dell'Utente
+     * @param cognome dell'Utente
+     * @param password dell'Utente
+     * @param cellulare dell'Utente
+     * @param email dell'Utente
+     * @param ruoloUtente dell'Utente
+     * @return {@code true} se il cliente viene creato correttamente,
+     *         {@code false} altrimenti
      */
-    boolean eliminaUtente(long id);
+    boolean creaUtente( String nome,
+                         String cognome,
+                         String password,
+                         String cellulare,
+                         String email,
+                         RuoloUtente ruoloUtente);
+
+    /**
+     * Elimina un Utente dal Sistema
+     * @param codice dell'Utente che si vuole eliminare
+     * @return {@code true} se l'Utente viene eliminato,
+     *         {@code false} altrimenti
+     */
+    boolean eliminaUtente (long codice);
+
+    /**
+     * Verifica le credenziali di un Utente
+     * @param email dell'Utente da autenticare
+     * @param password dell'Utente da autenticare
+     * @return {@code true} se le credenziali corrispondo ad un'Utente presente nel Sistema,
+     *         {@code false} altrimenti
+     */
+    boolean autenticarsi (String email, String password);
+    
 
 }

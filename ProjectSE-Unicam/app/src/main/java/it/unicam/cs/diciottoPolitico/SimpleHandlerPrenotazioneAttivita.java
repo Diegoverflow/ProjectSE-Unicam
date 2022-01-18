@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
@@ -11,16 +12,17 @@ import java.util.stream.Collectors;
  *
  * @see PrenotazioneAttivita
  * @see Attivita
- * @see Cliente
  * @see Catalogo
  * @see RigaCatalogoAttivita
  */
 public class SimpleHandlerPrenotazioneAttivita implements HandlerPrenotazioneAttivita {
 
     private final Catalogo<Attivita, RigaCatalogoAttivita> catalogoAttivita;
+    private final List<PrenotazioneAttivita> prenotazioniAttivita;
 
     public SimpleHandlerPrenotazioneAttivita() {
         this.catalogoAttivita = new SimpleCatalogo<>();
+        this.prenotazioniAttivita = new ArrayList<>();
     }
 
     @Override
@@ -35,17 +37,29 @@ public class SimpleHandlerPrenotazioneAttivita implements HandlerPrenotazioneAtt
     }
 
     @Override
-    public synchronized boolean creaPrenotazioneAttivita(Attivita attivita, Cliente cliente) {
-        Objects.requireNonNull(cliente, "Cliente null!");
+    public synchronized boolean creaPrenotazioneAttivita(Attivita attivita, Utente utente) {
+        Objects.requireNonNull(utente, "Utente null!");
         if (this.catalogoAttivita.getRigheBy(r -> r.getValore().equals(
                 Objects.requireNonNull(attivita, "Attivita' null!"))).isEmpty())
             throw new IllegalArgumentException("Attivita' non esistente!");
         if (attivita.addPosti(1))
-            return cliente.addPrenotazioneAttivita(
+            return this.prenotazioniAttivita.add(
                     new SimplePrenotazioneAttivita(attivita.getId(),
                             this.catalogoAttivita.getRigheBy(r -> r.getValore().equals(attivita)).get(0).getPrezzo(),
-                            attivita
-                    ));
+                            attivita,
+                            utente));
         return false;
     }
+
+    @Override
+    public List<PrenotazioneAttivita> getPrenotazioniAttivita() {
+        return this.prenotazioniAttivita;
+    }
+
+    @Override
+    public boolean removePrenotazioneAttivita(PrenotazioneAttivita prenotazioneAttivita) {
+        Objects.requireNonNull(prenotazioneAttivita,"La prenotazione attivita' non puo' essere nulla");
+        return this.prenotazioniAttivita.removeIf(prenotazione -> prenotazione.equals(prenotazioneAttivita));
+    }
+
 }

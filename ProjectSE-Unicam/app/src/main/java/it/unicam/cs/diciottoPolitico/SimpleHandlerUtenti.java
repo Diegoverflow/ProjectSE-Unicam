@@ -1,60 +1,80 @@
-package it.unicam.cs.diciottoPolitico;
+    package it.unicam.cs.diciottoPolitico;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-/**
- * Semplice implementazione dell'interfaccia HandlerUtenti.
- * Questa classe &egrave; una classe singleton.
- */
-public class SimpleHandlerUtenti implements HandlerUtenti{
+public class SimpleHandlerUtenti implements  HandlerUtenti{
 
-    private static HandlerUtenti instance;
-    private List<Cliente> clienti;
-    private List<AddettoBar> addettiBar;
+    // TODO: 15/01/22 rendere Singleton
 
-    private SimpleHandlerUtenti(){
+    private final Set<Utente> utenti;
+    private HandlerUtenti uniqueIstance;
+
+    private SimpleHandlerUtenti (Set<Utente> utenti){
+        this.utenti = utenti;
+    }
+
+    public static HandlerUtenti getIstance(Set<Utente> utenti){
+        return null;
     }
 
     @Override
-    public boolean creaCliente(String password, String nome, String cognome, String cellulare, String email) {
-        Cliente cliente = new SimpleCliente(Objects.requireNonNull(email),Objects.requireNonNull(password),Objects.requireNonNull(nome),Objects.requireNonNull(cognome),Objects.requireNonNull(cellulare));
-        if (this.clienti.contains(cliente))
-            return false;
-        return this.clienti.add(cliente);
+    public Set<Utente> getClienti() {
+        return this.utenti.stream().parallel().
+                filter(utente -> utente.getRuolo().equals(RuoloUtente.CLIENTE)).
+                collect(Collectors.toSet());
     }
 
     @Override
-    public boolean creaAddettoBar(String password, String nome, String cognome, String cellulare) {
-        AddettoBar addettoBar = new SimpleAddettoBar(Objects.requireNonNull(nome),Objects.requireNonNull(cellulare),Objects.requireNonNull(cognome),Objects.requireNonNull(password));
-        if (this.addettiBar.contains(addettoBar))
-            return false;
-        return this.addettiBar.add(addettoBar);
+    public Set<Utente> getPersonaleBar() {
+        return this.utenti.stream().parallel().
+                filter(utente -> utente.getRuolo().equals(RuoloUtente.ADDETTO_BAR)).
+                collect(Collectors.toSet());
     }
 
     @Override
-    public List<Cliente> getClienti() {
-        return this.clienti;
+    public Set<Utente> getCassieri() {
+        return this.utenti.stream().parallel().
+                filter(utente -> utente.getRuolo().equals(RuoloUtente.CASSIERE)).
+                collect(Collectors.toSet());
     }
 
     @Override
-    public List<AddettoBar> getAddettiBar() {
-        return this.addettiBar;
+    public Set<Utente> getGestori() {
+        return this.utenti.stream().parallel().
+                filter(utente -> utente.getRuolo().equals(RuoloUtente.GESTORE)).
+                collect(Collectors.toSet());
     }
 
     @Override
-    public boolean eliminaUtente(long id) {
-        return this.clienti.removeIf(c->c.getId() == id) || this.addettiBar.removeIf(a->a.getId() == id);
+    public boolean creaUtente(String nome, String cognome, String password, String cellulare, String email, RuoloUtente ruoloUtente) {
+        return this.utenti.add(new SimpleUtente(nome, cognome, password, cellulare, email, ruoloUtente));
     }
 
-    /**
-     * Ritorna l'istanza di un HandlerUtenti.
-     *
-     * @return l'istanza di un HandlerUtenti
-     */
-    public static HandlerUtenti getInstance() {
-        if (instance == null)
-            instance = new SimpleHandlerUtenti();
-        return instance;
+    @Override
+    public boolean eliminaUtente(long codice) {
+        Optional<Utente> optionalUtente= this.utenti.parallelStream().
+                                    filter(utente -> utente.getId()==codice).
+                                        findFirst();
+        if (optionalUtente.isPresent()){
+            this.utenti.remove(optionalUtente.get());
+            return true;
+        }
+        return false;
+    }
+
+
+    @Override
+    public boolean autenticarsi(String email, String password) {
+        Optional<Utente> optionalUtente= this.utenti.parallelStream().
+                filter(utente -> utente.getEmail().equals(email)).
+                filter(utente -> utente.getPassword().equals(password)).
+                findFirst();
+        if (optionalUtente.isPresent()){
+            this.utenti.remove(optionalUtente.get());
+            return true;
+        }
+        return false;
     }
 }

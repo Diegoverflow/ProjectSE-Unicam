@@ -11,7 +11,8 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     private final GregorianCalendar dataPrenotazione;
     private final GregorianCalendar dataAcquisto;
     private final double costo;
-    private final boolean statoPagamento;
+    private boolean statoPagamento;
+    private final Utente utente;
     private static final int LIMITE_PRENOTAZIONE_MATTINA = 13;
     private static final int LIMITE_PRENOTAZIONE_POMERIGGIO= 19;
 
@@ -22,7 +23,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
      * @param ombrellonePrenotato ombrellone che si vuole prenotare
      * @param dataPrenotazione nella quale la prenotazione &egrave; riservata
      * @param costo della prenotazione
-     * @throws NullPointerException se la fascia oraria o l'ombrellone o la data di prenotazione sono nulli
+     * @throws NullPointerException se la fascia oraria o l'ombrellone o la data di prenotazione o l'utente sono nulli
      * @throws IllegalArgumentException se la data della prenotazione o la fascia oraria sono antecedenti
      *                                  al momento in cui la prenotazione &egrave; effettuata oppure se
      *                                  non è più possibile prenotare in quella giornata perché passato l'orario di chiusura
@@ -33,7 +34,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
                               FasciaOraria fasciaOraria,
                               Ombrellone ombrellonePrenotato,
                               GregorianCalendar dataPrenotazione,
-                              double costo) {
+                              double costo, Utente utente) {
         this.codice = codice;
         if (ombrellonePrenotato == null)
             throw new NullPointerException("Inserire un ombrellone non nullo");
@@ -54,6 +55,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
                     "pomeriggio dalle 14:00 alle 19:00");
         this.costo = costo;
         this.statoPagamento = false;
+        this.utente = Objects.requireNonNull(utente,"L'utente non puo' essere nullo");
     }
 
     /**
@@ -62,7 +64,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
      * @param ombrellonePrenotato ombrellone che si vuole prenotare
      * @param dataPrenotazione nella quale la prenotazione &egrave; riservata
      * @param costo della prenotazione
-     * @throws NullPointerException se la fascia oraria o l'ombrellone o la data di prenotazione sono nulli
+     * @throws NullPointerException se la fascia oraria o l'ombrellone o la data di prenotazione o l'utente sono nulli
      * @throws IllegalArgumentException se la data della prenotazione o la fascia oraria sono antecedenti
      *                                  al momento in cui la prenotazione &egrave; effettuata oppure se
      *      *                           non è più possibile prenotare in quella giornata perché passato l'orario di chiusura
@@ -72,7 +74,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     public SimplePrenotazioneOmbrellone(FasciaOraria fasciaOraria,
                               Ombrellone ombrellonePrenotato,
                               GregorianCalendar dataPrenotazione,
-                              double costo) {
+                              double costo,Utente utente) {
         if (ombrellonePrenotato == null)
             throw new NullPointerException("Inserire un ombrellone non nullo");
         this.ombrellone = ombrellonePrenotato;
@@ -92,6 +94,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
                     "pomeriggio dalle 14:00 alle 19:00");
         this.costo = costo;
         this.statoPagamento = false;
+        this.utente = Objects.requireNonNull(utente,"L'utente non puo' essere nullo");
     }
 
     /**
@@ -134,7 +137,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     }
 
     @Override
-    public long getId() {
+    public long getCodice() {
         return this.codice;
     }
 
@@ -149,8 +152,13 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     }
 
     @Override
-    public boolean getStatoPagamento() {
+    public boolean isPagata() {
         return this.statoPagamento;
+    }
+
+    @Override
+    public void setIsPagata(boolean statoPagamento) {
+        this.statoPagamento = statoPagamento;
     }
 
     @Override
@@ -166,6 +174,11 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone{
     @Override
     public FasciaOraria getFasciaOraria() {
         return this.fasciaOraria;
+    }
+
+    @Override
+    public Utente getUtente() {
+        return this.utente;
     }
 
     @Override
