@@ -2,6 +2,7 @@ package it.unicam.cs.diciottoPolitico.casotto.service;
 
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.FasciaOraria;
+import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
@@ -38,12 +39,21 @@ public class RigaCatalogoOmbrelloneService {
         this.rigaCatalogoOmbrelloneRepository.delete(rigaCatalogoOmbrellone);
     }
 
-    public boolean updatePrezzoRiga (SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone, double prezzo){
-        SimpleRigaCatalogoOmbrellone riga = rigaCatalogoOmbrellone;
-        this.removeRiga(rigaCatalogoOmbrellone);
-        riga.setPrezzoOmbrellone(prezzo);
-        this.addRiga(riga);
+    public boolean updateRiga (double prezzo, SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
+        if (this.rigaCatalogoOmbrelloneRepository.findById(rigaCatalogoOmbrellone.getId()).isPresent()){
+            rigaCatalogoOmbrellone.setPrezzoOmbrellone(prezzo);
+            this.rigaCatalogoOmbrelloneRepository.save(rigaCatalogoOmbrellone);
+            return true;
+        }
         return false;
     }
 
+    public boolean updateRiga (PrenotazioneOmbrellone prenotazioneOmbrellone, SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
+        if (this.rigaCatalogoOmbrelloneRepository.findById(rigaCatalogoOmbrellone.getId()).isPresent()){
+            rigaCatalogoOmbrellone.getPrenotazioni().add(prenotazioneOmbrellone);
+            this.rigaCatalogoOmbrelloneRepository.save(rigaCatalogoOmbrellone);
+            return true;
+        }
+        return false;
+    }
 }
