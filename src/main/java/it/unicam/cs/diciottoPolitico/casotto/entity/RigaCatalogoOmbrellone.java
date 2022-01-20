@@ -26,17 +26,6 @@ public interface RigaCatalogoOmbrellone extends RigaCatalogo<Ombrellone> {
     List<PrenotazioneOmbrellone> getPrenotazioni();
 
     /**
-     * Determina se l' ombrellone di questa riga &egrave; disponibile in base alla data e la {@link FasciaOraria} specificate.
-     * Restituisce {@code true} se c'&egrave; disponibilit&agrave;, {@code false} altrimenti.
-     *
-     * @param data         la data in cui verificare se l' ombrellone &egrave; disoonibile oppure no.
-     * @param fasciaOraria la fascia oraria in cui verificare se l' ombrellone &egrave; disoonibile oppure no.
-     * @return {@code true} se l' ombrellone &egrave; disponibile per la data e la fascia oraria specificate, {@code false} altrimenti.
-     * @throws NullPointerException se almeno uno dei parametri specificati &egrave; {@code null}
-     */
-    boolean getDisponibilita(GregorianCalendar data, FasciaOraria fasciaOraria);
-
-    /**
      * Imposta un nuovo prezzo all' {@link Ombrellone} di questa riga.
      *
      * @param nuovoPrezzo il nuovo prezzo da impostare all' ombrellone di questa riga.

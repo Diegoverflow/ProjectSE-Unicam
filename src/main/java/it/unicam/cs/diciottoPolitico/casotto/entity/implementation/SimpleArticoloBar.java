@@ -19,6 +19,7 @@ public class SimpleArticoloBar implements ArticoloBar {
     @Id
     @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
     private final UUID id;
+
     @Column
     private String descrizione;
 

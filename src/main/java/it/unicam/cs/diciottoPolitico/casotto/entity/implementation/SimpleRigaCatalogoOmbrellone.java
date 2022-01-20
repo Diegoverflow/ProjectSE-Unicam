@@ -26,7 +26,7 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
     @Column
     private double costo;
 
-    @OneToMany(orphanRemoval = true,targetEntity = SimplePrenotazioneOmbrellone.class)
+    @OneToMany(targetEntity = SimplePrenotazioneOmbrellone.class,fetch = FetchType.LAZY)
     private List<PrenotazioneOmbrellone> prenotazioni;
 
     /**
@@ -62,10 +62,6 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
         return this.prenotazioni;
     }
 
-    @Override
-    public boolean getDisponibilita(GregorianCalendar data, FasciaOraria fasciaOraria) {
-        return this.prenotazioni.stream().noneMatch(p -> p.getDataPrenotazione().equals(data) && p.getFasciaOraria().equals(fasciaOraria));
-    }
 
     @Override
     public void setPrezzoOmbrellone(double nuovoPrezzo) {
