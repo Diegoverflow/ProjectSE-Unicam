@@ -2,7 +2,6 @@ package it.unicam.cs.diciottoPolitico.casotto.service;
 
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.FasciaOraria;
-import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
@@ -33,6 +32,18 @@ public class RigaCatalogoOmbrelloneService {
 
     public SimpleRigaCatalogoOmbrellone addRiga(SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
         return this.rigaCatalogoOmbrelloneRepository.save(rigaCatalogoOmbrellone);
+    }
+
+    public void removeRiga(SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
+        this.rigaCatalogoOmbrelloneRepository.delete(rigaCatalogoOmbrellone);
+    }
+
+    public boolean updatePrezzoRiga (SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone, double prezzo){
+        SimpleRigaCatalogoOmbrellone riga = rigaCatalogoOmbrellone;
+        this.removeRiga(rigaCatalogoOmbrellone);
+        riga.setPrezzoOmbrellone(prezzo);
+        this.addRiga(riga);
+        return false;
     }
 
 }
