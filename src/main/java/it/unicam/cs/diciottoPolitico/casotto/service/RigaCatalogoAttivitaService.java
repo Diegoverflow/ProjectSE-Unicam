@@ -45,8 +45,12 @@ public class RigaCatalogoAttivitaService {
         return false;
     }
 
-    public boolean updateRiga (SimpleRigaCatologoAttivita rigaCatologoAttivita){
-        rigaCatologoAttivita.getValore().
+    public boolean updateRiga (PrenotazioneAttivita prenotazioneAttivita, SimpleRigaCatologoAttivita rigaCatologoAttivita){
+        if (this.repository.findById(rigaCatologoAttivita.getId()).isPresent()){
+            rigaCatologoAttivita.getPrenotazioniAttivita().add(prenotazioneAttivita);
+            this.repository.save(rigaCatologoAttivita);
+            return true;
+        }
         return false;
     }
 }
