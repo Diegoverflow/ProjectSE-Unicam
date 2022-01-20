@@ -90,32 +90,6 @@ public class SimpleAttivita implements Attivita {
     }
 
     @Override
-    public int getPostiTotali() {
-        return this.postiTotali;
-    }
-
-    @Override
-    public int getPostiOccupati() {
-        return this.postiOccupati;
-    }
-
-    @Override
-    public boolean setPostiOccupati(int postiOccupati) {
-        if (postiOccupati > this.postiTotali || postiOccupati < 0)
-            return false;
-        this.postiOccupati = postiOccupati;
-        return true;
-    }
-
-    @Override
-    public boolean addPosti(int numPosti) {
-        if (this.postiOccupati + numPosti < 0 || this.postiOccupati + numPosti > this.postiTotali)
-            return false;
-        this.postiOccupati += numPosti;
-        return true;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

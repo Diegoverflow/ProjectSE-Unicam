@@ -1,9 +1,13 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.Attivita;
+import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoAttivita;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,10 +25,18 @@ public class SimpleRigaCatologoAttivita implements RigaCatalogoAttivita {
     @Column
     private double prezzo;
 
-    public SimpleRigaCatologoAttivita(Attivita attivita, double prezzo) {
+    @Column
+    private int postiTotali;
+
+    @OneToMany(targetEntity = SimplePrenotazioneAttivita.class,fetch = FetchType.LAZY)
+    private List<PrenotazioneAttivita> prenotazioni;
+
+    public SimpleRigaCatologoAttivita(Attivita attivita, double prezzo, int postiTotali) {
         this();
         this.attivita = attivita;
         this.prezzo = prezzo;
+        this.postiTotali = postiTotali;
+        this.prenotazioni = new ArrayList<>();
     }
 
     public SimpleRigaCatologoAttivita() {
@@ -51,5 +63,15 @@ public class SimpleRigaCatologoAttivita implements RigaCatalogoAttivita {
         if(prezzo < 0)
             throw new IllegalArgumentException("Il prezzo deve essere maggiore di 0");
         this.prezzo = prezzo;
+    }
+
+    @Override
+    public int getPostiTotali() {
+        return this.postiTotali;
+    }
+
+    @Override
+    public List<PrenotazioneAttivita> getPrenotazioniAttivita() {
+        return this.prenotazioni;
     }
 }

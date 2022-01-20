@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.*;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneAttivita;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -29,7 +30,8 @@ public class SimpleHandlerPrenotazioneAttivita implements HandlerPrenotazioneAtt
 
     @Override
     public List<RigaCatalogoAttivita> getRigheAttivitaDisponibili() {
-        return this.catalogoAttivita.getRigheBy(r -> r.getValore().getPostiTotali() != r.getValore().getPostiOccupati());
+        return null;
+        //return this.catalogoAttivita.getRigheBy(r -> r.getValore().getPostiTotali() != r.getValore().getPostiOccupati());
     }
 
     @Override
@@ -46,7 +48,7 @@ public class SimpleHandlerPrenotazioneAttivita implements HandlerPrenotazioneAtt
             throw new IllegalArgumentException("Attivita' non esistente!");
         if (attivita.addPosti(1))
             return this.prenotazioniAttivita.add(
-                    new SimplePrenotazioneAttivita(attivita.getId(),
+                    new SimplePrenotazioneAttivita(
                             this.catalogoAttivita.getRigheBy(r -> r.getValore().equals(attivita)).get(0).getPrezzo(),
                             attivita,
                             utente));*/

@@ -1,5 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
+import java.util.List;
+
 /**
  * Rappresenta una riga nel catalogo attivit&agrave;, la riga è formata da un {@link Attivita}, dal prezzo di quest' ultima.
  */
@@ -19,5 +21,17 @@ public interface RigaCatalogoAttivita extends RigaCatalogo<Attivita> {
      * @throws IllegalArgumentException se il prezzo &egrave; minore di {@code 0}
      */
     void setPrezzo(double prezzo);
+
+    /**
+     * Ottieni il numero massimo dei posti prenotabili associati all'attivit&agrave;
+     * @return il numero massimo dei posti prenotabili associati all'attivit&agrave;
+     */
+    int getPostiTotali();
+
+    /**
+     * Ottieni la lista delle prenotazioni associate associate all'attivit&agrave;
+     * @return la lista delle prenotazioni associate associate all'attivit&agrave;
+     */
+    List<PrenotazioneAttivita> getPrenotazioniAttivita();
 
 }

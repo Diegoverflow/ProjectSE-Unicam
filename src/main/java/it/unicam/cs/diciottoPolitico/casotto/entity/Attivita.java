@@ -44,36 +44,6 @@ public interface Attivita {
     void setDescrizione(String descrizione);
 
     /**
-     * Ottieni il numero massimo di partecipanti all'attivit&agrave;
-     *
-     * @return il numero di posti totali
-     */
-    int getPostiTotali();
-
-    /**
-     * Ottieni il numero di partecipanti iscritti all'attivit&agrave;
-     *
-     * @return il numero di partecipanti iscritti all'attivit&agrave;
-     */
-    int getPostiOccupati();
-
-    /**
-     * Imposta i posti occupati dell'attivit&agrave;.
-     *
-     * @return {@code true} se il nuovo numero di posti occupati &egrave; compreso tra 0 (incluso) e i posti totali (incluso) dell'attivit&agrave;, {@code false} altrimenti
-     */
-    boolean setPostiOccupati(int postiOccupati);
-
-    /**
-     * Aggiunge (o sottrae) il numero di posti specificato di
-     * Restituisce {@code true} se il numero di posti viene modificato
-     *
-     * @param numPosti il numero di posti da aggiungere (o sottrarre)
-     * @return {@code true} se il numero di posti viene modificato, altrimenti {@code false}
-     */
-    boolean addPosti(int numPosti);
-
-    /**
      * Confronta l' elemento specificato con questa attivit&agrave;
      * Restituisce {@code true} se l' elemento specificato &egrave; anch' esso un' attivit&agrave; ed
      * ha le stesse caratteristiche di questa attivit&agrave;.
