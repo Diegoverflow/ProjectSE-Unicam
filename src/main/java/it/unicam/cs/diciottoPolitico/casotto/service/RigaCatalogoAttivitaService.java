@@ -1,18 +1,12 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.FasciaOraria;
 import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneAttivita;
-import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatologoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoAttivitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RigaCatalogoAttivitaService {
