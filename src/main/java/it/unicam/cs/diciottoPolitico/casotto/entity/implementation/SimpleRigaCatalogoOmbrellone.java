@@ -43,7 +43,7 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
         this.prenotazioni = new ArrayList<>();
     }
 
-    public SimpleRigaCatalogoOmbrellone() {
+    protected SimpleRigaCatalogoOmbrellone() {
         this.id = UUID.randomUUID();
     }
 
