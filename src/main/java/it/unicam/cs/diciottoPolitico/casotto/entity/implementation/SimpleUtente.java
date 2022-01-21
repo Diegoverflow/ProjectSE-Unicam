@@ -27,15 +27,9 @@ public class SimpleUtente implements Utente {
     private String cellulare;
     @Column
     private String email;
+
     @Enumerated(EnumType.STRING)
     private RuoloUtente ruoloUtente;
-
-    @ManyToMany(targetEntity = SimpleNotifica.class, fetch = FetchType.LAZY)
-    @JoinTable(name = "utente_notifica",
-            joinColumns = {@JoinColumn(name = "utente_id")},
-            inverseJoinColumns = {@JoinColumn(name = "notifica_id")}
-    )
-    private final List<Notifica> notifiche;
 
     /**
      * Crea un utente in base a id, nome, cognome, password, cellulare, email e ruolo utente specificati.
@@ -60,7 +54,6 @@ public class SimpleUtente implements Utente {
 
     protected SimpleUtente() {
         this.id = UUID.randomUUID();
-        this.notifiche = new ArrayList<>();
     }
 
     @Override
@@ -126,23 +119,6 @@ public class SimpleUtente implements Utente {
     @Override
     public void setRuoloUtente(RuoloUtente ruoloUtente) {
         this.ruoloUtente = Objects.requireNonNull(ruoloUtente, "Ruolo null!");
-    }
-
-    @Override
-    public List<Notifica> getNotifiche() {
-        return this.notifiche;
-    }
-
-    @Override
-    public boolean addNotifica(Notifica notifica) {
-        if (!this.notifiche.contains(Objects.requireNonNull(notifica, "Notifica null!")))
-            return this.notifiche.add(notifica);
-        return false;
-    }
-
-    @Override
-    public boolean removeNotifica(Notifica notifica) {
-        return this.notifiche.remove(notifica);
     }
 
     @Override
