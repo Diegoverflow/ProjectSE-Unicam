@@ -19,7 +19,7 @@ import java.util.*;
 public class SimpleAttivita implements Attivita {
 
     @Id
-    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
+    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
     private final UUID id;
     @Column
     private GregorianCalendar dataOrarioInizio;

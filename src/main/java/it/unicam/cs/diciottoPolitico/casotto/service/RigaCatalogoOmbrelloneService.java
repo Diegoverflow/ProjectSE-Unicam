@@ -6,6 +6,10 @@ import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
+import org.hibernate.Session;
+import org.hibernate.SessionBuilder;
+import org.hibernate.SessionFactory;
+import org.hibernate.internal.SessionFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

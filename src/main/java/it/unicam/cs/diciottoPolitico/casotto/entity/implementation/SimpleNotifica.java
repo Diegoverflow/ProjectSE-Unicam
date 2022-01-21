@@ -13,7 +13,7 @@ import java.util.UUID;
 public class SimpleNotifica implements Notifica {
 
     @Id
-    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
+    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
     private final UUID id;
     @Column(updatable = false)
     private String messaggio;

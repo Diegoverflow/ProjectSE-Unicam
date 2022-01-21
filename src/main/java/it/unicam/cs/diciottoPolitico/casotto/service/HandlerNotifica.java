@@ -18,7 +18,8 @@ public interface HandlerNotifica {
      * @see Utente
      */
     static void notifica(Notifica notifica, Utente utente) {
-        utente.addNotifica(notifica);
+        //utente.addNotifica(notifica);
+        // TODO: 21/01/22  
     }
 
 }

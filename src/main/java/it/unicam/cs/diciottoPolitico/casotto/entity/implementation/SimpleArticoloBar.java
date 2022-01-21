@@ -17,7 +17,7 @@ import java.util.UUID;
 public class SimpleArticoloBar implements ArticoloBar {
 
     @Id
-    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
+    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
     private final UUID id;
 
     @Column

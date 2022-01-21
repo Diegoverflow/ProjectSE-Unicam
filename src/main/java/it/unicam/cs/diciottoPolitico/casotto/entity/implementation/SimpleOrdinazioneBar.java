@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class SimpleOrdinazioneBar implements OrdinazioneBar {
 
     @Id
-    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
+    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
     private UUID id;
 
     @ManyToOne(targetEntity = SimpleArticoloBar.class)
