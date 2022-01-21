@@ -1,11 +1,11 @@
 package it.unicam.cs.diciottoPolitico.casotto.repository;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoAttivita;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface RigaCatalogoAttivitaRepository extends JpaRepository<RigaCatalogoAttivita, UUID> {
+public interface RigaCatalogoAttivitaRepository extends JpaRepository<SimpleRigaCatalogoAttivita, UUID> {
 }
