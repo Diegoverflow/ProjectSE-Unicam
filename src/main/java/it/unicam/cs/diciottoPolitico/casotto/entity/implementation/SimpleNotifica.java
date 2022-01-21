@@ -18,8 +18,8 @@ public class SimpleNotifica implements Notifica {
     @Column(updatable = false)
     private String messaggio;
 
-    @ManyToMany(mappedBy = "notifiche", targetEntity = SimpleUtente.class, fetch = FetchType.LAZY)
-    private List<Utente> utenti;
+    @OneToMany(mappedBy = "id", targetEntity = SimpleUtente.class, fetch = FetchType.LAZY)
+    private final List<Utente> utenti;
 
     public SimpleNotifica(String messaggio) {
         this();
