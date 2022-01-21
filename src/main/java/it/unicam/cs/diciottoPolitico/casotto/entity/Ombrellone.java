@@ -21,6 +21,10 @@ public interface Ombrellone {
      */
     String getCodiceSpiaggia();
 
+    /**
+     * Imposta il codice spiaggia dell'ombrellone
+     */
+    void setCodiceSpiaggia(String codiceSpiaggia);
 
     /**
      * Ritorna la {@link Categoria} dell'ombrellone.
@@ -32,8 +36,7 @@ public interface Ombrellone {
     /**
      * Imposta la categoria dell'ombrellone.
      *
-     * @param categoria la nuova categoria dell'ombrellone
-     * @throws NullPointerException se la categoria &egrave; {@code null}
+     * @param categoria la nuova categoria dell'ombrellonez
      */
     void setCategoria(Categoria categoria);
 }
