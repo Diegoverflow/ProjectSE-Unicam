@@ -75,10 +75,6 @@ public class SimpleHandlerUtenti implements  HandlerUtenti{
                 filter(utente -> utente.getEmail().equals(email)).
                 filter(utente -> utente.getPassword().equals(password)).
                 findFirst();
-        if (optionalUtente.isPresent()){
-            this.utenti.remove(optionalUtente.get());
-            return true;
-        }
-        return false;
+        return optionalUtente.isPresent();
     }
 }
