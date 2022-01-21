@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
+import it.unicam.cs.diciottoPolitico.casotto.entity.Notifica;
 import it.unicam.cs.diciottoPolitico.casotto.entity.Utente;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleNotifica;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleUtente;
@@ -25,7 +26,7 @@ public class NotificaService {
         this.utenteRepository = utenteRepository;
     }
 
-    public void notifica(SimpleNotifica notifica, List<SimpleUtente> utentiDestinatari) {
+    public void notifica(Notifica notifica, List<Utente> utentiDestinatari) {
         this.notificaRepository.save(notifica);
         this.utenteRepository.
                 findAllById(this.getUUIDs(utentiDestinatari)).
@@ -36,7 +37,7 @@ public class NotificaService {
 
     }
 
-    private List<UUID> getUUIDs(List<SimpleUtente> utentiDestinatari) {
+    private List<UUID> getUUIDs(List<Utente> utentiDestinatari) {
         List<UUID> uuids = new ArrayList<>();
         for (Utente u :
                 utentiDestinatari) {

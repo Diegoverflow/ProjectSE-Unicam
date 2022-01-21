@@ -21,7 +21,7 @@ public class RigaCatalogoOmbrelloneService {
         this.rigaCatalogoOmbrelloneRepository = rigaCatalogoOmbrelloneRepository;
     }
 
-    public List<SimpleRigaCatalogoOmbrellone> getRighe() {
+    public List<RigaCatalogoOmbrellone> getRighe() {
         return rigaCatalogoOmbrelloneRepository.findAll();
     }
 
@@ -31,15 +31,15 @@ public class RigaCatalogoOmbrelloneService {
                 .collect(Collectors.toList());
     }
 
-    public SimpleRigaCatalogoOmbrellone addRiga(SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
+    public RigaCatalogoOmbrellone addRiga(RigaCatalogoOmbrellone rigaCatalogoOmbrellone){
         return this.rigaCatalogoOmbrelloneRepository.save(rigaCatalogoOmbrellone);
     }
 
-    public void removeRiga(SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
+    public void removeRiga(RigaCatalogoOmbrellone rigaCatalogoOmbrellone){
         this.rigaCatalogoOmbrelloneRepository.delete(rigaCatalogoOmbrellone);
     }
 
-    public boolean updateRiga (SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrelloneAggiornata){
+    public boolean updateRiga (RigaCatalogoOmbrellone rigaCatalogoOmbrelloneAggiornata){
         if (this.rigaCatalogoOmbrelloneRepository.findById(rigaCatalogoOmbrelloneAggiornata.getId()).isPresent()){
             this.rigaCatalogoOmbrelloneRepository.save(rigaCatalogoOmbrelloneAggiornata);
             return true;

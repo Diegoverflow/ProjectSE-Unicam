@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
+import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatologoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoAttivitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +18,19 @@ public class RigaCatalogoAttivitaService {
         this.repository = repository;
     }
 
-    public List<SimpleRigaCatologoAttivita> getRighe() {
+    public List<RigaCatalogoAttivita> getRighe() {
         return repository.findAll();
     }
 
-    public SimpleRigaCatologoAttivita addRiga(SimpleRigaCatologoAttivita rigaCatologoAttivita){
+    public RigaCatalogoAttivita addRiga(RigaCatalogoAttivita rigaCatologoAttivita){
         return this.repository.save(rigaCatologoAttivita);
     }
 
-    public void removeRiga(SimpleRigaCatologoAttivita rigaCatologoAttivita){
+    public void removeRiga(RigaCatalogoAttivita rigaCatologoAttivita){
         this.repository.delete(rigaCatologoAttivita);
     }
 
-    public boolean updateRiga (SimpleRigaCatologoAttivita rigaCatologoAttivitaAggiornata){
+    public boolean updateRiga (RigaCatalogoAttivita rigaCatologoAttivitaAggiornata){
         if (this.repository.findById(rigaCatologoAttivitaAggiornata.getId()).isPresent()){
             this.repository.save(rigaCatologoAttivitaAggiornata);
             return true;
