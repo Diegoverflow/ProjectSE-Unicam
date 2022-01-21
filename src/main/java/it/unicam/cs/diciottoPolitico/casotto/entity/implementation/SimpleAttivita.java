@@ -21,9 +21,9 @@ public class SimpleAttivita implements Attivita {
     @Id
     @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
     private final UUID id;
-    @Column
+    @Temporal(TemporalType.DATE)
     private GregorianCalendar dataOrarioInizio;
-    @Column
+    @Temporal(TemporalType.DATE)
     private GregorianCalendar dataOrarioFine;
     @Column
     private String descrizione;

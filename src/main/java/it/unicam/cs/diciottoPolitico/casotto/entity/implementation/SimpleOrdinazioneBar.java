@@ -25,7 +25,7 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     @JoinColumn(name = "articolo_bar_id")
     private ArticoloBar articoloBar;
 
-    @Column
+    @Temporal(TemporalType.DATE)
     private GregorianCalendar dataAcquisto;
 
     @Column

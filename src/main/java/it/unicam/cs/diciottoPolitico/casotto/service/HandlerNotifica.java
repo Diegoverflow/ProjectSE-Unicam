@@ -19,7 +19,7 @@ public interface HandlerNotifica {
      */
     static void notifica(Notifica notifica, Utente utente) {
         //utente.addNotifica(notifica);
-        // TODO: 21/01/22  
+        // TODO: 21/01/22
     }
 
 }

@@ -20,7 +20,7 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
     @Column(columnDefinition = "BINARY(16)", updatable = false, unique = true, nullable = false)
     private UUID id;
 
-    @Column
+    @Temporal(TemporalType.DATE)
     private GregorianCalendar dataAcquisto;
 
     @Column

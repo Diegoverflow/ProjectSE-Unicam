@@ -25,10 +25,10 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
     @JoinColumn(name = "ombrellone_id")
     private Ombrellone ombrellone;
 
-    @Column
+    @Temporal(TemporalType.DATE)
     private GregorianCalendar dataPrenotazione;
 
-    @Column
+    @Temporal(TemporalType.DATE)
     private GregorianCalendar dataAcquisto;
 
     @Column
