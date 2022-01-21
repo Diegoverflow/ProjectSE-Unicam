@@ -39,19 +39,9 @@ public class RigaCatalogoOmbrelloneService {
         this.rigaCatalogoOmbrelloneRepository.delete(rigaCatalogoOmbrellone);
     }
 
-    public boolean updateRiga (double prezzo, SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
-        if (this.rigaCatalogoOmbrelloneRepository.findById(rigaCatalogoOmbrellone.getId()).isPresent()){
-            rigaCatalogoOmbrellone.setPrezzoOmbrellone(prezzo);
-            this.rigaCatalogoOmbrelloneRepository.save(rigaCatalogoOmbrellone);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean updateRiga (PrenotazioneOmbrellone prenotazioneOmbrellone, SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
-        if (this.rigaCatalogoOmbrelloneRepository.findById(rigaCatalogoOmbrellone.getId()).isPresent()){
-            rigaCatalogoOmbrellone.getPrenotazioni().add(prenotazioneOmbrellone);
-            this.rigaCatalogoOmbrelloneRepository.save(rigaCatalogoOmbrellone);
+    public boolean updateRiga (SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrelloneAggiornata){
+        if (this.rigaCatalogoOmbrelloneRepository.findById(rigaCatalogoOmbrelloneAggiornata.getId()).isPresent()){
+            this.rigaCatalogoOmbrelloneRepository.save(rigaCatalogoOmbrelloneAggiornata);
             return true;
         }
         return false;

@@ -16,7 +16,7 @@ import java.util.UUID;
 public class AreaInfrastruttura {
 
     @Id
-    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
+    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
     private final UUID id;
     @Column
     private String nome;
