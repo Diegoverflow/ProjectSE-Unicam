@@ -18,19 +18,19 @@ public class RigaCatalogoBarService {
         this.repository = repository;
     }
 
-    public List<RigaCatalogoBar> getRighe() {
+    public List<SimpleRigaCatalogoBar> getRighe() {
         return repository.findAll();
     }
 
-    public RigaCatalogoBar addRiga(RigaCatalogoBar rigaCatalogoBar){
+    public SimpleRigaCatalogoBar addRiga(SimpleRigaCatalogoBar rigaCatalogoBar){
         return this.repository.save(rigaCatalogoBar);
     }
 
-    public void removeRiga(RigaCatalogoBar rigaCatalogoBar){
+    public void removeRiga(SimpleRigaCatalogoBar rigaCatalogoBar){
         this.repository.delete(rigaCatalogoBar);
     }
 
-    public boolean updateRiga (RigaCatalogoBar rigaCatalogoBar){
+    public boolean updateRiga (SimpleRigaCatalogoBar rigaCatalogoBar){
         if (this.repository.findById(rigaCatalogoBar.getId()).isPresent()){
             this.repository.save(rigaCatalogoBar);
             return true;

@@ -3,6 +3,9 @@ package it.unicam.cs.diciottoPolitico.casotto.service;
 import it.unicam.cs.diciottoPolitico.casotto.entity.OrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOrdinazioneBar;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneAttivitaRepository;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRepository;
@@ -26,32 +29,32 @@ public class VenditaService {
         this.ordinazioneBarRepository = ordinazioneBarRepository;
     }
 
-    public List<PrenotazioneOmbrellone> getPrenotazioniOmbrelloneDaPagare(){
+    public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloneDaPagare(){
         return prenotazioneOmbrelloneRepository.findAll().stream()
                 .filter(vendita -> !vendita.isPagata())
                 .collect(Collectors.toList());
     }
 
-    public PrenotazioneOmbrellone saldaPrenotazioneOmbrellone(PrenotazioneOmbrellone prenotazioneOmbrellone){
+    public SimplePrenotazioneOmbrellone saldaPrenotazioneOmbrellone(SimplePrenotazioneOmbrellone prenotazioneOmbrellone){
         return this.prenotazioneOmbrelloneRepository.save(prenotazioneOmbrellone);
     }
 
-    public List<PrenotazioneAttivita> getPrenotazioniAttivitaDaPagare(){
+    public List<SimplePrenotazioneAttivita> getPrenotazioniAttivitaDaPagare(){
         return prenotazioneAttivitaRepository.findAll().stream()
                 .filter(vendita -> !vendita.isPagata())
                 .collect(Collectors.toList());
     }
 
-    public PrenotazioneAttivita saldaPrenotazioneAttivita(PrenotazioneAttivita prenotazioneAttivita){
+    public SimplePrenotazioneAttivita saldaPrenotazioneAttivita(SimplePrenotazioneAttivita prenotazioneAttivita){
         return this.prenotazioneAttivitaRepository.save(prenotazioneAttivita);
     }
-    public List<OrdinazioneBar> getOrdinazioniBarDaPagare(){
+    public List<SimpleOrdinazioneBar> getOrdinazioniBarDaPagare(){
         return ordinazioneBarRepository.findAll().stream()
                 .filter(vendita -> !vendita.isPagata())
                 .collect(Collectors.toList());
     }
 
-    public OrdinazioneBar saldaOrdinazioneBar(OrdinazioneBar ordinazioneBar){
+    public SimpleOrdinazioneBar saldaOrdinazioneBar(SimpleOrdinazioneBar ordinazioneBar){
         return this.ordinazioneBarRepository.save(ordinazioneBar);
     }
 

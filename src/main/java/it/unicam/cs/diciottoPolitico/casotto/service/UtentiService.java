@@ -20,23 +20,23 @@ public class UtentiService {
         this.utenteRepository = utenteRepository;
     }
 
-    public List<Utente> getUtenti(){
+    public List<SimpleUtente> getUtenti(){
         return this.utenteRepository.findAll();
     }
 
-    public List<Utente> getClienti(){
+    public List<SimpleUtente> getClienti(){
         return this.getUtenti(RuoloUtente.CLIENTE);
     }
 
-    public List<Utente> getCassieri(){
+    public List<SimpleUtente> getCassieri(){
         return this.getUtenti(RuoloUtente.CASSIERE);
     }
 
-    public List<Utente> getAddettiBar(){
+    public List<SimpleUtente> getAddettiBar(){
         return this.getUtenti(RuoloUtente.ADDETTO_BAR);
     }
 
-    public List<Utente> getGestore(){
+    public List<SimpleUtente> getGestore(){
         return this.getUtenti(RuoloUtente.GESTORE);
     }
 
@@ -45,7 +45,7 @@ public class UtentiService {
                 .anyMatch(utente -> utente.getEmail().equals(email) && utente.getPassword().equals(password));
     }
 
-    public Utente addUtente(Utente utente){
+    public SimpleUtente addUtente(SimpleUtente utente){
         return this.utenteRepository.save(utente);
     }
 
@@ -59,7 +59,7 @@ public class UtentiService {
                 :null;
     }
 
-    private List<Utente> getUtenti(RuoloUtente ruoloUtente){
+    private List<SimpleUtente> getUtenti(RuoloUtente ruoloUtente){
         return this.getUtenti().stream()
                 .filter(utente -> utente.getRuoloUtente() == ruoloUtente)
                 .collect(Collectors.toList());
