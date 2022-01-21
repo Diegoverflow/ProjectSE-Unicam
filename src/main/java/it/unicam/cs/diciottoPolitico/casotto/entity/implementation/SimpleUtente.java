@@ -30,10 +30,14 @@ public class SimpleUtente implements Utente {
     @Enumerated(EnumType.STRING)
     private RuoloUtente ruoloUtente;
 
-    @ManyToMany(targetEntity = SimpleNotifica.class, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.PERSIST} , targetEntity = SimpleNotifica.class, fetch = FetchType.LAZY)
     @JoinTable(name = "utente_notifica",
-            joinColumns = {@JoinColumn(name = "utente_id")},
-            inverseJoinColumns = {@JoinColumn(name = "notifica_id")}
+            joinColumns = {
+                    @JoinColumn(name = "utente_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "notifica_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)}
     )
     private final List<Notifica> notifiche;
 
