@@ -12,7 +12,7 @@ import java.util.UUID;
  * questa stessa area specifica.
  */
 @Entity
-@Table(name = "aree_infrastruttura")
+@Table(name = "area_infrastruttura")
 public class AreaInfrastruttura {
 
     @Id

@@ -10,7 +10,7 @@ import java.util.UUID;
  * Semplice implementazione dell'interfaccia RigaCatalogoBar.
  */
 @Entity
-@Table(name = "righe_catalogo_bar")
+@Table(name = "riga_catalogo_bar")
 public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
 
     @Id

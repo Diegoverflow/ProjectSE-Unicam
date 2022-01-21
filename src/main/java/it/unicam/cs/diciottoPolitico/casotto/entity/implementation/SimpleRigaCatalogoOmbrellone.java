@@ -12,7 +12,7 @@ import java.util.*;
  * Implementazione di una semplice classe per il catalogo degli ombrelloni.
  */
 @Entity
-@Table(name = "righe_catalogo_ombrellone")
+@Table(name = "riga_catalogo_ombrellone")
 public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
 
     @Id

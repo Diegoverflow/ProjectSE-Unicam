@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "prenotazioni_ombrellone")
+@Table(name = "prenotazione_ombrellone")
 public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
 
     @Id

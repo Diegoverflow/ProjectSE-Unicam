@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "notifiche")
+@Table(name = "notifica")
 public class SimpleNotifica implements Notifica {
 
     @Id

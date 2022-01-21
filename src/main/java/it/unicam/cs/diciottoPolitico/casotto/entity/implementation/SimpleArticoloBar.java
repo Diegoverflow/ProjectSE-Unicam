@@ -13,7 +13,7 @@ import java.util.UUID;
  * Semplice implementazione dell'interfaccia {@link ArticoloBar}.
  */
 @Entity
-@Table(name="articoli_bar")
+@Table(name="articolo_bar")
 public class SimpleArticoloBar implements ArticoloBar {
 
     @Id

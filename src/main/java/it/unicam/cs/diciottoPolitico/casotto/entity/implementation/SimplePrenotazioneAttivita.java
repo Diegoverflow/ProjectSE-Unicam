@@ -13,7 +13,7 @@ import java.util.UUID;
  * Semplice implementazione dell'interfaccia PrenotazioneAttivita.
  */
 @Entity
-@Table(name = "prenotazioni_attivita")
+@Table(name = "prenotazione_attivita")
 public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
 
     @Id

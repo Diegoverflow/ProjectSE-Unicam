@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "righe_catalogo_attivita")
+@Table(name = "riga_catalogo_attivita")
 public class SimpleRigaCatologoAttivita implements RigaCatalogoAttivita {
 
     @Id

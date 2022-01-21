@@ -11,7 +11,7 @@ import java.util.*;
  * Semplice implementazione dell' interfaccia Utente.
  */
 @Entity
-@Table(name = "utenti")
+@Table(name = "utente")
 public class SimpleUtente implements Utente {
 
     @Id

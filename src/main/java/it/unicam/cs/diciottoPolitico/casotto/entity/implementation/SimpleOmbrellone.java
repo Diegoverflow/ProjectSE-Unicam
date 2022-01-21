@@ -11,7 +11,7 @@ import java.util.UUID;
  * Semplice implementazione dell'interfaccia Ombrellone.
  */
 @Entity
-@Table(name = "ombrelloni")
+@Table(name = "ombrellone")
 public class SimpleOmbrellone implements Ombrellone {
 
     @Id
