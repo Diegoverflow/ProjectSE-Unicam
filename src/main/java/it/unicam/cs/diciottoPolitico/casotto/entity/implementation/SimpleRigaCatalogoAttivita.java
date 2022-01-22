@@ -18,7 +18,7 @@ public class SimpleRigaCatalogoAttivita implements RigaCatalogoAttivita {
     private final UUID id;
 
     @OneToOne(targetEntity = SimpleAttivita.class)
-    @JoinColumn(name = "attivita_id")
+    @JoinColumn(name = "attivita_id", referencedColumnName = "id")
     private Attivita attivita;
 
     @Column

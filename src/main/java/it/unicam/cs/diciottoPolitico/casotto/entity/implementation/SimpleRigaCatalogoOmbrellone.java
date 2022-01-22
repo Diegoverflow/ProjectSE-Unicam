@@ -20,7 +20,7 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
     private UUID id;
 
     @OneToOne(targetEntity = SimpleOmbrellone.class)
-    @JoinColumn(name = "ombrellone_id")
+    @JoinColumn(name = "ombrellone_id", referencedColumnName = "id")
     private Ombrellone ombrellone;
 
     @Column

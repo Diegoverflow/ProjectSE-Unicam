@@ -18,7 +18,7 @@ public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
     private final UUID id;
 
     @OneToOne(targetEntity = SimpleArticoloBar.class)
-    @JoinColumn(name = "articolo_bar_id")
+    @JoinColumn(name = "articolo_bar_id", referencedColumnName = "id")
     private ArticoloBar articoloBar;
 
     @Column
