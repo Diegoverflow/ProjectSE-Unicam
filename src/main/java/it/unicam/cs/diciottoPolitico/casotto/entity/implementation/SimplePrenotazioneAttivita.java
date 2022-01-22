@@ -23,7 +23,7 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
     @Temporal(TemporalType.DATE)
     private GregorianCalendar dataAcquisto;
 
-    @Column
+    @Column(columnDefinition = "TINYINT(1)")
     private boolean statoPagamento;
 
     @Column
