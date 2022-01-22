@@ -16,7 +16,6 @@ import java.util.UUID;
 @Service
 public class NotificaService {
 
-    // TODO: 21/01/22 SISTEMARE
     private final NotificaRepository notificaRepository;
     private final UtenteRepository utenteRepository;
 

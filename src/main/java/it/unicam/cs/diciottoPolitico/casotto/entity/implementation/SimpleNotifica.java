@@ -24,7 +24,7 @@ public class SimpleNotifica implements Notifica {
     @Getter
     private String messaggio;
 
-    @OneToMany(mappedBy = "id", targetEntity = SimpleUtente.class, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "notifiche", targetEntity = SimpleUtente.class, fetch = FetchType.LAZY)
     @Getter
     private final List<Utente> utenti;
 
