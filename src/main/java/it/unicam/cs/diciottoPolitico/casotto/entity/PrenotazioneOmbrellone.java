@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -16,7 +17,7 @@ public interface PrenotazioneOmbrellone extends Vendita{
      *
      * @return la data di prenotazione
      */
-    GregorianCalendar getDataPrenotazione();
+    Date getDataPrenotazione();
 
     /**
      * Ottieni l' {@link Ombrellone} associato alla prenotazione
@@ -32,10 +33,4 @@ public interface PrenotazioneOmbrellone extends Vendita{
      */
     FasciaOraria getFasciaOraria();
 
-    /**
-     * Ritorna l'utente che ha effettuato la prenotazione dell'ombrellone.
-     *
-     * @return l'utente che ha effettuato la prenotazione dell'ombrellone
-     */
-    Utente getUtente();
 }

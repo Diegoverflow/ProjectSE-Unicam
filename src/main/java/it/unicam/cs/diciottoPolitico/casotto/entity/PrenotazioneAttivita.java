@@ -15,11 +15,5 @@ public interface PrenotazioneAttivita extends Vendita{
      */
     Attivita getAttivita();
 
-    /**
-     * Ritorna l'utente che ha effettuato la prenotazione dell'attivit&agrave;.
-     *
-     * @return l'utente che ha effettuato la prenotazione dell'attivit&agrave;
-     */
-    Utente getUtente();
 
 }

@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
@@ -20,14 +21,14 @@ public interface Attivita {
      *
      * @return l'orario di inizio dell'attivit&agrave;
      */
-    GregorianCalendar getDataOrarioInizio();
+    Date getDataOrarioInizio();
 
     /**
      * Ottieni l'ora in cui l'attivit&agrave; termina
      *
      * @return l'ora a in cui termina l'attivit&agrave;
      */
-    GregorianCalendar getDataOrarioFine();
+    Date getDataOrarioFine();
 
     /**
      * Ottieni la descrizione dell'attivit&agrave;

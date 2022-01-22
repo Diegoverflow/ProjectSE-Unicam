@@ -8,8 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Objects;
 import java.util.UUID;
 import javax.persistence.*;
 
@@ -33,7 +33,7 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
 
     @Temporal(TemporalType.DATE)
     @Getter
-    private GregorianCalendar dataAcquisto;
+    private Date dataAcquisto;
 
     @Column
     @Getter
@@ -66,7 +66,7 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
      */
     public SimpleOrdinazioneBar(ArticoloBar articoloBar, double costo, Utente utente) {
         this.id = UUID.randomUUID();
-        this.dataAcquisto = new GregorianCalendar();
+        this.dataAcquisto = new Date();
         this.articoloBar = articoloBar;
         this.costo = costo;
         this.pagata = false;

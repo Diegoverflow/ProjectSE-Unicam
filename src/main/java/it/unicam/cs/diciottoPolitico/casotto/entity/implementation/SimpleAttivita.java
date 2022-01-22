@@ -31,11 +31,11 @@ public class SimpleAttivita implements Attivita {
 
     @Temporal(TemporalType.DATE)
     @Getter
-    private GregorianCalendar dataOrarioInizio;
+    private Date dataOrarioInizio;
 
     @Temporal(TemporalType.DATE)
     @Getter
-    private GregorianCalendar dataOrarioFine;
+    private Date dataOrarioFine;
 
     @Column
     @Getter
@@ -52,8 +52,8 @@ public class SimpleAttivita implements Attivita {
      * @throws IllegalArgumentException se la {@code dataOrarioFine} precede la {@code dataOrarioInizio} oppure se {@code dataOrarioInizio} e {@code dataOrarioFine} sono uguali secondo il meotodo equals
      */
 
-    public SimpleAttivita(GregorianCalendar dataOrarioInizio,
-                          GregorianCalendar dataOrarioFine,
+    public SimpleAttivita(Date dataOrarioInizio,
+                          Date dataOrarioFine,
                           String descrizione) {
         this.id = UUID.randomUUID();
         this.dataOrarioInizio = dataOrarioInizio;

@@ -4,6 +4,9 @@ import it.unicam.cs.diciottoPolitico.casotto.entity.FasciaOraria;
 import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoOmbrellone;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.*;
@@ -16,58 +19,40 @@ import java.util.*;
 public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
 
     @Id
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false, unique = true, nullable = false)
+    @Getter
     private UUID id;
 
     @OneToOne(targetEntity = SimpleOmbrellone.class)
     @JoinColumn(name = "ombrellone_id", referencedColumnName = "id")
-    private Ombrellone ombrellone;
+    @Getter
+    private Ombrellone valore;
 
     @Column
-    private double costo;
+    @Getter
+    @Setter
+    private double prezzoOmbrellone;
 
     @OneToMany(targetEntity = SimplePrenotazioneOmbrellone.class,fetch = FetchType.LAZY)
+    @Getter
     private List<PrenotazioneOmbrellone> prenotazioni;
 
     /**
      * Metodo costruttore.
      *
-     * @param ombrellone ombrellone associato alla riga
-     * @param costo costo dell'ombrellone
+     * @param valore ombrellone associato alla riga
+     * @param prezzoOmbrellone costo dell'ombrellone
      * @throws NullPointerException se l'ombrellone &egrave; nullo
      */
-    public SimpleRigaCatalogoOmbrellone(Ombrellone ombrellone, double costo) {
-        this();
-        this.ombrellone = Objects.requireNonNull(ombrellone,"L'ombrellone non puo' essere nullo");
-        this.costo = costo;
+    public SimpleRigaCatalogoOmbrellone(Ombrellone valore, double prezzoOmbrellone) {
+        this.id = UUID.randomUUID();
+        this.valore = valore;
+        this.prezzoOmbrellone = prezzoOmbrellone;
         this.prenotazioni = new ArrayList<>();
     }
 
     protected SimpleRigaCatalogoOmbrellone() {
-        this.id = UUID.randomUUID();
-    }
-
-    @Override
-    public UUID getId(){
-        return  this.id;
-    }
-
-    @Override
-    public double getPrezzoOmbrellone() {
-        return this.costo;
-    }
-
-    @Override
-    public List<PrenotazioneOmbrellone> getPrenotazioni() {
-        return this.prenotazioni;
-    }
-
-
-    @Override
-    public void setPrezzoOmbrellone(double nuovoPrezzo) {
-        if (nuovoPrezzo<0)
-            throw new IllegalArgumentException("Il prezzo deve essere maggiore di 0");
-        this.costo = nuovoPrezzo;
     }
 
     @Override
@@ -75,10 +60,5 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
         if(this.prenotazioni.contains(Objects.requireNonNull(prenotazione,"La prenotazione non puo' essere nulla")))
             return false;
         return this.prenotazioni.add(prenotazione);
-    }
-
-    @Override
-    public Ombrellone getValore() {
-        return this.ombrellone;
     }
 }

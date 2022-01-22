@@ -31,11 +31,4 @@ public interface OrdinazioneBar extends Vendita{
      */
     void setStatusOrdinazioneBar(StatusOrdinazioneBar statusOrdinazioneBar);
 
-    /**
-     * Ritorna l'utente che ha effettuato l'ordinazione bar.
-     *
-     * @return l'utente che ha effettuato l'ordinazione bar
-     */
-    Utente getUtente();
-
 }

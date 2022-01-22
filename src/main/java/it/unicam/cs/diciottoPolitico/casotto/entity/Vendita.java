@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
@@ -18,7 +19,7 @@ public interface Vendita {
      * Ottieni la data in cui &grave; stata effettuata la vendita
      * @return la data di acquisto della vendita
      */
-    GregorianCalendar getDataAcquisto();
+    Date getDataAcquisto();
 
     /**
      * Ottieni il costo associato ad una vendita
@@ -46,4 +47,11 @@ public interface Vendita {
      * @param statoPagamento della vendita
      */
     void setPagata(boolean statoPagamento);
+
+    /**
+     * Ritorna l'utente che ha effettuato l'ordinazione bar.
+     *
+     * @return l'utente che ha effettuato l'ordinazione bar
+     */
+    Utente getUtente();
 }

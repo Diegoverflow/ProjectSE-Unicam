@@ -3,6 +3,9 @@ package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 import it.unicam.cs.diciottoPolitico.casotto.entity.Attivita;
 import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoAttivita;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,63 +17,38 @@ import java.util.UUID;
 public class SimpleRigaCatalogoAttivita implements RigaCatalogoAttivita {
 
     @Id
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false, unique = true, nullable = false)
-    private final UUID id;
+    @Getter
+    private UUID id;
 
     @OneToOne(targetEntity = SimpleAttivita.class)
     @JoinColumn(name = "attivita_id", referencedColumnName = "id")
-    private Attivita attivita;
+    @Getter
+    private Attivita valore;//todo brutto nome
 
     @Column
+    @Getter
+    @Setter
     private double prezzo;
 
     @Column
+    @Getter
     private int postiTotali;
 
-    @OneToMany(targetEntity = SimplePrenotazioneAttivita.class,fetch = FetchType.LAZY)
-    private List<PrenotazioneAttivita> prenotazioni;
+    @OneToMany(targetEntity = SimplePrenotazioneAttivita.class,fetch = FetchType.LAZY,mappedBy = "id")
+    @Getter
+    private List<PrenotazioneAttivita> prenotazioniAttivita;
 
     public SimpleRigaCatalogoAttivita(Attivita attivita, double prezzo, int postiTotali) {
-        this();
-        this.attivita = attivita;
+        this.id = UUID.randomUUID();
+        this.valore = attivita;
         this.prezzo = prezzo;
         this.postiTotali = postiTotali;
-        this.prenotazioni = new ArrayList<>();
+        this.prenotazioniAttivita = new ArrayList<>();
     }
 
     public SimpleRigaCatalogoAttivita() {
-        this.id = UUID.randomUUID();
     }
 
-    @Override
-    public UUID getId(){
-        return  this.id;
-    }
-
-    @Override
-    public Attivita getValore() {
-        return this.attivita;
-    }
-
-    @Override
-    public double getPrezzo() {
-        return this.prezzo;
-    }
-
-    @Override
-    public void setPrezzo(double prezzo) {
-        if(prezzo < 0)
-            throw new IllegalArgumentException("Il prezzo deve essere maggiore di 0");
-        this.prezzo = prezzo;
-    }
-
-    @Override
-    public int getPostiTotali() {
-        return this.postiTotali;
-    }
-
-    @Override
-    public List<PrenotazioneAttivita> getPrenotazioniAttivita() {
-        return this.prenotazioni;
-    }
 }

@@ -23,7 +23,7 @@ public class AreaInfrastruttura {
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
-    @Setter
+    @Getter
     private UUID id;
 
     @Column
