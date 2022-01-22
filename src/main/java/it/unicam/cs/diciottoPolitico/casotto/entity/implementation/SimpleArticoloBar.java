@@ -1,6 +1,10 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.ArticoloBar;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,13 +18,18 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="articolo_bar")
+@EqualsAndHashCode
 public class SimpleArticoloBar implements ArticoloBar {
 
     @Id
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
-    private final UUID id;
+    @Getter
+    private UUID id;
 
     @Column
+    @Getter
+    @Setter
     private String descrizione;
 
     /**
@@ -35,34 +44,6 @@ public class SimpleArticoloBar implements ArticoloBar {
     }
 
     protected SimpleArticoloBar(){
-        this.id = UUID.randomUUID();
     }
 
-    @Override
-    public UUID getId() {
-        return this.id;
-    }
-
-    @Override
-    public String getDescrizione() {
-        return this.descrizione;
-    }
-
-    @Override
-    public void setDescrizione(String descrizione) {
-        this.descrizione = Objects.requireNonNull(descrizione, "La descrizione deve essere non nulla");
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof SimpleArticoloBar)) return false;
-        SimpleArticoloBar that = (SimpleArticoloBar) o;
-        return getId() == that.getId() && getDescrizione().equals(that.getDescrizione());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getDescrizione());
-    }
 }
