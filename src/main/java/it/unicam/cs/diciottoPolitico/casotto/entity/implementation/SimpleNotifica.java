@@ -2,6 +2,8 @@ package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.Notifica;
 import it.unicam.cs.diciottoPolitico.casotto.entity.Utente;
+import lombok.Getter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,12 +15,17 @@ import java.util.UUID;
 public class SimpleNotifica implements Notifica {
 
     @Id
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
-    private final UUID id;
+    @Getter
+    private UUID id;
+
     @Column(updatable = false)
+    @Getter
     private String messaggio;
 
     @OneToMany(mappedBy = "id", targetEntity = SimpleUtente.class, fetch = FetchType.LAZY)
+    @Getter
     private final List<Utente> utenti;
 
     public SimpleNotifica(String messaggio) {
@@ -27,17 +34,6 @@ public class SimpleNotifica implements Notifica {
     }
 
     protected SimpleNotifica() {
-        this.id = UUID.randomUUID();
         this.utenti = new ArrayList<>();
-    }
-
-    @Override
-    public UUID getId() {
-        return this.id;
-    }
-
-    @Override
-    public String getMessaggio() {
-        return this.messaggio;
     }
 }

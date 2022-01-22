@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -18,4 +19,11 @@ public interface Notifica {
     * @return il messaggio della notifica
     */
    String getMessaggio();
+
+   /**
+    * Ritorna la lista di utenti della notifica.
+    *
+    * @return la lista di utenti della notifica
+    */
+   List<Utente> getUtenti();
 }
