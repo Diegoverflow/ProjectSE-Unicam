@@ -30,6 +30,7 @@ public class SimpleNotifica implements Notifica {
 
     public SimpleNotifica(String messaggio) {
         this();
+        this.id = UUID.randomUUID();
         this.messaggio = messaggio;
     }
 

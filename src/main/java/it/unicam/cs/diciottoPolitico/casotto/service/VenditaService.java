@@ -1,8 +1,5 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.OrdinazioneBar;
-import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneAttivita;
-import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneOmbrellone;

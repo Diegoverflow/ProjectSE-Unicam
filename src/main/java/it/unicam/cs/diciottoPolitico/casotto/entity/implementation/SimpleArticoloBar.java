@@ -39,7 +39,7 @@ public class SimpleArticoloBar implements ArticoloBar {
      * @throws NullPointerException se la descrizione &egrave; {@code null}
      */
     public SimpleArticoloBar(String descrizione) {
-        this();
+        this.id = UUID.randomUUID();
         this.descrizione = Objects.requireNonNull(descrizione, "La descrizione deve essere non nulla");
     }
 

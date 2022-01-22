@@ -152,7 +152,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
     }
 
     @Override
-    public void setIsPagata(boolean statoPagamento) {
+    public void setPagata(boolean statoPagamento) {
         this.statoPagamento = statoPagamento;
     }
 

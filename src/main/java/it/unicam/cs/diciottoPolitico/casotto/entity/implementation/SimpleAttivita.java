@@ -55,7 +55,7 @@ public class SimpleAttivita implements Attivita {
     public SimpleAttivita(GregorianCalendar dataOrarioInizio,
                           GregorianCalendar dataOrarioFine,
                           String descrizione) {
-        this();
+        this.id = UUID.randomUUID();
         this.dataOrarioInizio = dataOrarioInizio;
         this.dataOrarioFine = dataOrarioFine;
         this.descrizione = descrizione;

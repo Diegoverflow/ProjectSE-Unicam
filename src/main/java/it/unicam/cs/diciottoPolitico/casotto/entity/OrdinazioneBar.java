@@ -1,6 +1,5 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
-import java.util.GregorianCalendar;
 
 /**
  * Rappresenta un'ordinazione bar.
@@ -22,7 +21,7 @@ public interface OrdinazioneBar extends Vendita{
      *
      * @return lo stato dell'ordinazione bar
      */
-    StatusOrdinazioneBar getStatus();
+    StatusOrdinazioneBar getStatusOrdinazioneBar();
 
     /**
      * Imposta lo status dell'ordinazione bar.
@@ -30,7 +29,7 @@ public interface OrdinazioneBar extends Vendita{
      * @param statusOrdinazioneBar il nuovo status dell'ordinazione bar
      * @throws NullPointerException se lo status &egrave; nullo
      */
-    void setStatus(StatusOrdinazioneBar statusOrdinazioneBar);
+    void setStatusOrdinazioneBar(StatusOrdinazioneBar statusOrdinazioneBar);
 
     /**
      * Ritorna l'utente che ha effettuato l'ordinazione bar.

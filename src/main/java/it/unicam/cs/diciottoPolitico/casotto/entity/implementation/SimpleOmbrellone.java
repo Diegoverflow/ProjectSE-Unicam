@@ -2,6 +2,10 @@ package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.Categoria;
 import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -15,13 +19,19 @@ import java.util.UUID;
 public class SimpleOmbrellone implements Ombrellone {
 
     @Id
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)",updatable = false,unique = true,nullable = false)
-    private final UUID id;
+    @Getter
+    private UUID id;
 
     @Enumerated(EnumType.STRING)
+    @Getter
+    @Setter
     private Categoria categoria;
 
     @Column
+    @Getter
+    @Setter
     private String codiceSpiaggia;
 
     /**
@@ -31,45 +41,12 @@ public class SimpleOmbrellone implements Ombrellone {
      * @param codiceSpiaggia dell'ombrellone
      */
     public SimpleOmbrellone(Categoria categoria, String codiceSpiaggia) {
-        this();
+        this.id = UUID.randomUUID();
         this.categoria = categoria;
         this.codiceSpiaggia = codiceSpiaggia;
     }
 
     protected SimpleOmbrellone() {
-        this.id = UUID.randomUUID();
     }
 
-    @Override
-    public UUID getId() {
-        return this.id;
-    }
-
-    @Override
-    public String getCodiceSpiaggia() {
-        return this.codiceSpiaggia;
-    }
-
-    @Override
-    public Categoria getCategoria() {
-        return this.categoria;
-    }
-
-    @Override
-    public void setCategoria(Categoria categoria) {
-        this.categoria = Objects.requireNonNull(categoria, "La categoria non puo' essere nulla");
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof SimpleOmbrellone)) return false;
-        SimpleOmbrellone that = (SimpleOmbrellone) o;
-        return getId() == that.getId() && getCategoria() == that.getCategoria();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(),getCategoria());
-    }
 }

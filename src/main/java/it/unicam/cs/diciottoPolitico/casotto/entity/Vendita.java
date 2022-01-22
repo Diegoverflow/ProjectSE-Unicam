@@ -9,10 +9,10 @@ import java.util.UUID;
 public interface Vendita {
 
     /**
-     * Ottieni il codice univoco associato alla vendita
-     * @return il codice identificativo della vendita
+     * Ottieni l'id univoco associato alla vendita
+     * @return l'id identificativo della vendita
      */
-    UUID getCodice();
+    UUID getId();
 
     /**
      * Ottieni la data in cui &grave; stata effettuata la vendita
@@ -27,6 +27,13 @@ public interface Vendita {
     double getCosto();
 
     /**
+     * Imposta il costo della vendita.
+     *
+     * @param costo il nuovo costo della vendita
+     */
+    void setCosto(double costo);
+
+    /**
      * Ottieni lo stato di pagamento della vendita
      * @return {@code true} se la vendita &grave; stata saldata,
      *         {@code false} altrimenti
@@ -38,5 +45,5 @@ public interface Vendita {
      * dal {@param stataPagamento}
      * @param statoPagamento della vendita
      */
-    void setIsPagata(boolean statoPagamento);
+    void setPagata(boolean statoPagamento);
 }

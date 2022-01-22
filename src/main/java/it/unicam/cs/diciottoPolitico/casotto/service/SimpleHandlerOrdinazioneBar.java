@@ -68,14 +68,14 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
     @Override
     public List<OrdinazioneBar> getOrdinazioniDaPrendereInCarico() {
         return this.ordinazioniBar.stream()
-                .filter(ordinazione -> ordinazione.getStatus() == StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO)
+                .filter(ordinazione -> ordinazione.getStatusOrdinazioneBar() == StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<OrdinazioneBar> getOrdinazioniDaConsegnare() {
         return this.ordinazioniBar.stream()
-                .filter(ordinazione -> ordinazione.getStatus() == StatusOrdinazioneBar.PRESO_IN_CARICO)
+                .filter(ordinazione -> ordinazione.getStatusOrdinazioneBar() == StatusOrdinazioneBar.PRESO_IN_CARICO)
                 .collect(Collectors.toList());
     }
 
@@ -88,8 +88,8 @@ public class SimpleHandlerOrdinazioneBar implements HandlerOrdinazioneBar {
     private boolean cambiaStatusOrdinazioneBar(OrdinazioneBar ordinazioneBar,StatusOrdinazioneBar vecchioStatus, StatusOrdinazioneBar nuovoStatus){
         if(!this.ordinazioniBar.contains(Objects.requireNonNull(ordinazioneBar,"L'ordinazione bar non puo' essere nulla")))
             throw new IllegalArgumentException("L'ordinazione bar non e' presente");
-        if(ordinazioneBar.getStatus() == vecchioStatus){
-            ordinazioneBar.setStatus(nuovoStatus);
+        if(ordinazioneBar.getStatusOrdinazioneBar() == vecchioStatus){
+            ordinazioneBar.setStatusOrdinazioneBar(nuovoStatus);
             return true;
         }
         return false;

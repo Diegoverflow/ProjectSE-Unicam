@@ -21,6 +21,12 @@ public interface Ombrellone {
      */
     String getCodiceSpiaggia();
 
+    /**
+     * Imposta il codice della spiaggia.
+     *
+     * @param codiceSpiaggia il nuovo codice della spiaggia
+     */
+    void setCodiceSpiaggia(String codiceSpiaggia);
 
     /**
      * Ritorna la {@link Categoria} dell'ombrellone.

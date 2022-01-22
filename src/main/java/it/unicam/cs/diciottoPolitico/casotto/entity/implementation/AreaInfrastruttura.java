@@ -43,7 +43,7 @@ public class AreaInfrastruttura {
      * @param descrizione la descrizione di quest' area infrastruttura
      */
     public AreaInfrastruttura(String nome, String descrizione) {
-        this();
+        this.id = UUID.randomUUID();
         this.nome = nome;
         this.descrizione = descrizione;
     }

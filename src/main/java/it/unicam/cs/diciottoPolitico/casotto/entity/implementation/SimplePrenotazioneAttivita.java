@@ -75,7 +75,7 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
     }
 
     @Override
-    public void setIsPagata(boolean statoPagamento) {
+    public void setPagata(boolean statoPagamento) {
         this.statoPagamento = statoPagamento;
     }
 
