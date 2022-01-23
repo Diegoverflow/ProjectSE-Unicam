@@ -41,26 +41,4 @@ public class SimpleAttivita implements Attivita {
     @Getter
     @Setter
     private String descrizione;
-
-    /**
-     * Costruisce un'attvit&agrave;
-     *
-     * @param dataOrarioInizio dell'attvit&agrave;
-     * @param dataOrarioFine   dell'attvit&agrave;
-     * @param descrizione      dell'attvit&agrave;
-     * @throws NullPointerException     se la {@code dataOrarioInizio}, {@code dataOrarioFine} o la {@code descrizione} sono {@code null}
-     * @throws IllegalArgumentException se la {@code dataOrarioFine} precede la {@code dataOrarioInizio} oppure se {@code dataOrarioInizio} e {@code dataOrarioFine} sono uguali secondo il meotodo equals
-     */
-
-    public SimpleAttivita(Date dataOrarioInizio,
-                          Date dataOrarioFine,
-                          String descrizione) {
-        this.id = UUID.randomUUID();
-        this.dataOrarioInizio = dataOrarioInizio;
-        this.dataOrarioFine = dataOrarioFine;
-        this.descrizione = descrizione;
-    }
-
-    protected SimpleAttivita() {
-    }
 }
