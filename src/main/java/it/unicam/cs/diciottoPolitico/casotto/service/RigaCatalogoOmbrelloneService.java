@@ -29,7 +29,7 @@ public class RigaCatalogoOmbrelloneService {
         return rigaCatalogoOmbrelloneRepository.findAll();
     }
 
-    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(GregorianCalendar data, FasciaOraria fasciaOraria) {
+    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(Date data, FasciaOraria fasciaOraria) {
         return this.getRighe().stream()
                 .filter(r->r.getPrenotazioni().stream().noneMatch(p->p.getDataPrenotazione().equals(data) && p.getFasciaOraria().equals(fasciaOraria)))
                 .collect(Collectors.toList());
