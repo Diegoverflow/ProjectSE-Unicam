@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneOmbrellone;
+
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ public interface RigaCatalogoOmbrellone extends RigaCatalogo<Ombrellone> {
      * @return la lista delle prenotazioni di questa riga
      * @see PrenotazioneOmbrellone
      */
-    List<PrenotazioneOmbrellone> getPrenotazioni();
+    List<SimplePrenotazioneOmbrellone> getPrenotazioni();
 
     /**
      * Imposta un nuovo prezzo all' {@link Ombrellone} di questa riga.
@@ -33,13 +33,5 @@ public interface RigaCatalogoOmbrellone extends RigaCatalogo<Ombrellone> {
      */
     void setPrezzoOmbrellone(double nuovoPrezzo);
 
-    /**
-     * Aggiunge la {@link PrenotazioneOmbrellone} specificata a questa riga catalogo.
-     * La prenotazione viene aggiunta in coda a tutte le prenotazioni associate all' ombrellone di questa riga.
-     *
-     * @param prenotazione la prenotazione da aggiungere
-     * @return {@code true} se la prenotazione viene aggiunta con successo, {@code false} altrimenti.
-     * @throws NullPointerException se la prenotazione specificata &egrave; {@code null}
-     */
-    boolean addPrenotazione(PrenotazioneOmbrellone prenotazione);
+
 }
