@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -31,6 +30,6 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
     @JoinColumn(name = "vendita_id")
     @Getter
     @Setter
-    private SimpleVendita simpleVendita;
+    private SimpleVendita vendita;
 
 }
