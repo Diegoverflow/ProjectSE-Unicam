@@ -36,20 +36,5 @@ public class AreaInfrastruttura {
     @Setter
     private String descrizione;
 
-    /**
-     * Crea un' area dell' infrastruttura dello chalet in base a id, nome e descrizione specificati.
-     *
-     * @param nome        il nome di quest' area infrastruttura
-     * @param descrizione la descrizione di quest' area infrastruttura
-     */
-    public AreaInfrastruttura(String nome, String descrizione) {
-        this.id = UUID.randomUUID();
-        this.nome = nome;
-        this.descrizione = descrizione;
-    }
-
-    protected AreaInfrastruttura() {
-    }
-
 
 }
