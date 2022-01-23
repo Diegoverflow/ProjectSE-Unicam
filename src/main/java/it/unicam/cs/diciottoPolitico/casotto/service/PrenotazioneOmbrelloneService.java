@@ -13,4 +13,5 @@ public class PrenotazioneOmbrelloneService {
     public PrenotazioneOmbrelloneService(PrenotazioneOmbrelloneRepository repository) {
         this.repository = repository;
     }
+    // TODO: 24/01/22 completare 
 }
