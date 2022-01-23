@@ -26,6 +26,7 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     @ManyToOne
     @JoinColumn(name = "articolo_bar_id")
     @Getter
+    @Setter
     private SimpleArticoloBar articoloBar;
 
     @Enumerated(EnumType.STRING)

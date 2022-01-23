@@ -40,5 +40,6 @@ public class RigaCatalogoOmbrelloneService {
             return true;
         }
         return false;
+        // TODO: 24/01/22 spostare controlli su controller
     }
 }

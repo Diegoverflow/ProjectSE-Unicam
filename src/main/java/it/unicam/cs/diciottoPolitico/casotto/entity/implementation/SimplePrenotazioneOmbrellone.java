@@ -22,15 +22,18 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
 
     @Enumerated(EnumType.STRING)
     @Getter
+    @Setter
     private FasciaOraria fasciaOraria;
 
     @ManyToOne
     @JoinColumn(name = "ombrellone_id")
     @Getter
+    @Setter
     private SimpleOmbrellone ombrellone;
 
     @Temporal(TemporalType.DATE)
     @Getter
+    @Setter
     private Date dataPrenotazione;
 
     @OneToOne(cascade = CascadeType.ALL)
