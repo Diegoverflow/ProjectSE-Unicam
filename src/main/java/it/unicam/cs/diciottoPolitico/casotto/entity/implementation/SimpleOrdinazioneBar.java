@@ -28,28 +28,15 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     @Getter
     private SimpleArticoloBar articoloBar;
 
-    @Temporal(TemporalType.DATE)
-    @Getter
-    private Date dataAcquisto;
-
-    @Column
-    @Getter
-    @Setter
-    private double costo;
-
-    @Column(columnDefinition = "TINYINT(1)")
-    @Getter
-    @Setter
-    private boolean pagata;
-
     @Enumerated(EnumType.STRING)
     @Getter
     @Setter
     private StatusOrdinazioneBar statusOrdinazioneBar;
 
-    @ManyToOne
-    @JoinColumn(name = "utente_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "vendita_id")
     @Getter
-    private SimpleUtente utente;
+    @Setter
+    private SimpleVendita vendita;
 
 }
