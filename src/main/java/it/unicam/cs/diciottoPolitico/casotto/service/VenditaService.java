@@ -26,11 +26,11 @@ public class VenditaService {
         this.ordinazioneBarRepository = ordinazioneBarRepository;
     }
 
-    public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloneDaPagare(){
+    /*public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloneDaPagare(){
         return prenotazioneOmbrelloneRepository.findAll().stream()
                 .filter(vendita -> !vendita.isPagata())
                 .collect(Collectors.toList());
-    }
+    }*/
 
     public SimplePrenotazioneOmbrellone saldaPrenotazioneOmbrellone(SimplePrenotazioneOmbrellone prenotazioneOmbrellone){
         return this.prenotazioneOmbrelloneRepository.save(prenotazioneOmbrellone);
@@ -45,12 +45,12 @@ public class VenditaService {
     public SimplePrenotazioneAttivita saldaPrenotazioneAttivita(SimplePrenotazioneAttivita prenotazioneAttivita){
         return this.prenotazioneAttivitaRepository.save(prenotazioneAttivita);
     }
-    public List<SimpleOrdinazioneBar> getOrdinazioniBarDaPagare(){
+    /*public List<SimpleOrdinazioneBar> getOrdinazioniBarDaPagare(){
         return ordinazioneBarRepository.findAll().stream()
                 .filter(vendita -> !vendita.isPagata())
                 .collect(Collectors.toList());
     }
-
+*/
     public SimpleOrdinazioneBar saldaOrdinazioneBar(SimpleOrdinazioneBar ordinazioneBar){
         return this.ordinazioneBarRepository.save(ordinazioneBar);
     }
