@@ -1,6 +1,5 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.Notifica;
 import it.unicam.cs.diciottoPolitico.casotto.entity.Utente;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleNotifica;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleUtente;

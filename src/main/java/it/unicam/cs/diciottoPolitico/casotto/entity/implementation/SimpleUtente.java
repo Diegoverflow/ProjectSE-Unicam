@@ -65,7 +65,10 @@ public class SimpleUtente implements Utente {
                             nullable = false, updatable = false)}
     )
     @Getter
+    @Setter
     private  List<Notifica> notifiche;
+
+    // TODO: 23/01/22 rimuovere add e remove notifica
 
     @Override
     public boolean addNotifica(Notifica notifica) {
