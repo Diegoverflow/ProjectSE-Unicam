@@ -33,23 +33,10 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
     @Getter
     private Date dataPrenotazione;
 
-    @Temporal(TemporalType.DATE)
-    @Getter
-    private Date dataAcquisto;
-
-    @Column
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "vendita_id")
     @Getter
     @Setter
-    private double costo;
-
-    @Column(columnDefinition = "TINYINT(1)")
-    @Getter
-    @Setter
-    private boolean pagata;
-
-    @ManyToOne
-    @JoinColumn(name = "utente_id")
-    @Getter
-    private SimpleUtente utente;
+    private SimpleVendita vendita;
 
 }
