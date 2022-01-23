@@ -65,43 +65,6 @@ public class SimpleUtente implements Utente {
                             nullable = false, updatable = false)}
     )
     @Getter
-    private final List<Notifica> notifiche;
-
-    /**
-     * Crea un utente in base a id, nome, cognome, password, cellulare, email e ruolo utente specificati.
-     *
-     * @param nome        il nome a questo addetto bar
-     * @param cognome     il cognome associato a questo addetto bar
-     * @param password    la password di questo addetto bar
-     * @param cellulare   il cellulare di questo addetto bar
-     * @param email       l' email di questo addetto bar
-     * @param ruoloUtente il ruolo dell'utente
-     */
-    public SimpleUtente(String nome, String cognome, String password, String cellulare, String email, RuoloUtente ruoloUtente) {
-        this();
-        this.id = UUID.randomUUID();
-        this.nome = nome;
-        this.cognome = cognome;
-        this.password = password;
-        this.cellulare = cellulare;
-        this.email = email;
-        this.ruoloUtente = ruoloUtente;
-    }
-
-    protected SimpleUtente() {
-        this.notifiche = new ArrayList<>();
-    }
-
-    @Override
-    public boolean addNotifica(Notifica notifica) {
-        if (!this.notifiche.contains(Objects.requireNonNull(notifica, "Notifica null!")))
-            return this.notifiche.add(notifica);
-        return false;
-    }
-
-    @Override
-    public boolean removeNotifica(Notifica notifica) {
-        return this.notifiche.remove(notifica);
-    }
+    private List<Notifica> notifiche;
 
 }

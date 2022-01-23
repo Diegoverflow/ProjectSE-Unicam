@@ -25,4 +25,6 @@ public class RigaCatalogoOmbrelloneController {
     public List<SimpleRigaCatalogoOmbrellone> getRigheCatalogoOmbrellone(){
         return this.rigaCatalogoOmbrelloneService.getRighe();
     }
+
+
 }
