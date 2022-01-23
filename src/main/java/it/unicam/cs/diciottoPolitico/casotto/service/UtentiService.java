@@ -1,7 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.RuoloUtente;
-import it.unicam.cs.diciottoPolitico.casotto.entity.Utente;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
