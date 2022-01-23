@@ -26,15 +26,5 @@ public class SimpleNotifica implements Notifica {
 
     @ManyToMany(mappedBy = "notifiche", targetEntity = SimpleUtente.class, fetch = FetchType.LAZY)
     @Getter
-    private final List<Utente> utenti;
-
-    public SimpleNotifica(String messaggio) {
-        this();
-        this.id = UUID.randomUUID();
-        this.messaggio = messaggio;
-    }
-
-    protected SimpleNotifica() {
-        this.utenti = new ArrayList<>();
-    }
+    private List<Utente> utenti;
 }
