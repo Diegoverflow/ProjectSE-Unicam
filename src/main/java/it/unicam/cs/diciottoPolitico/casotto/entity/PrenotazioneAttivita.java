@@ -5,7 +5,7 @@ package it.unicam.cs.diciottoPolitico.casotto.entity;
  *
  * @see Attivita
  */
-public interface PrenotazioneAttivita extends Vendita{
+public interface PrenotazioneAttivita {
 
     /**
      * Ottieni l'attivit&agrave; associata alla prenotazione

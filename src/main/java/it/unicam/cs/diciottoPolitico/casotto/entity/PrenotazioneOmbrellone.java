@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
  * @see FasciaOraria
  * @see Categoria
  */
-public interface PrenotazioneOmbrellone extends Vendita{
+public interface PrenotazioneOmbrellone {
 
     /**
      * Ottieni la data in cui &egrave; riservata la prenotazione.

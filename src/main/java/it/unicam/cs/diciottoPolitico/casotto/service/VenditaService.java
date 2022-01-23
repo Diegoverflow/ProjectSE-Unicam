@@ -36,11 +36,11 @@ public class VenditaService {
         return this.prenotazioneOmbrelloneRepository.save(prenotazioneOmbrellone);
     }
 
-    public List<SimplePrenotazioneAttivita> getPrenotazioniAttivitaDaPagare(){
+    /*public List<SimplePrenotazioneAttivita> getPrenotazioniAttivitaDaPagare(){
         return prenotazioneAttivitaRepository.findAll().stream()
                 .filter(vendita -> !vendita.isPagata())
                 .collect(Collectors.toList());
-    }
+    }*/
 
     public SimplePrenotazioneAttivita saldaPrenotazioneAttivita(SimplePrenotazioneAttivita prenotazioneAttivita){
         return this.prenotazioneAttivitaRepository.save(prenotazioneAttivita);

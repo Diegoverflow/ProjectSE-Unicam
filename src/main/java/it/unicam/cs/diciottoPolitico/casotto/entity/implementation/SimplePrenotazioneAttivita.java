@@ -22,28 +22,15 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
     @Getter
     private UUID id;
 
-    @Temporal(TemporalType.DATE)
-    @Getter
-    private Date dataAcquisto;
-
-    @Column(columnDefinition = "TINYINT(1)")
-    @Getter
-    @Setter
-    private boolean pagata;
-
-    @Column
-    @Getter
-    @Setter
-    private double costo;
-
     @ManyToOne
     @JoinColumn(name = "attivita_id")
     @Getter
     private SimpleAttivita attivita;
 
-    @ManyToOne
-    @JoinColumn(name = "utente_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "vendita_id")
     @Getter
-    private SimpleUtente utente;
+    @Setter
+    private SimpleVendita simpleVendita;
 
 }

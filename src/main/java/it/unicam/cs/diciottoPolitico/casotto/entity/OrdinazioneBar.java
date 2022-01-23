@@ -6,7 +6,7 @@ package it.unicam.cs.diciottoPolitico.casotto.entity;
  *
  * @see ArticoloBar
  */
-public interface OrdinazioneBar extends Vendita{
+public interface OrdinazioneBar {
 
     /**
      * Ritorna l' {@link ArticoloBar} associato all'ordinazione.
