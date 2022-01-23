@@ -37,21 +37,4 @@ public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
     @Setter
     private int quantita;
 
-    /**
-     * Metodo costruttore.
-     *
-     * @param articoloBar l'articolo bar associato alla riga
-     * @param prezzo il prezzo associato alla riga
-     * @param quantita la quantit&agrave; di articoli bar contenuti nella riga
-     */
-    public SimpleRigaCatalogoBar(ArticoloBar articoloBar, double prezzo, int quantita) {
-        this.id = UUID.randomUUID();
-        this.valore = articoloBar;
-        this.prezzo = prezzo;
-        this.quantita = quantita;
-    }
-
-    protected SimpleRigaCatalogoBar() {
-    }
-
 }
