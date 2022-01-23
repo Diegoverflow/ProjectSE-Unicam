@@ -40,15 +40,4 @@ public class SimpleRigaCatalogoAttivita implements RigaCatalogoAttivita {
     @Getter
     private List<PrenotazioneAttivita> prenotazioniAttivita;
 
-    public SimpleRigaCatalogoAttivita(Attivita attivita, double prezzo, int postiTotali) {
-        this.id = UUID.randomUUID();
-        this.valore = attivita;
-        this.prezzo = prezzo;
-        this.postiTotali = postiTotali;
-        this.prenotazioniAttivita = new ArrayList<>();
-    }
-
-    public SimpleRigaCatalogoAttivita() {
-    }
-
 }
