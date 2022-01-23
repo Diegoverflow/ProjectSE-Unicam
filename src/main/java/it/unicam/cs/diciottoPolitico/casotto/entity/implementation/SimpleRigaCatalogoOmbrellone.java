@@ -26,7 +26,7 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
     @Column
     private double prezzoOmbrellone;
 
-    @OneToMany(targetEntity = SimplePrenotazioneOmbrellone.class,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<SimplePrenotazioneOmbrellone> prenotazioni;
 
     @OneToOne(cascade = CascadeType.ALL)

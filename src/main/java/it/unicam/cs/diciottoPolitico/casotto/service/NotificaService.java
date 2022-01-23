@@ -33,7 +33,6 @@ public class NotificaService {
                     utente.addNotifica(notifica);
                     this.utenteRepository.save(utente); // necessario risalvare l' utente per salvare la coppia (utente_id,notifica_id) nella tabella della relazione molti a molti
                 });
-
     }
 
     private List<UUID> getUUIDs(List<SimpleUtente> utentiDestinatari) {

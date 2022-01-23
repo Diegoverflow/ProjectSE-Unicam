@@ -1,16 +1,13 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.FasciaOraria;
-import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.entity.Utente;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.UUID;
 
 @Entity
@@ -27,10 +24,10 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
     @Getter
     private FasciaOraria fasciaOraria;
 
-    @ManyToOne(targetEntity = SimpleOmbrellone.class)
+    @ManyToOne
     @JoinColumn(name = "ombrellone_id")
     @Getter
-    private Ombrellone ombrellone;
+    private SimpleOmbrellone ombrellone;
 
     @Temporal(TemporalType.DATE)
     @Getter
@@ -50,35 +47,9 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
     @Setter
     private boolean pagata;
 
-    @ManyToOne(targetEntity = SimpleUtente.class)
+    @ManyToOne
     @JoinColumn(name = "utente_id")
     @Getter
-    private Utente utente;
-
-    /**
-     *Costruisce una prenotazione.
-     * @param fasciaOraria del giorno in cui si vuole fissare la prenotazione
-     * @param ombrellonePrenotato ombrellone che si vuole prenotare
-     * @param dataPrenotazione nella quale la prenotazione &egrave; riservata
-     * @param costo della prenotazione
-    * @apiNote alla data di acquisto &egrave; assegnata la data odierna e
-     *          allo stato di pagamento &egrave; assegnato false di default
-     */
-    public SimplePrenotazioneOmbrellone(FasciaOraria fasciaOraria,
-                              Ombrellone ombrellonePrenotato,
-                                        Date dataPrenotazione,
-                              double costo, Utente utente) {
-        this.id = UUID.randomUUID();
-        this.fasciaOraria = fasciaOraria;
-        this.ombrellone = ombrellonePrenotato;
-        this.dataPrenotazione = dataPrenotazione;
-        this.costo = costo;
-        this.utente = utente;
-        this.dataAcquisto = new Date();
-        this.pagata = false;
-    }
-
-    protected SimplePrenotazioneOmbrellone() {
-    }
+    private SimpleUtente utente;
 
 }

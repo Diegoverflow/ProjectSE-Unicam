@@ -1,12 +1,10 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
-import it.unicam.cs.diciottoPolitico.casotto.entity.ArticoloBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoBar;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -22,10 +20,10 @@ public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
     @Getter
     private UUID id;
 
-    @OneToOne(targetEntity = SimpleArticoloBar.class)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "articolo_bar_id", referencedColumnName = "id")
     @Getter
-    private ArticoloBar valore;
+    private SimpleArticoloBar valore;
 
     @Column
     @Getter

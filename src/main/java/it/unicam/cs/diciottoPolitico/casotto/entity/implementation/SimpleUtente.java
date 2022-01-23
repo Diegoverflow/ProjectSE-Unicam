@@ -65,6 +65,18 @@ public class SimpleUtente implements Utente {
                             nullable = false, updatable = false)}
     )
     @Getter
-    private List<Notifica> notifiche;
+    private  List<Notifica> notifiche;
+
+    @Override
+    public boolean addNotifica(Notifica notifica) {
+        if (!this.notifiche.contains(Objects.requireNonNull(notifica, "Notifica null!")))
+            return this.notifiche.add(notifica);
+        return false;
+    }
+
+    @Override
+    public boolean removeNotifica(Notifica notifica) {
+        return this.notifiche.remove(notifica);
+    }
 
 }

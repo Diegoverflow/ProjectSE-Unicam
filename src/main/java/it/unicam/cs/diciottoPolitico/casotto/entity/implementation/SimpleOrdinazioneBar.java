@@ -1,15 +1,12 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.ArticoloBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.OrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.StatusOrdinazioneBar;
-import it.unicam.cs.diciottoPolitico.casotto.entity.Utente;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.UUID;
 import javax.persistence.*;
 
@@ -26,10 +23,10 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     @Getter
     private UUID id;
 
-    @ManyToOne(targetEntity = SimpleArticoloBar.class)
+    @ManyToOne
     @JoinColumn(name = "articolo_bar_id")
     @Getter
-    private ArticoloBar articoloBar;
+    private SimpleArticoloBar articoloBar;
 
     @Temporal(TemporalType.DATE)
     @Getter
@@ -50,31 +47,9 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     @Setter
     private StatusOrdinazioneBar statusOrdinazioneBar;
 
-    @ManyToOne(targetEntity = SimpleUtente.class)
+    @ManyToOne
     @JoinColumn(name = "utente_id")
     @Getter
-    private Utente utente;
-
-    /**
-     * Metodo costruttore.
-     *
-     * @param articoloBar l'articolo bar associato all'ordinazione
-     * @param costo       costo dell'ordinazione bar
-     * @param utente      l'utente che ha effettuato l'ordinazione bar
-     * @throws NullPointerException     se l'articolo bar o l'utente sono nulli
-     * @throws IllegalArgumentException se il costo è negativo
-     */
-    public SimpleOrdinazioneBar(ArticoloBar articoloBar, double costo, Utente utente) {
-        this.id = UUID.randomUUID();
-        this.dataAcquisto = new Date();
-        this.articoloBar = articoloBar;
-        this.costo = costo;
-        this.pagata = false;
-        this.statusOrdinazioneBar = StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO;
-        this.utente = utente;
-    }
-
-    protected SimpleOrdinazioneBar() {
-    }
+    private SimpleUtente utente;
 
 }

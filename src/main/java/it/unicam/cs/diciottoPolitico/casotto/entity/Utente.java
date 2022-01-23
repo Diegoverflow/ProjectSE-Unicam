@@ -87,6 +87,35 @@ public interface Utente {
     void setEmail(String email);
 
     /**
+     * Restituisce le notifiche presenti nella casella notifiche dell' utente.
+     *
+     * @return la lista di notifiche dell' utente
+     */
+    List<Notifica> getNotifiche();
+
+    /**
+     * Aggiunge una notifica alla casella notifiche dell' utente e
+     * verifica che l' operazione sia stata effettuata correttamente.
+     *
+     * @param notifica da aggiungere alla casella notifiche dell' utente
+     * @return {@code true} se la notifica &egrave; stata aggiunta,
+     * {@code false} altrimenti
+     * @throws NullPointerException          se la notifica specificata &egraveM {@code null}
+     */
+    boolean addNotifica(Notifica notifica); // TODO: spostare su HandlerUtenti
+
+    /**
+     * Rimuove la notifica specificata dalla casella notifiche dell' utente e
+     * verifica che l' operazione sia stata effettuata correttamente.
+     *
+     * @param notifica da rimuovere dalla casella notifiche dell' utente
+     * @return {@code true} se la notifica &egrave; stata rimossa,
+     * {@code false} altrimenti
+     * @throws NullPointerException          se la notifica specificata &egraveM {@code null}
+     */
+    boolean removeNotifica(Notifica notifica);  // TODO: Spostare su HandlerUtenti
+
+    /**
      * Confronta l' elemento specificato con questo utente.
      * Restituisce {@code true} se l' elemento specificato &egrave; anch' esso un utente ed
      * ha le stesse caratteristiche di questo utente.
