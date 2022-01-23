@@ -32,18 +32,4 @@ public class SimpleArticoloBar implements ArticoloBar {
     @Setter
     private String descrizione;
 
-    /**
-     * Metodo Costruttore.
-     *
-     * @param descrizione descrizione dell' articolo bar
-     * @throws NullPointerException se la descrizione &egrave; {@code null}
-     */
-    public SimpleArticoloBar(String descrizione) {
-        this.id = UUID.randomUUID();
-        this.descrizione = Objects.requireNonNull(descrizione, "La descrizione deve essere non nulla");
-    }
-
-    protected SimpleArticoloBar(){
-    }
-
 }
