@@ -18,12 +18,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class RigaCatalogoOmbrelloneService {
-    private final RigaCatalogoOmbrelloneRepository rigaCatalogoOmbrelloneRepository;
 
     @Autowired
-    public RigaCatalogoOmbrelloneService(RigaCatalogoOmbrelloneRepository rigaCatalogoOmbrelloneRepository){
-        this.rigaCatalogoOmbrelloneRepository = rigaCatalogoOmbrelloneRepository;
-    }
+    private RigaCatalogoOmbrelloneRepository rigaCatalogoOmbrelloneRepository;
 
     public List<SimpleRigaCatalogoOmbrellone> getRighe() {
         return rigaCatalogoOmbrelloneRepository.findAll();
