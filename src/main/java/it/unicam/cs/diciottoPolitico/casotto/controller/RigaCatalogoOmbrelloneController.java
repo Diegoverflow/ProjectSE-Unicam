@@ -14,15 +14,29 @@ public class RigaCatalogoOmbrelloneController {
     @Autowired
     private RigaCatalogoOmbrelloneService rigaCatalogoOmbrelloneService;
 
-    @PostMapping("/riga-catalogo-ombrellone")
-    public SimpleRigaCatalogoOmbrellone addRigaCatalogoOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
-        return this.rigaCatalogoOmbrelloneService.addRiga(rigaCatalogoOmbrellone);
-    }
-
-    @GetMapping("/riga-catalogo-ombrellone")
+    @GetMapping("/tutti")
     public List<SimpleRigaCatalogoOmbrellone> getRigheCatalogoOmbrellone(){
         return this.rigaCatalogoOmbrelloneService.getRighe();
     }
 
+    @GetMapping("/disponibili")
+    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(){
+        return this.rigaCatalogoOmbrelloneService.getRighe();
+    }
+
+    @PostMapping("/aggiungiNuovo")
+    public SimpleRigaCatalogoOmbrellone addRigaCatalogoOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
+        return this.rigaCatalogoOmbrelloneService.addRiga(rigaCatalogoOmbrellone);
+    }
+
+    @DeleteMapping("/elimina")
+    public void removeOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
+        this.rigaCatalogoOmbrelloneService.removeRiga(rigaCatalogoOmbrellone);
+    }
+
+    @PutMapping("/aggiorna")
+    public boolean updateOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
+        return this.rigaCatalogoOmbrelloneService.updateRiga(rigaCatalogoOmbrellone);
+    }
 
 }
