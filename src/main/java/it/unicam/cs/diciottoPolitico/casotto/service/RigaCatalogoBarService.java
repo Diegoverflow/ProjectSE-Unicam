@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class RigaCatalogoBarService {
@@ -21,19 +22,16 @@ public class RigaCatalogoBarService {
         return repository.findAll();
     }
 
+    public SimpleRigaCatalogoBar getRiga(UUID id){
+        return null;
+    }
+
     public SimpleRigaCatalogoBar addRiga(SimpleRigaCatalogoBar rigaCatalogoBar){
         return this.repository.save(rigaCatalogoBar);
     }
 
-    public void removeRiga(SimpleRigaCatalogoBar rigaCatalogoBar){
-        this.repository.delete(rigaCatalogoBar);
+    public void removeRiga(UUID idArticoloBar){
+        this.repository.delete(this.repository.getById(idArticoloBar));
     }
 
-    public boolean updateRiga (SimpleRigaCatalogoBar rigaCatalogoBar){
-        if (this.repository.findById(rigaCatalogoBar.getId()).isPresent()){
-            this.repository.save(rigaCatalogoBar);
-            return true;
-        }
-        return false;
-    }
 }

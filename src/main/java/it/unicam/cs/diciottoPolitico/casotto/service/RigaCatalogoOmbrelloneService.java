@@ -11,34 +11,20 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class RigaCatalogoOmbrelloneService {
+public class RigaCatalogoOmbrelloneService extends RigheCataloghiService<SimpleRigaCatalogoOmbrellone, RigaCatalogoOmbrelloneRepository> {
 
     @Autowired
     private RigaCatalogoOmbrelloneRepository rigaCatalogoOmbrelloneRepository;
 
-    public List<SimpleRigaCatalogoOmbrellone> getRighe() {
-        return rigaCatalogoOmbrelloneRepository.findAll();
+    public RigaCatalogoOmbrelloneService(RigaCatalogoOmbrelloneRepository repository) {
+        super(repository);
     }
 
     public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(Date data, FasciaOraria fasciaOraria) {
-        return this.getRighe().stream()
-                .filter(r->r.getPrenotazioni().stream().noneMatch(p->p.getDataPrenotazione().equals(data) && p.getFasciaOraria().equals(fasciaOraria)))
+        return this.getRighe().
+                stream().
+                filter(r->r.getPrenotazioni().stream().noneMatch(p->p.getDataPrenotazione().equals(data) && p.getFasciaOraria().equals(fasciaOraria)))
                 .collect(Collectors.toList());
     }
 
-    public SimpleRigaCatalogoOmbrellone addRiga(SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
-        return this.rigaCatalogoOmbrelloneRepository.save(rigaCatalogoOmbrellone);
-    }
-
-    public void removeRiga(SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
-        this.rigaCatalogoOmbrelloneRepository.delete(rigaCatalogoOmbrellone);
-    }
-
-    public boolean updateRiga (SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrelloneAggiornata){
-        if (this.rigaCatalogoOmbrelloneRepository.findById(rigaCatalogoOmbrelloneAggiornata.getId()).isPresent()){
-            this.rigaCatalogoOmbrelloneRepository.save(rigaCatalogoOmbrelloneAggiornata);
-            return true;
-        }
-        return false;
-    }
 }
