@@ -26,8 +26,10 @@ public abstract class AbstractService<C, R extends JpaRepository<C, UUID>> {
         return this.repository.save(rigaCatalogo);
     }
 
-    public void removeRiga(UUID id){
-        this.repository.delete(this.repository.getById(id));
+    public Optional<C> removeRiga(UUID id){
+        Optional<C> o = this.repository.findById(id);
+        o.ifPresent(this.repository::delete);
+        return o;
     }
 
 }
