@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public abstract class RigheCataloghiService<C, R extends JpaRepository<C, UUID>> {
+public abstract class AbstractService<C, R extends JpaRepository<C, UUID>> {
 
     private final R repository;
 
-    public RigheCataloghiService(R repository) {
+    public AbstractService(R repository) {
         this.repository = repository;
     }
 

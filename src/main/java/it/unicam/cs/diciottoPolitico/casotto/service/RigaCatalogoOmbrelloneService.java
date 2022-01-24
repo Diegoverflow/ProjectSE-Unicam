@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class RigaCatalogoOmbrelloneService extends RigheCataloghiService<SimpleRigaCatalogoOmbrellone, RigaCatalogoOmbrelloneRepository> {
+public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCatalogoOmbrellone, RigaCatalogoOmbrelloneRepository> {
 
     @Autowired
     private RigaCatalogoOmbrelloneRepository rigaCatalogoOmbrelloneRepository;
