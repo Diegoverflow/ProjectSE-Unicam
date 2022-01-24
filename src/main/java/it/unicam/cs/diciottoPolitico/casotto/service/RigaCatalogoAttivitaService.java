@@ -26,5 +26,19 @@ public class RigaCatalogoAttivitaService extends AbstractService<SimpleRigaCatal
                         r.getValore().getDataOrarioFine().before(A_)).collect(Collectors.toList());
     }
 
+    /*public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloneBy(UUID idOmbrellone){
+        return this.rigaCatalogoOmbrelloneRepository.
+                findAll().
+                stream().
+                parallel().
+                filter(rigaCatalogoOmbrellone ->
+                        rigaCatalogoOmbrellone.
+                                getValore().
+                                getId().
+                                equals(idOmbrellone)).
+                map(SimpleRigaCatalogoOmbrellone::getPrenotazioni).
+                findFirst().
+                orElse(null);
+    }*/
 
 }

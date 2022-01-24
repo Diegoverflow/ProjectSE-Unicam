@@ -28,6 +28,34 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
                 .collect(Collectors.toList());
     }
 
-    //public List<SimplePrenotazioneOmbrellone> getPrenotazioni
+    public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloneBy(UUID idOmbrellone){
+        /*List<SimplePrenotazioneOmbrellone> prenotazioni = new ArrayList<>();
+        this.rigaCatalogoOmbrelloneRepository.
+                findAll().
+                stream().
+                parallel().
+                filter(rigaCatalogoOmbrellone ->
+                        rigaCatalogoOmbrellone.
+                                getValore().
+                                getId().
+                                equals(idOmbrellone)).
+                                findFirst().
+                                ifPresent(rigaCatalogoOmbrellone ->
+                                        prenotazioni.
+                                        addAll(rigaCatalogoOmbrellone.getPrenotazioni()));
+        return prenotazioni;*/
+        return this.rigaCatalogoOmbrelloneRepository.
+                findAll().
+                stream().
+                parallel().
+                filter(rigaCatalogoOmbrellone ->
+                        rigaCatalogoOmbrellone.
+                                getValore().
+                                getId().
+                                equals(idOmbrellone)).
+                map(SimpleRigaCatalogoOmbrellone::getPrenotazioni).
+                findFirst().
+                orElse(null);
+    }
 
 }
