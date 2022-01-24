@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCatalogoOmbrellone, RigaCatalogoOmbrelloneRepository> {
 
     @Autowired
-    private RigaCatalogoOmbrelloneRepository rigaCatalogoOmbrelloneRepository;
-
     public RigaCatalogoOmbrelloneService(RigaCatalogoOmbrelloneRepository repository) {
         super(repository);
     }
@@ -29,7 +27,21 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
     }
 
     public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloneBy(UUID idOmbrellone){
-        /*List<SimplePrenotazioneOmbrellone> prenotazioni = new ArrayList<>();
+        return super.repository.
+                findAll().
+                stream().
+                parallel().
+                filter(rigaCatalogoOmbrellone ->
+                        rigaCatalogoOmbrellone.
+                                getValore().
+                                getId().
+                                equals(idOmbrellone)).
+                map(SimpleRigaCatalogoOmbrellone::getPrenotazioni).
+                findFirst().
+                orElse(null);
+    }
+
+    /*List<SimplePrenotazioneOmbrellone> prenotazioni = new ArrayList<>();
         this.rigaCatalogoOmbrelloneRepository.
                 findAll().
                 stream().
@@ -44,18 +56,5 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
                                         prenotazioni.
                                         addAll(rigaCatalogoOmbrellone.getPrenotazioni()));
         return prenotazioni;*/
-        return this.rigaCatalogoOmbrelloneRepository.
-                findAll().
-                stream().
-                parallel().
-                filter(rigaCatalogoOmbrellone ->
-                        rigaCatalogoOmbrellone.
-                                getValore().
-                                getId().
-                                equals(idOmbrellone)).
-                map(SimpleRigaCatalogoOmbrellone::getPrenotazioni).
-                findFirst().
-                orElse(null);
-    }
 
 }

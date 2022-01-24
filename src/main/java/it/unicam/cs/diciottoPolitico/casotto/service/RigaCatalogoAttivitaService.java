@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoAttivitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,14 +8,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class RigaCatalogoAttivitaService extends AbstractService<SimpleRigaCatalogoAttivita, RigaCatalogoAttivitaRepository>{
 
     @Autowired
-    private RigaCatalogoAttivitaRepository repository;
-
     public RigaCatalogoAttivitaService(RigaCatalogoAttivitaRepository repository) {
         super(repository);
     }
@@ -26,19 +26,19 @@ public class RigaCatalogoAttivitaService extends AbstractService<SimpleRigaCatal
                         r.getValore().getDataOrarioFine().before(A_)).collect(Collectors.toList());
     }
 
-    /*public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloneBy(UUID idOmbrellone){
-        return this.rigaCatalogoOmbrelloneRepository.
+    public List<SimplePrenotazioneAttivita> getPrenotazioniOmbrelloneBy(UUID idAttivita){
+        return super.repository.
                 findAll().
                 stream().
                 parallel().
-                filter(rigaCatalogoOmbrellone ->
-                        rigaCatalogoOmbrellone.
+                filter(rigaCatalogoAttivits ->
+                        rigaCatalogoAttivits.
                                 getValore().
                                 getId().
-                                equals(idOmbrellone)).
-                map(SimpleRigaCatalogoOmbrellone::getPrenotazioni).
+                                equals(idAttivita)).
+                map(SimpleRigaCatalogoAttivita::getPrenotazioniAttivita).
                 findFirst().
                 orElse(null);
-    }*/
+    }
 
 }

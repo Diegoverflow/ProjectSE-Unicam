@@ -31,7 +31,7 @@ public class SimpleRigaCatalogoAttivita implements RigaCatalogoAttivita {
     @Column
     private int postiTotali;
 
-    @OneToMany(targetEntity = SimplePrenotazioneAttivita.class,fetch = FetchType.LAZY,mappedBy = "id")
-    private List<PrenotazioneAttivita> prenotazioniAttivita;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "id")
+    private List<SimplePrenotazioneAttivita> prenotazioniAttivita;
 
 }
