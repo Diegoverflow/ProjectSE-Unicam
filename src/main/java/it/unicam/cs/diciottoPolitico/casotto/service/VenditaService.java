@@ -10,13 +10,13 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class VenditaService {
-
-    private final VenditaRepository venditaRepository;
+public class VenditaService extends AbstractService<SimpleVendita, VenditaRepository>{
 
     @Autowired
-    public VenditaService(VenditaRepository venditaRepository) {
-        this.venditaRepository = venditaRepository;
+    private VenditaRepository venditaRepository;
+
+    public VenditaService(VenditaRepository repository) {
+        super(repository);
     }
 
     public List<SimpleVendita> getVenditeClienteDaPagare(UUID idUtente){
@@ -29,20 +29,6 @@ public class VenditaService {
         
     }
 
-    public void saldaVendita(SimpleVendita vendita){
-        this.venditaRepository.findById(vendita.getId()).ifPresent(v->v.setPagata(true));
-    }
-    
-    public SimpleVendita addVendita(SimpleVendita vendita){
-        return this.venditaRepository.save(vendita);
-    }
-
-    public void removeVendita(SimpleVendita vendita){
-        this.venditaRepository.delete(vendita);
-    }
-
-    public void updateVendita(SimpleVendita vendita){
-        // TODO: 24/01/22 sul controllere utilizzare "addVendita" 
-    }
+    // TODO: 24/01/22 salda vendita su controller
 
 }
