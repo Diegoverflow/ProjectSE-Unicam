@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 /**
@@ -17,23 +14,26 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "area_infrastruttura")
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AreaInfrastruttura {
 
     @Id
+    @GeneratedValue
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
+    @Column(columnDefinition = "BINARY(16)", updatable = false)
     @Getter
     private UUID id;
 
     @Column
     @Getter
     @Setter
+    @EqualsAndHashCode.Include
     private String nome;
 
     @Column
     @Getter
     @Setter
+    @EqualsAndHashCode.Include
     private String descrizione;
 
 
