@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public abstract class AbstractService<C, R extends JpaRepository<C, UUID>> {
 
-    private final R repository;
+    protected final R repository;
 
     public AbstractService(R repository) {
         this.repository = repository;
