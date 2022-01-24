@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/catolo/ombrelloni")
+@RequestMapping("/catalogo/ombrelloni")
 public class RigaCatalogoOmbrelloneController {
 
     @Autowired
@@ -24,8 +24,8 @@ public class RigaCatalogoOmbrelloneController {
         return this.rigaCatalogoOmbrelloneService.getRighe();
     }
 
-    @PostMapping("/aggiungiNuovo")
-    public SimpleRigaCatalogoOmbrellone addRigaCatalogoOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
+    @PostMapping("/aggiungi-nuovo")
+    public SimpleRigaCatalogoOmbrellone addRigaCatalogoOmbrellone(@PathVariable SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
         return this.rigaCatalogoOmbrelloneService.addRiga(rigaCatalogoOmbrellone);
     }
 

@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
+import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoOmbrellone;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,10 +28,15 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
     private double prezzoOmbrellone;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "riga_id")
     private List<SimplePrenotazioneOmbrellone> prenotazioni;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ombrellone_id")
     private SimpleOmbrellone valore;
+
+    protected SimpleRigaCatalogoOmbrellone(){
+        this.prenotazioni = new ArrayList<>();
+    }
 
 }

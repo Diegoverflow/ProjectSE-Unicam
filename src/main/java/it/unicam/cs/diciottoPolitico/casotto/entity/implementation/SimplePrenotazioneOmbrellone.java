@@ -12,34 +12,28 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "prenotazione_ombrellone")
+@Getter
+@Setter
 public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
 
     @Id
+    @GeneratedValue
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)",updatable = false,unique = true,nullable = false)
-    @Getter
+    @Column(columnDefinition = "BINARY(16)",updatable = false)
     private UUID id;
 
     @Enumerated(EnumType.STRING)
-    @Getter
-    @Setter
     private FasciaOraria fasciaOraria;
 
     @ManyToOne
     @JoinColumn(name = "ombrellone_id")
-    @Getter
-    @Setter
     private SimpleOmbrellone ombrellone;
 
     @Temporal(TemporalType.DATE)
-    @Getter
-    @Setter
     private Date dataPrenotazione;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vendita_id")
-    @Getter
-    @Setter
     private SimpleVendita vendita;
 
 }
