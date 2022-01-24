@@ -30,7 +30,7 @@ public class InfrastrutturaController {
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
-     * Restituisce la lista di tutte le aree presenti nello chalet.
+     * Restituisce la lista di tutte le aree dell' infrastruttura presenti nello chalet.
      *
      * @return la lista di tutte le aree presenti nello chalet
      */
@@ -59,8 +59,8 @@ public class InfrastrutturaController {
      * Aggiunge l' {@link AreaInfrastruttura} contenuta nel {@link RequestBody} della richiesta HTTP all' infrastruttura dello chalet.
      * Restituisce l' {@code AreaInfrastruttura} aggiunta all' infrastruttura dello chalet.
      *
-     * @param areaInfrastruttura
-     * @return
+     * @param areaInfrastruttura l' area da aggiungere all' infrastruttura dello chalet
+     * @return l' {@code AreaInfrastruttura} aggiunta all' infrastruttura dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
      *                                 un' {@code AreaInfrastruttura} gi&agrave; presente nell' infrastruttura dello chalet
      */
