@@ -29,6 +29,8 @@ public class VenditaService extends AbstractService<SimpleVendita, VenditaReposi
         
     }
 
-    // TODO: 24/01/22 salda vendita su controller
+    public void saldaVendita(UUID id){
+        this.venditaRepository.findById(id).ifPresent(vendita->vendita.setPagata(true));
+    }
 
 }
