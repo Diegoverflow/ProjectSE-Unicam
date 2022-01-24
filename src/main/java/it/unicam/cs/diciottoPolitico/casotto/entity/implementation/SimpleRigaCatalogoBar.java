@@ -1,6 +1,5 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoBar;
 import lombok.Getter;
 import lombok.Setter;
