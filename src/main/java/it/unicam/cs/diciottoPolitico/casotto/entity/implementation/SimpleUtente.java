@@ -16,43 +16,32 @@ import java.util.*;
  */
 @Entity
 @Table(name = "utente")
+@Getter
+@Setter
 @EqualsAndHashCode
 public class SimpleUtente implements Utente {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
-    @Getter
     private UUID id;
 
     @Column
-    @Getter
-    @Setter
     private String nome;
 
     @Column
-    @Getter
-    @Setter
     private String cognome;
 
     @Column
-    @Getter
-    @Setter
     private String password;
 
     @Column
-    @Getter
-    @Setter
     private String cellulare;
 
     @Column
-    @Getter
-    @Setter
     private String email;
 
     @Enumerated(EnumType.STRING)
-    @Getter
-    @Setter
     private RuoloUtente ruoloUtente;
 
     @ManyToMany(cascade = {CascadeType.PERSIST} , targetEntity = SimpleNotifica.class, fetch = FetchType.LAZY)
@@ -64,8 +53,6 @@ public class SimpleUtente implements Utente {
                     @JoinColumn(name = "notifica_id", referencedColumnName = "id",
                             nullable = false, updatable = false)}
     )
-    @Getter
-    @Setter
     private  List<Notifica> notifiche;
 
     // TODO: 23/01/22 rimuovere add e remove notifica

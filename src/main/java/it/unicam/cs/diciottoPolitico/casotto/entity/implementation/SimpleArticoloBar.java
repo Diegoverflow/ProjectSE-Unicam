@@ -17,18 +17,17 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="articolo_bar")
+@Getter
+@Setter
 @EqualsAndHashCode
 public class SimpleArticoloBar implements ArticoloBar {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
-    @Getter
+    @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
     @Column
-    @Getter
-    @Setter
     private String descrizione;
 
 }

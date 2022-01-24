@@ -19,25 +19,22 @@ import java.util.*;
 
 @Entity
 @Table(name = "attivita")
+@Getter
+@Setter
 @EqualsAndHashCode
 public class SimpleAttivita implements Attivita {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
-    @Getter
+    @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
     @Temporal(TemporalType.DATE)
-    @Getter
     private Date dataOrarioInizio;
 
     @Temporal(TemporalType.DATE)
-    @Getter
     private Date dataOrarioFine;
 
     @Column
-    @Getter
-    @Setter
     private String descrizione;
 }

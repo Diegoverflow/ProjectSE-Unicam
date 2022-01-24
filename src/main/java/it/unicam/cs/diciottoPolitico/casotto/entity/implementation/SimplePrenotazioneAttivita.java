@@ -13,25 +13,21 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "prenotazione_attivita")
+@Getter
+@Setter
 public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", updatable = false, unique = true, nullable = false)
-    @Getter
-    @Setter
+    @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "attivita_id")
-    @Getter
-    @Setter
     private SimpleAttivita attivita;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vendita_id")
-    @Getter
-    @Setter
     private SimpleVendita vendita;
 
 }

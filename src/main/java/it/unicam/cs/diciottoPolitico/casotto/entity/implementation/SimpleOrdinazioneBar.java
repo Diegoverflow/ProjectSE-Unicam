@@ -15,29 +15,24 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ordinazione_bar")
+@Getter
+@Setter
 public class SimpleOrdinazioneBar implements OrdinazioneBar {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
-    @Getter
+    @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "articolo_bar_id")
-    @Getter
-    @Setter
     private SimpleArticoloBar articoloBar;
 
     @Enumerated(EnumType.STRING)
-    @Getter
-    @Setter
     private StatusOrdinazioneBar statusOrdinazioneBar;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vendita_id")
-    @Getter
-    @Setter
     private SimpleVendita vendita;
 
 }

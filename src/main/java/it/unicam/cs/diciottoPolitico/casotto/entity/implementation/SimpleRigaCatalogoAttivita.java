@@ -12,30 +12,26 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "riga_catalogo_attivita")
+@Getter
+@Setter
 public class SimpleRigaCatalogoAttivita implements RigaCatalogoAttivita {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false, unique = true, nullable = false)
-    @Getter
     private UUID id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "attivita_id", referencedColumnName = "id")
-    @Getter
     private SimpleAttivita valore;//todo brutto nome
 
     @Column
-    @Getter
-    @Setter
     private double prezzo;
 
     @Column
-    @Getter
     private int postiTotali;
 
     @OneToMany(targetEntity = SimplePrenotazioneAttivita.class,fetch = FetchType.LAZY,mappedBy = "id")
-    @Getter
     private List<PrenotazioneAttivita> prenotazioniAttivita;
 
 }

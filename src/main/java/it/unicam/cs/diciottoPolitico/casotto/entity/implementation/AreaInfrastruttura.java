@@ -14,6 +14,8 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "area_infrastruttura")
+@Getter
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AreaInfrastruttura {
 
@@ -21,18 +23,13 @@ public class AreaInfrastruttura {
     @GeneratedValue
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
-    @Getter
     private UUID id;
 
     @Column
-    @Getter
-    @Setter
     @EqualsAndHashCode.Include
     private String nome;
 
     @Column
-    @Getter
-    @Setter
     @EqualsAndHashCode.Include
     private String descrizione;
 
