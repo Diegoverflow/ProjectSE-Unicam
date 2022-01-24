@@ -5,36 +5,26 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoAttivitaRepo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-public class RigaCatalogoAttivitaService {
-
-    private final RigaCatalogoAttivitaRepository repository;
+public class RigaCatalogoAttivitaService extends AbstractService<SimpleRigaCatalogoAttivita, RigaCatalogoAttivitaRepository>{
 
     @Autowired
+    private RigaCatalogoAttivitaRepository repository;
+
     public RigaCatalogoAttivitaService(RigaCatalogoAttivitaRepository repository) {
-        this.repository = repository;
+        super(repository);
     }
 
-    public List<SimpleRigaCatalogoAttivita> getRighe() {
-        return repository.findAll();
+    public List<SimpleRigaCatalogoAttivita> getAttivitaLibereDa_A_(Date Da_, Date A_){
+        return this.repository.findAll().
+                stream().
+                filter(r->r.getValore().getDataOrarioInizio().after(Da_)&&
+                        r.getValore().getDataOrarioFine().before(A_)).collect(Collectors.toList());
     }
 
-    public SimpleRigaCatalogoAttivita addRiga(SimpleRigaCatalogoAttivita rigaCatologoAttivita){
-        return this.repository.save(rigaCatologoAttivita);
-    }
-
-    public void removeRiga(SimpleRigaCatalogoAttivita rigaCatologoAttivita){
-        this.repository.delete(rigaCatologoAttivita);
-    }
-
-    public boolean updateRiga (SimpleRigaCatalogoAttivita rigaCatologoAttivitaAggiornata){
-        if (this.repository.findById(rigaCatologoAttivitaAggiornata.getId()).isPresent()){
-            this.repository.save(rigaCatologoAttivitaAggiornata);
-            return true;
-        }
-        return false;
-    }
 
 }

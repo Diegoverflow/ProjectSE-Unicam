@@ -2,6 +2,7 @@ package it.unicam.cs.diciottoPolitico.casotto.service;
 
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.FasciaOraria;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,7 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
                 filter(r->r.getPrenotazioni().stream().noneMatch(p->p.getDataPrenotazione().equals(data) && p.getFasciaOraria().equals(fasciaOraria)))
                 .collect(Collectors.toList());
     }
+
+    //public List<SimplePrenotazioneOmbrellone> getPrenotazioni
 
 }
