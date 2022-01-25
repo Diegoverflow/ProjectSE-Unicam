@@ -1,17 +1,49 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
+import it.unicam.cs.diciottoPolitico.casotto.entity.*;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class PrenotazioneOmbrelloneService {
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    private final PrenotazioneOmbrelloneRepository repository;
+@Service
+public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenotazioneOmbrellone,PrenotazioneOmbrelloneRepository>{
+
+    private final RigaCatalogoOmbrelloneService catalogoOmbrelloni;
 
     @Autowired
-    public PrenotazioneOmbrelloneService(PrenotazioneOmbrelloneRepository repository) {
-        this.repository = repository;
+    public PrenotazioneOmbrelloneService(PrenotazioneOmbrelloneRepository repository, RigaCatalogoOmbrelloneService catalogoOmbrelloni) {
+        super(repository);
+        this.catalogoOmbrelloni = catalogoOmbrelloni;
     }
-    // TODO: 24/01/22 completare 
+
+    public List<SimpleRigaCatalogoOmbrellone> getRigheOmbrelloniDisponibili(Date data, FasciaOraria fasciaOraria) {
+        return catalogoOmbrelloni.getAll()
+                .stream()
+                .filter(riga -> this.filtraBy(data, fasciaOraria).stream().noneMatch(p -> p.getOmbrellone().equals(riga.getValore())))
+                .collect(Collectors.toList());
+    }
+
+    public List<SimplePrenotazioneOmbrellone> filtraBy(Date data, FasciaOraria fasciaOraria) {
+        return super.getAll().stream()
+                .filter(p -> p.getDataPrenotazione().equals(data) && p.getFasciaOraria().equals(fasciaOraria))
+                .collect(Collectors.toList());
+    }
+
+    public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloneDaPagare() {
+        return super.getBy(p -> !p.getVendita().isPagata());
+    }
+
+    public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrellonePagate() {
+        return super.getBy(p -> p.getVendita().isPagata());
+    }
+
+    public List<SimplePrenotazioneOmbrellone> getPrenotazioneOmbrelloneBy(Utente utente) {
+        return super.getBy(p -> p.getVendita().getUtente().equals(utente));
+    }
 }

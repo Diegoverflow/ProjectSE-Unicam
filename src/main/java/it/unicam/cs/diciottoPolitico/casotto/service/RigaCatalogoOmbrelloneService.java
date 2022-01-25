@@ -43,4 +43,8 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
         return super.getBy(riga -> riga.getPrezzoOmbrellone() == prezzo);
     }
 
+    public List<SimpleRigaCatalogoOmbrellone> getRigheCatalogoOmbrelloneBy(String codiceSpiaggia) {
+        return super.getBy(riga -> riga.getValore().getCodiceSpiaggia().equals(codiceSpiaggia));
+    }
+
 }
