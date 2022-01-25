@@ -48,14 +48,14 @@ public class OrdinazioneController {
      * @return l' ordinazione bar avente id specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna {@code SimpleOrdinazioneBar} con id specificato
      */
-    @GetMapping("/ordinazioni/{id}")
+   /* @GetMapping("/ordinazioni/{id}")
     public SimpleOrdinazioneBar getOrdinazioneBy(@PathVariable UUID id) {
         if (this.ordinazioneBarService.getOrdinazioneBy(id).isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return this.ordinazioneBarService.getOrdinazioneBy(id).get();
     }
 
-    /**
+    *//**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#POST}.
      * Aggiunge la {@link SimpleOrdinazioneBar} contenuta nel {@link RequestBody} della richiesta HTTP all dello chalet.
      * Restituisce l' {@code AreaInfrastruttura} aggiunta all' infrastruttura dello chalet.
@@ -64,12 +64,12 @@ public class OrdinazioneController {
      * @return l' {@code AreaInfrastruttura} aggiunta all' infrastruttura dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
      *                                 un' {@code AreaInfrastruttura} gi&agrave; presente nell' infrastruttura dello chalet
-     */
+     *//*
     @PostMapping("/ordinazioni/{id}")
     public SimpleOrdinazioneBar addOrdinazione(@PathVariable UUID id, @RequestBody SimpleOrdinazioneBar ordinazioneBar) {
         Optional<SimpleOrdinazioneBar> foundOrdinazione = this.ordinazioneBarService.addOrdinazione(ordinazioneBar);
         if (foundOrdinazione.isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         return foundOrdinazione.get();
-    }
+    }*/
 }

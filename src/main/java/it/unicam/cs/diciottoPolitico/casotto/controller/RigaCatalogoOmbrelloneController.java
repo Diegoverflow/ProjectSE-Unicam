@@ -26,7 +26,7 @@ public class RigaCatalogoOmbrelloneController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return o;
     }
-
+/*
     @GetMapping("/ombrelloni/disponibili")
     public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@RequestParam Date data, @RequestParam FasciaOraria fasciaOraria){
         List<SimpleRigaCatalogoOmbrellone> o = this.rigaCatalogoOmbrelloneService.getOmbrelloniDisponibili(data,fasciaOraria);
@@ -49,6 +49,6 @@ public class RigaCatalogoOmbrelloneController {
     @PutMapping("/ombrelloni")
     public boolean updateOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone rigaCatalogoOmbrellone){
         return this.rigaCatalogoOmbrelloneService.updateRiga(rigaCatalogoOmbrellone);
-    }
+    }*/
 
 }

@@ -36,7 +36,8 @@ public class InfrastrutturaController {
      */
     @GetMapping("/aree")
     public List<AreaInfrastruttura> getAllAree() {
-        return this.infrastrutturaService.getAllAree();
+        //return this.infrastrutturaService.getAllAree();
+        return null;
     }
 
     /**
@@ -64,15 +65,15 @@ public class InfrastrutturaController {
      * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
      *                                 un' {@code AreaInfrastruttura} gi&agrave; presente nell' infrastruttura dello chalet
      */
-    @PostMapping("/aree")
+    /*@PostMapping("/aree")
     public AreaInfrastruttura addArea(@RequestBody AreaInfrastruttura areaInfrastruttura) {
         Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.addArea(areaInfrastruttura);
         if (foundArea.isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         return foundArea.get();
-    }
-
-    /**
+    }*/
+/*
+    *//**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#PUT}.
      * Aggiorna l' {@link AreaInfrastruttura} specificata contenuta nel {@link RequestBody}.
      * Restituisce l' {@code AreaInfrastruttura} aggiornata nell' infrastruttura dello chalet.
@@ -80,7 +81,7 @@ public class InfrastrutturaController {
      * @param areaInfrastruttura l' {@code AreaInfrastruttura} da aggiornare
      * @return l' {@code AreaInfrastruttura} aggiornata nell' infrastruttura dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se l' {@code AreaInfrastruttura} non viene trovata
-     */
+     *//*
     @PutMapping("/aree")
     public AreaInfrastruttura updateArea(@RequestBody AreaInfrastruttura areaInfrastruttura) {
         Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.updateArea(areaInfrastruttura);
@@ -89,7 +90,7 @@ public class InfrastrutturaController {
         return foundArea.get();
     }
 
-    /**
+    *//**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#DELETE}.
      * Rimuove dall' infrastruttura dello chalet, l' {@link AreaInfrastruttura} avente l' id specificato come {@link PathVariable}.
      * Restituisce l' {@code AreaInfrastruttura} rimossa dall' infrastruttura dello chalet.
@@ -97,13 +98,13 @@ public class InfrastrutturaController {
      * @param id l' id dell' {@code AreaInfrastruttura} da eliminare
      * @return l' {@code AreaInfrastruttura} rimossa dall' infrastruttura dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
-     */
+     *//*
     @DeleteMapping("/aree/{id}")
     public AreaInfrastruttura removeArea(@PathVariable UUID id) {
         Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.removeAreaBy(id);
         if (foundArea.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return foundArea.get();
-    }
+    }*/
 
 }

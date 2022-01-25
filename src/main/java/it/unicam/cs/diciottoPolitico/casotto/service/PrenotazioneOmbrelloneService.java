@@ -35,15 +35,13 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
                 .collect(Collectors.toList());
     }
 
-    public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloneDaPagare() {
-        return super.getBy(p -> !p.getVendita().isPagata());
+    public List<SimplePrenotazioneOmbrellone> filtraBy(boolean statoPagamento) {
+        return super.getBy(p -> p.getVendita().isPagata() == statoPagamento);
     }
 
-    public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrellonePagate() {
-        return super.getBy(p -> p.getVendita().isPagata());
-    }
-
-    public List<SimplePrenotazioneOmbrellone> getPrenotazioneOmbrelloneBy(Utente utente) {
+    public List<SimplePrenotazioneOmbrellone> filtraBy(Utente utente) {
         return super.getBy(p -> p.getVendita().getUtente().equals(utente));
     }
+
+
 }

@@ -24,8 +24,8 @@ public class RigaCatalogoAttivitaService extends AbstractService<SimpleRigaCatal
         return super.getBy(riga -> riga.getPostiTotali()== riga.getPostiOccupati());
     }
 
-    public List<SimpleRigaCatalogoAttivita> filtraBy(double prezzo){
-        return super.getBy(riga->riga.getPrezzo()==prezzo);
+    public List<SimpleRigaCatalogoAttivita> filtraBy(double prezzoLimite){
+        return super.getBy(riga->riga.getPrezzo()<=prezzoLimite);
     }
 
     public List<SimpleRigaCatalogoAttivita> filtraBy(int numeroMaxPostiTotali){

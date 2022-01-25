@@ -17,12 +17,12 @@ public class RigaCatalogoBarService extends AbstractService<SimpleRigaCatalogoBa
         super(repository);
     }
 
-    public List<SimpleRigaCatalogoBar> filtraBy(int quantita){
-        return super.getBy(p->p.getQuantita()==quantita);
+    public List<SimpleRigaCatalogoBar> filtraBy(int quantitaLimite){
+        return super.getBy(p->p.getQuantita()<=quantitaLimite);
     }
 
-    public List<SimpleRigaCatalogoBar> filtraBy(double prezzo){
-        return super.getBy(p->p.getPrezzo()==prezzo);
+    public List<SimpleRigaCatalogoBar> filtraBy(double prezzoLimite){
+        return super.getBy(p->p.getPrezzo()<=prezzoLimite);
     }
 
     public Optional<SimpleRigaCatalogoBar> getRigaBy(SimpleArticoloBar articoloBar){
