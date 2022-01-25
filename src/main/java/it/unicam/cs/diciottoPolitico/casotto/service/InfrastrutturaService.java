@@ -32,12 +32,7 @@ public class InfrastrutturaService extends AbstractService<AreaInfrastruttura, I
      * oppure un empty {@code Optional} se non viene trovata nessun' area con il nome specificato
      */
     public Optional<AreaInfrastruttura> getAreaByName(String nome) {
-        // TODO: completare
-        /*return this.infrastrutturaRepository.findAll()
-                .stream()
-                .filter(a -> a.getNome().equals(nome))
-                .findFirst();*/
-        return Optional.empty();
+        return super.getBy(a -> a.getNome().equals(nome)).stream().findFirst();
     }
 
 }

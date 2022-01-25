@@ -5,32 +5,34 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.VenditaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
-public class VenditaService extends AbstractService<SimpleVendita, VenditaRepository>{
+public class VenditaService extends AbstractService<SimpleVendita, VenditaRepository> {
 
     @Autowired
-    private VenditaRepository venditaRepository;
-
     public VenditaService(VenditaRepository repository) {
         super(repository);
     }
 
-    public List<SimpleVendita> getVenditeClienteDaPagare(UUID idUtente){
-        return this.venditaRepository.
-                findAll().
-                stream().
-                parallel().
-                filter(vendita->vendita.getUtente().getId().equals(idUtente)).
-                collect(Collectors.toList());
-        
+    public List<SimpleVendita> getVenditeClienteDaPagare(UUID idUtente) {
+        return super.getBy(vendita -> vendita.getUtente().getId().equals(idUtente));
     }
 
-    public void saldaVendita(UUID id){
-        this.venditaRepository.findById(id).ifPresent(vendita->vendita.setPagata(true));
+    public List<SimpleVendita> filtraBy(double costo) {
+        return super.getBy(v -> v.getCosto() == costo);
+    }
+
+    public List<SimpleVendita> filtraBy(Date data) {
+        return super.getBy(v -> v.getDataAcquisto().equals(data));
+    }
+
+    // TODO: Testare after e before per vedere se equals è necessario
+    public List<SimpleVendita> filtraDaA(Date inizio, Date fine) {
+        return super.getBy(v -> (v.getDataAcquisto().equals(inizio) || v.getDataAcquisto().equals(fine))
+                && (v.getDataAcquisto().after(inizio) && v.getDataAcquisto().before(fine)));
     }
 
 }
