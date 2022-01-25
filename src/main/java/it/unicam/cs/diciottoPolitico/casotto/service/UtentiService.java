@@ -12,7 +12,7 @@ import java.util.List;
 public class UtentiService extends AbstractService<SimpleUtente, UtenteRepository>{
 
     @Autowired
-    protected UtentiService(UtenteRepository repository) {
+    public UtentiService(UtenteRepository repository) {
         super(repository);
     }
 

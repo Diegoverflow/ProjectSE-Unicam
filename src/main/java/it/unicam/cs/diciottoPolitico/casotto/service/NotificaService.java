@@ -14,14 +14,13 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class NotificaService {
+public class NotificaService extends AbstractService<SimpleNotifica,NotificaRepository>{
 
-    //private final NotificaRepository notificaRepository;
     private final UtenteRepository utenteRepository;
 
     @Autowired
     public NotificaService(NotificaRepository notificaRepository, UtenteRepository utenteRepository) {
-        //this.notificaRepository = notificaRepository;
+        super(notificaRepository);
         this.utenteRepository = utenteRepository;
     }
 

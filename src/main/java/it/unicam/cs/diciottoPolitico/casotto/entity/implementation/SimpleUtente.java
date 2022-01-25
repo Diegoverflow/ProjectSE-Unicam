@@ -21,8 +21,6 @@ import java.util.*;
 public class SimpleUtente implements Utente {
 
     @Id
-    @GeneratedValue
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
@@ -54,5 +52,10 @@ public class SimpleUtente implements Utente {
                             nullable = false, updatable = false)}
     )
     private  List<SimpleNotifica> notifiche;
+
+    protected SimpleUtente(){
+        this.id = UUID.randomUUID();
+        this.notifiche = new ArrayList<>();
+    }
 
 }

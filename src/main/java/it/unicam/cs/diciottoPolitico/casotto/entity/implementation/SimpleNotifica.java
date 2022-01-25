@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,8 +18,6 @@ import java.util.UUID;
 public class SimpleNotifica implements Notifica {
 
     @Id
-    @GeneratedValue
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
@@ -28,4 +27,9 @@ public class SimpleNotifica implements Notifica {
     @ManyToMany(mappedBy = "notifiche", fetch = FetchType.LAZY)
     @NonNull
     private List<SimpleUtente> utenti;
+
+    protected SimpleNotifica(){
+        this.id = UUID.randomUUID();
+        this.utenti = new ArrayList<>();
+    }
 }
