@@ -28,10 +28,7 @@ public interface RigaCatalogoAttivita extends RigaCatalogo<Attivita> {
      */
     int getPostiTotali();
 
-    /**
-     * Ottieni la lista delle prenotazioni associate associate all'attivit&agrave;
-     * @return la lista delle prenotazioni associate associate all'attivit&agrave;
-     */
-    List<PrenotazioneAttivita> getPrenotazioniAttivita();
+    int getPostiOccupati();
 
+    void setPostiOccupati(int postiOccupati);
 }
