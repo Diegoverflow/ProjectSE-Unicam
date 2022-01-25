@@ -1,6 +1,5 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.Notifica;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RuoloUtente;
 import it.unicam.cs.diciottoPolitico.casotto.entity.Utente;
 import lombok.EqualsAndHashCode;
@@ -45,7 +44,7 @@ public class SimpleUtente implements Utente {
     @Enumerated(EnumType.STRING)
     private RuoloUtente ruoloUtente;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST} , targetEntity = SimpleNotifica.class, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinTable(name = "utente_notifica",
             joinColumns = {
                     @JoinColumn(name = "utente_id", referencedColumnName = "id",
@@ -54,6 +53,6 @@ public class SimpleUtente implements Utente {
                     @JoinColumn(name = "notifica_id", referencedColumnName = "id",
                             nullable = false, updatable = false)}
     )
-    private  List<Notifica> notifiche;
+    private  List<SimpleNotifica> notifiche;
 
 }

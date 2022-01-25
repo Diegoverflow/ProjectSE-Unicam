@@ -1,7 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
 import java.util.List;
-import java.util.Queue;
 import java.util.UUID;
 
 /**

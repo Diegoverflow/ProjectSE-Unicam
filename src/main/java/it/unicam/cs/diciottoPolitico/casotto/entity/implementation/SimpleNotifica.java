@@ -1,8 +1,8 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.Notifica;
-import it.unicam.cs.diciottoPolitico.casotto.entity.Utente;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -25,6 +25,7 @@ public class SimpleNotifica implements Notifica {
     @Column(updatable = false)
     private String messaggio;
 
-    @ManyToMany(mappedBy = "notifiche", targetEntity = SimpleUtente.class, fetch = FetchType.LAZY)
-    private List<Utente> utenti;
+    @ManyToMany(mappedBy = "notifiche", fetch = FetchType.LAZY)
+    @NonNull
+    private List<SimpleUtente> utenti;
 }
