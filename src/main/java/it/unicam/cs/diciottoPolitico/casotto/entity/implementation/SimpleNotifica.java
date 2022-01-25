@@ -17,6 +17,7 @@ import java.util.UUID;
 public class SimpleNotifica implements Notifica {
 
     @Id
+    @GeneratedValue
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;

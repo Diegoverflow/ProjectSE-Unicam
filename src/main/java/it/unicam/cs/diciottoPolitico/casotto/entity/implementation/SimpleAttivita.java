@@ -25,6 +25,7 @@ import java.util.*;
 public class SimpleAttivita implements Attivita {
 
     @Id
+    @GeneratedValue
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;

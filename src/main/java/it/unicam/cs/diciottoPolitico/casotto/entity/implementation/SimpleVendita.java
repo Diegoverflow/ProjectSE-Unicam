@@ -16,6 +16,7 @@ import java.util.UUID;
 public class SimpleVendita implements Vendita {
 
     @Id
+    @GeneratedValue
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;

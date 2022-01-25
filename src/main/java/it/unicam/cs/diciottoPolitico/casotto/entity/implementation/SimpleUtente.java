@@ -22,6 +22,7 @@ import java.util.*;
 public class SimpleUtente implements Utente {
 
     @Id
+    @GeneratedValue
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
     private UUID id;
@@ -54,19 +55,5 @@ public class SimpleUtente implements Utente {
                             nullable = false, updatable = false)}
     )
     private  List<Notifica> notifiche;
-
-    // TODO: 23/01/22 rimuovere add e remove notifica
-
-    @Override
-    public boolean addNotifica(Notifica notifica) {
-        if (!this.notifiche.contains(Objects.requireNonNull(notifica, "Notifica null!")))
-            return this.notifiche.add(notifica);
-        return false;
-    }
-
-    @Override
-    public boolean removeNotifica(Notifica notifica) {
-        return this.notifiche.remove(notifica);
-    }
 
 }
