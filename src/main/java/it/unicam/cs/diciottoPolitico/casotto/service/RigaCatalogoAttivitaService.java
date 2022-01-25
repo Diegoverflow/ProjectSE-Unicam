@@ -1,15 +1,12 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoAttivitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class RigaCatalogoAttivitaService extends AbstractService<SimpleRigaCatalogoAttivita, RigaCatalogoAttivitaRepository>{
@@ -19,26 +16,25 @@ public class RigaCatalogoAttivitaService extends AbstractService<SimpleRigaCatal
         super(repository);
     }
 
-    public List<SimpleRigaCatalogoAttivita> getAttivitaLibereDa_A_(Date Da_, Date A_){
-        return this.repository.findAll().
-                stream().
-                filter(r->r.getValore().getDataOrarioInizio().after(Da_)&&
-                        r.getValore().getDataOrarioFine().before(A_)).collect(Collectors.toList());
+    public List<SimpleRigaCatalogoAttivita> getAttivitaDisponibili(){
+        return super.getBy(riga -> riga.getPostiTotali()> riga.getPostiOccupati());
     }
 
-    public List<SimplePrenotazioneAttivita> getPrenotazioniOmbrelloneBy(UUID idAttivita){
-        return super.repository.
-                findAll().
-                stream().
-                parallel().
-                filter(rigaCatalogoAttivits ->
-                        rigaCatalogoAttivits.
-                                getValore().
-                                getId().
-                                equals(idAttivita)).
-                map(SimpleRigaCatalogoAttivita::getPrenotazioniAttivita).
-                findFirst().
-                orElse(null);
+    public List<SimpleRigaCatalogoAttivita> getAttivitaNonDisponibili(){
+        return super.getBy(riga -> riga.getPostiTotali()== riga.getPostiOccupati());
     }
+
+    public List<SimpleRigaCatalogoAttivita> filtraBy(double prezzo){
+        return super.getBy(riga->riga.getPrezzo()==prezzo);
+    }
+
+    public List<SimpleRigaCatalogoAttivita> filtraBy(int numeroMaxPostiTotali){
+        return super.getBy(riga->riga.getPostiTotali()<=numeroMaxPostiTotali);
+    }
+
+    public Optional<SimpleRigaCatalogoAttivita> getRigaBy(String nomeAttvita){
+        return super.getBy(riga->riga.getValore().getNome().equals(nomeAttvita)).stream().findFirst();
+    }
+
 
 }

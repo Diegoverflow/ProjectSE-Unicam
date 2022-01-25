@@ -38,4 +38,7 @@ public class SimpleAttivita implements Attivita {
 
     @Column
     private String descrizione;
+
+    @Column
+    private String nome;
 }

@@ -26,6 +26,9 @@ public class SimpleArticoloBar implements ArticoloBar {
     private UUID id;
 
     @Column
+    private String nome;
+
+    @Column
     private String descrizione;
 
 }

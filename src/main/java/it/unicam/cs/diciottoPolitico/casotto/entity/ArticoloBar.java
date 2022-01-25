@@ -28,4 +28,8 @@ public interface ArticoloBar {
      * @throws NullPointerException se la descrizione &egrave; {@code null}
      */
     void setDescrizione(String descrizione);
+
+    String getNome();
+
+    void setNome(String nome);
 }

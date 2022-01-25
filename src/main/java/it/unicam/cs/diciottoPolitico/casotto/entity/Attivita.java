@@ -1,7 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.UUID;
 
 /**
@@ -63,5 +62,9 @@ public interface Attivita {
      * @see #equals(Object)
      */
     int hashCode();
+
+    String getNome();
+
+    void setNome(String nome);
 
 }
