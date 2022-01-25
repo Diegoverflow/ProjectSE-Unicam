@@ -1,7 +1,10 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
 
+import it.unicam.cs.diciottoPolitico.casotto.entity.Categoria;
 import it.unicam.cs.diciottoPolitico.casotto.entity.FasciaOraria;
+import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
+import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
@@ -19,42 +22,25 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
         super(repository);
     }
 
-    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(Date data, FasciaOraria fasciaOraria) {
-        return this.getAll().
-                stream().
-                filter(r->r.getPrenotazioni().stream().noneMatch(p->p.getDataPrenotazione().equals(data) && p.getFasciaOraria().equals(fasciaOraria)))
+    public List<Ombrellone> getAllOmbrelloni() {
+        return super.getAll()
+                .stream()
+                .map(SimpleRigaCatalogoOmbrellone::getValore)
                 .collect(Collectors.toList());
     }
 
-    public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloneBy(UUID idOmbrellone){
-        return super.repository.
-                findAll().
-                stream().
-                parallel().
-                filter(rigaCatalogoOmbrellone ->
-                        rigaCatalogoOmbrellone.
-                                getValore().
-                                getId().
-                                equals(idOmbrellone)).
-                map(SimpleRigaCatalogoOmbrellone::getPrenotazioni).
-                findFirst().
-                orElse(null);
+    public Optional<SimpleRigaCatalogoOmbrellone> getRigaCatalogoOmbrelloneBy(Ombrellone ombrellone) {
+        return super.getBy(riga->riga.getValore().equals(ombrellone))
+                .stream()
+                .findFirst();
     }
 
-    /*List<SimplePrenotazioneOmbrellone> prenotazioni = new ArrayList<>();
-        this.rigaCatalogoOmbrelloneRepository.
-                findAll().
-                stream().
-                parallel().
-                filter(rigaCatalogoOmbrellone ->
-                        rigaCatalogoOmbrellone.
-                                getValore().
-                                getId().
-                                equals(idOmbrellone)).
-                                findFirst().
-                                ifPresent(rigaCatalogoOmbrellone ->
-                                        prenotazioni.
-                                        addAll(rigaCatalogoOmbrellone.getPrenotazioni()));
-        return prenotazioni;*/
+    public List<SimpleRigaCatalogoOmbrellone> getRigheCatalogoOmbrelloneBy(Categoria categoria) {
+        return super.getBy(riga -> riga.getValore().getCategoria().equals(categoria));
+    }
+
+    public List<SimpleRigaCatalogoOmbrellone> getRigheCatalogoOmbrelloneBy(double prezzo) {
+        return super.getBy(riga -> riga.getPrezzoOmbrellone() == prezzo);
+    }
 
 }
