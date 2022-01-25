@@ -19,8 +19,6 @@ import java.util.*;
 public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
 
     @Id
-    @GeneratedValue
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
@@ -32,6 +30,7 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
     private SimpleOmbrellone valore;
 
     protected SimpleRigaCatalogoOmbrellone() {
+        this.id = UUID.randomUUID();
     }
 
 }

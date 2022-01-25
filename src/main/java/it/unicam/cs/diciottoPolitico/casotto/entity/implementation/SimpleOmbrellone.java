@@ -19,8 +19,6 @@ import java.util.UUID;
 public class SimpleOmbrellone implements Ombrellone {
 
     @Id
-    @GeneratedValue
-    @GenericGenerator(name="uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)",updatable = false)
     private UUID id;
 
@@ -29,5 +27,9 @@ public class SimpleOmbrellone implements Ombrellone {
 
     @Column
     private String codiceSpiaggia;
+
+    protected SimpleOmbrellone(){
+        this.id = UUID.randomUUID();
+    }
 
 }

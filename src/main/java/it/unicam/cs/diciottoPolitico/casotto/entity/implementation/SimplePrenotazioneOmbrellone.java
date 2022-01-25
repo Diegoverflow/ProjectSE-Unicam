@@ -4,7 +4,6 @@ import it.unicam.cs.diciottoPolitico.casotto.entity.FasciaOraria;
 import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneOmbrellone;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,8 +16,6 @@ import java.util.UUID;
 public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
 
     @Id
-    @GeneratedValue
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)",updatable = false)
     private UUID id;
 
@@ -35,5 +32,9 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vendita_id")
     private SimpleVendita vendita;
+
+    protected SimplePrenotazioneOmbrellone(){
+        this.id = UUID.randomUUID();
+    }
 
 }
