@@ -20,23 +20,18 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
 
     @Id
     @GeneratedValue
-    @GenericGenerator(name="uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)",updatable = false)
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
     @Column
     private double prezzoOmbrellone;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "riga_id")
-    private List<SimplePrenotazioneOmbrellone> prenotazioni;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ombrellone_id")
     private SimpleOmbrellone valore;
 
-    protected SimpleRigaCatalogoOmbrellone(){
-        this.prenotazioni = new ArrayList<>();
+    protected SimpleRigaCatalogoOmbrellone() {
     }
 
 }

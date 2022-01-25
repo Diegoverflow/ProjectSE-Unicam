@@ -18,14 +18,6 @@ public interface RigaCatalogoOmbrellone extends RigaCatalogo<Ombrellone> {
     double getPrezzoOmbrellone();
 
     /**
-     * Restituisce la lista delle prenotazioni associate all' ombrellone di questa riga.
-     *
-     * @return la lista delle prenotazioni di questa riga
-     * @see PrenotazioneOmbrellone
-     */
-    List<SimplePrenotazioneOmbrellone> getPrenotazioni();
-
-    /**
      * Imposta un nuovo prezzo all' {@link Ombrellone} di questa riga.
      *
      * @param nuovoPrezzo il nuovo prezzo da impostare all' ombrellone di questa riga.
