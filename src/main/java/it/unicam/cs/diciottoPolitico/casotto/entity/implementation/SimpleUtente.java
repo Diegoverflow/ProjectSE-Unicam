@@ -23,7 +23,7 @@ public class SimpleUtente implements Utente {
     @Id
     @GeneratedValue
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
+    @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
     @Column

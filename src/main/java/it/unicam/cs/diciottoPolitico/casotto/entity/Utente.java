@@ -1,5 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleNotifica;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -90,7 +92,7 @@ public interface Utente {
      *
      * @return la lista di notifiche dell' utente
      */
-    List<Notifica> getNotifiche();
+    List<SimpleNotifica> getNotifiche();
 
     /**
      * Confronta l' elemento specificato con questo utente.
