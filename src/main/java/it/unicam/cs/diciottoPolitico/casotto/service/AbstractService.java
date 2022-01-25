@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
-public abstract class AbstractService<C, R extends JpaRepository<C, UUID>> {
+public abstract class AbstractService<T, R extends JpaRepository<T, UUID>> {
 
     protected final R repository;
 
@@ -14,22 +16,33 @@ public abstract class AbstractService<C, R extends JpaRepository<C, UUID>> {
         this.repository = repository;
     }
 
-    public List<C> getRighe() {
+    public List<T> getAll() {
         return repository.findAll();
     }
 
-    public Optional<C> getRiga(UUID id){
+    public Optional<T> getBy(UUID id){
         return this.repository.findById(id);
     }
 
-    public C saveRiga(C rigaCatalogo){
-        return this.repository.save(rigaCatalogo);
+    public T save(T t){
+        return this.repository.save(t);
     }
 
-    public Optional<C> removeRiga(UUID id){
-        Optional<C> o = this.repository.findById(id);
+    public Optional<T> removeBy(UUID id){
+        Optional<T> o = this.repository.findById(id);
         o.ifPresent(this.repository::delete);
         return o;
     }
+
+    public List<T> getBy(Predicate<T> predicate){
+        return this.getAll().stream()
+                .filter(predicate)
+                .collect(Collectors.toList());
+    }
+
+    //todo
+    /*public Optional<T> getBy(Predicate<T> predicate){
+        return this.getBy(predicate).
+    }*/
 
 }

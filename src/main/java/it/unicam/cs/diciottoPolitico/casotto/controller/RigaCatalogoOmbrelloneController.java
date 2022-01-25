@@ -21,7 +21,7 @@ public class RigaCatalogoOmbrelloneController {
 
     @GetMapping("/ombrelloni")
     public List<SimpleRigaCatalogoOmbrellone> getRigheCatalogoOmbrellone(){
-        List<SimpleRigaCatalogoOmbrellone> o = this.rigaCatalogoOmbrelloneService.getRighe();
+        List<SimpleRigaCatalogoOmbrellone> o = this.rigaCatalogoOmbrelloneService.getAll();
         if (o.size()==0)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return o;
@@ -43,7 +43,7 @@ public class RigaCatalogoOmbrelloneController {
 
     @DeleteMapping("/ombrelloni")
     public void removeOmbrellone(@PathVariable UUID id){
-        this.rigaCatalogoOmbrelloneService.removeRiga(rigaCatalogoOmbrellone);
+        this.rigaCatalogoOmbrelloneService.removeBy(id);
     }
 
     @PutMapping("/ombrelloni")

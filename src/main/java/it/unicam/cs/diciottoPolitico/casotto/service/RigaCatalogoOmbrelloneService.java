@@ -20,7 +20,7 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
     }
 
     public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(Date data, FasciaOraria fasciaOraria) {
-        return this.getRighe().
+        return this.getAll().
                 stream().
                 filter(r->r.getPrenotazioni().stream().noneMatch(p->p.getDataPrenotazione().equals(data) && p.getFasciaOraria().equals(fasciaOraria)))
                 .collect(Collectors.toList());

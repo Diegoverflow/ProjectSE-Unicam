@@ -37,7 +37,7 @@ public class OrdinazioneController {
      */
     @GetMapping("/ordinazioni")
     public List<SimpleOrdinazioneBar> getAllOrdinazioni() {
-        return this.ordinazioneBarService.getRighe();
+        return this.ordinazioneBarService.getAll();
     }
 
     /**

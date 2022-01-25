@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class NotificaService {
@@ -39,12 +40,8 @@ public class NotificaService {
     }
 
     private List<UUID> getUUIDs(List<SimpleUtente> utentiDestinatari) {
-        List<UUID> uuids = new ArrayList<>();
-        for (Utente u :
-                utentiDestinatari) {
-            uuids.add(u.getId());
-        }
-        return uuids;
+        return utentiDestinatari.stream().map(SimpleUtente::getId).collect(Collectors.toList());
+
     }
 
     public void rimuoviNotifica(SimpleNotifica notifica) {

@@ -27,12 +27,12 @@ public class RigaCatalogoAttivitaController {
 
     @GetMapping("/attivita")
     public List<SimpleRigaCatalogoAttivita> getRigheCatalogoAttivita(){
-        return this.rigaCatalogoAttivitaService.getRighe();
+        return this.rigaCatalogoAttivitaService.getAll();
     }
 
     @GetMapping("/attivita/{idRiga}")
     public SimpleRigaCatalogoAttivita getRiga(@PathVariable UUID idRiga){
-        Optional<SimpleRigaCatalogoAttivita> riga = this.rigaCatalogoAttivitaService.getRiga(idRiga);
+        Optional<SimpleRigaCatalogoAttivita> riga = this.rigaCatalogoAttivitaService.getBy(idRiga);
         if (riga.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         else
