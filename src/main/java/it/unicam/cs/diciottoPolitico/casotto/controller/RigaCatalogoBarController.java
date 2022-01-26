@@ -1,0 +1,166 @@
+package it.unicam.cs.diciottoPolitico.casotto.controller;
+
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleArticoloBar;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoBar;
+import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoBarRepository;
+import it.unicam.cs.diciottoPolitico.casotto.service.RigaCatalogoBarService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+/**
+ * RestController del catalogo bar dello chalet.
+ * Esso si occupa di gestire le richieste HTTP per aggiungere, modificare, rimuovere e leggere una {@link SimpleRigaCatalogoBar}.
+ * Questo RestController avr&agrave; un' istanza di {@link RigaCatalogoBarService} che si occuper&agrave; di eseguire operazioni
+ * CRUD interagendo con il relativo {@link RigaCatalogoBarRepository}.
+ *
+ * @see SimpleRigaCatalogoBar
+ * @see RigaCatalogoBarService
+ */
+@RestController
+@RequestMapping("/bar/righe")
+public class RigaCatalogoBarController {
+
+    @Autowired
+    private RigaCatalogoBarService rigaCatalogoBarService;
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la lista di tutte le righe presenti nel catalogo bar dello chalet.
+     *
+     * @return la lista di tutte le righe presenti nel catalogo bar dello chalet.
+     */
+    @GetMapping("/all")
+    public List<SimpleRigaCatalogoBar> getAllRighe() {
+        return this.rigaCatalogoBarService.getAll();
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce una {@link SimpleRigaCatalogoBar} avente id specificato.
+     *
+     * @param id l' id di cui ricavare la riga dal catalogo bar
+     * @return la riga avente id specificato
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna {@code SimpleRigaCatalogoBar} con id specificato
+     */
+    @GetMapping("/{id}")
+    public SimpleRigaCatalogoBar getRigaBy(@PathVariable UUID id) {
+        Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getBy(id);
+        return this.getAreaOrThrownException(foundRiga);
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la lista di tutte le righe aventi quantit&agrave; minore o uguale alla quantit&agrave; specificata nel {@link PathVariable}.
+     *
+     * @param quantitaLimite la quantit&agrave; limite inclusa
+     * @return la lista di tutte le righe aventi quantit&agrave; minore o uguale alla quantit&agrave; specificata
+     */
+    @GetMapping("/{quantita}")
+    public List<SimpleRigaCatalogoBar> filtraBy(@PathVariable int quantitaLimite) {
+        return this.rigaCatalogoBarService.filtraBy(quantitaLimite);
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la lista di tutte le righe aventi prezzo minore o uguale al prezzo specificato.
+     *
+     * @param prezzoLimite il prezzo limite inclusa
+     * @return la lista di tutte le righe aventi prezzo minore o uguale al prezzo specificato
+     */
+    @GetMapping("/{prezzo}")
+    public List<SimpleRigaCatalogoBar> filtraBy(@PathVariable double prezzoLimite) {
+        return this.rigaCatalogoBarService.filtraBy(prezzoLimite);
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce una {@link SimpleRigaCatalogoBar} avente come {@link SimpleArticoloBar} l' articolo bar specificato nel {@link PathVariable}
+     *
+     * @param articoloBar l' articolo bar di cui ricavare la riga
+     * @return un {@code Optional} che descrive una {@code SimpleRigaCatalogoBar} avente l' articolo bar specificato
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna riga con l' articolo bar specificato
+     */
+    @GetMapping()
+    public SimpleRigaCatalogoBar getRigaBy(@RequestBody SimpleArticoloBar articoloBar) {
+        Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getRigaBy(articoloBar);
+        return this.getAreaOrThrownException(foundRiga);
+    }
+
+    /**
+     * Restituisce una {@link SimpleRigaCatalogoBar} avente come nome del {@link SimpleArticoloBar} il nome specificato nel {@link PathVariable}
+     *
+     * @param nomeArticolo il nome dell' articolo bar di cui ricavare la riga
+     * @return una {@code SimpleRigaCatalogoBar} avente il nome dell' articolo bar specificato
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna riga con il nome dell' articolo bar specificato
+     */
+    @GetMapping("/{nome}")
+    public SimpleRigaCatalogoBar getRigaBy(@PathVariable String nomeArticolo) {
+        Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getRigaBy(nomeArticolo);
+        return this.getAreaOrThrownException(foundRiga);
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#POST}.
+     * Aggiunge la {@link SimpleRigaCatalogoBar} contenuta nel {@link RequestBody} della richiesta HTTP al catalogo bar dello chalet.
+     * Restituisce la {@code SimpleRigaCatalogoBar} aggiunta al catalogo bar dello chalet.
+     *
+     * @param riga la riga da aggiungere al catalogo bar dello chalet
+     * @return la {@code SimpleRigaCatalogoBar} aggiunta al catalogo bar dello chalet
+     * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
+     *                                 una {@code SimpleRigaCatalogoBar} gi&agrave; presente nel catalogo bar dello chalet
+     */
+    @PostMapping()
+    public SimpleRigaCatalogoBar addRiga(@RequestBody SimpleRigaCatalogoBar riga) {
+        Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getBy(riga.getId());
+        if (foundRiga.isPresent())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        this.rigaCatalogoBarService.save(riga);
+        return riga;
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#PUT}.
+     * Aggiorna la {@link SimpleRigaCatalogoBar} specificata contenuta nel {@link RequestBody}.
+     * Restituisce la {@code SimpleRigaCatalogoBar} aggiornata nel catalogo bar dello chalet.
+     *
+     * @param riga la {@code SimpleRigaCatalogoBar} da aggiornare
+     * @return la {@code SimpleRigaCatalogoBar} aggiornata nel catalogo dello chalet
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se la {@code SimpleRigaCatalogoBar} non viene trovata
+     */
+    @PutMapping()
+    public SimpleRigaCatalogoBar updateRiga(@RequestBody SimpleRigaCatalogoBar riga) {
+        Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getBy(riga.getId());
+        if (foundRiga.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        this.rigaCatalogoBarService.save(riga);
+        return foundRiga.get();
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#DELETE}.
+     * Rimuove dal catalogo bar dello chalet, la {@link SimpleRigaCatalogoBar} avente l' id specificato come {@link PathVariable}.
+     * Restituisce la {@code SimpleRigaCatalogoBar} rimossa dal catalogo bar dello chalet.
+     *
+     * @param id l' id della {@code SimpleRigaCatalogoBar} da eliminare
+     * @return la {@code SimpleRigaCatalogoBar} rimossa dal catalogo bar dello chalet
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
+     */
+    @DeleteMapping("/{id}")
+    public SimpleRigaCatalogoBar removeArea(@PathVariable UUID id) {
+        Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.removeBy(id);
+        return this.getAreaOrThrownException(foundRiga);
+    }
+
+    private SimpleRigaCatalogoBar getAreaOrThrownException(Optional<SimpleRigaCatalogoBar> riga) {
+        if (riga.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        return riga.get();
+    }
+
+}

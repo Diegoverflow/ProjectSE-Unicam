@@ -22,7 +22,7 @@ import java.util.UUID;
  * @see InfrastrutturaService
  */
 @RestController
-@RequestMapping("/infrastruttura")
+@RequestMapping("/infrastruttura/aree")
 public class InfrastrutturaController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class InfrastrutturaController {
      *
      * @return la lista di tutte le aree presenti nello chalet
      */
-    @GetMapping("/aree")
+    @GetMapping("/all")
     public List<AreaInfrastruttura> getAllAree() {
         return this.infrastrutturaService.getAll();
     }
@@ -47,11 +47,10 @@ public class InfrastrutturaController {
      * @return l' area avente id specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessun' {@code AreaInfrastruttura} con id specificato
      */
-    @GetMapping("/aree/{id}")
+    @GetMapping("/{id}")
     public AreaInfrastruttura getAreaBy(@PathVariable UUID id) {
-        if (this.infrastrutturaService.getBy(id).isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return this.infrastrutturaService.getBy(id).get();
+        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getBy(id);
+        return this.getAreaOrThrownException(foundArea);
     }
 
     /**
@@ -62,11 +61,10 @@ public class InfrastrutturaController {
      * @return l' area avente il nome specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessun' {@code AreaInfrastruttura} con il nome specificato
      */
-    @GetMapping("/aree/{nome}")
+    @GetMapping("/{nome}")
     public AreaInfrastruttura getAreaBy(@PathVariable String nome) {
-        if (this.infrastrutturaService.getAreaBy(nome).isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return this.infrastrutturaService.getAreaBy(nome).get();
+        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getAreaBy(nome);
+        return this.getAreaOrThrownException(foundArea);
     }
 
     /**
@@ -79,12 +77,13 @@ public class InfrastrutturaController {
      * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
      *                                 un' {@code AreaInfrastruttura} gi&agrave; presente nell' infrastruttura dello chalet
      */
-    @PostMapping("/aree")
+    @PostMapping()
     public AreaInfrastruttura addArea(@RequestBody AreaInfrastruttura areaInfrastruttura) {
-        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getBy(this.infrastrutturaService.save(areaInfrastruttura).getId());
-        if (foundArea.isEmpty())
+        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getBy(areaInfrastruttura.getId());
+        if (foundArea.isPresent())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        return foundArea.get();
+        this.infrastrutturaService.save(areaInfrastruttura);
+        return areaInfrastruttura;
     }
 
     /**
@@ -96,11 +95,12 @@ public class InfrastrutturaController {
      * @return l' {@code AreaInfrastruttura} aggiornata nell' infrastruttura dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se l' {@code AreaInfrastruttura} non viene trovata
      */
-    @PutMapping("/aree")
+    @PutMapping()
     public AreaInfrastruttura updateArea(@RequestBody AreaInfrastruttura areaInfrastruttura) {
-        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getBy(this.infrastrutturaService.save(areaInfrastruttura).getId());
+        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getBy(areaInfrastruttura.getId());
         if (foundArea.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        this.infrastrutturaService.save(areaInfrastruttura);
         return foundArea.get();
     }
 
@@ -113,12 +113,16 @@ public class InfrastrutturaController {
      * @return l' {@code AreaInfrastruttura} rimossa dall' infrastruttura dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
      */
-    @DeleteMapping("/aree/{id}")
+    @DeleteMapping("/{id}")
     public AreaInfrastruttura removeArea(@PathVariable UUID id) {
         Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.removeBy(id);
-        if (foundArea.isEmpty())
+        return this.getAreaOrThrownException(foundArea);
+    }
+
+    private AreaInfrastruttura getAreaOrThrownException(Optional<AreaInfrastruttura> area) {
+        if (area.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return foundArea.get();
+        return area.get();
     }
 
 }
