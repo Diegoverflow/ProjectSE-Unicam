@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.Vendita;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Table(name = "vendita")
 @Getter
 @Setter
+@EqualsAndHashCode(exclude = "id")
 public class SimpleVendita implements Vendita {
 
     @Id

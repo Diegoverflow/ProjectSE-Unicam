@@ -2,6 +2,7 @@ package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.OrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.StatusOrdinazioneBar;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -16,6 +17,7 @@ import javax.persistence.*;
 @Table(name = "ordinazione_bar")
 @Getter
 @Setter
+@EqualsAndHashCode(exclude = "id")
 public class SimpleOrdinazioneBar implements OrdinazioneBar {
 
     @Id

@@ -16,7 +16,7 @@ import java.util.UUID;
 @Table(name="articolo_bar")
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "id")
 public class SimpleArticoloBar implements ArticoloBar {
 
     @Id

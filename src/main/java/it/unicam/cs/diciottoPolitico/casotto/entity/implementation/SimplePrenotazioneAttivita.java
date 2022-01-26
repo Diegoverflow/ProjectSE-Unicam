@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.PrenotazioneAttivita;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Table(name = "prenotazione_attivita")
 @Getter
 @Setter
+@EqualsAndHashCode(exclude = "id")
 public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
 
     @Id

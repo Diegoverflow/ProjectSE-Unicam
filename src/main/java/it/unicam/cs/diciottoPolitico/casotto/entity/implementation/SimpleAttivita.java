@@ -21,7 +21,7 @@ import java.util.*;
 @Table(name = "attivita")
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "id")
 public class SimpleAttivita implements Attivita {
 
     @Id
