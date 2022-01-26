@@ -69,4 +69,34 @@ public class RigaCatalogoBarService extends AbstractService<SimpleRigaCatalogoBa
         return super.getBy(riga -> riga.getValore().getNome().equals(nomeArticolo)).stream().findFirst();
     }
 
+    /**
+     * Esegue un controllo seulla presenza della {@link SimpleRigaCatalogoBar} specificata in base al proprio id e il proprio {@link SimpleArticoloBar} contenuto.
+     * Restituisce un empty {@link Optional} se non viene trovata nessuna riga con id e articolo bar della riga specificata nel database, altrimenti memorizza la riga
+     * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleRigaCatalogoBar} memorizzata.
+     *
+     * @param riga la riga di cui eseguire il controllo e memorizzarla nel database
+     * @return un empty {@link Optional} se non viene trovata nessuna riga con id e articolo bar della riga specificata nel database, altrimenti memorizza la riga
+     * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleRigaCatalogoBar} memorizzata.
+     */
+    public Optional<SimpleRigaCatalogoBar> checkAndSave(SimpleRigaCatalogoBar riga) {
+        if (super.getBy(riga.getId()).isEmpty() && this.getRigaBy(riga.getValore()).isEmpty() && riga.getPrezzo() >= 0 && riga.getQuantita() >= 0)
+            return Optional.of(super.save(riga));
+        return Optional.empty();
+    }
+
+    /**
+     * Esegue un controllo sulla presenza della {@link SimpleRigaCatalogoBar} specificata in base al proprio id.
+     * Restituisce un empty {@link Optional} se non viene trovata nessuna riga con id della riga specificata nel database, altrimenti aggiorna la riga
+     * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleRigaCatalogoBar} aggiornata.
+     *
+     * @param riga la riga di cui eseguire il controllo e aggiornarla nel database
+     * @return un empty {@code Optional} se non viene trovata nessuna riga con id della riga specificata nel database, altrimenti aggiorna la riga
+     * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleRigaCatalogoBar} aggiornata.
+     */
+    public Optional<SimpleRigaCatalogoBar> checkAndUpdate(SimpleRigaCatalogoBar riga) {
+        if (super.getBy(riga.getId()).isPresent() && riga.getPrezzo() >= 0 && riga.getQuantita() >= 0)
+            return Optional.of(super.save(riga));
+        return Optional.empty();
+    }
+
 }

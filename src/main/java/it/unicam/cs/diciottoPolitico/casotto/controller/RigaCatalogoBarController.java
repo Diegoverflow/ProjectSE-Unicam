@@ -51,30 +51,30 @@ public class RigaCatalogoBarController {
     @GetMapping("/{id}")
     public SimpleRigaCatalogoBar getRigaBy(@PathVariable UUID id) {
         Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getBy(id);
-        return this.getAreaOrThrownException(foundRiga);
+        return this.getRigaOrThrownException(foundRiga,HttpStatus.NOT_FOUND);
     }
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
-     * Restituisce la lista di tutte le righe aventi quantit&agrave; minore o uguale alla quantit&agrave; specificata nel {@link PathVariable}.
+     * Restituisce la lista di tutte le righe aventi quantit&agrave; minore o uguale alla quantit&agrave; specificata nel {@link RequestParam}.
      *
      * @param quantitaLimite la quantit&agrave; limite inclusa
      * @return la lista di tutte le righe aventi quantit&agrave; minore o uguale alla quantit&agrave; specificata
      */
-    @GetMapping("/{quantita}")
-    public List<SimpleRigaCatalogoBar> filtraBy(@PathVariable int quantitaLimite) {
+    @GetMapping(params = "quantita")
+    public List<SimpleRigaCatalogoBar> filtraByQuantita(@RequestParam(value = "quantita") int quantitaLimite) {
         return this.rigaCatalogoBarService.filtraBy(quantitaLimite);
     }
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
-     * Restituisce la lista di tutte le righe aventi prezzo minore o uguale al prezzo specificato.
+     * Restituisce la lista di tutte le righe aventi prezzo minore o uguale al prezzo specificato nel {@link RequestParam}.
      *
      * @param prezzoLimite il prezzo limite inclusa
      * @return la lista di tutte le righe aventi prezzo minore o uguale al prezzo specificato
      */
-    @GetMapping("/{prezzo}")
-    public List<SimpleRigaCatalogoBar> filtraBy(@PathVariable double prezzoLimite) {
+    @GetMapping(params = "prezzo")
+    public List<SimpleRigaCatalogoBar> filtraByPrezzo(@RequestParam(value = "prezzo") double prezzoLimite) {
         return this.rigaCatalogoBarService.filtraBy(prezzoLimite);
     }
 
@@ -86,23 +86,24 @@ public class RigaCatalogoBarController {
      * @return un {@code Optional} che descrive una {@code SimpleRigaCatalogoBar} avente l' articolo bar specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna riga con l' articolo bar specificato
      */
-    @GetMapping()
-    public SimpleRigaCatalogoBar getRigaBy(@RequestBody SimpleArticoloBar articoloBar) {
+    @GetMapping(value = "/riga")
+    public SimpleRigaCatalogoBar getRigaByArticolo(@RequestBody SimpleArticoloBar articoloBar) {
         Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getRigaBy(articoloBar);
-        return this.getAreaOrThrownException(foundRiga);
+        return this.getRigaOrThrownException(foundRiga,HttpStatus.NOT_FOUND);
     }
 
     /**
-     * Restituisce una {@link SimpleRigaCatalogoBar} avente come nome del {@link SimpleArticoloBar} il nome specificato nel {@link PathVariable}
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce una {@link SimpleRigaCatalogoBar} avente come nome del {@link SimpleArticoloBar} il nome specificato nel {@link RequestParam}
      *
      * @param nomeArticolo il nome dell' articolo bar di cui ricavare la riga
      * @return una {@code SimpleRigaCatalogoBar} avente il nome dell' articolo bar specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna riga con il nome dell' articolo bar specificato
      */
-    @GetMapping("/{nome}")
-    public SimpleRigaCatalogoBar getRigaBy(@PathVariable String nomeArticolo) {
+    @GetMapping(value = "/riga", params = "nome_articolo_bar")
+    public SimpleRigaCatalogoBar getRigaByNomeArticoloBar(@RequestParam(value = "nome_articolo_bar") String nomeArticolo) {
         Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getRigaBy(nomeArticolo);
-        return this.getAreaOrThrownException(foundRiga);
+        return this.getRigaOrThrownException(foundRiga,HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -115,13 +116,10 @@ public class RigaCatalogoBarController {
      * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
      *                                 una {@code SimpleRigaCatalogoBar} gi&agrave; presente nel catalogo bar dello chalet
      */
-    @PostMapping()
+    @PostMapping
     public SimpleRigaCatalogoBar addRiga(@RequestBody SimpleRigaCatalogoBar riga) {
-        Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getBy(riga.getId());
-        if (foundRiga.isPresent())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        this.rigaCatalogoBarService.save(riga);
-        return riga;
+        Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.checkAndSave(riga);
+        return this.getRigaOrThrownException(foundRiga, HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -133,13 +131,10 @@ public class RigaCatalogoBarController {
      * @return la {@code SimpleRigaCatalogoBar} aggiornata nel catalogo dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se la {@code SimpleRigaCatalogoBar} non viene trovata
      */
-    @PutMapping()
+    @PutMapping
     public SimpleRigaCatalogoBar updateRiga(@RequestBody SimpleRigaCatalogoBar riga) {
-        Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getBy(riga.getId());
-        if (foundRiga.isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        this.rigaCatalogoBarService.save(riga);
-        return foundRiga.get();
+        Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.checkAndUpdate(riga);
+        return this.getRigaOrThrownException(foundRiga, HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -152,14 +147,14 @@ public class RigaCatalogoBarController {
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
      */
     @DeleteMapping("/{id}")
-    public SimpleRigaCatalogoBar removeArea(@PathVariable UUID id) {
+    public SimpleRigaCatalogoBar removeRiga(@PathVariable UUID id) {
         Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.removeBy(id);
-        return this.getAreaOrThrownException(foundRiga);
+        return this.getRigaOrThrownException(foundRiga, HttpStatus.NOT_FOUND);
     }
 
-    private SimpleRigaCatalogoBar getAreaOrThrownException(Optional<SimpleRigaCatalogoBar> riga) {
+    private SimpleRigaCatalogoBar getRigaOrThrownException(Optional<SimpleRigaCatalogoBar> riga, HttpStatus status) {
         if (riga.isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(status);
         return riga.get();
     }
 
