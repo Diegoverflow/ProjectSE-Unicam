@@ -32,7 +32,6 @@ public class RigaCatalogoAttivitaController {
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-
     @PostMapping("/attivita")
     public SimpleRigaCatalogoAttivita addRiga(@RequestBody SimpleRigaCatalogoAttivita riga){
         var r = this.rigaCatalogoAttivitaService.getBy(riga.getId());
@@ -41,8 +40,6 @@ public class RigaCatalogoAttivitaController {
         return this.rigaCatalogoAttivitaService.save(riga);
     }
 
-
-
     @PostMapping("/attivita")
     public SimpleRigaCatalogoAttivita updateRiga(@RequestBody SimpleRigaCatalogoAttivita riga){
         var r = this.rigaCatalogoAttivitaService.getBy(riga.getId());
@@ -50,4 +47,11 @@ public class RigaCatalogoAttivitaController {
             this.rigaCatalogoAttivitaService.save(riga);
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
+
+    @DeleteMapping("/attivita/{idRiga}")
+    public SimpleRigaCatalogoAttivita deleteRigaBy(@PathVariable UUID idRiga){
+        return this.rigaCatalogoAttivitaService.removeBy(idRiga).
+                orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
 }
