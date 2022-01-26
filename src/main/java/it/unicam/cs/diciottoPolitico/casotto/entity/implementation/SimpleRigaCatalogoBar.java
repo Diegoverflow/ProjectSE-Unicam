@@ -28,14 +28,14 @@ public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
     private UUID id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "articolo_bar_id", referencedColumnName = "id", unique = true)
+    @JoinColumn(name = "articolo_bar_id", referencedColumnName = "id", unique = true, nullable = false)
     private SimpleArticoloBar valore;
 
-    @Column()
+    @Column(nullable = false)
     @Positive
     private double prezzo;
 
-    @Column
+    @Column(nullable = false)
     @PositiveOrZero
     private int quantita;
 
