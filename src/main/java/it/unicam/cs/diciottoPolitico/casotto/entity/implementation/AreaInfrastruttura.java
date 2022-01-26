@@ -20,6 +20,8 @@ import java.util.UUID;
 public class AreaInfrastruttura {
 
     @Id
+    @GeneratedValue
+    @GenericGenerator(name = "uuid",strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
@@ -30,9 +32,5 @@ public class AreaInfrastruttura {
     @Column
     @EqualsAndHashCode.Include
     private String descrizione;
-
-    protected AreaInfrastruttura(){
-        this.id = UUID.randomUUID();
-    }
 
 }
