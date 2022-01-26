@@ -16,7 +16,6 @@ import java.util.UUID;
 public class SimpleRigaCatalogoAttivita implements RigaCatalogoAttivita {
 
     @Id
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false, unique = true, nullable = false)
     private UUID id;
 
@@ -32,4 +31,8 @@ public class SimpleRigaCatalogoAttivita implements RigaCatalogoAttivita {
 
     @Column
     private int postiOccupati;
+
+    protected SimpleRigaCatalogoAttivita(){
+        this.id = UUID.randomUUID();
+    }
 }

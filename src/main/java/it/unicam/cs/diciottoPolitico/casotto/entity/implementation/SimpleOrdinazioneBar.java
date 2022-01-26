@@ -19,8 +19,6 @@ import javax.persistence.*;
 public class SimpleOrdinazioneBar implements OrdinazioneBar {
 
     @Id
-    @GeneratedValue
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
@@ -34,5 +32,9 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vendita_id")
     private SimpleVendita vendita;
+
+    protected SimpleOrdinazioneBar(){
+        this.id = UUID.randomUUID();
+    }
 
 }

@@ -18,7 +18,6 @@ import java.util.UUID;
 public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
 
     @Id
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
@@ -29,5 +28,9 @@ public class SimplePrenotazioneAttivita implements PrenotazioneAttivita {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vendita_id")
     private SimpleVendita vendita;
+
+    protected SimplePrenotazioneAttivita(){
+        this.id = UUID.randomUUID();
+    }
 
 }

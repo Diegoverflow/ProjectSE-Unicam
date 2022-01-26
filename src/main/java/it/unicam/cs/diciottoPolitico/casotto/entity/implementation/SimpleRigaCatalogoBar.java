@@ -19,8 +19,6 @@ import java.util.UUID;
 public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
 
     @Id
-    @GeneratedValue
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
@@ -33,5 +31,9 @@ public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
 
     @Column
     private int quantita;
+
+    protected SimpleRigaCatalogoBar(){
+        this.id = UUID.randomUUID();
+    }
 
 }
