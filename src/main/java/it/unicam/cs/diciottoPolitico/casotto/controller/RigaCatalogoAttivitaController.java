@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/catalogo")
+@RequestMapping("/catalogo-attivita")
 public class RigaCatalogoAttivitaController {
 
     @Autowired
@@ -21,34 +21,34 @@ public class RigaCatalogoAttivitaController {
         this.rigaCatalogoAttivitaService = rigaCatalogoAttivitaService;
     }
 
-    @GetMapping("/attivita/all")
+    @GetMapping("/all")
     public List<SimpleRigaCatalogoAttivita> getRigheCatalogoAttivita(){
         return this.rigaCatalogoAttivitaService.getAll();
     }
 
-    @GetMapping("/attivita/{idRiga}")
+    @GetMapping("/attivita-{idRiga}")
     public SimpleRigaCatalogoAttivita getRigaBy(@PathVariable UUID idRiga) {
         return this.rigaCatalogoAttivitaService.getBy(idRiga).
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/attivita")
+    @PostMapping
     public SimpleRigaCatalogoAttivita addRiga(@RequestBody SimpleRigaCatalogoAttivita riga){
         var r = this.rigaCatalogoAttivitaService.getBy(riga.getId());
         if (r.isPresent())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        return this.rigaCatalogoAttivitaService.save(riga);
+    }
+
+    @PutMapping
+    public SimpleRigaCatalogoAttivita updateRiga(@RequestBody SimpleRigaCatalogoAttivita riga){
+        var r = this.rigaCatalogoAttivitaService.getBy(riga.getId());
+        if (r.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return this.rigaCatalogoAttivitaService.save(riga);
     }
 
-    @PutMapping("/attivita")
-    public SimpleRigaCatalogoAttivita updateRiga(@RequestBody SimpleRigaCatalogoAttivita riga){
-        var r = this.rigaCatalogoAttivitaService.getBy(riga.getId());
-        if (r.isPresent())
-            this.rigaCatalogoAttivitaService.save(riga);
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-    }
-
-    @DeleteMapping("/attivita/{idRiga}")
+    @DeleteMapping("/attivita-{idRiga}")
     public SimpleRigaCatalogoAttivita deleteRigaBy(@PathVariable UUID idRiga){
         return this.rigaCatalogoAttivitaService.removeBy(idRiga).
                 orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
