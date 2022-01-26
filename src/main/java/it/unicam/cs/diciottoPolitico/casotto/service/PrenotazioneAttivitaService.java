@@ -7,16 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PrenotazioneAttivitaService extends AbstractService<SimplePrenotazioneAttivita,PrenotazioneAttivitaRepository>{
 
-    private final RigaCatalogoAttivitaService catalogoAttivita;
+    //private final RigaCatalogoAttivitaService catalogoAttivita;
 
     @Autowired
     public PrenotazioneAttivitaService(PrenotazioneAttivitaRepository repository, RigaCatalogoAttivitaService catalogoAttivita) {
         super(repository);
-        this.catalogoAttivita = catalogoAttivita;
+        //this.catalogoAttivita = catalogoAttivita;
+    }
+
+    public List<SimplePrenotazioneAttivita> filtraBy(UUID idAttivita){
+        return super.getBy(prenotazioneAttivita->
+                prenotazioneAttivita.getAttivita().getId().equals(idAttivita));
     }
 
     public List<SimplePrenotazioneAttivita> filtraBy(SimpleAttivita attivita){
@@ -28,7 +34,7 @@ public class PrenotazioneAttivitaService extends AbstractService<SimplePrenotazi
         return super.getBy(prenotazioneAttivita->
                 prenotazioneAttivita.getAttivita().getNome().equals(nomeAttivita));
     }
-
+/*
     @Override
     public SimplePrenotazioneAttivita save(SimplePrenotazioneAttivita prenotazioneAttivita){
         this.catalogoAttivita.
@@ -36,6 +42,6 @@ public class PrenotazioneAttivitaService extends AbstractService<SimplePrenotazi
                 r.setPostiOccupati(r.getPostiOccupati()+1));
         return super.save(prenotazioneAttivita);
     }
-
+*/
 
 }
