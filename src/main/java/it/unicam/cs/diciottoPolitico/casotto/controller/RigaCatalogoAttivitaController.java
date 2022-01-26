@@ -40,7 +40,7 @@ public class RigaCatalogoAttivitaController {
         return this.rigaCatalogoAttivitaService.save(riga);
     }
 
-    @PostMapping("/attivita")
+    @PutMapping("/attivita")
     public SimpleRigaCatalogoAttivita updateRiga(@RequestBody SimpleRigaCatalogoAttivita riga){
         var r = this.rigaCatalogoAttivitaService.getBy(riga.getId());
         if (r.isPresent())
