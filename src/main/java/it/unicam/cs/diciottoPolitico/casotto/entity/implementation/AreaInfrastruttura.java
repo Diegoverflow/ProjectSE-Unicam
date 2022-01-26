@@ -33,5 +33,4 @@ public class AreaInfrastruttura {
     @EqualsAndHashCode.Include
     private String descrizione;
 
-
 }

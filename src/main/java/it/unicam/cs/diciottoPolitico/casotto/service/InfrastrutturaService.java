@@ -31,7 +31,7 @@ public class InfrastrutturaService extends AbstractService<AreaInfrastruttura, I
      * @return un {@code Optional} che descrive un' {@code AreaInfrastruttura} avente il nome specificato
      * oppure un empty {@code Optional} se non viene trovata nessun' area con il nome specificato
      */
-    public Optional<AreaInfrastruttura> getAreaByName(String nome) {
+    public Optional<AreaInfrastruttura> getAreaBy(String nome) {
         return super.getBy(a -> a.getNome().equals(nome)).stream().findFirst();
     }
 
