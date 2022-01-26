@@ -42,4 +42,12 @@ public class RigaCatalogoAttivitaController {
     }
 
 
+
+    @PostMapping("/attivita")
+    public SimpleRigaCatalogoAttivita updateRiga(@RequestBody SimpleRigaCatalogoAttivita riga){
+        var r = this.rigaCatalogoAttivitaService.getBy(riga.getId());
+        if (r.isPresent())
+            this.rigaCatalogoAttivitaService.save(riga);
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
 }
