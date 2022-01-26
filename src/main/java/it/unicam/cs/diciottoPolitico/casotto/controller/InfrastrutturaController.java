@@ -55,14 +55,14 @@ public class InfrastrutturaController {
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
-     * Restituisce un' {@link AreaInfrastruttura} avente il nome specificato.
+     * Restituisce un' {@link AreaInfrastruttura} avente il nome specificato nel {@link RequestParam}.
      *
      * @param nome il nome di cui ricavare l' area
      * @return l' area avente il nome specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessun' {@code AreaInfrastruttura} con il nome specificato
      */
-    @GetMapping("/{nome}")
-    public AreaInfrastruttura getAreaBy(@PathVariable String nome) {
+    @GetMapping(params = "nome")
+    public AreaInfrastruttura getAreaBy(@RequestParam String nome) {
         Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getAreaBy(nome);
         return this.getAreaOrThrownException(foundArea);
     }
@@ -77,12 +77,11 @@ public class InfrastrutturaController {
      * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
      *                                 un' {@code AreaInfrastruttura} gi&agrave; presente nell' infrastruttura dello chalet
      */
-    @PostMapping()
+    @PostMapping
     public AreaInfrastruttura addArea(@RequestBody AreaInfrastruttura areaInfrastruttura) {
-        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getBy(areaInfrastruttura.getId());
-        if (foundArea.isPresent())
+        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.checkAndSave(areaInfrastruttura);
+        if (foundArea.isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        this.infrastrutturaService.save(areaInfrastruttura);
         return areaInfrastruttura;
     }
 
@@ -95,12 +94,11 @@ public class InfrastrutturaController {
      * @return l' {@code AreaInfrastruttura} aggiornata nell' infrastruttura dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se l' {@code AreaInfrastruttura} non viene trovata
      */
-    @PutMapping()
+    @PutMapping
     public AreaInfrastruttura updateArea(@RequestBody AreaInfrastruttura areaInfrastruttura) {
-        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getBy(areaInfrastruttura.getId());
+        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.checkAndUpdate(areaInfrastruttura);
         if (foundArea.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        this.infrastrutturaService.save(areaInfrastruttura);
         return foundArea.get();
     }
 

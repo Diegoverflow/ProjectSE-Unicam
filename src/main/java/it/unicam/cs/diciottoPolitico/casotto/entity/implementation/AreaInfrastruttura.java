@@ -1,10 +1,8 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -21,18 +19,17 @@ import java.util.UUID;
 public class AreaInfrastruttura {
 
     @Id
-    @Column(columnDefinition = "BINARY(16)",updatable = false)
+    @Column(columnDefinition = "BINARY(16)", updatable = false)
+    @EqualsAndHashCode.Exclude
     private UUID id;
 
-    @Column
-    @EqualsAndHashCode.Include
+    @Column(length = 40, unique = true, nullable = false)
     private String nome;
 
-    @Column
-    @EqualsAndHashCode.Include
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String descrizione;
 
-    public AreaInfrastruttura(){
+    public AreaInfrastruttura() {
         this.id = UUID.randomUUID();
     }
 }

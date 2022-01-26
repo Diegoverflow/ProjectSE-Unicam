@@ -35,4 +35,33 @@ public class InfrastrutturaService extends AbstractService<AreaInfrastruttura, I
         return super.getBy(a -> a.getNome().equals(nome)).stream().findFirst();
     }
 
+    /**
+     * Esegue un controllo seulla presenza dell' {@link AreaInfrastruttura} specificata in base al proprio id e il proprio nome.
+     * Restituisce un empty {@link Optional} se non viene trovata nessun' area con id e nome dell' area specificata nel database, altrimenti memorizza l' area
+     * specificata nel database e restituisce un {@code Optional} che descrive l' {@code AreaInfrastruttura} memorizzata.
+     *
+     * @param areaInfrastruttura l' area di cui eseguire il controllo e memorizzarla nel database
+     * @return un empty {@code Optional} se non viene trovata nessun' area con id e nome specificati nel database, altrimenti memorizza l' area
+     * specificata nel database e restituisce un {@code Optional} che descrive l' {@code AreaInfrastruttura} memorizzata.
+     */
+    public Optional<AreaInfrastruttura> checkAndSave(AreaInfrastruttura areaInfrastruttura) {
+        if (super.getBy(areaInfrastruttura.getId()).isEmpty() && this.getAreaBy(areaInfrastruttura.getNome()).isEmpty())
+            return Optional.of(super.save(areaInfrastruttura));
+        return Optional.empty();
+    }
+
+    /**
+     * Esegue un controllo sulla presenza dell' {@link AreaInfrastruttura} specificata in base al proprio id.
+     * Restituisce un empty {@link Optional} se non viene trovata nessun' area con id dell' area specificata nel database, altrimenti aggiorna l' area
+     * specificata nel database e restituisce un {@code Optional} che descrive l' {@code AreaInfrastruttura} aggiornata.
+     *
+     * @param areaInfrastruttura l' area di cui eseguire il controllo e aggiornarla nel database
+     * @return un empty {@code Optional} se non viene trovata nessun' area con id dell' area specificata nel database, altrimenti aggiorna l' area
+     * specificata nel database e restituisce un {@code Optional} che descrive l' {@code AreaInfrastruttura} aggiornata.
+     */
+    public Optional<AreaInfrastruttura> checkAndUpdate(AreaInfrastruttura areaInfrastruttura) {
+        if (super.getBy(areaInfrastruttura.getId()).isPresent())
+            return Optional.of(super.save(areaInfrastruttura));
+        return Optional.empty();
+    }
 }
