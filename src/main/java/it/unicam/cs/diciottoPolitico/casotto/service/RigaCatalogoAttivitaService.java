@@ -32,8 +32,8 @@ public class RigaCatalogoAttivitaService extends AbstractService<SimpleRigaCatal
         return super.getBy(riga->riga.getPostiTotali()<=numeroMaxPostiTotali);
     }
 
-    public Optional<SimpleRigaCatalogoAttivita> getRigaBy(String nomeAttvita){
-        return super.getBy(riga->riga.getValore().getNome().equals(nomeAttvita)).stream().findFirst();
+    public Optional<SimpleRigaCatalogoAttivita> getRigaBy(String nomeAttivita){
+        return super.getBy(riga->riga.getValore().getNome().equals(nomeAttivita)).stream().findFirst();
     }
 
 

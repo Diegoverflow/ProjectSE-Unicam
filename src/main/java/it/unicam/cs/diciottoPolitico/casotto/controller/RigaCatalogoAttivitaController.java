@@ -33,19 +33,20 @@ public class RigaCatalogoAttivitaController {
     }
 
     @PostMapping
-    public SimpleRigaCatalogoAttivita addRiga(@RequestBody SimpleRigaCatalogoAttivita riga){
-        var r = this.rigaCatalogoAttivitaService.getBy(riga.getId());
-        if (r.isPresent())
+    public SimpleRigaCatalogoAttivita addRiga(@RequestBody SimpleRigaCatalogoAttivita rigaCatalogo){
+        var riga = this.rigaCatalogoAttivitaService.getBy(rigaCatalogo.getId());
+        var attivita = this.rigaCatalogoAttivitaService.getRigaBy(rigaCatalogo.getValore().getNome());
+        if (riga.isPresent() || attivita.isPresent())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        return this.rigaCatalogoAttivitaService.save(riga);
+        return this.rigaCatalogoAttivitaService.save(rigaCatalogo);
     }
 
     @PutMapping
-    public SimpleRigaCatalogoAttivita updateRiga(@RequestBody SimpleRigaCatalogoAttivita riga){
-        var r = this.rigaCatalogoAttivitaService.getBy(riga.getId());
-        if (r.isEmpty())
+    public SimpleRigaCatalogoAttivita updateRiga(@RequestBody SimpleRigaCatalogoAttivita rigaCatalogoAttivita){
+        var riga = this.rigaCatalogoAttivitaService.getBy(rigaCatalogoAttivita.getId());
+        if (riga.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return this.rigaCatalogoAttivitaService.save(riga);
+        return this.rigaCatalogoAttivitaService.save(rigaCatalogoAttivita);
     }
 
     @DeleteMapping("/attivita-{idRiga}")
