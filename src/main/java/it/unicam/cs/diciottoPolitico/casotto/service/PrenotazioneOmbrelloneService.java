@@ -52,8 +52,10 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
     public SimplePrenotazioneOmbrellone save(SimplePrenotazioneOmbrellone prenotazione) {
         var riga = this.catalogoService.getRigaBy(prenotazione.getOmbrellone());
         var utente = this.utentiService.getBy(prenotazione.getVendita().getUtente().getId());
-        if (riga.isPresent() && utente.isPresent() && riga.get().getPrezzoOmbrellone() == prenotazione.getVendita().getCosto())
+        if (riga.isPresent() && utente.isPresent() && riga.get().getPrezzoOmbrellone() == prenotazione.getVendita().getCosto()){
+            prenotazione.setOmbrellone(riga.get().getValore());
             return super.save(prenotazione);
+        }
         return null;
     }
 

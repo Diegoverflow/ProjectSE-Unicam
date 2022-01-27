@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.*;
@@ -26,10 +27,12 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
     private UUID id;
 
     @Column
+    @NonNull
     private double prezzoOmbrellone;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ombrellone_id",nullable = false)
+    @JoinColumn(name = "ombrellone_id")
+    @NonNull
     private SimpleOmbrellone valore;
 
     protected SimpleRigaCatalogoOmbrellone() {

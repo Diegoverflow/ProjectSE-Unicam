@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -21,14 +22,13 @@ import java.util.UUID;
 public class SimpleOmbrellone implements Ombrellone {
 
     @Id
-    @EqualsAndHashCode.Exclude
+    @EqualsAndHashCode.Include
     @Column(columnDefinition = "BINARY(16)",updatable = false)
     private UUID id;
 
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
-    @Column(unique = true)
     private String codiceSpiaggia;
 
     protected SimpleOmbrellone(){

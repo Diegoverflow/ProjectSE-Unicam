@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -31,7 +32,8 @@ public class SimpleVendita implements Vendita {
     private boolean pagata;
 
     @ManyToOne
-    @JoinColumn(name = "utente_id", updatable = false, nullable = false)
+    @JoinColumn(name = "utente_id", updatable = false)
+    @NonNull
     private SimpleUtente utente;
 
     protected SimpleVendita() {

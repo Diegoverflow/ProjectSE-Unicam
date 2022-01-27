@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.*;
@@ -33,12 +34,14 @@ public class SimpleUtente implements Utente {
     private String cognome;
 
     @Column
+    @NonNull
     private String password;
 
     @Column
     private String cellulare;
 
     @Column
+    @NonNull
     private String email;
 
     @Enumerated(EnumType.STRING)
