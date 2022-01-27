@@ -21,14 +21,14 @@ import java.util.UUID;
 public class SimpleOmbrellone implements Ombrellone {
 
     @Id
-    @EqualsAndHashCode.Include
+    @EqualsAndHashCode.Exclude
     @Column(columnDefinition = "BINARY(16)",updatable = false)
     private UUID id;
 
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
-    @Column
+    @Column(unique = true)
     private String codiceSpiaggia;
 
     protected SimpleOmbrellone(){

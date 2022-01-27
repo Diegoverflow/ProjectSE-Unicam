@@ -4,7 +4,6 @@ import it.unicam.cs.diciottoPolitico.casotto.entity.Notifica;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
