@@ -1,7 +1,10 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.OrdinazioneBar;
+import it.unicam.cs.diciottoPolitico.casotto.entity.StatusOrdinazioneBar;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleArticoloBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOrdinazioneBar;
+import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoBar;
 import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.OrdinazioneBarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * RestController delle ordinazioni bar che effettuano i clienti.
@@ -23,7 +25,7 @@ import java.util.UUID;
  * @see OrdinazioneBarService
  */
 @RestController
-@RequestMapping("/bar")
+@RequestMapping("/bar/ordinazioni")
 public class OrdinazioneController {
 
     @Autowired
@@ -35,9 +37,61 @@ public class OrdinazioneController {
      *
      * @return la lista di tutte le ordinazioni bar effettuate dai clienti
      */
-    @GetMapping("/ordinazioni")
+    @GetMapping("/all")
     public List<SimpleOrdinazioneBar> getAllOrdinazioni() {
         return this.ordinazioneBarService.getAll();
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la lista di tutte le ordinazioni bar effettuate dai clienti che si trovano nello {@link StatusOrdinazioneBar} specificato nel {@link RequestParam}.
+     *
+     * @param status lo status in cui si devono trovare le ordinazioni bar
+     * @return la lista di tutte le ordinazioni bar che si trovano nello {@code StatusOrdinazioneBar} specificato
+     */
+    @GetMapping(params = "status")
+    public List<SimpleOrdinazioneBar> filtraByStatus(@RequestParam(value = "status") StatusOrdinazioneBar status) {
+        return this.filtraByStatus(status);
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la lista di tutte le ordinazioni bar effettuate dai clienti che hanno ordinato il {@link SimpleArticoloBar} specificato nel {@link RequestParam}.
+     *
+     * @param articoloBar il {@code SimpleArticoloBar} che devono contenere le ordinazioni bar
+     * @return la lista di tutte le ordinazioni bar dei clienti che hanno ordinato il {@code SimpleArticoloBar} specificato
+     */
+    @GetMapping(params = "articolo_bar")
+    public List<SimpleOrdinazioneBar> filtraByArticoloBar(@RequestParam(value = "articolo_bar") SimpleArticoloBar articoloBar) {
+        return this.filtraByArticoloBar(articoloBar);
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la lista di tutte le ordinazioni bar effettuate dai clienti che hanno ordinato il {@link SimpleArticoloBar} con nome specificato nel {@link RequestParam}.
+     *
+     * @param nomeArticoloBar il nome del {@code SimpleArticoloBar} che devono contenere le ordinazioni bar
+     * @return la lista di tutte le ordinazioni bar dei clienti che hanno ordinato il {@code SimpleArticoloBar} aventi nome specificato
+     */
+    @GetMapping(params = "nome_articolo_bar")
+    public List<SimpleOrdinazioneBar> filtraByNomeArticoloBar(@RequestParam(value = "nome_articolo_bar") String nomeArticoloBar) {
+        return this.filtraByNomeArticoloBar(nomeArticoloBar);
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#POST}.
+     * Aggiunge la {@link SimpleOrdinazioneBar} contenuta nel {@link RequestBody} della richiesta HTTP alle ordinazioni effettuate dai clienti dello chalet.
+     * Restituisce la {@code SimpleOrdinazioneBar} aggiunta.
+     *
+     * @param ordinazione la {@code SimpleOrdinazioneBar} da aggiungere alle ordinazioni bar dello chalet
+     * @return la {@code SimpleOrdinazioneBar} aggiunta
+     * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
+     *                                 una {@code SimpleOrdinazioneBar} riferita a un {@link SimpleArticoloBar} non presente nel catalogo bar dello chalet
+     */
+    @PostMapping
+    public SimpleOrdinazioneBar addOrdinazione(@RequestBody SimpleOrdinazioneBar ordinazione) {
+        Optional<SimpleOrdinazioneBar> foundOrdinazione = this.ordinazioneBarService.checkAndSave(ordinazione);
+        return this.getOrdinazioneOrThrownException(foundOrdinazione, HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -55,7 +109,9 @@ public class OrdinazioneController {
         return this.ordinazioneBarService.getOrdinazioneBy(id).get();
     }
 
-    *//**
+    */
+
+    /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#POST}.
      * Aggiunge la {@link SimpleOrdinazioneBar} contenuta nel {@link RequestBody} della richiesta HTTP all dello chalet.
      * Restituisce l' {@code AreaInfrastruttura} aggiunta all' infrastruttura dello chalet.
@@ -72,4 +128,10 @@ public class OrdinazioneController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         return foundOrdinazione.get();
     }*/
+    private SimpleOrdinazioneBar getOrdinazioneOrThrownException(Optional<SimpleOrdinazioneBar> ordinazione, HttpStatus status) {
+        if (ordinazione.isEmpty())
+            throw new ResponseStatusException(status);
+        return ordinazione.get();
+    }
+
 }

@@ -5,6 +5,7 @@ import it.unicam.cs.diciottoPolitico.casotto.entity.Utente;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import java.util.*;
 @Table(name = "utente")
 @Getter
 @Setter
+@ToString
 @EqualsAndHashCode
 public class SimpleUtente implements Utente {
 

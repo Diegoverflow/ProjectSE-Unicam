@@ -4,7 +4,7 @@ import it.unicam.cs.diciottoPolitico.casotto.entity.Vendita;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -31,10 +31,12 @@ public class SimpleVendita implements Vendita {
     private boolean pagata;
 
     @ManyToOne
-    @JoinColumn(name = "utente_id")
+    @JoinColumn(name = "utente_id", updatable = false)
     private SimpleUtente utente;
 
-    public SimpleVendita(){
+    protected SimpleVendita() {
         this.id = UUID.randomUUID();
+        this.dataAcquisto = new Date();
+        this.pagata = false;
     }
 }
