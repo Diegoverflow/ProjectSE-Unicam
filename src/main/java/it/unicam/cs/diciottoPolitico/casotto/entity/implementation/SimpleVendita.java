@@ -31,7 +31,7 @@ public class SimpleVendita implements Vendita {
     private boolean pagata;
 
     @ManyToOne
-    @JoinColumn(name = "utente_id", updatable = false)
+    @JoinColumn(name = "utente_id", updatable = false,nullable = false)
     private SimpleUtente utente;
 
     protected SimpleVendita() {
