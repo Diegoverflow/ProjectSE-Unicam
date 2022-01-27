@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity;
 
 /**
- * Status in cui un {@link OrdinazioneBar} si pu&ograve; trovare durante il proprio ciclo di vita.
+ * Status in cui un' {@link OrdinazioneBar} si pu&ograve; trovare durante il proprio ciclo di vita.
  * Un' {@code OrdinazioneBar} si pu&ograve; trovare in uno ed un solo status tra i seguenti:
  * <ul>
  *      <li>{@link #DA_PRENDERE_IN_CARICO}<br>
