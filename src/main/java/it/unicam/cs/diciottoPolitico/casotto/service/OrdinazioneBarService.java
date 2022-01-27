@@ -24,6 +24,12 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
 
     private final ArticoloBarRepository articoloBarRepository;
 
+    /**
+     * Crea un service per le ordinazioni in base al repository degli articoli bar e iniettando il repository degli articoli bar specificati.
+     *
+     * @param articoloBarRepository il repository degli articoli bar
+     * @param repository            il repository delle ordinazioni bar
+     */
     @Autowired
     public OrdinazioneBarService(ArticoloBarRepository articoloBarRepository, OrdinazioneBarRepository repository) {
         super(repository);
