@@ -45,6 +45,7 @@ public class SimpleUtente implements Utente {
     private String email;
 
     @Enumerated(EnumType.STRING)
+    @NonNull
     private RuoloUtente ruoloUtente;
 
     @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
