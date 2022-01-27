@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
+/**
+ * Interfaccia per le operazioni CRUD sul repository della {@link SimpleRigaCatalogoAttivita}.
+ */
 @Repository
 public interface RigaCatalogoAttivitaRepository extends JpaRepository<SimpleRigaCatalogoAttivita, UUID> {
 }

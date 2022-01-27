@@ -2,7 +2,7 @@ package it.unicam.cs.diciottoPolitico.casotto.entity;
 
 /**
  * Ruolo che un {@link Utente} ricopre.
- * Un {@link Utente} pu&ograve; ricoprire uno ed un solo ruolo tra i seguenti:
+ * Un {@code Utente} pu&ograve; ricoprire uno ed un solo ruolo tra i seguenti:
  * <ul>
  *     <li>{@link #GESTORE}<br>
  *          Il gestore dello chalet.

@@ -20,8 +20,5 @@ package it.unicam.cs.diciottoPolitico.casotto.entity;
  * </p>
  */
 public enum FasciaOraria {
-
-    MATTINO,
-    POMERIGGIO,
-    GIORNATA_INTERA;
+    MATTINO, POMERIGGIO, GIORNATA_INTERA
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -49,8 +48,7 @@ public class InfrastrutturaController {
      */
     @GetMapping("/{id}")
     public AreaInfrastruttura getAreaBy(@PathVariable UUID id) {
-        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getBy(id);
-        return this.getAreaOrThrownException(foundArea);
+        return this.infrastrutturaService.getBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     /**
@@ -63,8 +61,7 @@ public class InfrastrutturaController {
      */
     @GetMapping(params = "nome")
     public AreaInfrastruttura getAreaBy(@RequestParam String nome) {
-        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.getAreaBy(nome);
-        return this.getAreaOrThrownException(foundArea);
+        return this.infrastrutturaService.getAreaBy(nome).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     /**
@@ -79,10 +76,7 @@ public class InfrastrutturaController {
      */
     @PostMapping
     public AreaInfrastruttura addArea(@RequestBody AreaInfrastruttura areaInfrastruttura) {
-        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.checkAndSave(areaInfrastruttura);
-        if (foundArea.isEmpty())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        return areaInfrastruttura;
+        return this.infrastrutturaService.checkAndSave(areaInfrastruttura).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
     /**
@@ -96,10 +90,7 @@ public class InfrastrutturaController {
      */
     @PutMapping
     public AreaInfrastruttura updateArea(@RequestBody AreaInfrastruttura areaInfrastruttura) {
-        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.checkAndUpdate(areaInfrastruttura);
-        if (foundArea.isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return foundArea.get();
+        return this.infrastrutturaService.checkAndUpdate(areaInfrastruttura).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     /**
@@ -113,14 +104,7 @@ public class InfrastrutturaController {
      */
     @DeleteMapping("/{id}")
     public AreaInfrastruttura removeArea(@PathVariable UUID id) {
-        Optional<AreaInfrastruttura> foundArea = this.infrastrutturaService.removeBy(id);
-        return this.getAreaOrThrownException(foundArea);
-    }
-
-    private AreaInfrastruttura getAreaOrThrownException(Optional<AreaInfrastruttura> area) {
-        if (area.isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return area.get();
+        return this.infrastrutturaService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
 }
