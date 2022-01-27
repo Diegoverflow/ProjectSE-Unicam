@@ -17,6 +17,8 @@ public class VenditaService extends AbstractService<SimpleVendita, VenditaReposi
         super(repository);
     }
 
+
+
     public List<SimpleVendita> getVenditeClienteDaPagare(UUID idUtente) {
         return super.getBy(vendita -> vendita.getUtente().getId().equals(idUtente));
     }
@@ -29,7 +31,6 @@ public class VenditaService extends AbstractService<SimpleVendita, VenditaReposi
         return super.getBy(v -> v.getDataAcquisto().equals(data));
     }
 
-    // TODO: Testare after e before per vedere se equals è necessario
     public List<SimpleVendita> filtraDaA(Date inizio, Date fine) {
         return super.getBy(v -> (v.getDataAcquisto().equals(inizio) || v.getDataAcquisto().equals(fine))
                 && (v.getDataAcquisto().after(inizio) && v.getDataAcquisto().before(fine)));
