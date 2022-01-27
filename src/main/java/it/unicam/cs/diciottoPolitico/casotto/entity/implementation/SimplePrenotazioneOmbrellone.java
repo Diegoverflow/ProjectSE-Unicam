@@ -23,14 +23,14 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
     private FasciaOraria fasciaOraria;
 
     @ManyToOne
-    @JoinColumn(name = "ombrellone_id")
+    @JoinColumn(name = "ombrellone_id",nullable = false)
     private SimpleOmbrellone ombrellone;
 
     @Temporal(TemporalType.DATE)
     private Date dataPrenotazione;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "vendita_id")
+    @JoinColumn(name = "vendita_id",nullable = false)
     private SimpleVendita vendita;
 
     protected SimplePrenotazioneOmbrellone(){

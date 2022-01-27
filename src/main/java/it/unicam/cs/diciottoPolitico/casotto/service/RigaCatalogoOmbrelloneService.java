@@ -29,21 +29,25 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
                 .collect(Collectors.toList());
     }
 
-    public Optional<SimpleRigaCatalogoOmbrellone> getRigaCatalogoOmbrelloneBy(Ombrellone ombrellone) {
+    public Optional<SimpleRigaCatalogoOmbrellone> getRigaBy(UUID id){
+        return super.getBy(id);
+    }
+
+    public Optional<SimpleRigaCatalogoOmbrellone> getRigaBy(Ombrellone ombrellone) {
         return super.getBy(riga->riga.getValore().equals(ombrellone))
                 .stream()
                 .findFirst();
     }
 
-    public List<SimpleRigaCatalogoOmbrellone> getRigheCatalogoOmbrelloneBy(Categoria categoria) {
+    public List<SimpleRigaCatalogoOmbrellone> filterBy(Categoria categoria) {
         return super.getBy(riga -> riga.getValore().getCategoria().equals(categoria));
     }
 
-    public List<SimpleRigaCatalogoOmbrellone> getRigheCatalogoOmbrelloneBy(double prezzoLimite) {
+    public List<SimpleRigaCatalogoOmbrellone> filterBy(double prezzoLimite) {
         return super.getBy(riga -> riga.getPrezzoOmbrellone() <= prezzoLimite);
     }
 
-    public List<SimpleRigaCatalogoOmbrellone> getRigheCatalogoOmbrelloneBy(String codiceSpiaggia) {
+    public List<SimpleRigaCatalogoOmbrellone> filterBy(String codiceSpiaggia) {
         return super.getBy(riga -> riga.getValore().getCodiceSpiaggia().equals(codiceSpiaggia));
     }
 

@@ -70,7 +70,7 @@ public class RigaCatalogoBarService extends AbstractService<SimpleRigaCatalogoBa
     }
 
     /**
-     * Esegue un controllo seulla presenza della {@link SimpleRigaCatalogoBar} specificata in base al proprio id e il proprio {@link SimpleArticoloBar} contenuto.
+     * Esegue un controllo sulla presenza della {@link SimpleRigaCatalogoBar} specificata in base al proprio id e il proprio {@link SimpleArticoloBar} contenuto.
      * Restituisce un empty {@link Optional} se non viene trovata nessuna riga con id e articolo bar della riga specificata nel database, altrimenti memorizza la riga
      * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleRigaCatalogoBar} memorizzata.
      *

@@ -26,7 +26,7 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
     private double prezzoOmbrellone;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ombrellone_id")
+    @JoinColumn(name = "ombrellone_id",unique = true)
     private SimpleOmbrellone valore;
 
     protected SimpleRigaCatalogoOmbrellone() {
