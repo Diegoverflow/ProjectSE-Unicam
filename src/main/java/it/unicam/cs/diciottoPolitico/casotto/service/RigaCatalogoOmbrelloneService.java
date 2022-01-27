@@ -2,17 +2,13 @@ package it.unicam.cs.diciottoPolitico.casotto.service;
 
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.Categoria;
-import it.unicam.cs.diciottoPolitico.casotto.entity.FasciaOraria;
 import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
-import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCatalogoOmbrellone, RigaCatalogoOmbrelloneRepository> {
@@ -22,15 +18,19 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
         super(repository);
     }
 
-    public List<Ombrellone> getAllOmbrelloni() {
-        return super.getAll()
-                .stream()
-                .map(SimpleRigaCatalogoOmbrellone::getValore)
-                .collect(Collectors.toList());
+    @Override
+    public SimpleRigaCatalogoOmbrellone save(SimpleRigaCatalogoOmbrellone riga){
+        if (super.getBy(riga.getId()).isEmpty() && this.getRigaBy(riga.getValore()).isEmpty())
+            return super.save(riga);
+        return null;
     }
 
-    public Optional<SimpleRigaCatalogoOmbrellone> getRigaBy(UUID id){
-        return super.getBy(id);
+    public SimpleRigaCatalogoOmbrellone update(SimpleRigaCatalogoOmbrellone riga){
+        var r = super.getBy(riga.getId());
+        if (r.isPresent())
+            if(super.getBy(ri-> ri.getValore().equals(riga.getValore()) && !ri.equals(r.get())).isEmpty())
+            return super.save(riga);
+        return null;
     }
 
     public Optional<SimpleRigaCatalogoOmbrellone> getRigaBy(Ombrellone ombrellone) {

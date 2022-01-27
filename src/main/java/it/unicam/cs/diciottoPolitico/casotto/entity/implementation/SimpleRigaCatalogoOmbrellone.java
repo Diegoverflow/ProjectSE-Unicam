@@ -2,6 +2,7 @@ package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoOmbrellone;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -16,9 +17,11 @@ import java.util.*;
 @Table(name = "riga_catalogo_ombrellone")
 @Setter
 @Getter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
 
     @Id
+    @EqualsAndHashCode.Include
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
@@ -26,7 +29,7 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
     private double prezzoOmbrellone;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ombrellone_id",unique = true)
+    @JoinColumn(name = "ombrellone_id",nullable = false)
     private SimpleOmbrellone valore;
 
     protected SimpleRigaCatalogoOmbrellone() {

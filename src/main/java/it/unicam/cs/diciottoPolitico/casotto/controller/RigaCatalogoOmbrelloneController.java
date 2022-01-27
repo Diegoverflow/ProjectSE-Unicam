@@ -29,22 +29,22 @@ public class RigaCatalogoOmbrelloneController {
 
     @PostMapping("/ombrelloni")
     public SimpleRigaCatalogoOmbrellone addRigaCatalogoOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone riga){
-        var r = this.service.getBy(riga.getId());
-        if (r.isEmpty())
-            return this.service.save(riga);
+        var r = this.service.save(riga);
+        if (r != null)
+            return r;
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("/ombrelloni")
-    public SimpleRigaCatalogoOmbrellone updateOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone riga){
-        var r = this.service.getBy(riga.getId());
-        if (r.isEmpty())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        return this.service.save(riga);
+    public SimpleRigaCatalogoOmbrellone updateRigaCatalogoOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone riga){
+        var r = this.service.save(riga);
+        if (r != null)
+            return r;
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/ombrelloni/{id}")
-    public SimpleRigaCatalogoOmbrellone removeOmbrellone(@PathVariable UUID id){
+    public SimpleRigaCatalogoOmbrellone removeRigaCatalogoOmbrellone(@PathVariable UUID id){
         return this.service.removeBy(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 

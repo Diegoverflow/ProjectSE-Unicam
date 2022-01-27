@@ -2,6 +2,7 @@ package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.Categoria;
 import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -16,9 +17,11 @@ import java.util.UUID;
 @Table(name = "ombrellone")
 @Setter
 @Getter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class SimpleOmbrellone implements Ombrellone {
 
     @Id
+    @EqualsAndHashCode.Include
     @Column(columnDefinition = "BINARY(16)",updatable = false)
     private UUID id;
 
