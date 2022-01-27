@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,7 +46,6 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
                 .filter(riga -> this.filtraBy(data, fasciaOraria).stream().noneMatch(p -> p.getOmbrellone().equals(riga.getValore())))
                 .collect(Collectors.toList());
     }
-
 
     public List<SimplePrenotazioneOmbrellone> filtraBy(Date data, FasciaOraria fasciaOraria) {
         return super.getAll().stream()
