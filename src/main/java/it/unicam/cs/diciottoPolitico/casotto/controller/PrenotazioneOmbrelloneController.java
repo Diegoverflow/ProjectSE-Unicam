@@ -7,6 +7,7 @@ import it.unicam.cs.diciottoPolitico.casotto.service.PrenotazioneOmbrelloneServi
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -40,7 +41,7 @@ public class PrenotazioneOmbrelloneController {
      * @return la lista di tutte le righe del catalogo degli ombrelloni disponibili in base alla data e alla {@code FasciaOraria} specificate.
      */
     @GetMapping("/ombrelloni/disponibili")
-    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@RequestParam Date data, @RequestParam FasciaOraria fasciaOraria) {
+    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@RequestParam(value = "data") @DateTimeFormat(pattern="ddMMyyy") Date data, @RequestParam(value = "fascia-oraria") FasciaOraria fasciaOraria) {
         return this.prenotazioneOmbrelloneService.getRigheDisponibiliBy(data, fasciaOraria);
     }
 
