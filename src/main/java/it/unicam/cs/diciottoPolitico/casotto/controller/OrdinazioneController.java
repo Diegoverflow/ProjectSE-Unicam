@@ -4,7 +4,6 @@ import it.unicam.cs.diciottoPolitico.casotto.entity.OrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.StatusOrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleArticoloBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOrdinazioneBar;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoBar;
 import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.OrdinazioneBarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 /**
  * RestController delle ordinazioni bar che effettuano i clienti.
@@ -44,6 +43,19 @@ public class OrdinazioneController {
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce una {@link SimpleOrdinazioneBar} avente id specificato.
+     *
+     * @param id l' id di cui ricavare una {@code SimpleOrdinazioneBar}
+     * @return l' ordinazione bar avente id specificato
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna {@code SimpleOrdinazioneBar} con id specificato
+     */
+    @GetMapping("/{id}")
+    public SimpleOrdinazioneBar getOrdinazioneBy(@PathVariable UUID id) {
+        return this.ordinazioneBarService.getBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
      * Restituisce la lista di tutte le ordinazioni bar effettuate dai clienti che si trovano nello {@link StatusOrdinazioneBar} specificato nel {@link RequestParam}.
      *
      * @param status lo status in cui si devono trovare le ordinazioni bar
@@ -51,7 +63,7 @@ public class OrdinazioneController {
      */
     @GetMapping(params = "status")
     public List<SimpleOrdinazioneBar> filtraByStatus(@RequestParam(value = "status") StatusOrdinazioneBar status) {
-        return this.filtraByStatus(status);
+        return this.ordinazioneBarService.filtraBy(status);
     }
 
     /**
@@ -63,7 +75,7 @@ public class OrdinazioneController {
      */
     @GetMapping(params = "articolo_bar")
     public List<SimpleOrdinazioneBar> filtraByArticoloBar(@RequestParam(value = "articolo_bar") SimpleArticoloBar articoloBar) {
-        return this.filtraByArticoloBar(articoloBar);
+        return this.ordinazioneBarService.filtraBy(articoloBar);
     }
 
     /**
@@ -75,7 +87,7 @@ public class OrdinazioneController {
      */
     @GetMapping(params = "nome_articolo_bar")
     public List<SimpleOrdinazioneBar> filtraByNomeArticoloBar(@RequestParam(value = "nome_articolo_bar") String nomeArticoloBar) {
-        return this.filtraByNomeArticoloBar(nomeArticoloBar);
+        return this.ordinazioneBarService.filtraBy(nomeArticoloBar);
     }
 
     /**
@@ -90,48 +102,21 @@ public class OrdinazioneController {
      */
     @PostMapping
     public SimpleOrdinazioneBar addOrdinazione(@RequestBody SimpleOrdinazioneBar ordinazione) {
-        Optional<SimpleOrdinazioneBar> foundOrdinazione = this.ordinazioneBarService.checkAndSave(ordinazione);
-        return this.getOrdinazioneOrThrownException(foundOrdinazione, HttpStatus.BAD_REQUEST);
+        return this.ordinazioneBarService.checkAndSave(ordinazione).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
     /**
-     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
-     * Restituisce una {@link SimpleOrdinazioneBar} avente id specificato.
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#DELETE}.
+     * Rimuove dalle ordinazioni bar dello chalet, la {@link SimpleOrdinazioneBar} avente l' id specificato come {@link PathVariable}.
+     * Restituisce la {@code SimpleOrdinazioneBar} rimossa dalle ordinazioni bar dello chalet.
      *
-     * @param id l' id di cui ricavare una {@code SimpleOrdinazioneBar}
-     * @return l' ordinazione bar avente id specificato
-     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna {@code SimpleOrdinazioneBar} con id specificato
+     * @param id l' id della {@code SimpleOrdinazioneBar} da eliminare
+     * @return la {@code SimpleOrdinazioneBar} rimossa dalle ordinazioni bar dello chalet
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
      */
-   /* @GetMapping("/ordinazioni/{id}")
-    public SimpleOrdinazioneBar getOrdinazioneBy(@PathVariable UUID id) {
-        if (this.ordinazioneBarService.getOrdinazioneBy(id).isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return this.ordinazioneBarService.getOrdinazioneBy(id).get();
-    }
-
-    */
-
-    /**
-     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#POST}.
-     * Aggiunge la {@link SimpleOrdinazioneBar} contenuta nel {@link RequestBody} della richiesta HTTP all dello chalet.
-     * Restituisce l' {@code AreaInfrastruttura} aggiunta all' infrastruttura dello chalet.
-     *
-     * @param ordinazioneBar l' area da aggiungere all' infrastruttura dello chalet
-     * @return l' {@code AreaInfrastruttura} aggiunta all' infrastruttura dello chalet
-     * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
-     *                                 un' {@code AreaInfrastruttura} gi&agrave; presente nell' infrastruttura dello chalet
-     *//*
-    @PostMapping("/ordinazioni/{id}")
-    public SimpleOrdinazioneBar addOrdinazione(@PathVariable UUID id, @RequestBody SimpleOrdinazioneBar ordinazioneBar) {
-        Optional<SimpleOrdinazioneBar> foundOrdinazione = this.ordinazioneBarService.addOrdinazione(ordinazioneBar);
-        if (foundOrdinazione.isEmpty())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        return foundOrdinazione.get();
-    }*/
-    private SimpleOrdinazioneBar getOrdinazioneOrThrownException(Optional<SimpleOrdinazioneBar> ordinazione, HttpStatus status) {
-        if (ordinazione.isEmpty())
-            throw new ResponseStatusException(status);
-        return ordinazione.get();
+    @DeleteMapping("/{id}")
+    public SimpleOrdinazioneBar removeRiga(@PathVariable UUID id) {
+        return this.ordinazioneBarService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
 }

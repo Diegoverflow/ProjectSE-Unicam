@@ -3,7 +3,6 @@ package it.unicam.cs.diciottoPolitico.casotto.service;
 import it.unicam.cs.diciottoPolitico.casotto.entity.StatusOrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleArticoloBar;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOrdinazioneBar;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoBar;
 import it.unicam.cs.diciottoPolitico.casotto.repository.ArticoloBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +75,7 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         return Optional.of(super.save(ordinazione));
     }
 
-    /**
+    /*/** // TODO: inserire update?
      * Esegue un controllo sulla presenza della {@link SimpleOrdinazioneBar} specificata in base al proprio id.
      * Restituisce un empty {@link Optional} se non viene trovata nessuna ordinazione con id dell' ordinazione specificata nel database, altrimenti aggiorna l' ordinazione
      * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} aggiornata.
@@ -90,6 +89,7 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
             return Optional.of(super.save(riga));
         return Optional.empty();
     }*/
+
     private Optional<SimpleArticoloBar> checkArticolo(SimpleArticoloBar articoloBar) {
         return this.articoloBarRepository.findById(articoloBar.getId());
     }
