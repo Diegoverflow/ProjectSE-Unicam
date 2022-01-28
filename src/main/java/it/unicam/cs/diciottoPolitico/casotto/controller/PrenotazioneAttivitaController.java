@@ -3,7 +3,6 @@ package it.unicam.cs.diciottoPolitico.casotto.controller;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.service.PrenotazioneAttivitaService;
-import it.unicam.cs.diciottoPolitico.casotto.service.RigaCatalogoAttivitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

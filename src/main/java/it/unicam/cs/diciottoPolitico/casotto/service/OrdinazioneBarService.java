@@ -24,16 +24,20 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
 
     private final ArticoloBarRepository articoloBarRepository;
 
+    // TODO: 28/01/22 inviare notifica ai dipendenti bar quando si salva un'ordinazione 
+    private final NotificaService notificaService;
+
     /**
      * Crea un service per le ordinazioni in base al repository degli articoli bar e iniettando il repository degli articoli bar specificati.
-     *
-     * @param articoloBarRepository il repository degli articoli bar
+     *  @param articoloBarRepository il repository degli articoli bar
      * @param repository            il repository delle ordinazioni bar
+     * @param notificaService
      */
     @Autowired
-    public OrdinazioneBarService(ArticoloBarRepository articoloBarRepository, OrdinazioneBarRepository repository) {
+    public OrdinazioneBarService(ArticoloBarRepository articoloBarRepository, OrdinazioneBarRepository repository, NotificaService notificaService) {
         super(repository);
         this.articoloBarRepository = articoloBarRepository;
+        this.notificaService = notificaService;
     }
 
     /**
