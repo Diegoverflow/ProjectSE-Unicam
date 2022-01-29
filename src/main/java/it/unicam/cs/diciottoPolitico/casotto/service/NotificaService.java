@@ -23,8 +23,6 @@ public class NotificaService extends AbstractService<SimpleNotifica, NotificaRep
         this.utenteRepository = utenteRepository;
     }
 
-    // Td0: 25/01/22
-    // TODO: 25/01/22
     public void inviaNotifica(SimpleNotifica notifica) {
         //this.notificaRepository.save(notifica);
         this.utenteRepository.
@@ -51,6 +49,5 @@ public class NotificaService extends AbstractService<SimpleNotifica, NotificaRep
                     this.utenteRepository.save(utente);
                 });
     }
-
 
 }
