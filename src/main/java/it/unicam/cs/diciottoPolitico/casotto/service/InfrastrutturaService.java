@@ -1,6 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.AreaInfrastruttura;
+import it.unicam.cs.diciottoPolitico.casotto.model.AreaInfrastruttura;
 import it.unicam.cs.diciottoPolitico.casotto.repository.InfrastrutturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

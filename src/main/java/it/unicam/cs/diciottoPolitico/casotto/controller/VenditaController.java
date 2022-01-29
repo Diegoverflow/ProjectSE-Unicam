@@ -1,6 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleVendita;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleVendita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.VenditaRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.VenditaService;
 import org.springframework.beans.factory.annotation.Autowired;

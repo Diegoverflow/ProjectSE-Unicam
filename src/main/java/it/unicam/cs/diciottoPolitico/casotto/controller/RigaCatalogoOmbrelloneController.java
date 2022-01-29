@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.service.RigaCatalogoOmbrelloneService;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +83,7 @@ public class RigaCatalogoOmbrelloneController {
      */
     @PutMapping("/ombrelloni")
     public SimpleRigaCatalogoOmbrellone updateRigaCatalogoOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone riga) {
-        var r = this.service.save(riga);
+        var r = this.service.update(riga);
         if (r != null)
             return r;
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

@@ -1,6 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoAttivitaRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.RigaCatalogoAttivitaService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleNotifica;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleUtente;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleNotifica;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.repository.NotificaRepository;
 import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;

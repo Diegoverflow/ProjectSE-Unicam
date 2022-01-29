@@ -1,9 +1,9 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.OrdinazioneBar;
-import it.unicam.cs.diciottoPolitico.casotto.entity.StatusOrdinazioneBar;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleArticoloBar;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOrdinazioneBar;
+import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.OrdinazioneBar;
+import it.unicam.cs.diciottoPolitico.casotto.model.StatusOrdinazioneBar;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleArticoloBar;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.OrdinazioneBarService;
 import org.springframework.beans.factory.annotation.Autowired;
