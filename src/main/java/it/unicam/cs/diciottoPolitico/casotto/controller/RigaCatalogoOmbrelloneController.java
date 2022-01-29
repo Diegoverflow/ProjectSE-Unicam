@@ -83,7 +83,7 @@ public class RigaCatalogoOmbrelloneController {
      */
     @PutMapping("/ombrelloni")
     public SimpleRigaCatalogoOmbrellone updateRigaCatalogoOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone riga) {
-        var r = this.service.save(riga);
+        var r = this.service.update(riga);
         if (r != null)
             return r;
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
