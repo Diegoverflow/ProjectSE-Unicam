@@ -1,14 +1,13 @@
 package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
 import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoOmbrellone;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.util.*;
 
 /**
@@ -28,6 +27,7 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
 
     @Column
     @NonNull
+    @Positive
     private double prezzoOmbrellone;
 
     @OneToOne(cascade = CascadeType.ALL)

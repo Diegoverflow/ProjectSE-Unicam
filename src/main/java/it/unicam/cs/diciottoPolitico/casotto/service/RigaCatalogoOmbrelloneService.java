@@ -37,7 +37,7 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
 
     @Override
     public SimpleRigaCatalogoOmbrellone save(SimpleRigaCatalogoOmbrellone riga) {
-        if (this.filterBy(riga.getValore().getCodiceSpiaggia().getNome()).isEmpty() && super.getBy(riga.getId()).isEmpty() && this.getRigaBy(riga.getValore()).isEmpty()) {
+        if (riga.getPrezzoOmbrellone() > 0 && this.filterBy(riga.getValore().getCodiceSpiaggia().getNome()).isEmpty() && super.getBy(riga.getId()).isEmpty() && this.getRigaBy(riga.getValore()).isEmpty()) {
             QRCode qrCode = riga.getValore().getCodiceSpiaggia();
             qrCode.setQRCodeImage(QRCodeGenerator.createQRCode(url + qrCode.getNome(), "PNG"));
             return super.save(riga);
@@ -101,7 +101,7 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
      *
      * @param codiceSpiaggia il codice spiaggia da filtrare
      * @return un {@code Optional} che descrive la {@code SimpleRigaCatalogoOmbrellone} che contiene il
-     *      * {@code SimpleOmbrellone} avente come codice spieggia il codice spiaggia specificato, un empty {@code Optional} altrimenti
+     * * {@code SimpleOmbrellone} avente come codice spieggia il codice spiaggia specificato, un empty {@code Optional} altrimenti
      */
     public Optional<SimpleRigaCatalogoOmbrellone> filterBy(String codiceSpiaggia) {
         return super.getBy(riga -> riga.getValore().getCodiceSpiaggia().getNome().equals(codiceSpiaggia)).stream().findFirst();
