@@ -42,7 +42,7 @@ public class RigaCatalogoBarController {
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
-     * Restituisce una {@link SimpleRigaCatalogoBar} avente id specificato.
+     * Restituisce una {@link SimpleRigaCatalogoBar} avente id specificato nel {@link PathVariable}.
      *
      * @param id l' id di cui ricavare la riga dal catalogo bar
      * @return la riga avente id specificato
@@ -51,7 +51,7 @@ public class RigaCatalogoBarController {
     @GetMapping("/{id}")
     public SimpleRigaCatalogoBar getRigaBy(@PathVariable UUID id) {
         Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getBy(id);
-        return this.getRigaOrThrownException(foundRiga,HttpStatus.NOT_FOUND);
+        return this.getRigaOrThrownException(foundRiga, HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -89,7 +89,7 @@ public class RigaCatalogoBarController {
     @GetMapping(value = "/riga")
     public SimpleRigaCatalogoBar getRigaByArticolo(@RequestBody SimpleArticoloBar articoloBar) {
         Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getRigaBy(articoloBar);
-        return this.getRigaOrThrownException(foundRiga,HttpStatus.NOT_FOUND);
+        return this.getRigaOrThrownException(foundRiga, HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -100,10 +100,10 @@ public class RigaCatalogoBarController {
      * @return una {@code SimpleRigaCatalogoBar} avente il nome dell' articolo bar specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna riga con il nome dell' articolo bar specificato
      */
-    @GetMapping(value = "/riga", params = "nome_articolo_bar")
-    public SimpleRigaCatalogoBar getRigaByNomeArticoloBar(@RequestParam(value = "nome_articolo_bar") String nomeArticolo) {
+    @GetMapping(value = "/riga", params = "nome-articolo-bar")
+    public SimpleRigaCatalogoBar getRigaByNomeArticoloBar(@RequestParam(value = "nome-articolo-bar") String nomeArticolo) {
         Optional<SimpleRigaCatalogoBar> foundRiga = this.rigaCatalogoBarService.getRigaBy(nomeArticolo);
-        return this.getRigaOrThrownException(foundRiga,HttpStatus.NOT_FOUND);
+        return this.getRigaOrThrownException(foundRiga, HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -128,7 +128,7 @@ public class RigaCatalogoBarController {
      * Restituisce la {@code SimpleRigaCatalogoBar} aggiornata nel catalogo bar dello chalet.
      *
      * @param riga la {@code SimpleRigaCatalogoBar} da aggiornare
-     * @return la {@code SimpleRigaCatalogoBar} aggiornata nel catalogo dello chalet
+     * @return la {@code SimpleRigaCatalogoBar} aggiornata nel catalogo bar dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se la {@code SimpleRigaCatalogoBar} non viene trovata
      */
     @PutMapping
@@ -139,7 +139,7 @@ public class RigaCatalogoBarController {
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#DELETE}.
-     * Rimuove dal catalogo bar dello chalet, la {@link SimpleRigaCatalogoBar} avente l' id specificato come {@link PathVariable}.
+     * Rimuove dal catalogo bar dello chalet, la {@link SimpleRigaCatalogoBar} avente l' id specificato nel {@link PathVariable}.
      * Restituisce la {@code SimpleRigaCatalogoBar} rimossa dal catalogo bar dello chalet.
      *
      * @param id l' id della {@code SimpleRigaCatalogoBar} da eliminare

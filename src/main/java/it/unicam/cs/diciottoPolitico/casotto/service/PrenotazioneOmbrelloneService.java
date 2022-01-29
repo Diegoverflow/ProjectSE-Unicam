@@ -25,20 +25,20 @@ import java.util.stream.Collectors;
 public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenotazioneOmbrellone, PrenotazioneOmbrelloneRepository> {
 
     private final RigaCatalogoOmbrelloneService catalogoService;
-    private final UtentiService utentiService;
+    private final UtenteService utenteService;
 
     /**
      * Crea un service per le prenotazioni degli ombrelloni iniettando il repository delle prenotazioni degli ombrelloni, il repository del catalogo ombrelloni e il service degli utenti specificati.
      *
      * @param repository         il repository delle prenotazioni degli ombrelloni
      * @param catalogoOmbrelloni il repository del catalogo degli ombrelloni
-     * @param utentiService      il service degli utenti
+     * @param utenteService      il service degli utenti
      */
     @Autowired
-    public PrenotazioneOmbrelloneService(PrenotazioneOmbrelloneRepository repository, RigaCatalogoOmbrelloneService catalogoOmbrelloni, UtentiService utentiService) {
+    public PrenotazioneOmbrelloneService(PrenotazioneOmbrelloneRepository repository, RigaCatalogoOmbrelloneService catalogoOmbrelloni, UtenteService utenteService) {
         super(repository);
         this.catalogoService = catalogoOmbrelloni;
-        this.utentiService = utentiService;
+        this.utenteService = utenteService;
     }
 
     /**
@@ -51,7 +51,7 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
     @Override
     public SimplePrenotazioneOmbrellone save(SimplePrenotazioneOmbrellone prenotazione) {
         var riga = this.catalogoService.getRigaBy(prenotazione.getOmbrellone());
-        var utente = this.utentiService.getBy(prenotazione.getVendita().getUtente().getId());
+        var utente = this.utenteService.getBy(prenotazione.getVendita().getUtente().getId());
         if (riga.isPresent() && utente.isPresent() && riga.get().getPrezzoOmbrellone() == prenotazione.getVendita().getCosto() && super.repository.findAll().stream().noneMatch(p -> p.equals(prenotazione))){
             prenotazione.setOmbrellone(riga.get().getValore());
             prenotazione.getVendita().setUtente(utente.get());

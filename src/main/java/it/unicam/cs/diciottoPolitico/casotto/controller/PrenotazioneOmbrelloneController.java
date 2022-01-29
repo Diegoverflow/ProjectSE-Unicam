@@ -41,7 +41,7 @@ public class PrenotazioneOmbrelloneController {
      * @return la lista di tutte le righe del catalogo degli ombrelloni disponibili in base alla data e alla {@code FasciaOraria} specificate.
      */
     @GetMapping("/ombrelloni/disponibili")
-    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@RequestParam(value = "data") @DateTimeFormat(pattern="ddMMyyy") Date data, @RequestParam(value = "fascia-oraria") FasciaOraria fasciaOraria) {
+    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@RequestParam(value = "data") @DateTimeFormat(pattern = "ddMMyyy") Date data, @RequestParam(value = "fascia-oraria") FasciaOraria fasciaOraria) {
         return this.prenotazioneOmbrelloneService.getRigheDisponibiliBy(data, fasciaOraria);
     }
 
@@ -88,7 +88,7 @@ public class PrenotazioneOmbrelloneController {
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#DELETE}.
-     * Rimuove dalle prenotazioni degli ombrelloni dello chalet, la {@link SimplePrenotazioneOmbrellone} avente l' id specificato come {@link PathVariable}.
+     * Rimuove dalle prenotazioni degli ombrelloni dello chalet, la {@link SimplePrenotazioneOmbrellone} avente l' id specificato nel {@link PathVariable}.
      * Restituisce la {@code SimplePrenotazioneOmbrellone} rimossa dalle prenotazioni degli ombrelloni dello chalet.
      *
      * @param id l' id della {@code SimplePrenotazioneOmbrellone} da eliminare

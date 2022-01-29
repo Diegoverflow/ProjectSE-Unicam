@@ -1,6 +1,5 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.Utente;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleNotifica;
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.repository.NotificaRepository;
@@ -8,13 +7,13 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+//TODO: javadoc
 @Service
-public class NotificaService extends AbstractService<SimpleNotifica,NotificaRepository>{
+public class NotificaService extends AbstractService<SimpleNotifica, NotificaRepository> {
 
     private final UtenteRepository utenteRepository;
 

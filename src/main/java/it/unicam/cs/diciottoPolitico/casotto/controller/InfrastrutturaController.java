@@ -40,7 +40,7 @@ public class InfrastrutturaController {
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
-     * Restituisce un' {@link AreaInfrastruttura} avente id specificato.
+     * Restituisce un' {@link AreaInfrastruttura} avente id specificato nel {@link PathVariable}.
      *
      * @param id l' id di cui ricavare l' area
      * @return l' area avente id specificato
@@ -95,7 +95,7 @@ public class InfrastrutturaController {
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#DELETE}.
-     * Rimuove dall' infrastruttura dello chalet, l' {@link AreaInfrastruttura} avente l' id specificato come {@link PathVariable}.
+     * Rimuove dall' infrastruttura dello chalet, l' {@link AreaInfrastruttura} avente l' id specificato nel {@link PathVariable}.
      * Restituisce l' {@code AreaInfrastruttura} rimossa dall' infrastruttura dello chalet.
      *
      * @param id l' id dell' {@code AreaInfrastruttura} da eliminare

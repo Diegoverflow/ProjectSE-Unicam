@@ -4,12 +4,10 @@ import it.unicam.cs.diciottoPolitico.casotto.entity.RigaCatalogoBar;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -28,7 +26,7 @@ public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
     private UUID id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "articolo_bar_id", referencedColumnName = "id", unique = true, nullable = false)
+    @JoinColumn(name = "articolo_bar_id", unique = true, nullable = false)
     private SimpleArticoloBar valore;
 
     @Column(nullable = false)

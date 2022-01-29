@@ -5,6 +5,7 @@ import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleArticol
 import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.repository.ArticoloBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository;
+import it.unicam.cs.diciottoPolitico.casotto.utils.QRCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,21 +24,25 @@ import java.util.Optional;
 public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar, OrdinazioneBarRepository> {
 
     private final ArticoloBarRepository articoloBarRepository;
+    private final RigaCatalogoOmbrelloneService ombrelloneService;
 
-    // TODO: 28/01/22 inviare notifica ai dipendenti bar quando si salva un'ordinazione 
+    // TODO: 28/01/22 inviare notifica ai dipendenti bar quando si salva un'ordinazione
     private final NotificaService notificaService;
 
     /**
-     * Crea un service per le ordinazioni in base al repository degli articoli bar e iniettando il repository degli articoli bar specificati.
-     *  @param articoloBarRepository il repository degli articoli bar
-     * @param repository            il repository delle ordinazioni bar
-     * @param notificaService
+     * Crea un service per le ordinazioni iniettando il repository degli articoli bar, i service delle notifiche e degli ombrelloni e il repository delle ordinazioni bar specificati.
+     *
+     * @param articoloBarRepository il repository degli articoli bar da iniettare
+     * @param repository            il repository delle ordinazioni bar da iniettare
+     * @param notificaService       il service delle notifiche da iniettare
+     * @param ombrelloneService     il service degli ombrelloni da iniettare
      */
     @Autowired
-    public OrdinazioneBarService(ArticoloBarRepository articoloBarRepository, OrdinazioneBarRepository repository, NotificaService notificaService) {
+    public OrdinazioneBarService(ArticoloBarRepository articoloBarRepository, OrdinazioneBarRepository repository, NotificaService notificaService, RigaCatalogoOmbrelloneService ombrelloneService) {
         super(repository);
         this.articoloBarRepository = articoloBarRepository;
         this.notificaService = notificaService;
+        this.ombrelloneService = ombrelloneService;
     }
 
     /**
@@ -72,15 +77,18 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
 
     /**
      * Esegue un controllo sulla presenza del {@link SimpleArticoloBar} nella {@link SimpleOrdinazioneBar} specificata.
+     * Viene controllato anche che il nome specificato del {@link QRCode} esista.
      * Restituisce un empty {@link Optional} se non viene trovato nessun {@code SimpleArticoloBar} specificato nel database, altrimenti memorizza l' ordinazione
      * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} memorizzata.
      *
+     * @param nomeQRCode  il nome del QRCode da verificarne l' esistenza
      * @param ordinazione l' ordinazione di cui eseguire il controllo e memorizzarla nel database
-     * @return un empty {@link Optional} se non viene trovato nessun articolo della {@code SimpleOrdinazioneBar} specificata nel database, altrimenti memorizza l' ordinazione
+     * @return un empty {@link Optional} se non viene trovato nessun articolo della {@code SimpleOrdinazioneBar} specificata nel database
+     * oppure se non viene trovato nessun {@code QRCode} con il nome specificato nel database, altrimenti memorizza l' ordinazione
      * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} memorizzata.
      */
-    public Optional<SimpleOrdinazioneBar> checkAndSave(SimpleOrdinazioneBar ordinazione) {
-        if (this.checkArticolo(ordinazione.getArticoloBar()).isEmpty())
+    public Optional<SimpleOrdinazioneBar> checkAndSave(String nomeQRCode, SimpleOrdinazioneBar ordinazione) {
+        if (this.ombrelloneService.filterBy(nomeQRCode).isEmpty() && this.checkArticolo(ordinazione.getArticoloBar()).isEmpty())
             return Optional.empty();
         return Optional.of(super.save(ordinazione));
     }

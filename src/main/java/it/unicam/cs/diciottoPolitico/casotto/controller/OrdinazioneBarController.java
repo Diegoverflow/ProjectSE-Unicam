@@ -25,7 +25,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/bar/ordinazioni")
-public class OrdinazioneController {
+public class OrdinazioneBarController {
 
     @Autowired
     private OrdinazioneBarService ordinazioneBarService;
@@ -43,7 +43,7 @@ public class OrdinazioneController {
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
-     * Restituisce una {@link SimpleOrdinazioneBar} avente id specificato.
+     * Restituisce una {@link SimpleOrdinazioneBar} avente id specificato nel {@link PathVariable}.
      *
      * @param id l' id di cui ricavare una {@code SimpleOrdinazioneBar}
      * @return l' ordinazione bar avente id specificato
@@ -100,14 +100,14 @@ public class OrdinazioneController {
      * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
      *                                 una {@code SimpleOrdinazioneBar} riferita a un {@link SimpleArticoloBar} non presente nel catalogo bar dello chalet
      */
-    @PostMapping
-    public SimpleOrdinazioneBar addOrdinazione(@RequestBody SimpleOrdinazioneBar ordinazione) {
-        return this.ordinazioneBarService.checkAndSave(ordinazione).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+    @PostMapping("/{nomeQRCode}")
+    public SimpleOrdinazioneBar addOrdinazione(@PathVariable String nomeQRCode, @RequestBody SimpleOrdinazioneBar ordinazione) {
+        return this.ordinazioneBarService.checkAndSave(nomeQRCode, ordinazione).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#DELETE}.
-     * Rimuove dalle ordinazioni bar dello chalet, la {@link SimpleOrdinazioneBar} avente l' id specificato come {@link PathVariable}.
+     * Rimuove dalle ordinazioni bar dello chalet, la {@link SimpleOrdinazioneBar} avente l' id specificato nel {@link PathVariable}.
      * Restituisce la {@code SimpleOrdinazioneBar} rimossa dalle ordinazioni bar dello chalet.
      *
      * @param id l' id della {@code SimpleOrdinazioneBar} da eliminare

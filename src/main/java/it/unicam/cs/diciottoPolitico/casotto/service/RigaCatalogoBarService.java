@@ -26,20 +26,20 @@ public class RigaCatalogoBarService extends AbstractService<SimpleRigaCatalogoBa
     }
 
     /**
-     * Restituisce la lista di tutte le righe aventi quantit&agrave; minore o uguale alla quantit&agrave; specificata.
+     * Restituisce la lista di tutte le righe bar aventi quantit&agrave; minore o uguale alla quantit&agrave; specificata.
      *
      * @param quantitaLimite la quantit&agrave; limite inclusa
-     * @return la lista di tutte le righe aventi quantit&agrave; minore o uguale alla quantit&agrave; specificata
+     * @return la lista di tutte le righe bar aventi quantit&agrave; minore o uguale alla quantit&agrave; specificata
      */
     public List<SimpleRigaCatalogoBar> filtraBy(int quantitaLimite) {
         return super.getBy(p -> p.getQuantita() <= quantitaLimite);
     }
 
     /**
-     * Restituisce la lista di tutte le righe aventi prezzo minore o uguale al prezzo specificato.
+     * Restituisce la lista di tutte le righe bar aventi prezzo minore o uguale al prezzo specificato.
      *
-     * @param prezzoLimite il prezzo limite inclusa
-     * @return la lista di tutte le righe aventi prezzo minore o uguale al prezzo specificato
+     * @param prezzoLimite il prezzo limite incluso
+     * @return la lista di tutte le righe bar aventi prezzo minore o uguale al prezzo specificato
      */
     public List<SimpleRigaCatalogoBar> filtraBy(double prezzoLimite) {
         return super.getBy(p -> p.getPrezzo() <= prezzoLimite);

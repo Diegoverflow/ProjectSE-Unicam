@@ -2,11 +2,10 @@ package it.unicam.cs.diciottoPolitico.casotto.entity.implementation;
 
 import it.unicam.cs.diciottoPolitico.casotto.entity.Categoria;
 import it.unicam.cs.diciottoPolitico.casotto.entity.Ombrellone;
+import it.unicam.cs.diciottoPolitico.casotto.utils.QRCode;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -16,22 +15,24 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "ombrellone")
-@Setter
 @Getter
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class SimpleOmbrellone implements Ombrellone {
 
     @Id
     @EqualsAndHashCode.Include
-    @Column(columnDefinition = "BINARY(16)",updatable = false)
+    @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
-    private String codiceSpiaggia;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "qrcode_id")
+    private QRCode codiceSpiaggia;
 
-    protected SimpleOmbrellone(){
+    protected SimpleOmbrellone() {
         this.id = UUID.randomUUID();
     }
 
