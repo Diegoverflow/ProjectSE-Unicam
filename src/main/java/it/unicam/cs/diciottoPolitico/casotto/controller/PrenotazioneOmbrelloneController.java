@@ -1,10 +1,10 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.FasciaOraria;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.FasciaOraria;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.service.PrenotazioneOmbrelloneService;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;

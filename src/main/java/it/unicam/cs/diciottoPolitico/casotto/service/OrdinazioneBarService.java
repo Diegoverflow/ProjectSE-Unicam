@@ -1,8 +1,8 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.StatusOrdinazioneBar;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleArticoloBar;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOrdinazioneBar;
+import it.unicam.cs.diciottoPolitico.casotto.model.StatusOrdinazioneBar;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleArticoloBar;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.repository.ArticoloBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.utils.QRCode;

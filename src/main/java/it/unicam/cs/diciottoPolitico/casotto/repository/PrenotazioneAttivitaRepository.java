@@ -1,6 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.repository;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneAttivita;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

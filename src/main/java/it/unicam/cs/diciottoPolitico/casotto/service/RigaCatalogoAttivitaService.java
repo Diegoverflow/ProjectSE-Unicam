@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoAttivita;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoAttivitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

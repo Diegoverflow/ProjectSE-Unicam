@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.service.RigaCatalogoOmbrelloneService;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;

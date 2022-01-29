@@ -1,6 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.repository;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneOmbrellone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

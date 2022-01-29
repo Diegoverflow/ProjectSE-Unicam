@@ -1,10 +1,10 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.*;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimplePrenotazioneOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleRigaCatalogoOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleUtente;
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.*;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

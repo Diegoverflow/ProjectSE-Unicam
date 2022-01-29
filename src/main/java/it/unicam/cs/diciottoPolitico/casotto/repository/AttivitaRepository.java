@@ -1,6 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.repository;
 
-import it.unicam.cs.diciottoPolitico.casotto.entity.implementation.SimpleAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleAttivita;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
