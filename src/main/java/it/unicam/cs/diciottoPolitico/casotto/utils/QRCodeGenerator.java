@@ -28,7 +28,8 @@ public final class QRCodeGenerator {
      *
      * @param s         la stringa che il QRCode generate rappresenter&agrave;
      * @param type_file il formato del QRCode generato
-     * @return il QRCode generato sotto forma di array di byte
+     * @return il QRCode generato sotto forma di array di byte se il QRCode viene generato con successo,
+     * altrimenti un array di byte vuoto
      */
     public static byte[] createQRCode(String s, String type_file) {
         RenderedImage image;
@@ -71,9 +72,9 @@ public final class QRCodeGenerator {
     public static String readQRCode(QRCode qrCode) {
         Result result = null;
         try {
-            ByteArrayInputStream bytes = new ByteArrayInputStream(qrCode.getQrCode_image());
-            BufferedImage QRCode_image = ImageIO.read(bytes);
-            LuminanceSource source = new BufferedImageLuminanceSource(QRCode_image);
+            ByteArrayInputStream bytes = new ByteArrayInputStream(qrCode.getQRCodeImage());
+            BufferedImage QRCodeImage = ImageIO.read(bytes);
+            LuminanceSource source = new BufferedImageLuminanceSource(QRCodeImage);
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
             Reader reader = new MultiFormatReader();
             result = reader.decode(bitmap);

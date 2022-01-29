@@ -31,7 +31,7 @@ public class QRCode {
 
     @Lob
     @Column(name = "qrcode_image", columnDefinition = "BLOB")
-    private byte[] qrCode_image;
+    private byte[] QRCodeImage;
 
     protected QRCode() {
         this.id = UUID.randomUUID();
