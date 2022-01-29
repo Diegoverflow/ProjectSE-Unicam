@@ -115,7 +115,7 @@ public class OrdinazioneBarController {
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
      */
     @DeleteMapping("/{id}")
-    public SimpleOrdinazioneBar removeRiga(@PathVariable UUID id) {
+    public SimpleOrdinazioneBar removeOrdinazione(@PathVariable UUID id) {
         return this.ordinazioneBarService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
