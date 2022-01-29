@@ -39,7 +39,7 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
     public SimpleRigaCatalogoOmbrellone save(SimpleRigaCatalogoOmbrellone riga) {
         if (this.filterBy(riga.getValore().getCodiceSpiaggia().getNome()).isEmpty() && super.getBy(riga.getId()).isEmpty() && this.getRigaBy(riga.getValore()).isEmpty()) {
             QRCode qrCode = riga.getValore().getCodiceSpiaggia();
-            qrCode.setQrCode_image(QRCodeGenerator.createQRCode(url + qrCode.getNome(), "PNG"));
+            qrCode.setQRCodeImage(QRCodeGenerator.createQRCode(url + qrCode.getNome(), "PNG"));
             return super.save(riga);
         }
         return null;
