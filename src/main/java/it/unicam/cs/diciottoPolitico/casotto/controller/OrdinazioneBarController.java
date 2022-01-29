@@ -73,7 +73,7 @@ public class OrdinazioneBarController {
      * @param articoloBar il {@code SimpleArticoloBar} che devono contenere le ordinazioni bar
      * @return la lista di tutte le ordinazioni bar dei clienti che hanno ordinato il {@code SimpleArticoloBar} specificato
      */
-    @GetMapping(params = "articolo_bar")
+    @GetMapping(params = "articolo-bar")
     public List<SimpleOrdinazioneBar> filtraByArticoloBar(@RequestParam(value = "articolo_bar") SimpleArticoloBar articoloBar) {
         return this.ordinazioneBarService.filtraBy(articoloBar);
     }
@@ -85,7 +85,7 @@ public class OrdinazioneBarController {
      * @param nomeArticoloBar il nome del {@code SimpleArticoloBar} che devono contenere le ordinazioni bar
      * @return la lista di tutte le ordinazioni bar dei clienti che hanno ordinato il {@code SimpleArticoloBar} aventi nome specificato
      */
-    @GetMapping(params = "nome_articolo_bar")
+    @GetMapping(params = "nome-articolo-bar")
     public List<SimpleOrdinazioneBar> filtraByNomeArticoloBar(@RequestParam(value = "nome_articolo_bar") String nomeArticoloBar) {
         return this.ordinazioneBarService.filtraBy(nomeArticoloBar);
     }
