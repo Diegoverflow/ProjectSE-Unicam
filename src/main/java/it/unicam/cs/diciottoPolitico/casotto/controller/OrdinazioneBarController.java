@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoBar;
 import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.OrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.model.StatusOrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleArticoloBar;
@@ -39,6 +40,11 @@ public class OrdinazioneBarController {
     @GetMapping("/all")
     public List<SimpleOrdinazioneBar> getAllOrdinazioni() {
         return this.ordinazioneBarService.getAll();
+    }
+
+    @GetMapping("/disponibili")
+    public List<SimpleRigaCatalogoBar> getArticoliBarDisponibili() {
+        return this.ordinazioneBarService.getArticoliBarDisponibili();
     }
 
     /**

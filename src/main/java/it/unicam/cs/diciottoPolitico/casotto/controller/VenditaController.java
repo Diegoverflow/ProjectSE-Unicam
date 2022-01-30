@@ -51,6 +51,11 @@ public class VenditaController {
         return this.venditaService.getBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("{idUtente}")
+    public List<SimpleVendita> getVenditeBy(@PathVariable UUID idUtente) {
+        return this.venditaService.getVenditeClienteDaPagare(idUtente);
+    }
+
     // TODO: javadoc
     @PatchMapping("/{idVendita}/{isPagato}")
     public SimpleVendita updatePartially(@PathVariable UUID idVendita, @PathVariable boolean isPagato) {

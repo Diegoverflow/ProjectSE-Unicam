@@ -26,7 +26,7 @@ import java.util.UUID;
  * @see PrenotazioneOmbrelloneService
  */
 @RestController
-@RequestMapping("/prenotazioni")
+@RequestMapping("/prenotazioni/ombrelloni")
 public class PrenotazioneOmbrelloneController implements UniqueFieldHandler{
 
     @Autowired
@@ -40,8 +40,8 @@ public class PrenotazioneOmbrelloneController implements UniqueFieldHandler{
      * @param fasciaOraria la fascia oraria in cui cercare il {@link SimpleOmbrellone} disponibile
      * @return la lista di tutte le righe del catalogo degli ombrelloni disponibili in base alla data e alla {@code FasciaOraria} specificate.
      */
-    @GetMapping("/ombrelloni/disponibili")
-    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@RequestParam(value = "data") @DateTimeFormat(pattern = "ddMMyyy") Date data, @RequestParam(value = "fascia-oraria") FasciaOraria fasciaOraria) {
+    @GetMapping("/disponibili/{data}/{fasciaOraria}")
+    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@PathVariable @DateTimeFormat Date data, @PathVariable FasciaOraria fasciaOraria) {
         return this.prenotazioneOmbrelloneService.getRigheDisponibiliBy(data, fasciaOraria);
     }
 
@@ -51,7 +51,7 @@ public class PrenotazioneOmbrelloneController implements UniqueFieldHandler{
      *
      * @return la lista di tutte le prenotazioni degli ombrelloni effettuate dai clienti
      */
-    @GetMapping("/ombrelloni/all")
+    @GetMapping("/all")
     public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrellone() {
         return this.prenotazioneOmbrelloneService.getAll();
     }
@@ -63,7 +63,7 @@ public class PrenotazioneOmbrelloneController implements UniqueFieldHandler{
      * @return la {@code SimplePrenotazioneOmbrellone} avente id specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna{@code SimplePrenotazioneOmbrellone} con id specificato
      */
-    @GetMapping("/ombrelloni/{id}")
+    @GetMapping("/{id}")
     public SimplePrenotazioneOmbrellone getPrenotazioneOmbrelloneById(@PathVariable UUID id) {
         return this.prenotazioneOmbrelloneService.getBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
@@ -78,7 +78,7 @@ public class PrenotazioneOmbrelloneController implements UniqueFieldHandler{
      * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
      *                                 una {@code SimplePrenotazioneOmbrellone} riferita a un {@link SimpleOmbrellone} non presente nel catalogo bar dello chalet oppure se il {@code SimpleOmbrellone} &egrave; gi&agrave; prenotato
      */
-    @PostMapping("/ombrelloni")
+    @PostMapping
     public SimplePrenotazioneOmbrellone addPrenotazioneOmbrellone(@RequestBody SimplePrenotazioneOmbrellone prenotazioneOmbrellone) {
         var prenotazione = this.prenotazioneOmbrelloneService.save(prenotazioneOmbrellone);
         if (prenotazione == null)
@@ -95,7 +95,7 @@ public class PrenotazioneOmbrelloneController implements UniqueFieldHandler{
      * @return la {@code SimplePrenotazioneOmbrellone} rimossa dalle prenotazioni degli ombrelloni dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
      */
-    @DeleteMapping("/ombrelloni/{id}")
+    @DeleteMapping("/{id}")
     public SimplePrenotazioneOmbrellone removePrenotazioneOmbrellone(@PathVariable UUID id) {
         return this.prenotazioneOmbrelloneService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }

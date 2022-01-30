@@ -25,6 +25,11 @@ public class RigaCatalogoBarService extends AbstractService<SimpleRigaCatalogoBa
         super(repository);
     }
 
+    //todo
+    public List<SimpleRigaCatalogoBar> getRigheDisponibili(){
+        return super.getBy(r -> r.getQuantita()>0);
+    }
+
     /**
      * Restituisce la lista di tutte le righe bar aventi quantit&agrave; minore o uguale alla quantit&agrave; specificata.
      *

@@ -23,7 +23,7 @@ import java.util.UUID;
  */
 // TODO: finire javadoc
 @RestController
-@RequestMapping("/prenotazioni-attivita")
+@RequestMapping("/prenotazioni/attivita")
 public class PrenotazioneAttivitaController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class PrenotazioneAttivitaController {
      *
      * @return la lista di tutte le prenotazioni attivit&agrave; attualmente disponibili
      */
-    @GetMapping("/attivita-disponibili")
+    @GetMapping("/disponibili")
     public List<SimpleRigaCatalogoAttivita> getAttivitaDisponibili() {
         var r = this.prenotazioneAttivitaService.getAttivitaDisponibili();
         if (r.isEmpty())
@@ -51,7 +51,7 @@ public class PrenotazioneAttivitaController {
      * @return la {@code SimpleRigaCatalogoAttivita} avente nome specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna {@code SimpleRigaCatalogoAttivita} con nome specificato
      */
-    @GetMapping("/attivita-disponibili/{nomeAttivita}")
+    @GetMapping("/disponibili/{nomeAttivita}")
     public SimpleRigaCatalogoAttivita getAttivitaDisponibiliBy(@PathVariable String nomeAttivita) {
         var r = this.prenotazioneAttivitaService.getAttivitaDisponibiliBy(nomeAttivita);
         if (r == null)
@@ -60,7 +60,7 @@ public class PrenotazioneAttivitaController {
     }
 
     // TODO: cosa fa questo metodo? ritorna tutte le prenotazioni che sono nel repository...
-    @GetMapping("/le-mie-prenotazioni")
+    @GetMapping("/all")
     public List<SimplePrenotazioneAttivita> getPrenotazioni() {
         var r = this.prenotazioneAttivitaService.getAll();
         if (r.isEmpty())
@@ -68,13 +68,13 @@ public class PrenotazioneAttivitaController {
         return r;
     }
 
-    @GetMapping("/le-mie-prenotazioni/{idPrenotazione}")
+    @GetMapping("/{idPrenotazione}")
     public SimplePrenotazioneAttivita getPrenotazioneBy(@PathVariable UUID idPrenotazione) {
         return this.prenotazioneAttivitaService.getBy(idPrenotazione).
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/le-mie-prenotazioni/{nomeAttivitaPrenotata}")
+    @GetMapping("/{nomeAttivitaPrenotata}")
     public SimplePrenotazioneAttivita getPrenotazioniBy(@PathVariable String nomeAttivitaPrenotata) {
         return this.prenotazioneAttivitaService.filtraBy(nomeAttivitaPrenotata).stream().findFirst().
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -96,7 +96,7 @@ public class PrenotazioneAttivitaController {
         return v;
     }
 
-    @DeleteMapping("/le-mie-prenotazioni/{idPrenotazione}")
+    @DeleteMapping("/{idPrenotazione}")
     public SimplePrenotazioneAttivita deletePrenotazione(@PathVariable UUID idPrenotazione) {
         return this.prenotazioneAttivitaService.removeBy(idPrenotazione).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }

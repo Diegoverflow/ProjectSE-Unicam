@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoBar;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoAttivitaRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.RigaCatalogoAttivitaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.UUID;
  * @see RigaCatalogoAttivitaService
  */
 @RestController
-@RequestMapping("/catalogo-attivita")
+@RequestMapping("/catalogo/attivita")
 public class RigaCatalogoAttivitaController {
 
     @Autowired
@@ -38,6 +39,11 @@ public class RigaCatalogoAttivitaController {
         return this.rigaCatalogoAttivitaService.getAll();
     }
 
+    @GetMapping("/disponibili")
+    public List<SimpleRigaCatalogoAttivita> getAttivitaDisponibili() {
+        return this.rigaCatalogoAttivitaService.getAttivitaDisponibili();
+    }
+
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
      * Restituisce una {@link SimpleRigaCatalogoAttivita} avente id specificato nel {@link PathVariable}.
@@ -46,7 +52,7 @@ public class RigaCatalogoAttivitaController {
      * @return la riga avente id specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna {@code SimpleRigaCatalogoAttivita} con id specificato
      */
-    @GetMapping("/attivita-{idRiga}")
+    @GetMapping("/{idRiga}")
     public SimpleRigaCatalogoAttivita getRigaBy(@PathVariable UUID idRiga) {
         return this.rigaCatalogoAttivitaService.getBy(idRiga).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
@@ -97,7 +103,7 @@ public class RigaCatalogoAttivitaController {
      * @return la {@code SimpleRigaCatalogoAttivita} rimossa dal catalogo attivit&agrave; dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
      */
-    @DeleteMapping("/attivita-{idRiga}")
+    @DeleteMapping("/{idRiga}")
     public SimpleRigaCatalogoAttivita deleteRigaBy(@PathVariable UUID idRiga) {
         return this.rigaCatalogoAttivitaService.removeBy(idRiga).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }

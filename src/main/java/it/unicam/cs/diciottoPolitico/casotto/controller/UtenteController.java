@@ -23,6 +23,7 @@ import java.util.UUID;
  * @see UtenteService
  */
 @RestController
+@RequestMapping("/utenti")
 public class UtenteController implements UniqueFieldHandler {
 
     @Autowired
@@ -37,7 +38,7 @@ public class UtenteController implements UniqueFieldHandler {
      *
      * @return la lista di tutti gli utenti registrati nello chalet
      */
-    @GetMapping("/utenti/all")
+    @GetMapping("/all")
     public List<SimpleUtente> getAllUtenti() {
         return this.utenteService.getAll();
     }
@@ -50,9 +51,14 @@ public class UtenteController implements UniqueFieldHandler {
      * @return l' utente avente id specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovato nessun {@code SimpleUtente} con id specificato
      */
-    @GetMapping("/utenti/{id}")
+    @GetMapping("/{id}")
     public SimpleUtente getUtentiById(@PathVariable UUID id) {
         return this.utenteService.getBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping(params = "idUtente")
+    public SimpleUtente getUtentiByIdd(@RequestParam UUID idUtente) {
+        return this.utenteService.getBy(idUtente).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     /**
@@ -65,7 +71,7 @@ public class UtenteController implements UniqueFieldHandler {
      * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
      *                                 un {@code SimpleUtente} gi&agrave; presente nello chalet oppure un {@code SimpleUtente} non valido
      */
-    @PostMapping("/utenti")
+    @PostMapping
     public SimpleUtente addUtente(@Valid @RequestBody SimpleUtente utente){
         var u = this.utenteService.getBy(utente.getId());
         utente.setPassword(bCryptPasswordEncoder.encode(utente.getPassword()));
@@ -83,7 +89,7 @@ public class UtenteController implements UniqueFieldHandler {
      * @return il {@code SimpleUtente} aggiornato nello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se il {@code SimpleUtente} non viene trovato
      */
-    @PutMapping("/utenti")
+    @PutMapping
     public SimpleUtente updateUtente(@Valid @RequestBody SimpleUtente utente) {
         var u = this.utenteService.getBy(utente.getId());
         utente.setPassword(bCryptPasswordEncoder.encode(utente.getPassword()));
@@ -101,7 +107,7 @@ public class UtenteController implements UniqueFieldHandler {
      * @return il {@code SimpleUtente} rimosso dallo chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
      */
-    @DeleteMapping("/utenti/{id}")
+    @DeleteMapping("/{id}")
     public SimpleUtente removeUtente(@PathVariable UUID id) {
         return this.utenteService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }

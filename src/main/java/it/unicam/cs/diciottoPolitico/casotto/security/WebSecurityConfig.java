@@ -8,9 +8,7 @@ import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -67,12 +65,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .expressionHandler(webExpressionHandler())
-                .antMatchers("/catalogo/ombrelloni/**").hasRole("GESTORE")
-                .antMatchers(HttpMethod.GET,"/prenotazioni/ombrelloni/disponibili").hasRole("CLIENTE")
+                .antMatchers("/infrastruttura/aree/**").hasRole("GESTORE")
+                .antMatchers(HttpMethod.POST,"/bar/ordinazioni/{nomeQRCode}").hasRole("CLIENTE")
+                .antMatchers(HttpMethod.GET,"/bar/ordinazioni/disponibili").hasRole("CLIENTE")
+                .antMatchers("/bar/ordinazioni/**").hasAnyRole("ADDETTO_BAR","CASSIERE")
+                .antMatchers(HttpMethod.GET,"/prenotazioni/attivita/disponibili").hasRole("CLIENTE")
+                .antMatchers(HttpMethod.POST,"/prenotazioni/attivita/disponibili").hasRole("CLIENTE")
+                .antMatchers("/prenotazioni/attivita/**").hasRole("GESTORE")
+                .antMatchers(HttpMethod.GET,"/prenotazioni/ombrelloni/disponibili/{data}/{fasciaOraria}").hasRole("CLIENTE")
                 .antMatchers(HttpMethod.POST,"/prenotazioni/ombrelloni").hasRole("CLIENTE")
                 .antMatchers("/prenotazioni/ombrelloni/**").hasRole("GESTORE")
+                .antMatchers("/catalogo/**").hasRole("GESTORE")
                 .antMatchers(HttpMethod.POST,"/utenti").permitAll()
                 .antMatchers("/utenti/**").hasRole("GESTORE")
+                .antMatchers("/vendite/{idUtente}").hasAnyRole("CLIENTE","CASSIERE")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()

@@ -57,7 +57,7 @@ public class SimpleUtente implements Utente {
     )
     private  List<SimpleNotifica> notifiche;
 
-    protected SimpleUtente(){
+    public SimpleUtente(){
         this.id = UUID.randomUUID();
         this.notifiche = new ArrayList<>();
     }

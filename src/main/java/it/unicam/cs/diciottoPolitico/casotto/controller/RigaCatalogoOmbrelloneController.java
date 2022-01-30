@@ -23,7 +23,7 @@ import java.util.UUID;
  * @see RigaCatalogoOmbrelloneService
  */
 @RestController
-@RequestMapping("/catalogo")
+@RequestMapping("/catalogo/ombrelloni")
 public class RigaCatalogoOmbrelloneController implements UniqueFieldHandler {
 
     @Autowired
@@ -35,10 +35,11 @@ public class RigaCatalogoOmbrelloneController implements UniqueFieldHandler {
      *
      * @return la lista di tutte le righe del catalogo ombrelloni dello chalet
      */
-    @GetMapping("/ombrelloni/all")
+    @GetMapping("/all")
     public List<SimpleRigaCatalogoOmbrellone> getRigheCatalogoOmbrellone() {
         return this.service.getAll();
     }
+
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
@@ -48,7 +49,7 @@ public class RigaCatalogoOmbrelloneController implements UniqueFieldHandler {
      * @return la riga catalogo ombrellone avente id specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna {@code SimpleRigaCatalogoOmbrellone} con id specificato
      */
-    @GetMapping("/ombrelloni/{id}")
+    @GetMapping("/{id}")
     public SimpleRigaCatalogoOmbrellone getRigaCatalogoOmbrelloneById(@PathVariable UUID id) {
         return this.service.getBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
@@ -65,7 +66,7 @@ public class RigaCatalogoOmbrelloneController implements UniqueFieldHandler {
      *                                 oppure se contiene un {@link SimpleOmbrellone} gi&agrave; contenuto in un' altra riga
      *                                 oppure il codice spiaggia dell' ombrellone non &egrave; valido
      */
-    @PostMapping("/ombrelloni")
+    @PostMapping
     public SimpleRigaCatalogoOmbrellone addRigaCatalogoOmbrellone(@Valid @RequestBody SimpleRigaCatalogoOmbrellone riga) {
         var r = this.service.save(riga);
         if (r != null)
@@ -82,7 +83,7 @@ public class RigaCatalogoOmbrelloneController implements UniqueFieldHandler {
      * @return la {@code SimpleRigaCatalogoOmbrellone} aggiornata nel catalogo ombrelloni dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se la {@code SimpleRigaCatalogoOmbrellone} non viene trovata
      */
-    @PutMapping("/ombrelloni")
+    @PutMapping
     public SimpleRigaCatalogoOmbrellone updateRigaCatalogoOmbrellone(@Valid @RequestBody SimpleRigaCatalogoOmbrellone riga) {
         var r = this.service.update(riga);
         if (r != null)
@@ -99,7 +100,7 @@ public class RigaCatalogoOmbrelloneController implements UniqueFieldHandler {
      * @return la {@code SimpleRigaCatalogoOmbrellone} rimossa dal catalogo ombrelloni dello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
      */
-    @DeleteMapping("/ombrelloni/{id}")
+    @DeleteMapping("/{id}")
     public SimpleRigaCatalogoOmbrellone removeRigaCatalogoOmbrellone(@PathVariable UUID id) {
         return this.service.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }

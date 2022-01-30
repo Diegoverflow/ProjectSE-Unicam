@@ -1,9 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.model.StatusOrdinazioneBar;
-import it.unicam.cs.diciottoPolitico.casotto.model.SimpleArticoloBar;
-import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOrdinazioneBar;
-import it.unicam.cs.diciottoPolitico.casotto.repository.ArticoloBarRepository;
+import it.unicam.cs.diciottoPolitico.casotto.model.*;
 import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.utils.QRCode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +20,8 @@ import java.util.Optional;
 @Service
 public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar, OrdinazioneBarRepository> {
 
-    private final ArticoloBarRepository articoloBarRepository;
     private final RigaCatalogoOmbrelloneService ombrelloneService;
+    private final RigaCatalogoBarService barService;
 
     // TODO: 28/01/22 inviare notifica ai dipendenti bar quando si salva un'ordinazione
     private final NotificaService notificaService;
@@ -32,17 +29,21 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
     /**
      * Crea un service per le ordinazioni iniettando il repository degli articoli bar, i service delle notifiche e degli ombrelloni e il repository delle ordinazioni bar specificati.
      *
-     * @param articoloBarRepository il repository degli articoli bar da iniettare
      * @param repository            il repository delle ordinazioni bar da iniettare
      * @param notificaService       il service delle notifiche da iniettare
      * @param ombrelloneService     il service degli ombrelloni da iniettare
+     * @param barService            il service degli articoli bar da iniettare
      */
     @Autowired
-    public OrdinazioneBarService(ArticoloBarRepository articoloBarRepository, OrdinazioneBarRepository repository, NotificaService notificaService, RigaCatalogoOmbrelloneService ombrelloneService) {
+    public OrdinazioneBarService(OrdinazioneBarRepository repository, NotificaService notificaService, RigaCatalogoOmbrelloneService ombrelloneService,RigaCatalogoBarService barService) {
         super(repository);
-        this.articoloBarRepository = articoloBarRepository;
         this.notificaService = notificaService;
         this.ombrelloneService = ombrelloneService;
+        this.barService = barService;
+    }
+
+    public List<SimpleRigaCatalogoBar> getArticoliBarDisponibili() {
+        return this.barService.getRigheDisponibili();
     }
 
     /**
@@ -109,8 +110,7 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
     }*/
 
     private Optional<SimpleArticoloBar> checkArticolo(SimpleArticoloBar articoloBar) {
-        return this.articoloBarRepository.findById(articoloBar.getId());
+        return this.barService.getRigaBy(articoloBar).map(SimpleRigaCatalogoBar::getValore);
     }
-
 
 }
