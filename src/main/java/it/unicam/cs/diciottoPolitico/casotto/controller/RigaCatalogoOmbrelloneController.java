@@ -3,17 +3,21 @@ package it.unicam.cs.diciottoPolitico.casotto.controller;
 import com.google.zxing.WriterException;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.security.MyUserDetailService;
 import it.unicam.cs.diciottoPolitico.casotto.service.RigaCatalogoOmbrelloneService;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
 import it.unicam.cs.diciottoPolitico.casotto.utils.QRCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.swing.*;
 import javax.validation.Valid;
+import java.awt.*;
 import java.awt.image.RenderedImage;
 import java.util.List;
 import java.util.UUID;
@@ -110,9 +114,9 @@ public class RigaCatalogoOmbrelloneController {
         return this.service.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/qrcode/{nome}")
-    public RenderedImage generateQRCode(@PathVariable String nome) throws WriterException {
-        return QRCodeGenerator.setQRCodeSize(nome,500,500);
+    @GetMapping(value ="/qrcode/{nome}", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] generateQRCode(@PathVariable String nome){
+        return QRCodeGenerator.createQRCode(nome,"PNG");
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

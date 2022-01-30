@@ -31,8 +31,8 @@ public final class QRCodeGenerator {
      * @return il QRCode generato sotto forma di array di byte se il QRCode viene generato con successo,
      * altrimenti un array di byte vuoto
      */
-    public static RenderedImage createQRCode(String s, String type_file) {
-        RenderedImage image=null;
+    public static byte[] createQRCode(String s, String type_file) {
+        RenderedImage image;
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         try {
             image = setQRCodeSize(s, 500, 500);
@@ -40,10 +40,10 @@ public final class QRCodeGenerator {
         } catch (IOException | WriterException e) {
             e.printStackTrace();
         }
-        return image;
+        return bytes.toByteArray();
     }
 
-    public static RenderedImage setQRCodeSize(String s, int width, int height) throws WriterException {
+    private static RenderedImage setQRCodeSize(String s, int width, int height) throws WriterException {
         Hashtable<EncodeHintType, ErrorCorrectionLevel> hintMap = new Hashtable<>();
         hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
@@ -69,7 +69,7 @@ public final class QRCodeGenerator {
      * @return la stringa rappresentata del {@code QRCode}
      * oppure {@code null} se il {@code QRCode} specificato non rappresenta una stringa valida
      */
-   /* public static String readQRCode(QRCode qrCode) {
+    /*public static String readQRCode(QRCode qrCode) {
         Result result = null;
         try {
             ByteArrayInputStream bytes = new ByteArrayInputStream(qrCode.getQRCodeImage());
