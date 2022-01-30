@@ -52,13 +52,11 @@ public class VenditaController {
     }
 
     // TODO: javadoc
-    @PatchMapping("/{id}/{isPagato}")
-    public SimpleVendita updatePartially(@PathVariable UUID id, @PathVariable boolean isPagato) {
-        var v = this.venditaService.getBy(id);
-        if (v.isPresent()) {
-            v.get().setPagata(isPagato);
-            this.venditaService.save(v.get());
-        }
+    @PatchMapping("/{idVendita}/{isPagato}")
+    public SimpleVendita updatePartially(@PathVariable UUID idVendita, @PathVariable boolean isPagato) {
+        var v = this.venditaService.updateIsPagato(idVendita, isPagato);
+        if (v != null)
+            return v;
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 

@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.util.Date;
 import java.util.UUID;
 
@@ -25,6 +26,7 @@ public class SimpleVendita implements Vendita {
     private Date dataAcquisto;
 
     @Column
+    @Positive
     private double costo;
 
     @Column(columnDefinition = "TINYINT(1)")
@@ -35,7 +37,7 @@ public class SimpleVendita implements Vendita {
     @NonNull
     private SimpleUtente utente;
 
-    protected SimpleVendita() {
+    public SimpleVendita() {
         this.id = UUID.randomUUID();
         this.dataAcquisto = new Date();
         this.pagata = false;

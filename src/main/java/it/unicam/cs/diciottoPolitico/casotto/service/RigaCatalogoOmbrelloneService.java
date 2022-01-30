@@ -2,8 +2,6 @@ package it.unicam.cs.diciottoPolitico.casotto.service;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.Categoria;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.utils.QRCode;
-import it.unicam.cs.diciottoPolitico.casotto.utils.QRCodeGenerator;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +20,6 @@ import java.util.*;
 @Service
 public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCatalogoOmbrellone, RigaCatalogoOmbrelloneRepository> {
 
-    private static final String url = "http://localhost:8080/bar/ordinazioni/";
-
     /**
      * Crea un service per le righe catalogo degli ombrelloni iniettando il {@link RigaCatalogoOmbrelloneRepository} specificato.
      *
@@ -37,9 +33,7 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
 
     @Override
     public SimpleRigaCatalogoOmbrellone save(SimpleRigaCatalogoOmbrellone riga) {
-        if (riga.getPrezzoOmbrellone() > 0 && this.filterBy(riga.getValore().getCodiceSpiaggia().getNome()).isEmpty() && super.getBy(riga.getId()).isEmpty() && this.getRigaBy(riga.getValore()).isEmpty()) {
-            QRCode qrCode = riga.getValore().getCodiceSpiaggia();
-            qrCode.setQRCodeImage(QRCodeGenerator.createQRCode(url + qrCode.getNome(), "PNG"));
+        if (super.getBy(riga.getId()).isEmpty()) {
             return super.save(riga);
         }
         return null;
@@ -52,10 +46,9 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
      * @return la {@code SimpleRigaCatalogoOmbrellone} aggiornata se prima di essere aggiornata esisteva sul database, {@code null} altrimenti
      */
     public SimpleRigaCatalogoOmbrellone update(SimpleRigaCatalogoOmbrellone riga) {
-        var r = super.getBy(riga.getId());
-        if (r.isPresent())
-            if (super.getBy(ri -> ri.getValore().equals(riga.getValore()) && !ri.equals(r.get())).isEmpty())
-                return super.save(riga);
+        if (super.getBy(riga.getId()).isPresent()) {
+            return super.save(riga);
+        }
         return null;
     }
 
@@ -104,7 +97,7 @@ public class RigaCatalogoOmbrelloneService extends AbstractService<SimpleRigaCat
      * * {@code SimpleOmbrellone} avente come codice spieggia il codice spiaggia specificato, un empty {@code Optional} altrimenti
      */
     public Optional<SimpleRigaCatalogoOmbrellone> filterBy(String codiceSpiaggia) {
-        return super.getBy(riga -> riga.getValore().getCodiceSpiaggia().getNome().equals(codiceSpiaggia)).stream().findFirst();
+        return super.getBy(riga -> riga.getValore().getCodiceSpiaggia().equals(codiceSpiaggia)).stream().findFirst();
     }
 
 }

@@ -5,6 +5,7 @@ import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
+import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Vendita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,8 +54,10 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
         var riga = this.catalogoService.getRigaBy(prenotazione.getOmbrellone());
         var utente = this.utenteService.getBy(prenotazione.getVendita().getUtente().getId());
         if (riga.isPresent() && utente.isPresent() && riga.get().getPrezzoOmbrellone() == prenotazione.getVendita().getCosto() && super.repository.findAll().stream().noneMatch(p -> p.equals(prenotazione))){
+            var vendita = new SimpleVendita();
+            vendita.setUtente(prenotazione.getVendita().getUtente());
             prenotazione.setOmbrellone(riga.get().getValore());
-            prenotazione.getVendita().setUtente(utente.get());
+            prenotazione.setVendita(vendita);
             return super.save(prenotazione);
         }
         return null;
