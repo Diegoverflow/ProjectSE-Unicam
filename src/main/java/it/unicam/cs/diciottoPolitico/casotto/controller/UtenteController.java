@@ -4,7 +4,9 @@ import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -24,7 +26,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/utenti")
-public class UtenteController implements UniqueFieldHandler {
+public class UtenteController{
 
     @Autowired
     private UtenteService utenteService;
@@ -110,6 +112,11 @@ public class UtenteController implements UniqueFieldHandler {
     @DeleteMapping("/{id}")
     public SimpleUtente removeUtente(@PathVariable UUID id) {
         return this.utenteService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    private ResponseEntity<Object> handleDataIntegrityViolation() {
+        return ResponseEntity.badRequest().build();
     }
 
 }

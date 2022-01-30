@@ -10,6 +10,7 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,14 +51,12 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
      * @return la {@code SimplePrenotazioneOmbrellone} memorizzata nel database se viene memorizzata con successo, {@code null} altrimenti
      */
     @Override
-    public SimplePrenotazioneOmbrellone save(SimplePrenotazioneOmbrellone prenotazione) {
+    public SimplePrenotazioneOmbrellone save( @Valid SimplePrenotazioneOmbrellone prenotazione) {
+        System.out.println(prenotazione.getVendita().getUtente());
         var riga = this.catalogoService.getRigaBy(prenotazione.getOmbrellone());
         var utente = this.utenteService.getBy(prenotazione.getVendita().getUtente().getId());
         if (riga.isPresent() && utente.isPresent() && riga.get().getPrezzoOmbrellone() == prenotazione.getVendita().getCosto() && super.repository.findAll().stream().noneMatch(p -> p.equals(prenotazione))){
-            var vendita = new SimpleVendita();
-            vendita.setUtente(prenotazione.getVendita().getUtente());
-            prenotazione.setOmbrellone(riga.get().getValore());
-            prenotazione.setVendita(vendita);
+            prenotazione.getVendita().setPagata(false);
             return super.save(prenotazione);
         }
         return null;

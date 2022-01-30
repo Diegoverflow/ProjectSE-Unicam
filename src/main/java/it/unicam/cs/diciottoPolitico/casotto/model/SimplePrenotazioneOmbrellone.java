@@ -5,8 +5,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
-
+import javax.validation.constraints.NotNull;
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.UUID;
 
@@ -39,7 +40,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vendita_id",unique = true)
-    @NonNull
+    @NotNull
     private SimpleVendita vendita;
 
     protected SimplePrenotazioneOmbrellone(){

@@ -2,7 +2,6 @@ package it.unicam.cs.diciottoPolitico.casotto.service;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.*;
 import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository;
-import it.unicam.cs.diciottoPolitico.casotto.utils.QRCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

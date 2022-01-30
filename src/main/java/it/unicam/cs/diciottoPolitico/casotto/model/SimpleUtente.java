@@ -5,9 +5,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 /**
@@ -32,18 +32,18 @@ public class SimpleUtente implements Utente {
     private String cognome;
 
     @Column
-    @NonNull
+    @NotNull
     private String password;
 
     @Column
     private String cellulare;
 
     @Column(unique = true)
-    @NonNull
+    @NotNull
     private String email;
 
     @Enumerated(EnumType.STRING)
-    @NonNull
+    @NotNull
     private RuoloUtente ruoloUtente;
 
     @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)

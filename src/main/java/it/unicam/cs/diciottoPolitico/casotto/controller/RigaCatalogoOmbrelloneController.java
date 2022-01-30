@@ -1,15 +1,20 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
+import com.google.zxing.WriterException;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.service.RigaCatalogoOmbrelloneService;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoOmbrelloneRepository;
+import it.unicam.cs.diciottoPolitico.casotto.utils.QRCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.awt.image.RenderedImage;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +29,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/catalogo/ombrelloni")
-public class RigaCatalogoOmbrelloneController implements UniqueFieldHandler {
+public class RigaCatalogoOmbrelloneController {
 
     @Autowired
     private RigaCatalogoOmbrelloneService service;
@@ -103,6 +108,16 @@ public class RigaCatalogoOmbrelloneController implements UniqueFieldHandler {
     @DeleteMapping("/{id}")
     public SimpleRigaCatalogoOmbrellone removeRigaCatalogoOmbrellone(@PathVariable UUID id) {
         return this.service.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/qrcode/{codiceSpiaggia}")
+    public RenderedImage generateQRCode(@PathVariable String codiceSpiaggia) throws WriterException {
+        return QRCodeGenerator.setQRCodeSize(codiceSpiaggia,500,500);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    private ResponseEntity<Object> handleDataIntegrityViolation() {
+        return ResponseEntity.badRequest().build();
     }
 
 }
