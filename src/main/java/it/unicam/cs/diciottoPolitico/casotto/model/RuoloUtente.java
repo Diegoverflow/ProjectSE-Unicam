@@ -22,10 +22,10 @@ import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Utente;
  */
 public enum RuoloUtente {
 
-    GESTORE("GESTORE"),
-    CLIENTE("CLIENTE"),
-    ADDETTO_BAR("ADDETTO_BAR"),
-    CASSIERE("CASSIERE");
+    GESTORE("ROLE_GESTORE"),
+    CLIENTE("ROLE_CLIENTE"),
+    ADDETTO_BAR("ROLE_ADDETTO_BAR"),
+    CASSIERE("ROLE_CASSIERE");
 
     private final String ruolo;
 

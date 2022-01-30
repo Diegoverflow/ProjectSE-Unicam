@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        roleHierarchy.setHierarchy("GESTORE > CLIENTE \n GESTORE > ADDETTO_BAR \n GESTORE > CASSIERE");
+        roleHierarchy.setHierarchy("ROLE_GESTORE > ROLE_CLIENTE \n ROLE_GESTORE > ROLE_ADDETTO_BAR \n ROLE_GESTORE > ROLE_CASSIERE");
         return roleHierarchy;
     }
 
@@ -67,22 +67,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .expressionHandler(webExpressionHandler())
-                .antMatchers("/catalogo/ombrelloni").hasAnyAuthority("GESTORE")
-                //.antMatchers("/catalogo/ombrelloni/**").hasAnyAuthority("GESTORE")
-                .antMatchers(HttpMethod.GET,"/prenotazioni/ombrelloni/disponibili").hasAnyAuthority("CLIENTE")
-                .antMatchers(HttpMethod.POST,"/prenotazioni/ombrelloni").hasAnyAuthority("CLIENTE")
-                .antMatchers("/prenotazioni/ombrelloni/**").hasAnyAuthority("GESTORE")
-                .antMatchers("/utenti/**").hasAnyAuthority("GESTORE")
+                .antMatchers("/catalogo/ombrelloni/**").hasRole("GESTORE")
+                .antMatchers(HttpMethod.GET,"/prenotazioni/ombrelloni/disponibili").hasRole("CLIENTE")
+                .antMatchers(HttpMethod.POST,"/prenotazioni/ombrelloni").hasRole("CLIENTE")
+                .antMatchers("/prenotazioni/ombrelloni/**").hasRole("GESTORE")
+                .antMatchers(HttpMethod.POST,"/utenti").permitAll()
+                .antMatchers("/utenti/**").hasRole("GESTORE")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
                 .and()
                 .logout().permitAll();
     }
-
-    @Override
-    public void configure (WebSecurity web){
-        web.ignoring().antMatchers(HttpMethod.POST,"/utenti");
-    }
-
 }
