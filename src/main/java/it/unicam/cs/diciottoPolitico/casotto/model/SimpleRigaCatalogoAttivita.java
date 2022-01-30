@@ -19,7 +19,7 @@ public class SimpleRigaCatalogoAttivita implements RigaCatalogoAttivita {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "attivita_id", referencedColumnName = "id")
-    private SimpleAttivita valore;//todo brutto nome
+    private SimpleAttivita valore;
 
     @Column
     private double prezzo;

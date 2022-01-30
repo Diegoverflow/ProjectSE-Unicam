@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.model;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Ombrellone;
-import it.unicam.cs.diciottoPolitico.casotto.utils.QRCode;
+//import it.unicam.cs.diciottoPolitico.casotto.utils.QRCode;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

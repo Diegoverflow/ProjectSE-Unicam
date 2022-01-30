@@ -7,11 +7,15 @@ import it.unicam.cs.diciottoPolitico.casotto.service.PrenotazioneOmbrelloneServi
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -27,7 +31,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/prenotazioni/ombrelloni")
-public class PrenotazioneOmbrelloneController implements UniqueFieldHandler{
+public class PrenotazioneOmbrelloneController{
 
     @Autowired
     private PrenotazioneOmbrelloneService prenotazioneOmbrelloneService;
@@ -79,7 +83,7 @@ public class PrenotazioneOmbrelloneController implements UniqueFieldHandler{
      *                                 una {@code SimplePrenotazioneOmbrellone} riferita a un {@link SimpleOmbrellone} non presente nel catalogo bar dello chalet oppure se il {@code SimpleOmbrellone} &egrave; gi&agrave; prenotato
      */
     @PostMapping
-    public SimplePrenotazioneOmbrellone addPrenotazioneOmbrellone(@RequestBody SimplePrenotazioneOmbrellone prenotazioneOmbrellone) {
+    public SimplePrenotazioneOmbrellone addPrenotazioneOmbrellone(@Valid @RequestBody SimplePrenotazioneOmbrellone prenotazioneOmbrellone) {
         var prenotazione = this.prenotazioneOmbrelloneService.save(prenotazioneOmbrellone);
         if (prenotazione == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -98,6 +102,11 @@ public class PrenotazioneOmbrelloneController implements UniqueFieldHandler{
     @DeleteMapping("/{id}")
     public SimplePrenotazioneOmbrellone removePrenotazioneOmbrellone(@PathVariable UUID id) {
         return this.prenotazioneOmbrelloneService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    private ResponseEntity<Object> handleConstraintViolation() {
+        return ResponseEntity.badRequest().build();
     }
 
 }

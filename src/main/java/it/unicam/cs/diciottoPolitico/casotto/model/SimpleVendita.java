@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.Date;
 import java.util.UUID;
@@ -34,7 +36,7 @@ public class SimpleVendita implements Vendita {
 
     @ManyToOne
     @JoinColumn(name = "utente_id", updatable = false)
-    @NonNull
+    @NotNull
     private SimpleUtente utente;
 
     public SimpleVendita() {

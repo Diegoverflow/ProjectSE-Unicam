@@ -39,10 +39,5 @@ public class UtenteService extends AbstractService<SimpleUtente, UtenteRepositor
         return super.getBy(u -> u.getRuoloUtente().equals(ruoloUtente));
     }
 
-    // TODO: javadoc
-    public boolean autenticazione(String email, String password) {
-        return super.getAll().stream()
-                .anyMatch(utente -> utente.getEmail().equals(email) && utente.getPassword().equals(password));
-    }
 
 }
