@@ -27,9 +27,8 @@ public class SimpleOmbrellone implements Ombrellone {
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "qrcode_id")
-    private QRCode codiceSpiaggia;
+    @Column(unique = true)
+    private String codiceSpiaggia;
 
     protected SimpleOmbrellone() {
         this.id = UUID.randomUUID();

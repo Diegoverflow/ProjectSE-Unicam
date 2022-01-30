@@ -38,7 +38,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
     private Date dataPrenotazione;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "vendita_id")
+    @JoinColumn(name = "vendita_id",unique = true)
     @NonNull
     private SimpleVendita vendita;
 

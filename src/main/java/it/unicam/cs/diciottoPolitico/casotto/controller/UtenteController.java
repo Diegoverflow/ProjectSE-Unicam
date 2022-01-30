@@ -5,9 +5,11 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,10 +23,13 @@ import java.util.UUID;
  * @see UtenteService
  */
 @RestController
-public class UtenteController {
+public class UtenteController implements UniqueFieldHandler {
 
     @Autowired
     private UtenteService utenteService;
+
+    @Autowired
+    private PasswordEncoder bCryptPasswordEncoder;
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
@@ -32,7 +37,7 @@ public class UtenteController {
      *
      * @return la lista di tutti gli utenti registrati nello chalet
      */
-    @GetMapping("/utenti")
+    @GetMapping("/utenti/all")
     public List<SimpleUtente> getAllUtenti() {
         return this.utenteService.getAll();
     }
@@ -61,8 +66,9 @@ public class UtenteController {
      *                                 un {@code SimpleUtente} gi&agrave; presente nello chalet oppure un {@code SimpleUtente} non valido
      */
     @PostMapping("/utenti")
-    public SimpleUtente addUtente(@RequestBody SimpleUtente utente) {
+    public SimpleUtente addUtente(@Valid @RequestBody SimpleUtente utente){
         var u = this.utenteService.getBy(utente.getId());
+        utente.setPassword(bCryptPasswordEncoder.encode(utente.getPassword()));
         if (u.isEmpty())
             return this.utenteService.save(utente);
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -78,8 +84,9 @@ public class UtenteController {
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se il {@code SimpleUtente} non viene trovato
      */
     @PutMapping("/utenti")
-    public SimpleUtente updateUtente(@RequestBody SimpleUtente utente) {
+    public SimpleUtente updateUtente(@Valid @RequestBody SimpleUtente utente) {
         var u = this.utenteService.getBy(utente.getId());
+        utente.setPassword(bCryptPasswordEncoder.encode(utente.getPassword()));
         if (u.isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         return this.utenteService.save(utente);
@@ -98,6 +105,5 @@ public class UtenteController {
     public SimpleUtente removeUtente(@PathVariable UUID id) {
         return this.utenteService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
-
 
 }

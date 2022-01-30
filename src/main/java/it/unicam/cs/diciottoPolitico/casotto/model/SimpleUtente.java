@@ -38,7 +38,7 @@ public class SimpleUtente implements Utente {
     @Column
     private String cellulare;
 
-    @Column
+    @Column(unique = true)
     @NonNull
     private String email;
 

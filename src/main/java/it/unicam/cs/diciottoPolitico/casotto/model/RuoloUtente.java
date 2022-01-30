@@ -21,5 +21,21 @@ import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Utente;
  * </ul>
  */
 public enum RuoloUtente {
-    GESTORE, CLIENTE, ADDETTO_BAR, CASSIERE
+
+    GESTORE("GESTORE"),
+    CLIENTE("CLIENTE"),
+    ADDETTO_BAR("ADDETTO_BAR"),
+    CASSIERE("CASSIERE");
+
+    private final String ruolo;
+
+    RuoloUtente(String ruolo) {
+        this.ruolo = ruolo;
+    }
+
+    @Override
+    public String toString() {
+        return this.ruolo;
+    }
+
 }

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +24,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/catalogo")
-public class RigaCatalogoOmbrelloneController {
+public class RigaCatalogoOmbrelloneController implements UniqueFieldHandler {
 
     @Autowired
     private RigaCatalogoOmbrelloneService service;
@@ -65,7 +66,7 @@ public class RigaCatalogoOmbrelloneController {
      *                                 oppure il codice spiaggia dell' ombrellone non &egrave; valido
      */
     @PostMapping("/ombrelloni")
-    public SimpleRigaCatalogoOmbrellone addRigaCatalogoOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone riga) {
+    public SimpleRigaCatalogoOmbrellone addRigaCatalogoOmbrellone(@Valid @RequestBody SimpleRigaCatalogoOmbrellone riga) {
         var r = this.service.save(riga);
         if (r != null)
             return r;
@@ -82,7 +83,7 @@ public class RigaCatalogoOmbrelloneController {
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se la {@code SimpleRigaCatalogoOmbrellone} non viene trovata
      */
     @PutMapping("/ombrelloni")
-    public SimpleRigaCatalogoOmbrellone updateRigaCatalogoOmbrellone(@RequestBody SimpleRigaCatalogoOmbrellone riga) {
+    public SimpleRigaCatalogoOmbrellone updateRigaCatalogoOmbrellone(@Valid @RequestBody SimpleRigaCatalogoOmbrellone riga) {
         var r = this.service.update(riga);
         if (r != null)
             return r;

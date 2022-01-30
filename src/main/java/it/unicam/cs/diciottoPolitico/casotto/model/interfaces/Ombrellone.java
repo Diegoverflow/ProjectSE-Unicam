@@ -1,7 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.model.interfaces;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.Categoria;
-import it.unicam.cs.diciottoPolitico.casotto.utils.QRCode;
+
 
 import java.util.UUID;
 
@@ -22,14 +22,14 @@ public interface Ombrellone {
      *
      * @return il codice dell'ombrellone
      */
-    QRCode getCodiceSpiaggia();
+    String getCodiceSpiaggia();
 
     /**
      * Imposta il codice della spiaggia.
      *
      * @param codiceSpiaggia il nuovo codice della spiaggia
      */
-    void setCodiceSpiaggia(QRCode codiceSpiaggia);
+    void setCodiceSpiaggia(String codiceSpiaggia);
 
     /**
      * Ritorna la {@link Categoria} dell'ombrellone.

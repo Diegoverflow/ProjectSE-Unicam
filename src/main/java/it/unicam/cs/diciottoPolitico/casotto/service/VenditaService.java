@@ -40,6 +40,15 @@ public class VenditaService extends AbstractService<SimpleVendita, VenditaReposi
         return super.getBy(vendita -> vendita.getUtente().getId().equals(idUtente));
     }
 
+    public SimpleVendita updateIsPagato(UUID idVendita, boolean isPagato) {
+        var v = this.getBy(idVendita);
+        if (v.isPresent()){
+            v.get().setPagata(isPagato);
+            return super.save(v.get());
+        }
+        return null;
+    }
+
     /**
      * Restituisce la lista di tutte le vendite aventi costo specificato.
      *

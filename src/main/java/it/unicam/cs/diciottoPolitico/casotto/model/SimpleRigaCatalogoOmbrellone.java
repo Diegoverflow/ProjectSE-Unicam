@@ -26,12 +26,11 @@ public class SimpleRigaCatalogoOmbrellone implements RigaCatalogoOmbrellone {
     private UUID id;
 
     @Column
-    @NonNull
     @Positive
     private double prezzoOmbrellone;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ombrellone_id")
+    @JoinColumn(name = "ombrellone_id",unique = true)
     @NonNull
     private SimpleOmbrellone valore;
 

@@ -27,7 +27,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/prenotazioni")
-public class PrenotazioneOmbrelloneController {
+public class PrenotazioneOmbrelloneController implements UniqueFieldHandler{
 
     @Autowired
     private PrenotazioneOmbrelloneService prenotazioneOmbrelloneService;
