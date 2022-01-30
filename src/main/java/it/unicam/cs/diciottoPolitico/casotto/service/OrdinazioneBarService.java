@@ -87,26 +87,11 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
      * oppure se non viene trovato nessun {@code QRCode} con il nome specificato nel database, altrimenti memorizza l' ordinazione
      * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} memorizzata.
      */
-    public Optional<SimpleOrdinazioneBar> checkAndSave(String nomeQRCode, SimpleOrdinazioneBar ordinazione) {
-        if (this.ombrelloneService.filterBy(nomeQRCode).isEmpty() && this.checkArticolo(ordinazione.getArticoloBar()).isEmpty())
+    public Optional<SimpleOrdinazioneBar> checkAndSave(SimpleOrdinazioneBar ordinazione) {
+        if (this.checkArticolo(ordinazione.getArticoloBar()).isEmpty())
             return Optional.empty();
         return Optional.of(super.save(ordinazione));
     }
-
-    /*/** // TODO: inserire update?
-     * Esegue un controllo sulla presenza della {@link SimpleOrdinazioneBar} specificata in base al proprio id.
-     * Restituisce un empty {@link Optional} se non viene trovata nessuna ordinazione con id dell' ordinazione specificata nel database, altrimenti aggiorna l' ordinazione
-     * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} aggiornata.
-     *
-     * @param ordinazione l' ordinazione di cui eseguire il controllo e aggiornarla nel database
-     * @return un empty {@code Optional} se non viene trovata nessuna ordinazione con id dell' ordinazione specificata nel database, altrimenti aggiorna l' ordinazione
-     * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} aggiornata.
-     */
-    /*public Optional<SimpleOrdinazioneBar> checkAndUpdate(SimpleOrdinazioneBar ordinazione) {
-        if (super.getBy(ordinazione.getId()).isPresent() && riga.getPrezzo() >= 0 && riga.getQuantita() >= 0)
-            return Optional.of(super.save(riga));
-        return Optional.empty();
-    }*/
 
     private Optional<SimpleArticoloBar> checkArticolo(SimpleArticoloBar articoloBar) {
         return this.barService.getRigaBy(articoloBar).map(SimpleRigaCatalogoBar::getValore);

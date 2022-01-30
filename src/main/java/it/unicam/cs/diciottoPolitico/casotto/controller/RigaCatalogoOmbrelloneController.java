@@ -110,13 +110,13 @@ public class RigaCatalogoOmbrelloneController {
         return this.service.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/qrcode/{codiceSpiaggia}")
-    public RenderedImage generateQRCode(@PathVariable String codiceSpiaggia) throws WriterException {
-        return QRCodeGenerator.setQRCodeSize(codiceSpiaggia,500,500);
+    @GetMapping("/qrcode/{nome}")
+    public RenderedImage generateQRCode(@PathVariable String nome) throws WriterException {
+        return QRCodeGenerator.setQRCodeSize(nome,500,500);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    private ResponseEntity<Object> handleDataIntegrityViolation() {
+    private ResponseEntity<SimpleRigaCatalogoOmbrellone> handleDataIntegrityViolation() {
         return ResponseEntity.badRequest().build();
     }
 
