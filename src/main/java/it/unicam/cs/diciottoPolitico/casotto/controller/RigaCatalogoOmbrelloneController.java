@@ -17,11 +17,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-// TODO: fare invia notifica all' addetto quando un cliente ordina
 // TODO: javadoc
 // TODO: controlli con @Valid in particolare @Positive
-// TODO: variabili var
-// TODO: rimuovere gli import non necessari
 /**
  * RestController delle righe del catalogo ombrelloni dello chalet.
  * Esso si occupa di gestire le richieste HTTP per aggiungere, modificare, rimuovere e leggere una {@link SimpleRigaCatalogoOmbrellone}.
