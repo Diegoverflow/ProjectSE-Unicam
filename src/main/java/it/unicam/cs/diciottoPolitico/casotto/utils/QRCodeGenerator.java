@@ -15,6 +15,11 @@ import java.awt.image.RenderedImage;
 import java.io.*;
 import java.util.Hashtable;
 
+// TODO: fare invia notifica all' addetto quando un cliente ordina
+// TODO: javadoc
+// TODO: controlli con @Valid in particolare @Positive
+// TODO: variabili var
+// TODO: rimuovere gli import non necessari
 
 /**
  * Rappresenta un generatore di QRCode.
@@ -23,15 +28,27 @@ import java.util.Hashtable;
 public final class QRCodeGenerator {
 
     /**
-     * Genera il QRCode che rappresenta la stringa specificata e salva il QRCode in un' immagine avente
+     * Genera il {@link QRCode} che rappresenta la stringa specificata e contiene l' immagine del QRCode generata avente
      * come formato il tipo specificato.
      *
      * @param s         la stringa che il QRCode generate rappresenter&agrave;
-     * @param type_file il formato del QRCode generato
-     * @return il QRCode generato sotto forma di array di byte se il QRCode viene generato con successo,
+     * @param type_file il formato dell' immagine QRCode generato
+     * @return il {@code QRCode} che rappresenta la stringa specificata e ha come tipo di file dell' immagine generata il tipo specificato
+     */
+    public static QRCode createQRCode(String s, String type_file) {
+        return new QRCode(s, type_file);
+    }
+
+    /**
+     * Genera l' immagine del QRCode secondo la stringa specificata e in base al tipo specificato.
+     * L' immagine viene salvata in un array di byte.
+     *
+     * @param s         la stringa che il QRCode da generare rappresenter&agrave;
+     * @param type_file il formato dell' immagine del QRCode generato
+     * @return l' immagine del {@code QRCode} generato sotto forma di array di byte se il QRCode viene generato con successo,
      * altrimenti un array di byte vuoto
      */
-    public static byte[] createQRCode(String s, String type_file) {
+    public static byte[] createQRCodeImage(String s, String type_file) {
         RenderedImage image;
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         try {
@@ -69,7 +86,7 @@ public final class QRCodeGenerator {
      * @return la stringa rappresentata del {@code QRCode}
      * oppure {@code null} se il {@code QRCode} specificato non rappresenta una stringa valida
      */
-    /*public static String readQRCode(QRCode qrCode) {
+    public static String readQRCode(QRCode qrCode) {
         Result result = null;
         try {
             ByteArrayInputStream bytes = new ByteArrayInputStream(qrCode.getQRCodeImage());
@@ -82,6 +99,6 @@ public final class QRCodeGenerator {
             e.printStackTrace();
         }
         return result != null ? result.getText() : null;
-    }*/
+    }
 
 }
