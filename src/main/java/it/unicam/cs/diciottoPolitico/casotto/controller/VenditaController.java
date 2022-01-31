@@ -56,7 +56,6 @@ public class VenditaController {
         return this.venditaService.getVenditeClienteDaPagare(idUtente);
     }
 
-    // TODO: javadoc
     @PatchMapping("/{idVendita}/{isPagato}")
     public SimpleVendita updatePartially(@PathVariable UUID idVendita, @PathVariable boolean isPagato) {
         var v = this.venditaService.updateIsPagato(idVendita, isPagato);

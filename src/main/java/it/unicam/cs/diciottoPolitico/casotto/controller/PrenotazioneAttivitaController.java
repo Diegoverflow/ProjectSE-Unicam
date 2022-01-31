@@ -21,7 +21,6 @@ import java.util.UUID;
  * @see SimplePrenotazioneAttivita
  * @see PrenotazioneAttivitaService
  */
-// TODO: finire javadoc
 @RestController
 @RequestMapping("/prenotazioni/attivita")
 public class PrenotazioneAttivitaController {

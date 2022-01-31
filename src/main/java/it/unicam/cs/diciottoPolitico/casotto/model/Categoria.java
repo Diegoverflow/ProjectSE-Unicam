@@ -7,10 +7,10 @@ package it.unicam.cs.diciottoPolitico.casotto.model;
  *        Un ombrellone standard.
  *  </li>
  *  <li>{@link #VIP}<br>
- *        Un ombrellone vip
+ *        Un ombrellone vip.
  *  </li>
  *  <li>{@link #PREMIUM}<br>
- *        Un ombrellone premium
+ *        Un ombrellone premium.
  *  </ul>
  */
 public enum Categoria {

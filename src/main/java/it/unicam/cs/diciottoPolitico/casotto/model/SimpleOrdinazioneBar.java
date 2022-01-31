@@ -34,6 +34,9 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     @JoinColumn(name = "vendita_id", updatable = false)
     private SimpleVendita vendita;
 
+    @Column(unique = true, nullable = false)
+    private String codiceSpiaggia;
+
     protected SimpleOrdinazioneBar() {
         this.id = UUID.randomUUID();
         this.statusOrdinazioneBar = StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO;

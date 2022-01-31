@@ -17,8 +17,6 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-// TODO: javadoc
-// TODO: controlli con @Valid in particolare @Positive
 /**
  * RestController delle righe del catalogo ombrelloni dello chalet.
  * Esso si occupa di gestire le richieste HTTP per aggiungere, modificare, rimuovere e leggere una {@link SimpleRigaCatalogoOmbrellone}.

@@ -76,25 +76,22 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         return super.getBy(o -> o.getArticoloBar().getNome().equals(nomeArticoloBar));
     }
 
-    // TODO: MANCANO I METODI PER FAR AGGIORNARE LO STATUS DELL' ORDINAZIONE AGLI ADDETTI!
-
     /**
      * Esegue un controllo sulla presenza del {@link SimpleArticoloBar} nella {@link SimpleOrdinazioneBar} specificata.
      * Restituisce un empty {@link Optional} se non viene trovato nessun {@code SimpleArticoloBar} specificato nel database, altrimenti memorizza l' ordinazione
      * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} memorizzata.
      *
-     * @param codiceSpiaggia il codice identificativo del {@link SimpleOmbrellone} a cui l' addetto bar consegnerà la {@code SimpleOrdinazioneBar}
-     * @param ordinazione    l' ordinazione di cui eseguire il controllo e memorizzarla nel database
+     * @param ordinazione l' ordinazione di cui eseguire il controllo e memorizzarla nel database
      * @return un empty {@link Optional} se non viene trovato nessun articolo della {@code SimpleOrdinazioneBar} specificata nel database
      * oppure se non viene trovato nessun {@code QRCode} con il nome specificato nel database, altrimenti memorizza l' ordinazione
      * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} memorizzata.
      */
-    public Optional<SimpleOrdinazioneBar> checkAndSave(String codiceSpiaggia, SimpleOrdinazioneBar ordinazione) {
+    public Optional<SimpleOrdinazioneBar> checkAndSave(SimpleOrdinazioneBar ordinazione) {
         SimpleNotifica notifica = new SimpleNotifica();
         var a = this.checkArticolo(ordinazione.getArticoloBar().getId());
         if (a.isEmpty())
             return Optional.empty();
-        notifica.setMessaggio("Arrivata ordinazione con id: " + ordinazione.getId() + "\nDa consegnare all' ombrellone " + codiceSpiaggia);
+        notifica.setMessaggio("Arrivata ordinazione con id: " + ordinazione.getId());
         notifica.setUtenti(this.utenteService.filtraBy(RuoloUtente.ADDETTO_BAR));
         this.notificaService.inviaNotifica(notifica);
         var r = this.barService.getRigaBy(a.get()).get();

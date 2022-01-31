@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-//TODO: javadoc
 @Service
 public class NotificaService extends AbstractService<SimpleNotifica, NotificaRepository> {
 

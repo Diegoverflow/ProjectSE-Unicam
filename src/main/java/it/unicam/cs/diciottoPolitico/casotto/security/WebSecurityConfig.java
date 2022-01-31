@@ -66,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .expressionHandler(webExpressionHandler())
                 .antMatchers("/infrastruttura/aree/**").hasRole("GESTORE")
-                .antMatchers(HttpMethod.POST,"/bar/ordinazioni/{nomeQRCode}").hasRole("CLIENTE")
+                .antMatchers(HttpMethod.POST,"/bar/ordinazioni").hasRole("CLIENTE")
                 .antMatchers(HttpMethod.GET,"/bar/ordinazioni/disponibili").hasRole("CLIENTE")
                 .antMatchers("/bar/ordinazioni/**").hasAnyRole("ADDETTO_BAR","CASSIERE")
                 .antMatchers(HttpMethod.GET,"/prenotazioni/attivita/disponibili").hasRole("CLIENTE")
