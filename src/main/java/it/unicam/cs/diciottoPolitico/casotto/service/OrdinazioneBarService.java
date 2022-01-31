@@ -20,7 +20,6 @@ import java.util.UUID;
 @Service
 public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar, OrdinazioneBarRepository> {
 
-    private final RigaCatalogoOmbrelloneService ombrelloneService;
     private final RigaCatalogoBarService barService;
     private final NotificaService notificaService;
     private final UtenteService utenteService;
@@ -30,14 +29,12 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
      *
      * @param repository        il repository delle ordinazioni bar da iniettare
      * @param notificaService   il service delle notifiche da iniettare
-     * @param ombrelloneService il service degli ombrelloni da iniettare
      * @param barService        il service degli articoli bar da iniettare
      */
     @Autowired
-    public OrdinazioneBarService(OrdinazioneBarRepository repository, NotificaService notificaService, RigaCatalogoOmbrelloneService ombrelloneService, RigaCatalogoBarService barService, UtenteService utenteService) {
+    public OrdinazioneBarService(OrdinazioneBarRepository repository, NotificaService notificaService, RigaCatalogoBarService barService, UtenteService utenteService) {
         super(repository);
         this.notificaService = notificaService;
-        this.ombrelloneService = ombrelloneService;
         this.barService = barService;
         this.utenteService = utenteService;
     }
