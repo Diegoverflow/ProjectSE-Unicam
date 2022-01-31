@@ -1,6 +1,5 @@
 package it.unicam.cs.diciottoPolitico.casotto.utils;
 
-
 /**
  * QRCode che rappresenta una stringa.
  * Si occupa di conservare al suo interno la stringa che rappresenta e l' array di byte,

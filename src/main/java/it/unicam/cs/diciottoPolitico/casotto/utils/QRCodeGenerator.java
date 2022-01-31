@@ -15,11 +15,6 @@ import java.awt.image.RenderedImage;
 import java.io.*;
 import java.util.Hashtable;
 
-// TODO: fare invia notifica all' addetto quando un cliente ordina
-// TODO: javadoc
-// TODO: controlli con @Valid in particolare @Positive
-// TODO: variabili var
-// TODO: rimuovere gli import non necessari
 
 /**
  * Rappresenta un generatore di QRCode.
