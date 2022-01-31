@@ -59,7 +59,12 @@ public class PrenotazioneAttivitaController {
         return r;
     }
 
-    // TODO: cosa fa questo metodo? ritorna tutte le prenotazioni che sono nel repository...
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la lista di tutte le prenotazioni delle attivit&agrave; effettuate dai clienti.
+     *
+     * @return la lista di tutte le prenotazioni delle attivit&agrave; effettuate dai clienti
+     */
     @GetMapping("/all")
     public List<SimplePrenotazioneAttivita> getPrenotazioni() {
         var r = this.prenotazioneAttivitaService.getAll();
@@ -68,18 +73,41 @@ public class PrenotazioneAttivitaController {
         return r;
     }
 
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la {@link SimplePrenotazioneAttivita} avente id specificato nel {@link PathVariable}.
+     *
+     * @return la {@code SimplePrenotazioneAttivita} avente id specificato
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna{@code SimplePrenotazioneAttivita} con id specificato
+     */
     @GetMapping("/{idPrenotazione}")
     public SimplePrenotazioneAttivita getPrenotazioneBy(@PathVariable UUID idPrenotazione) {
-        return this.prenotazioneAttivitaService.getBy(idPrenotazione).
-                orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return this.prenotazioneAttivitaService.getBy(idPrenotazione).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la {@link SimplePrenotazioneAttivita} avente nome specificato nel {@link PathVariable}.
+     *
+     * @return la {@code SimplePrenotazioneAttivita} avente nome specificato
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovata nessuna{@code SimplePrenotazioneAttivita} con nome specificato
+     */
     @GetMapping("/{nomeAttivitaPrenotata}")
     public SimplePrenotazioneAttivita getPrenotazioniBy(@PathVariable String nomeAttivitaPrenotata) {
         return this.prenotazioneAttivitaService.filtraBy(nomeAttivitaPrenotata).stream().findFirst().
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#POST}.
+     * Aggiunge la {@link SimplePrenotazioneAttivita} contenuta nel {@link RequestBody} della richiesta HTTP alle prenotazioni delle attivit&agrave; effettuate dai clienti.
+     * Restituisce la {@code SimplePrenotazioneAttivita} aggiunta.
+     *
+     * @param prenotazioneAttivita la {@code SimplePrenotazioneAttivita} da aggiungere alle prenotazioni delle attivit&agrave; dello chalet
+     * @return la {@code SimplePrenotazioneAttivita} aggiunta
+     * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
+     *                                 una {@code SimplePrenotazioneAttivita} non presente nel catalogo attivit&agrave; dello chalet oppure se la {@code SimplePrenotazioneAttivita} non &egrave; valida
+     */
     @PostMapping
     public SimplePrenotazioneAttivita addPrenotazione(@RequestBody SimplePrenotazioneAttivita prenotazioneAttivita) {
         var v = this.prenotazioneAttivitaService.save(prenotazioneAttivita);
@@ -88,6 +116,15 @@ public class PrenotazioneAttivitaController {
         return v;
     }
 
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#PUT}.
+     * Aggiorna la {@link SimplePrenotazioneAttivita} specificata contenuta nel {@link RequestBody}.
+     * Restituisce la {@code SimplePrenotazioneAttivita} aggiornata nelle prenotazioni attivit&agrave; dello chalet.
+     *
+     * @param prenotazioneAttivita la {@code SimplePrenotazioneAttivita} da aggiornare
+     * @return la {@code SimplePrenotazioneAttivita} aggiornata nelle prenotazioni attivit&agrave; dello chalet
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se la {@code SimplePrenotazioneAttivita} non viene trovata
+     */
     @PutMapping
     public SimplePrenotazioneAttivita updatePrenotazione(@RequestBody SimplePrenotazioneAttivita prenotazioneAttivita) {
         var v = this.prenotazioneAttivitaService.update(prenotazioneAttivita);
@@ -96,9 +133,18 @@ public class PrenotazioneAttivitaController {
         return v;
     }
 
-    @DeleteMapping("/{idPrenotazione}")
-    public SimplePrenotazioneAttivita deletePrenotazione(@PathVariable UUID idPrenotazione) {
-        return this.prenotazioneAttivitaService.removeBy(idPrenotazione).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#DELETE}.
+     * Rimuove dalle prenotazioni delle attivit&agrave; dello chalet, la {@link SimplePrenotazioneAttivita} avente l' id specificato nel {@link PathVariable}.
+     * Restituisce la {@code SimplePrenotazioneAttivita} rimossa dalle prenotazioni delle attivit&agrave; dello chalet.
+     *
+     * @param id l' id della {@code SimplePrenotazioneAttivita} da eliminare
+     * @return la {@code SimplePrenotazioneAttivita} rimossa dalle prenotazioni delle attivit&agrave; dello chalet
+     * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se si specifica un id inesistente
+     */
+    @DeleteMapping("/{id}")
+    public SimplePrenotazioneAttivita deletePrenotazione(@PathVariable UUID id) {
+        return this.prenotazioneAttivitaService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
 

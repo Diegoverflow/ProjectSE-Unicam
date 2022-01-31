@@ -42,6 +42,12 @@ public class OrdinazioneBarController {
         return this.ordinazioneBarService.getAll();
     }
 
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la lista di tutte le righe degli articoli bar attualmente disponibili.
+     *
+     * @return la lista di tutte le righe degli articoli bar attualmente disponibili
+     */
     @GetMapping("/disponibili")
     public List<SimpleRigaCatalogoBar> getArticoliBarDisponibili() {
         return this.ordinazioneBarService.getArticoliBarDisponibili();
@@ -96,6 +102,8 @@ public class OrdinazioneBarController {
         return this.ordinazioneBarService.filtraBy(nomeArticoloBar);
     }
 
+    // TODO: MANCANO I METODI PER FAR AGGIORNARE LO STATUS DELL' ORDINAZIONE AGLI ADDETTI!
+
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#POST}.
      * Aggiunge la {@link SimpleOrdinazioneBar} contenuta nel {@link RequestBody} della richiesta HTTP alle ordinazioni effettuate dai clienti dello chalet.
@@ -106,9 +114,9 @@ public class OrdinazioneBarController {
      * @throws ResponseStatusException con {@link HttpStatus#BAD_REQUEST} se si tenta di aggiungere
      *                                 una {@code SimpleOrdinazioneBar} riferita a un {@link SimpleArticoloBar} non presente nel catalogo bar dello chalet
      */
-    @PostMapping
-    public SimpleOrdinazioneBar addOrdinazione(@RequestBody SimpleOrdinazioneBar ordinazione) {
-        return this.ordinazioneBarService.checkAndSave(ordinazione).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+    @PostMapping("/{codiceSpiaggia}")
+    public SimpleOrdinazioneBar addOrdinazione(@PathVariable String codiceSpiaggia, @RequestBody SimpleOrdinazioneBar ordinazione) {
+        return this.ordinazioneBarService.checkAndSave(codiceSpiaggia, ordinazione).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
     /**

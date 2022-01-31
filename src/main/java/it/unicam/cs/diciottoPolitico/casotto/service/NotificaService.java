@@ -24,14 +24,12 @@ public class NotificaService extends AbstractService<SimpleNotifica, NotificaRep
     }
 
     public void inviaNotifica(SimpleNotifica notifica) {
-        //this.notificaRepository.save(notifica);
+        this.repository.save(notifica);
         this.utenteRepository.
                 findAllById(this.getUUIDs(notifica.getUtenti())).
                 forEach(utente -> {
                     utente.getNotifiche().add(notifica);
                     this.utenteRepository.save(utente);
-                    // necessario risalvare l' utente per salvare la coppia (utente_id,notifica_id)
-                    // nella tabella della relazione molti a molti
                 });
     }
 

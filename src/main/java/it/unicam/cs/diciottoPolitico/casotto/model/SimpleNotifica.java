@@ -27,7 +27,7 @@ public class SimpleNotifica implements Notifica {
     @NonNull
     private List<SimpleUtente> utenti;
 
-    protected SimpleNotifica(){
+    public SimpleNotifica(){
         this.id = UUID.randomUUID();
         this.utenti = new ArrayList<>();
     }

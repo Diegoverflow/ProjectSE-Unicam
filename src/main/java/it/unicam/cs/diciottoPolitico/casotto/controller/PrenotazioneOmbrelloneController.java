@@ -7,7 +7,6 @@ import it.unicam.cs.diciottoPolitico.casotto.service.PrenotazioneOmbrelloneServi
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

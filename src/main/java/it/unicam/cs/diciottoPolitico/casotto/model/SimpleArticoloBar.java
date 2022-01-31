@@ -4,6 +4,7 @@ import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.ArticoloBar;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = "id")
+@ToString
 public class SimpleArticoloBar implements ArticoloBar {
 
     @Id

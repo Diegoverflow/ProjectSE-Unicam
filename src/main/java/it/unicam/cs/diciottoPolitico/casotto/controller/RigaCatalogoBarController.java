@@ -2,7 +2,6 @@ package it.unicam.cs.diciottoPolitico.casotto.controller;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleArticoloBar;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoBar;
-import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.RigaCatalogoBarService;
 import org.springframework.beans.factory.annotation.Autowired;

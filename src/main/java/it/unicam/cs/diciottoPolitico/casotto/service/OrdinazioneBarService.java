@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Service delle ordinazioni bar.
@@ -21,24 +22,24 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
 
     private final RigaCatalogoOmbrelloneService ombrelloneService;
     private final RigaCatalogoBarService barService;
-
-    // TODO: 28/01/22 inviare notifica ai dipendenti bar quando si salva un'ordinazione
     private final NotificaService notificaService;
+    private final UtenteService utenteService;
 
     /**
      * Crea un service per le ordinazioni iniettando il repository degli articoli bar, i service delle notifiche e degli ombrelloni e il repository delle ordinazioni bar specificati.
      *
-     * @param repository            il repository delle ordinazioni bar da iniettare
-     * @param notificaService       il service delle notifiche da iniettare
-     * @param ombrelloneService     il service degli ombrelloni da iniettare
-     * @param barService            il service degli articoli bar da iniettare
+     * @param repository        il repository delle ordinazioni bar da iniettare
+     * @param notificaService   il service delle notifiche da iniettare
+     * @param ombrelloneService il service degli ombrelloni da iniettare
+     * @param barService        il service degli articoli bar da iniettare
      */
     @Autowired
-    public OrdinazioneBarService(OrdinazioneBarRepository repository, NotificaService notificaService, RigaCatalogoOmbrelloneService ombrelloneService,RigaCatalogoBarService barService) {
+    public OrdinazioneBarService(OrdinazioneBarRepository repository, NotificaService notificaService, RigaCatalogoOmbrelloneService ombrelloneService, RigaCatalogoBarService barService, UtenteService utenteService) {
         super(repository);
         this.notificaService = notificaService;
         this.ombrelloneService = ombrelloneService;
         this.barService = barService;
+        this.utenteService = utenteService;
     }
 
     public List<SimpleRigaCatalogoBar> getArticoliBarDisponibili() {
@@ -75,26 +76,35 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         return super.getBy(o -> o.getArticoloBar().getNome().equals(nomeArticoloBar));
     }
 
+    // TODO: MANCANO I METODI PER FAR AGGIORNARE LO STATUS DELL' ORDINAZIONE AGLI ADDETTI!
+
     /**
      * Esegue un controllo sulla presenza del {@link SimpleArticoloBar} nella {@link SimpleOrdinazioneBar} specificata.
-     * Viene controllato anche che il nome specificato del {@link QRCode} esista.
      * Restituisce un empty {@link Optional} se non viene trovato nessun {@code SimpleArticoloBar} specificato nel database, altrimenti memorizza l' ordinazione
      * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} memorizzata.
      *
-     * @param nomeQRCode  il nome del QRCode da verificarne l' esistenza
-     * @param ordinazione l' ordinazione di cui eseguire il controllo e memorizzarla nel database
+     * @param codiceSpiaggia il codice identificativo del {@link SimpleOmbrellone} a cui l' addetto bar consegnerà la {@code SimpleOrdinazioneBar}
+     * @param ordinazione    l' ordinazione di cui eseguire il controllo e memorizzarla nel database
      * @return un empty {@link Optional} se non viene trovato nessun articolo della {@code SimpleOrdinazioneBar} specificata nel database
      * oppure se non viene trovato nessun {@code QRCode} con il nome specificato nel database, altrimenti memorizza l' ordinazione
      * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} memorizzata.
      */
-    public Optional<SimpleOrdinazioneBar> checkAndSave(SimpleOrdinazioneBar ordinazione) {
-        if (this.checkArticolo(ordinazione.getArticoloBar()).isEmpty())
+    public Optional<SimpleOrdinazioneBar> checkAndSave(String codiceSpiaggia, SimpleOrdinazioneBar ordinazione) {
+        SimpleNotifica notifica = new SimpleNotifica();
+        var a = this.checkArticolo(ordinazione.getArticoloBar().getId());
+        if (a.isEmpty())
             return Optional.empty();
+        notifica.setMessaggio("Arrivata ordinazione con id: " + ordinazione.getId() + "\nDa consegnare all' ombrellone " + codiceSpiaggia);
+        notifica.setUtenti(this.utenteService.filtraBy(RuoloUtente.ADDETTO_BAR));
+        this.notificaService.inviaNotifica(notifica);
+        var r = this.barService.getRigaBy(a.get()).get();
+        r.setQuantita(r.getQuantita() - 1);
+        this.barService.checkAndUpdate(r);
         return Optional.of(super.save(ordinazione));
     }
 
-    private Optional<SimpleArticoloBar> checkArticolo(SimpleArticoloBar articoloBar) {
-        return this.barService.getRigaBy(articoloBar).map(SimpleRigaCatalogoBar::getValore);
+    private Optional<SimpleArticoloBar> checkArticolo(UUID articoloBarId) {
+        return this.barService.getRigaBy(articoloBarId).map(SimpleRigaCatalogoBar::getValore);
     }
 
 }

@@ -4,6 +4,7 @@ import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.RigaCatalogoBar;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
 
     @Id

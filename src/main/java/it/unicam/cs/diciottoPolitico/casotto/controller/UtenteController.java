@@ -91,10 +91,10 @@ public class UtenteController{
      * @return il {@code SimpleUtente} aggiornato nello chalet
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se il {@code SimpleUtente} non viene trovato
      */
-    @PutMapping
-    public SimpleUtente updateUtente(@Valid @RequestBody SimpleUtente utente) {
+    @PatchMapping
+    public SimpleUtente updateUtente(@RequestBody SimpleUtente utente) {
         var u = this.utenteService.getBy(utente.getId());
-        utente.setPassword(bCryptPasswordEncoder.encode(utente.getPassword()));
+        //utente.setPassword(bCryptPasswordEncoder.encode(utente.getPassword()));
         if (u.isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         return this.utenteService.save(utente);

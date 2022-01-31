@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Service del catalogo bar.
@@ -26,8 +27,8 @@ public class RigaCatalogoBarService extends AbstractService<SimpleRigaCatalogoBa
     }
 
     //todo
-    public List<SimpleRigaCatalogoBar> getRigheDisponibili(){
-        return super.getBy(r -> r.getQuantita()>0);
+    public List<SimpleRigaCatalogoBar> getRigheDisponibili() {
+        return super.getBy(r -> r.getQuantita() > 0);
     }
 
     /**
@@ -48,6 +49,18 @@ public class RigaCatalogoBarService extends AbstractService<SimpleRigaCatalogoBa
      */
     public List<SimpleRigaCatalogoBar> filtraBy(double prezzoLimite) {
         return super.getBy(p -> p.getPrezzo() <= prezzoLimite);
+    }
+
+    /**
+     * Restituisce un {@link Optional} che descrive una {@link SimpleRigaCatalogoBar} avente come id dell' {@link SimpleArticoloBar} l' id specificato
+     * oppure un empty {@code Optional} se non viene trovata nessuna riga avente l' id del proprio articolo bar specificato nel database.
+     *
+     * @param articoloBarId l' id dell' {@code SimpleArticoloBar} da cercare
+     * @return un {@code Optional} che descrive una {@code SimpleRigaCatalogoBar} avente come id dell' {@code SimpleArticoloBar} l' id specificato
+     *      * oppure un empty {@code Optional} se non viene trovata nessuna riga avente l' id del proprio articolo bar specificato
+     */
+    public Optional<SimpleRigaCatalogoBar> getRigaBy(UUID articoloBarId) {
+        return this.getAll().stream().filter(r -> r.getValore().getId().equals(articoloBarId)).findFirst();
     }
 
     /**

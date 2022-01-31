@@ -17,7 +17,6 @@ import java.util.*;
 @Table(name = "utente")
 @Getter
 @Setter
-@ToString
 @EqualsAndHashCode
 public class SimpleUtente implements Utente {
 

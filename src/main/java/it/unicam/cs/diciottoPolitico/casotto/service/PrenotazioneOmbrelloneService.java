@@ -5,7 +5,6 @@ import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
-import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Vendita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
