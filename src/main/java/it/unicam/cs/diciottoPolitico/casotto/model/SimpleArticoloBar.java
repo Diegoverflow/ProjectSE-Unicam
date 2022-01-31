@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -24,6 +25,7 @@ public class SimpleArticoloBar implements ArticoloBar {
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
+    @NonNull
     @Column(unique = true)
     private String nome;
 

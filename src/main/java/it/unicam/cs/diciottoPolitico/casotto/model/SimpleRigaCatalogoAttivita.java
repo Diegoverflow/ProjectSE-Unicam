@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.util.UUID;
 
 @Entity
@@ -25,9 +26,11 @@ public class SimpleRigaCatalogoAttivita implements RigaCatalogoAttivita {
     private double prezzo;
 
     @Column
+    @Positive
     private int postiTotali;
 
     @Column
+    @Positive
     private int postiOccupati;
 
     protected SimpleRigaCatalogoAttivita(){

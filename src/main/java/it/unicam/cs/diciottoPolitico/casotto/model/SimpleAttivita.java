@@ -4,6 +4,7 @@ import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Attivita;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.*;
@@ -27,9 +28,11 @@ public class SimpleAttivita implements Attivita {
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
+    @NonNull
     @Temporal(TemporalType.DATE)
     private Date dataOrarioInizio;
 
+    @NonNull
     @Temporal(TemporalType.DATE)
     private Date dataOrarioFine;
 

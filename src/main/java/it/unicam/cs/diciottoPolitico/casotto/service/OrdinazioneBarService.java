@@ -91,7 +91,7 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         var a = this.checkArticolo(ordinazione.getArticoloBar().getId());
         if (a.isEmpty())
             return Optional.empty();
-        notifica.setMessaggio("Arrivata ordinazione con id: " + ordinazione.getId());
+        notifica.setMessaggio("Arrivata ordinazione : " + ordinazione.getArticoloBar().getNome()+ " all'ombrellone : "+ordinazione.getCodiceSpiaggia());
         notifica.setUtenti(this.utenteService.filtraBy(RuoloUtente.ADDETTO_BAR));
         this.notificaService.inviaNotifica(notifica);
         var r = this.barService.getRigaBy(a.get()).get();

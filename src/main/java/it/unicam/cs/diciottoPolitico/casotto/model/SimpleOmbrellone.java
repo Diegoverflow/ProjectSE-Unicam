@@ -5,6 +5,7 @@ import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Ombrellone;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -28,6 +29,7 @@ public class SimpleOmbrellone implements Ombrellone {
     private Categoria categoria;
 
     @Column(unique = true)
+    @NonNull
     private String codiceSpiaggia;
 
     protected SimpleOmbrellone() {

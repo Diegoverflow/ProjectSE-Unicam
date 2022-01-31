@@ -31,11 +31,11 @@ public class SimpleRigaCatalogoBar implements RigaCatalogoBar {
     @JoinColumn(name = "articolo_bar_id", unique = true, nullable = false)
     private SimpleArticoloBar valore;
 
-    @Column(nullable = false)
+    @Column
     @Positive
     private double prezzo;
 
-    @Column(nullable = false)
+    @Column
     @PositiveOrZero
     private int quantita;
 

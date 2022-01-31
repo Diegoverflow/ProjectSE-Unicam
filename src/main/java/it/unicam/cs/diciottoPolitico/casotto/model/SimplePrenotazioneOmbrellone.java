@@ -1,39 +1,34 @@
 package it.unicam.cs.diciottoPolitico.casotto.model;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.PrenotazioneOmbrellone;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 import javax.validation.constraints.NotNull;
 import javax.persistence.*;
-import javax.validation.Valid;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table(name = "prenotazione_ombrellone")
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
 
     @Id
     @Column(columnDefinition = "BINARY(16)",updatable = false)
     private UUID id;
 
-    @EqualsAndHashCode.Include
     @Enumerated(EnumType.STRING)
     @NonNull
     private FasciaOraria fasciaOraria;
 
-    @EqualsAndHashCode.Include
     @ManyToOne
     @JoinColumn(name = "ombrellone_id")
     @NonNull
     private SimpleOmbrellone ombrellone;
 
-    @EqualsAndHashCode.Include
     @Temporal(TemporalType.DATE)
     @NonNull
     private Date dataPrenotazione;
@@ -47,4 +42,16 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
         this.id = UUID.randomUUID();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SimplePrenotazioneOmbrellone)) return false;
+        SimplePrenotazioneOmbrellone that = (SimplePrenotazioneOmbrellone) o;
+        return (getFasciaOraria() == that.getFasciaOraria() || that.getFasciaOraria() == FasciaOraria.GIORNATA_INTERA) && getOmbrellone().equals(that.getOmbrellone()) && getDataPrenotazione().equals(that.getDataPrenotazione());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFasciaOraria(), getOmbrellone(), getDataPrenotazione());
+    }
 }
