@@ -50,11 +50,11 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
      * @return la {@code SimplePrenotazioneOmbrellone} memorizzata nel database se viene memorizzata con successo, {@code null} altrimenti
      */
     @Override
-    public SimplePrenotazioneOmbrellone save(@Valid SimplePrenotazioneOmbrellone prenotazione) {
+    public SimplePrenotazioneOmbrellone save( @Valid SimplePrenotazioneOmbrellone prenotazione) {
+        System.out.println(prenotazione.getVendita().getUtente());
         var riga = this.catalogoService.getRigaBy(prenotazione.getOmbrellone());
         var utente = this.utenteService.getBy(prenotazione.getVendita().getUtente().getId());
-        if (riga.isPresent() && utente.isPresent() && riga.get().getPrezzoOmbrellone() == prenotazione.getVendita().getCosto()
-                && super.getAll().stream().noneMatch(p -> p.equals(prenotazione))){
+        if (riga.isPresent() && utente.isPresent() && riga.get().getPrezzoOmbrellone() == prenotazione.getVendita().getCosto() && super.repository.findAll().stream().noneMatch(p -> p.equals(prenotazione))){
             prenotazione.getVendita().setPagata(false);
             return super.save(prenotazione);
         }
@@ -99,7 +99,7 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
      */
     public List<SimplePrenotazioneOmbrellone> filtraBy(LocalDate data, FasciaOraria fasciaOraria) {
         return super.getAll().stream()
-                .filter(p -> p.getDataPrenotazione().equals(data) && FasciaOraria.sameFasciaOraria(p.getFasciaOraria(),fasciaOraria))
+                .filter(p -> p.getDataPrenotazione().equals(data) && p.getFasciaOraria().equals(fasciaOraria))
                 .collect(Collectors.toList());
     }
 
