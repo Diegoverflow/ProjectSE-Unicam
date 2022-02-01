@@ -5,9 +5,11 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoAttivitaRepo
 import it.unicam.cs.diciottoPolitico.casotto.service.RigaCatalogoAttivitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,11 +40,6 @@ public class RigaCatalogoAttivitaController {
         return this.rigaCatalogoAttivitaService.getAll();
     }
 
-    @GetMapping("/disponibili")
-    public List<SimpleRigaCatalogoAttivita> getAttivitaDisponibili() {
-        return this.rigaCatalogoAttivitaService.getAttivitaDisponibili();
-    }
-
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
      * Restituisce una {@link SimpleRigaCatalogoAttivita} avente id specificato nel {@link PathVariable}.
@@ -69,11 +66,10 @@ public class RigaCatalogoAttivitaController {
      */
     @PostMapping
     public SimpleRigaCatalogoAttivita addRiga(@RequestBody SimpleRigaCatalogoAttivita rigaCatalogo) {
-        var riga = this.rigaCatalogoAttivitaService.getBy(rigaCatalogo.getId());
-        var attivita = this.rigaCatalogoAttivitaService.getRigaBy(rigaCatalogo.getValore().getNome());
-        if (riga.isPresent() || attivita.isPresent())
+        var r = this.rigaCatalogoAttivitaService.save(rigaCatalogo);
+        if (r == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        return this.rigaCatalogoAttivitaService.save(rigaCatalogo);
+        return r;
     }
 
     /**
@@ -87,10 +83,10 @@ public class RigaCatalogoAttivitaController {
      */
     @PutMapping
     public SimpleRigaCatalogoAttivita updateRiga(@RequestBody SimpleRigaCatalogoAttivita rigaCatalogoAttivita) {
-        var riga = this.rigaCatalogoAttivitaService.getBy(rigaCatalogoAttivita.getId());
-        if (riga.isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return this.rigaCatalogoAttivitaService.save(rigaCatalogoAttivita);
+        var r = this.rigaCatalogoAttivitaService.save(rigaCatalogoAttivita);
+        if (r == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        return r;
     }
 
     /**
@@ -106,5 +102,11 @@ public class RigaCatalogoAttivitaController {
     public SimpleRigaCatalogoAttivita deleteRigaBy(@PathVariable UUID idRiga) {
         return this.rigaCatalogoAttivitaService.removeBy(idRiga).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    private ResponseEntity<Object> handleConstraintViolation() {
+        return ResponseEntity.badRequest().build();
+    }
+
 
 }

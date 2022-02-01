@@ -22,7 +22,7 @@ import java.util.UUID;
 @Table(name = "attivita")
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = "id")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class SimpleAttivita implements Attivita {
 
     @Id
@@ -31,16 +31,19 @@ public class SimpleAttivita implements Attivita {
 
     @NonNull
     @Column
+    @EqualsAndHashCode.Include
     private LocalDate dataOrarioInizio;
 
     @NonNull
     @Column
+    @EqualsAndHashCode.Include
     private LocalDate dataOrarioFine;
 
     @Column
     private String descrizione;
 
     @Column
+    @EqualsAndHashCode.Include
     private String nome;
 
     protected SimpleAttivita(){

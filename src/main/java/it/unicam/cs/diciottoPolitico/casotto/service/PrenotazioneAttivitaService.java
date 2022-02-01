@@ -55,7 +55,8 @@ public class PrenotazioneAttivitaService extends AbstractService<SimplePrenotazi
             return null;
         this.catalogoAttivita.
                 getBy(prenotazioneAttivita.getAttivita().getId()).
-                ifPresent(r -> r.setPostiOccupati(r.getPostiOccupati() + 1));
+                ifPresent(r -> {r.setPostiOccupati(r.getPostiOccupati() + 1);
+                this.catalogoAttivita.save(r);});
         return super.save(prenotazioneAttivita);
     }
 

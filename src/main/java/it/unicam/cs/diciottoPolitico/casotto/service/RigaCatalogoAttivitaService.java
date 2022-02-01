@@ -75,5 +75,32 @@ public class RigaCatalogoAttivitaService extends AbstractService<SimpleRigaCatal
         return super.getBy(riga -> riga.getValore().getNome().equals(nomeAttivita)).stream().findFirst();
     }
 
+    @Override
+    public SimpleRigaCatalogoAttivita save(SimpleRigaCatalogoAttivita rigaCatalogo){
+        var foundriga =
+                super.getAll().stream().filter(riga->riga.equals(rigaCatalogo)).findFirst();
+        if (foundriga.isEmpty()
+                && this.dateCorrette(rigaCatalogo)
+                && rigaCatalogo.getPostiOccupati()<=rigaCatalogo.getPostiTotali()){
+            return super.save(rigaCatalogo);
+        }
+        return null;
+    }
+
+    private boolean dateCorrette(SimpleRigaCatalogoAttivita rigaCatalogo){
+        return rigaCatalogo.getValore().getDataOrarioFine().isAfter(rigaCatalogo.getValore().getDataOrarioInizio())
+                || rigaCatalogo.getValore().getDataOrarioInizio().equals(rigaCatalogo.getValore().getDataOrarioFine());
+    }
+
+    public SimpleRigaCatalogoAttivita update(SimpleRigaCatalogoAttivita rigaCatalogoAttivita){
+        var foundriga =
+                super.getAll().stream().filter(riga->riga.equals(rigaCatalogoAttivita)).findFirst();
+        if (foundriga.isPresent()
+                && this.dateCorrette(rigaCatalogoAttivita)
+                && rigaCatalogoAttivita.getPostiOccupati()<=rigaCatalogoAttivita.getPostiTotali()){
+            return super.save(rigaCatalogoAttivita);
+        }
+        return null;
+    }
 
 }
