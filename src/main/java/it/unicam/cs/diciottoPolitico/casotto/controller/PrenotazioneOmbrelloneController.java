@@ -15,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,7 +44,7 @@ public class PrenotazioneOmbrelloneController{
      * @return la lista di tutte le righe del catalogo degli ombrelloni disponibili in base alla data e alla {@code FasciaOraria} specificate.
      */
     @GetMapping("/disponibili/{data}/{fasciaOraria}")
-    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") Date data, @PathVariable FasciaOraria fasciaOraria) {
+    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data, @PathVariable FasciaOraria fasciaOraria) {
         return this.prenotazioneOmbrelloneService.getRigheDisponibiliBy(data, fasciaOraria);
     }
 

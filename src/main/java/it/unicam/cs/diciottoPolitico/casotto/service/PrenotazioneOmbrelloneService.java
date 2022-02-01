@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,7 +68,7 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
      * @param fasciaOraria la {@code FasciaOraria} in cui filtrare gli ombrelloni disponibili
      * @return la lista di tutte le righe che contengono ombrelloni disponibili secondo data e {@code FasciaOraria} specificate
      */
-    public List<SimpleRigaCatalogoOmbrellone> getRigheDisponibiliBy(Date data, FasciaOraria fasciaOraria) {
+    public List<SimpleRigaCatalogoOmbrellone> getRigheDisponibiliBy(LocalDate data, FasciaOraria fasciaOraria) {
         return catalogoService.getAll()
                 .stream()
                 .filter(riga -> this.filtraBy(data, fasciaOraria).stream().noneMatch(p -> p.getOmbrellone().equals(riga.getValore())))
@@ -83,7 +83,7 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
      * @param categoria    la {@code Categoria} in cui filtrare gli ombrelloni disponibili
      * @return la lista di tutte le righe che contengono ombrelloni disponibili secondo data, {@code FasciaOraria} e la {@code Categoria} specificate
      */
-    public List<SimpleRigaCatalogoOmbrellone> getRigheDisponibiliBy(Date data, FasciaOraria fasciaOraria, Categoria categoria) {
+    public List<SimpleRigaCatalogoOmbrellone> getRigheDisponibiliBy(LocalDate data, FasciaOraria fasciaOraria, Categoria categoria) {
         return catalogoService.filterBy(categoria)
                 .stream()
                 .filter(riga -> this.filtraBy(data, fasciaOraria).stream().noneMatch(p -> p.getOmbrellone().equals(riga.getValore())))
@@ -97,9 +97,9 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
      * @param fasciaOraria la {@code FasciaOraria} da filtrare per le prenotazioni degli ombrelloni
      * @return la lista di tutte le prenotazioni degli ombrelloni filtrate per data e {@code FasciaOraria} specificate
      */
-    public List<SimplePrenotazioneOmbrellone> filtraBy(Date data, FasciaOraria fasciaOraria) {
+    public List<SimplePrenotazioneOmbrellone> filtraBy(LocalDate data, FasciaOraria fasciaOraria) {
         return super.getAll().stream()
-                .filter(p -> p.getDataPrenotazione().equals(data) && p.getFasciaOraria().equals(fasciaOraria))
+                .filter(p -> p.getDataPrenotazione().equals(data) && FasciaOraria.sameFasciaOraria(p.getFasciaOraria(),fasciaOraria))
                 .collect(Collectors.toList());
     }
 

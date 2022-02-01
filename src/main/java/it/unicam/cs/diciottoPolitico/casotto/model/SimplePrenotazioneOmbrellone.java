@@ -1,5 +1,9 @@
 package it.unicam.cs.diciottoPolitico.casotto.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.PrenotazioneOmbrellone;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,7 +51,7 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
         if (this == o) return true;
         if (!(o instanceof SimplePrenotazioneOmbrellone)) return false;
         SimplePrenotazioneOmbrellone that = (SimplePrenotazioneOmbrellone) o;
-        return (getFasciaOraria() == that.getFasciaOraria() || that.getFasciaOraria() == FasciaOraria.GIORNATA_INTERA || getFasciaOraria() == FasciaOraria.GIORNATA_INTERA)
+        return (FasciaOraria.sameFasciaOraria(this.getFasciaOraria(),that.getFasciaOraria()))
                 && getOmbrellone().equals(that.getOmbrellone())
                 &&  getDataPrenotazione().equals(that.getDataPrenotazione());
     }

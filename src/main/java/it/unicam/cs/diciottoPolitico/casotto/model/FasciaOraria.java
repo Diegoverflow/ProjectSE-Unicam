@@ -22,5 +22,10 @@ import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Ombrellone;
  * </p>
  */
 public enum FasciaOraria {
-    MATTINO, POMERIGGIO, GIORNATA_INTERA
+    MATTINO, POMERIGGIO, GIORNATA_INTERA;
+
+    public static boolean sameFasciaOraria(FasciaOraria fasciaOraria1, FasciaOraria fasciaOraria2){
+       return fasciaOraria1 == fasciaOraria2 || fasciaOraria1 == FasciaOraria.GIORNATA_INTERA || fasciaOraria2 == FasciaOraria.GIORNATA_INTERA;
+    }
+
 }
