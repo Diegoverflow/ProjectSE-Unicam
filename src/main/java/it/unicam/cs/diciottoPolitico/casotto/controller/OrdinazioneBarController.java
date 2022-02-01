@@ -131,4 +131,20 @@ public class OrdinazioneBarController {
         return this.ordinazioneBarService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    @PatchMapping("/prendi-in-carico/{id}")
+    public SimpleOrdinazioneBar prendiInCaricoOrdinazione(@PathVariable UUID id){
+        var o = this.ordinazioneBarService.prendiInCaricoOrdinazione(id);
+        if (o!=null)
+            return o;
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+    @PatchMapping("/consegna/{id}")
+    public SimpleOrdinazioneBar consegnaOrdinazione(@PathVariable UUID id){
+        var o = this.ordinazioneBarService.consegnaOrdinazione(id);
+        if (o!=null)
+            return o;
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
 }

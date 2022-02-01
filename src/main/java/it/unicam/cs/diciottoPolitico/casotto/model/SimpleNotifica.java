@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Notifica;
 import lombok.Getter;
 import lombok.NonNull;
@@ -33,6 +34,7 @@ public class SimpleNotifica implements Notifica {
                     @JoinColumn(name = "utente_id", referencedColumnName = "id",
                             nullable = false, updatable = false)}
     )
+    @JsonIgnore
     private Set<SimpleUtente> utenti;
 
     public SimpleNotifica() {

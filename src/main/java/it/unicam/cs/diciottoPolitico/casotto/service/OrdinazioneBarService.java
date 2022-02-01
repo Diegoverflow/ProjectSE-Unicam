@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * Service delle ordinazioni bar.
@@ -25,20 +24,22 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
     private final RigaCatalogoBarService barService;
     private final NotificaService notificaService;
     private final UtenteService utenteService;
+    private final RigaCatalogoOmbrelloneService ombrelloniService;
 
     /**
      * Crea un service per le ordinazioni iniettando il repository degli articoli bar, i service delle notifiche e degli ombrelloni e il repository delle ordinazioni bar specificati.
-     *
-     * @param repository        il repository delle ordinazioni bar da iniettare
+     *  @param repository        il repository delle ordinazioni bar da iniettare
      * @param notificaService   il service delle notifiche da iniettare
      * @param barService        il service degli articoli bar da iniettare
+     * @param ombrelloniService il service degli ombrelloni da iniettare
      */
     @Autowired
-    public OrdinazioneBarService(OrdinazioneBarRepository repository, NotificaService notificaService, RigaCatalogoBarService barService, UtenteService utenteService) {
+    public OrdinazioneBarService(OrdinazioneBarRepository repository, NotificaService notificaService, RigaCatalogoBarService barService, UtenteService utenteService, RigaCatalogoOmbrelloneService ombrelloniService) {
         super(repository);
         this.notificaService = notificaService;
         this.barService = barService;
         this.utenteService = utenteService;
+        this.ombrelloniService = ombrelloniService;
     }
 
     public List<SimpleRigaCatalogoBar> getArticoliBarDisponibili() {
@@ -87,19 +88,34 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
      */
     public Optional<SimpleOrdinazioneBar> checkAndSave(SimpleOrdinazioneBar ordinazione) {
         SimpleNotifica notifica = new SimpleNotifica();
-        var a = this.checkArticolo(ordinazione.getArticoloBar().getId());
-        if (a.isEmpty())
-            return Optional.empty();
-        notifica.setMessaggio("Arrivata ordinazione : " + a.get().getNome()+ " all'ombrellone : "+ordinazione.getCodiceSpiaggia());
-        this.notificaService.inviaNotifica(notifica, new HashSet<>(this.utenteService.filtraBy(RuoloUtente.ADDETTO_BAR)));
-        var r = this.barService.getRigaBy(a.get()).get();
-        r.setQuantita(r.getQuantita() - 1);
-        this.barService.checkAndUpdate(r);
-        return Optional.of(super.save(ordinazione));
+        var riga = this.barService.getRigaBy(ordinazione.getArticoloBar().getId());
+        if (riga.isPresent() && riga.get().getQuantita() > 0
+                && riga.get().getPrezzo() == ordinazione.getVendita().getCosto() && this.ombrelloniService.filterBy(ordinazione.getCodiceSpiaggia()).isPresent()) {
+            riga.get().setQuantita(riga.get().getQuantita() - 1);
+            notifica.setMessaggio("Arrivata ordinazione : " + riga.get().getValore().getNome() + " all'ombrellone : " + ordinazione.getCodiceSpiaggia());
+            this.notificaService.inviaNotifica(notifica, new HashSet<>(this.utenteService.filtraBy(RuoloUtente.ADDETTO_BAR)));
+            return Optional.of(super.save(ordinazione));
+        }
+        return Optional.empty();
     }
 
-    private Optional<SimpleArticoloBar> checkArticolo(UUID articoloBarId) {
-        return this.barService.getRigaBy(articoloBarId).map(SimpleRigaCatalogoBar::getValore);
+    public SimpleOrdinazioneBar prendiInCaricoOrdinazione(UUID idOrdinazione){
+        var o =super.getBy(idOrdinazione);
+        if (o.isPresent() && o.get().getStatusOrdinazioneBar() == StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO) {
+            o.get().setStatusOrdinazioneBar(StatusOrdinazioneBar.PRESO_IN_CARICO);
+            return super.save(o.get());
+        }
+        return null;
     }
+
+    public SimpleOrdinazioneBar consegnaOrdinazione(UUID idOrdinazione){
+        var o =super.getBy(idOrdinazione);
+        if (o.isPresent() && o.get().getStatusOrdinazioneBar() == StatusOrdinazioneBar.PRESO_IN_CARICO) {
+            o.get().setStatusOrdinazioneBar(StatusOrdinazioneBar.CONSEGNATO);
+            return super.save(o.get());
+        }
+        return null;
+    }
+
 
 }

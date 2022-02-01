@@ -38,8 +38,7 @@ public class SimpleOrdinazioneBar implements OrdinazioneBar {
     @JoinColumn(name = "vendita_id", updatable = false)
     private SimpleVendita vendita;
 
-    @NonNull
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String codiceSpiaggia;
 
     protected SimpleOrdinazioneBar() {
