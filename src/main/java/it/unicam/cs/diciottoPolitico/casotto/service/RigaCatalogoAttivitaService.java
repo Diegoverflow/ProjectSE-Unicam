@@ -2,6 +2,7 @@ package it.unicam.cs.diciottoPolitico.casotto.service;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.RigaCatalogoAttivitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -94,13 +95,19 @@ public class RigaCatalogoAttivitaService extends AbstractService<SimpleRigaCatal
 
     public SimpleRigaCatalogoAttivita update(SimpleRigaCatalogoAttivita rigaCatalogoAttivita){
         var foundriga =
-                super.getAll().stream().filter(riga->riga.equals(rigaCatalogoAttivita)).findFirst();
+                super.getAll().stream().filter(riga->riga.getId().equals(rigaCatalogoAttivita.getId())).findFirst();
         if (foundriga.isPresent()
                 && this.dateCorrette(rigaCatalogoAttivita)
                 && rigaCatalogoAttivita.getPostiOccupati()<=rigaCatalogoAttivita.getPostiTotali()){
             return super.save(rigaCatalogoAttivita);
         }
         return null;
+    }
+
+        public Optional<SimpleRigaCatalogoAttivita> getRigaBy(SimpleAttivita riga){
+        return super.getBy(r -> r.getValore().equals(riga))
+                .stream()
+                .findFirst();
     }
 
 }

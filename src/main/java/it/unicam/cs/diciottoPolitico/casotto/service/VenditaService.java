@@ -5,6 +5,7 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.VenditaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -37,9 +38,26 @@ public class VenditaService extends AbstractService<SimpleVendita, VenditaReposi
      * @return la lista di tutte le vendite ancora da pagare per l' utente avente id specificato
      */
     public List<SimpleVendita> getVenditeClienteDaPagare(UUID idUtente) {
+        return super.getBy(vendita -> vendita.getUtente().getId().equals(idUtente) && !vendita.isPagata());
+    }
+
+    /**
+     * Restituisce la lista di tutte le vendite associate all' utente avente id specificato.
+     *
+     * @param idUtente l' id dell' utente di cui ricavare tutte le vendite
+     * @return la lista di tutte le vendite associate all' utente avente id specificato
+     */
+    public List<SimpleVendita> getAllVenditeUtente(UUID idUtente){
         return super.getBy(vendita -> vendita.getUtente().getId().equals(idUtente));
     }
 
+    /**
+     * Modifica lo stato di pagamento di una vendita.
+     *
+     * @param idVendita id della vendita
+     * @param isPagato nuovo stato di pagamento della vendita
+     * @return la vendita con lo stato di pagamento aggiornato
+     */
     public SimpleVendita updateIsPagato(UUID idVendita, boolean isPagato) {
         var v = this.getBy(idVendita);
         if (v.isPresent()){
@@ -65,26 +83,9 @@ public class VenditaService extends AbstractService<SimpleVendita, VenditaReposi
      * @param data in cui sono stati effettuati acquisti delle vendite da filtrare
      * @return la lista di tutte le vendite degli acquisti effettuati nella data specificata
      */
-    public List<SimpleVendita> filtraBy(Date data) {
+    public List<SimpleVendita> filtraBy(LocalDate data) {
         return super.getBy(v -> v.getDataAcquisto().equals(data));
     }
 
-    /**
-     * Restituisce la lista di tutte le vendite degli acquisti effettuati nella periodo specificata tramite inizio e fine.
-     *
-     * @param data in cui sono stati effettuati acquisti delle vendite da filtrare
-     * @return la lista di tutte le vendite degli acquisti effettuati nella data specificata
-     */
-    /**
-     * Restituisce la lista di tutte le vendite degli acquisti effettuati nella periodo specificata tramite inizio e fine.
-     *
-     * @param inizio la data di inizio (inclusa) del periodo delle vendite da filtrare
-     * @param fine   la data di fine (inclusa) del periodo delle vendite da filtrare
-     * @return la lista di tutte le vendite degli acquisti effettuati nel periodo specificato
-     */
-    /*public List<SimpleVendita> filtraDaA(Date inizio, Date fine) {
-        return super.getBy(v -> (v.getDataAcquisto().equals(inizio) || v.getDataAcquisto().equals(fine))
-                && (v.getDataAcquisto().after(inizio) && v.getDataAcquisto().before(fine)));
-    }*/
 
 }

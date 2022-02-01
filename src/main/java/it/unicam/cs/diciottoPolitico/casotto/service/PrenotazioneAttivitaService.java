@@ -53,10 +53,12 @@ public class PrenotazioneAttivitaService extends AbstractService<SimplePrenotazi
             return null;
         if (this.clientIsFurbetto(prenotazioneAttivita))
             return null;
-        this.catalogoAttivita.
-                getBy(prenotazioneAttivita.getAttivita().getId()).
-                ifPresent(r -> {r.setPostiOccupati(r.getPostiOccupati() + 1);
-                this.catalogoAttivita.save(r);});
+        var riga = this.catalogoAttivita.getRigaBy(prenotazioneAttivita.getAttivita());
+        if (riga.isPresent()){
+            riga.get().setPostiOccupati(riga.get().getPostiOccupati() + 1);
+            if (this.catalogoAttivita.update(riga.get()) == null)
+                return null;
+        }
         return super.save(prenotazioneAttivita);
     }
 
