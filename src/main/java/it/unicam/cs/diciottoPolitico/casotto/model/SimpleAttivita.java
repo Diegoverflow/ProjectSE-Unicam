@@ -7,7 +7,8 @@ import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import java.util.*;
+import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Semplice implementazione di un' {@link Attivita}.
@@ -29,12 +30,12 @@ public class SimpleAttivita implements Attivita {
     private UUID id;
 
     @NonNull
-    @Temporal(TemporalType.DATE)
-    private Date dataOrarioInizio;
+    @Column
+    private LocalDate dataOrarioInizio;
 
     @NonNull
-    @Temporal(TemporalType.DATE)
-    private Date dataOrarioFine;
+    @Column
+    private LocalDate dataOrarioFine;
 
     @Column
     private String descrizione;

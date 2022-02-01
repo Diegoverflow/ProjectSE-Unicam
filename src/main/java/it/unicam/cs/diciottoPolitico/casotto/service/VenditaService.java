@@ -82,9 +82,9 @@ public class VenditaService extends AbstractService<SimpleVendita, VenditaReposi
      * @param fine   la data di fine (inclusa) del periodo delle vendite da filtrare
      * @return la lista di tutte le vendite degli acquisti effettuati nel periodo specificato
      */
-    public List<SimpleVendita> filtraDaA(Date inizio, Date fine) {
+    /*public List<SimpleVendita> filtraDaA(Date inizio, Date fine) {
         return super.getBy(v -> (v.getDataAcquisto().equals(inizio) || v.getDataAcquisto().equals(fine))
                 && (v.getDataAcquisto().after(inizio) && v.getDataAcquisto().before(fine)));
-    }
+    }*/
 
 }

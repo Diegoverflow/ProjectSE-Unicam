@@ -1,6 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.model.interfaces;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -20,14 +20,14 @@ public interface Attivita {
      *
      * @return l'orario di inizio dell'attivit&agrave;
      */
-    Date getDataOrarioInizio();
+    LocalDate getDataOrarioInizio();
 
     /**
      * Ottieni l'ora in cui l'attivit&agrave; termina
      *
      * @return l'ora a in cui termina l'attivit&agrave;
      */
-    Date getDataOrarioFine();
+    LocalDate getDataOrarioFine();
 
     /**
      * Ottieni la descrizione dell'attivit&agrave;

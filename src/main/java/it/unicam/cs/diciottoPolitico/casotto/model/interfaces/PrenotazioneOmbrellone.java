@@ -3,7 +3,7 @@ package it.unicam.cs.diciottoPolitico.casotto.model.interfaces;
 import it.unicam.cs.diciottoPolitico.casotto.model.Categoria;
 import it.unicam.cs.diciottoPolitico.casotto.model.FasciaOraria;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Interfaccia che descrive una prenotazione di un ombrellone.
@@ -19,7 +19,7 @@ public interface PrenotazioneOmbrellone {
      *
      * @return la data di prenotazione
      */
-    Date getDataPrenotazione();
+    LocalDate getDataPrenotazione();
 
     /**
      * Ottieni l' {@link Ombrellone} associato alla prenotazione

@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.model.interfaces;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -18,7 +19,7 @@ public interface Vendita {
      * Ottieni la data in cui &grave; stata effettuata la vendita
      * @return la data di acquisto della vendita
      */
-    Date getDataAcquisto();
+    LocalDate getDataAcquisto();
 
     /**
      * Ottieni il costo associato ad una vendita

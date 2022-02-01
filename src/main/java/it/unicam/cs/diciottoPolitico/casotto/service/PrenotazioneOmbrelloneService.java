@@ -50,10 +50,11 @@ public class PrenotazioneOmbrelloneService extends AbstractService<SimplePrenota
      * @return la {@code SimplePrenotazioneOmbrellone} memorizzata nel database se viene memorizzata con successo, {@code null} altrimenti
      */
     @Override
-    public SimplePrenotazioneOmbrellone save( @Valid SimplePrenotazioneOmbrellone prenotazione) {
+    public SimplePrenotazioneOmbrellone save(@Valid SimplePrenotazioneOmbrellone prenotazione) {
         var riga = this.catalogoService.getRigaBy(prenotazione.getOmbrellone());
         var utente = this.utenteService.getBy(prenotazione.getVendita().getUtente().getId());
-        if (riga.isPresent() && utente.isPresent() && riga.get().getPrezzoOmbrellone() == prenotazione.getVendita().getCosto() && super.repository.findAll().stream().noneMatch(p -> p.equals(prenotazione))){
+        if (riga.isPresent() && utente.isPresent() && riga.get().getPrezzoOmbrellone() == prenotazione.getVendita().getCosto()
+                && super.getAll().stream().noneMatch(p -> p.equals(prenotazione))){
             prenotazione.getVendita().setPagata(false);
             return super.save(prenotazione);
         }

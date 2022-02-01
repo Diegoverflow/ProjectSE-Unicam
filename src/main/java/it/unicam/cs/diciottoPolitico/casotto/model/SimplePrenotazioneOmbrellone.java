@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.springframework.lang.NonNull;
 import javax.validation.constraints.NotNull;
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -29,9 +29,9 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
     @NonNull
     private SimpleOmbrellone ombrellone;
 
-    @Temporal(TemporalType.DATE)
+    @Column
     @NonNull
-    private Date dataPrenotazione;
+    private LocalDate dataPrenotazione;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vendita_id",unique = true)
@@ -47,7 +47,9 @@ public class SimplePrenotazioneOmbrellone implements PrenotazioneOmbrellone {
         if (this == o) return true;
         if (!(o instanceof SimplePrenotazioneOmbrellone)) return false;
         SimplePrenotazioneOmbrellone that = (SimplePrenotazioneOmbrellone) o;
-        return (getFasciaOraria() == that.getFasciaOraria() || that.getFasciaOraria() == FasciaOraria.GIORNATA_INTERA) && getOmbrellone().equals(that.getOmbrellone()) && getDataPrenotazione().equals(that.getDataPrenotazione());
+        return (getFasciaOraria() == that.getFasciaOraria() || that.getFasciaOraria() == FasciaOraria.GIORNATA_INTERA || getFasciaOraria() == FasciaOraria.GIORNATA_INTERA)
+                && getOmbrellone().equals(that.getOmbrellone())
+                &&  getDataPrenotazione().equals(that.getDataPrenotazione());
     }
 
     @Override

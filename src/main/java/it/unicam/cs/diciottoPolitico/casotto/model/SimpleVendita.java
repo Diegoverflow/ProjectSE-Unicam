@@ -4,13 +4,11 @@ import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Vendita;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -24,8 +22,8 @@ public class SimpleVendita implements Vendita {
     @Column(columnDefinition = "BINARY(16)", updatable = false)
     private UUID id;
 
-    @Temporal(TemporalType.DATE)
-    private Date dataAcquisto;
+    @Column
+    private LocalDate dataAcquisto;
 
     @Column
     @Positive
@@ -41,7 +39,7 @@ public class SimpleVendita implements Vendita {
 
     public SimpleVendita() {
         this.id = UUID.randomUUID();
-        this.dataAcquisto = new Date();
+        this.dataAcquisto = LocalDate.now();
         this.pagata = false;
     }
 }
