@@ -5,9 +5,11 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Service delle ordinazioni bar.
@@ -88,9 +90,8 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         var a = this.checkArticolo(ordinazione.getArticoloBar().getId());
         if (a.isEmpty())
             return Optional.empty();
-        notifica.setMessaggio("Arrivata ordinazione : " + ordinazione.getArticoloBar().getNome()+ " all'ombrellone : "+ordinazione.getCodiceSpiaggia());
-        notifica.setUtenti(this.utenteService.filtraBy(RuoloUtente.ADDETTO_BAR));
-        this.notificaService.inviaNotifica(notifica);
+        notifica.setMessaggio("Arrivata ordinazione : " + a.get().getNome()+ " all'ombrellone : "+ordinazione.getCodiceSpiaggia());
+        this.notificaService.inviaNotifica(notifica, new HashSet<>(this.utenteService.filtraBy(RuoloUtente.ADDETTO_BAR)));
         var r = this.barService.getRigaBy(a.get()).get();
         r.setQuantita(r.getQuantita() - 1);
         this.barService.checkAndUpdate(r);

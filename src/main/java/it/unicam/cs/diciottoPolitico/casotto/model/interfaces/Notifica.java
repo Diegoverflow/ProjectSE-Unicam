@@ -3,6 +3,7 @@ package it.unicam.cs.diciottoPolitico.casotto.model.interfaces;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -27,5 +28,5 @@ public interface Notifica {
     *
     * @return la lista di utenti della notifica
     */
-   List<SimpleUtente> getUtenti();
+   Set<SimpleUtente> getUtenti();
 }

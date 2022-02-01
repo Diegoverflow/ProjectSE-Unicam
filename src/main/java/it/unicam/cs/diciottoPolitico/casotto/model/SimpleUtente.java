@@ -1,10 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.model;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Utente;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,6 +15,7 @@ import java.util.*;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 public class SimpleUtente implements Utente {
 
     @Id
@@ -45,20 +43,13 @@ public class SimpleUtente implements Utente {
     @NotNull
     private RuoloUtente ruoloUtente;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    @JoinTable(name = "utente_notifica",
-            joinColumns = {
-                    @JoinColumn(name = "utente_id", referencedColumnName = "id",
-                            nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "notifica_id", referencedColumnName = "id",
-                            nullable = false, updatable = false)}
-    )
-    private  List<SimpleNotifica> notifiche;
+    @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "utenti", fetch = FetchType.LAZY)
+    @NonNull
+    private  Set<SimpleNotifica> notifiche;
 
     public SimpleUtente(){
         this.id = UUID.randomUUID();
-        this.notifiche = new ArrayList<>();
+        this.notifiche = new HashSet<>();
     }
 
 }

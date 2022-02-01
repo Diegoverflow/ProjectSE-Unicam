@@ -4,16 +4,16 @@ import it.unicam.cs.diciottoPolitico.casotto.model.interfaces.Notifica;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "notifica")
 @Getter
 @Setter
+@ToString
 public class SimpleNotifica implements Notifica {
 
     @Id
@@ -23,12 +23,20 @@ public class SimpleNotifica implements Notifica {
     @Column(updatable = false)
     private String messaggio;
 
-    @ManyToMany(mappedBy = "notifiche", fetch = FetchType.LAZY)
-    @NonNull
-    private List<SimpleUtente> utenti;
 
-    public SimpleNotifica(){
+    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinTable(name = "utente_notifica",
+            joinColumns = {
+                    @JoinColumn(name = "notifica_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "utente_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)}
+    )
+    private Set<SimpleUtente> utenti;
+
+    public SimpleNotifica() {
         this.id = UUID.randomUUID();
-        this.utenti = new ArrayList<>();
+        this.utenti = new HashSet<>();
     }
 }

@@ -7,7 +7,9 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -22,14 +24,9 @@ public class NotificaService extends AbstractService<SimpleNotifica, NotificaRep
         this.utenteRepository = utenteRepository;
     }
 
-    public void inviaNotifica(SimpleNotifica notifica) {
-        this.repository.save(notifica);
-        this.utenteRepository.
-                findAllById(this.getUUIDs(notifica.getUtenti())).
-                forEach(utente -> {
-                    utente.getNotifiche().add(notifica);
-                    this.utenteRepository.save(utente);
-                });
+    public void inviaNotifica(SimpleNotifica notifica, Set<SimpleUtente> utenti) {
+        utenti.forEach(u -> notifica.getUtenti().add(u));
+        this.save(notifica);
     }
 
     private List<UUID> getUUIDs(List<SimpleUtente> utentiDestinatari) {
@@ -40,7 +37,7 @@ public class NotificaService extends AbstractService<SimpleNotifica, NotificaRep
     public void rimuoviNotifica(SimpleNotifica notifica) {
         //this.notificaRepository.delete(notifica);
         this.utenteRepository.
-                findAllById(this.getUUIDs(notifica.getUtenti())).
+                findAllById(this.getUUIDs(new ArrayList<>(notifica.getUtenti()))).
                 forEach(utente -> {
                     utente.getNotifiche().remove(notifica);
                     this.utenteRepository.save(utente);

@@ -4,6 +4,7 @@ import it.unicam.cs.diciottoPolitico.casotto.model.RuoloUtente;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleNotifica;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -93,7 +94,7 @@ public interface Utente {
      *
      * @return la lista di notifiche dell' utente
      */
-    List<SimpleNotifica> getNotifiche();
+    Set<SimpleNotifica> getNotifiche();
 
     /**
      * Confronta l' elemento specificato con questo utente.
