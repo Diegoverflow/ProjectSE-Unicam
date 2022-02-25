@@ -1,0 +1,12 @@
+<h2>{{title}}</h2>
+<ul>
+    <li *ngFor="let riga of righeCatalogoAttivita">
+        <em>Nome Attivita:</em> {{riga.attivita.nome}} - 
+        <em>Data Inizio Attivita:</em> {{riga.attivita.dataInizio}} - 
+        <em>Data Fine Attivita:</em> {{riga.attivita.dataFine}} - 
+        <em>Descrizione Attivita:</em> {{riga.attivita.descrizone}} - 
+        <em>Prezzo Articolo:</em> €{{riga.prezzo}}
+        <button type="button" (click)="eliminaRiga(riga)">rimuovi</button>
+    </li>
+</ul>
+<app-riga-attivita-editor></app-riga-attivita-editor>
