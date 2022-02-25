@@ -114,9 +114,4 @@ public class UtenteController{
         return this.utenteService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    private ResponseEntity<Object> handleDataIntegrityViolation() {
-        return ResponseEntity.badRequest().build();
-    }
-
 }

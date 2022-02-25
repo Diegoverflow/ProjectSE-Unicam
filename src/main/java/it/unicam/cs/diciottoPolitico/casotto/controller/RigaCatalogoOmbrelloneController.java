@@ -114,9 +114,4 @@ public class RigaCatalogoOmbrelloneController {
         return QRCodeGenerator.createQRCode(nome, "PNG").getQRCodeImage();
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    private ResponseEntity<SimpleRigaCatalogoOmbrellone> handleDataIntegrityViolation() {
-        return ResponseEntity.badRequest().build();
-    }
-
 }

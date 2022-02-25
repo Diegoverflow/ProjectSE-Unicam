@@ -103,9 +103,4 @@ public class PrenotazioneOmbrelloneController{
         return this.prenotazioneOmbrelloneService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @ExceptionHandler(ConstraintViolationException.class)
-    private ResponseEntity<Object> handleConstraintViolation() {
-        return ResponseEntity.badRequest().build();
-    }
-
 }

@@ -1,5 +1,10 @@
 package it.unicam.cs.diciottoPolitico.casotto.security;
 
+import it.unicam.cs.diciottoPolitico.casotto.security.jwt.JwrAuthorizationFilter;
+import it.unicam.cs.diciottoPolitico.casotto.security.jwt.JwtAuthenticationFilter;
+import it.unicam.cs.diciottoPolitico.casotto.security.jwt.JwtConfig;
+import it.unicam.cs.diciottoPolitico.casotto.utils.exception.GlobalExceptionHandlerFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -9,33 +14,38 @@ import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Configuration
-@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new MyUserDetailService();
-    }
+    private final PasswordEncoder passwordEncoder;
+    private final UserDetailsService userDetailsService;
+    private final JwtConfig jwtConfig;
+    private final HandlerExceptionResolver handlerExceptionResolver;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    @Autowired
+    protected WebSecurityConfig(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService, JwtConfig jwtConfig, HandlerExceptionResolver handlerExceptionResolver) {
+        this.passwordEncoder = passwordEncoder;
+        this.userDetailsService = userDetailsService;
+        this.jwtConfig = jwtConfig;
+        this.handlerExceptionResolver = handlerExceptionResolver;
     }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
         return authProvider;
     }
 
@@ -51,7 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return roleHierarchy;
     }
 
-
     private SecurityExpressionHandler<FilterInvocation> webExpressionHandler() {
         DefaultWebSecurityExpressionHandler defaultWebSecurityExpressionHandler = new DefaultWebSecurityExpressionHandler();
         defaultWebSecurityExpressionHandler.setRoleHierarchy(roleHierarchy());
@@ -60,33 +69,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic()
+        http
+                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .and()
-                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(), this.jwtConfig))
+                .addFilterAfter(new JwrAuthorizationFilter(this.jwtConfig), JwtAuthenticationFilter.class)
+                .addFilterBefore(new GlobalExceptionHandlerFilter(this.handlerExceptionResolver),JwtAuthenticationFilter.class)
                 .authorizeRequests()
                 .expressionHandler(webExpressionHandler())
                 .antMatchers("/infrastruttura/aree/**").hasRole("GESTORE")
-                .antMatchers(HttpMethod.POST,"/bar/ordinazioni").hasRole("CLIENTE")
-                .antMatchers(HttpMethod.GET,"/bar/ordinazioni/disponibili").hasRole("CLIENTE")
-                .antMatchers("/bar/ordinazioni/**").hasAnyRole("ADDETTO_BAR","CASSIERE")
-                .antMatchers(HttpMethod.GET,"/prenotazioni/attivita/disponibili").hasRole("CLIENTE")
-                .antMatchers(HttpMethod.POST,"/prenotazioni/attivita").hasRole("CLIENTE")
+                .antMatchers(HttpMethod.POST, "/bar/ordinazioni").hasRole("CLIENTE")
+                .antMatchers(HttpMethod.GET, "/bar/ordinazioni/disponibili").hasRole("CLIENTE")
+                .antMatchers("/bar/ordinazioni/**").hasAnyRole("ADDETTO_BAR", "CASSIERE")
+                .antMatchers(HttpMethod.GET, "/prenotazioni/attivita/disponibili").hasRole("CLIENTE")
+                .antMatchers(HttpMethod.POST, "/prenotazioni/attivita").hasRole("CLIENTE")
                 .antMatchers("/prenotazioni/attivita/**").hasRole("GESTORE")
-                .antMatchers(HttpMethod.GET,"/prenotazioni/ombrelloni/disponibili/{data}/{fasciaOraria}").hasRole("CLIENTE")
-                .antMatchers(HttpMethod.POST,"/prenotazioni/ombrelloni").hasRole("CLIENTE")
+                .antMatchers(HttpMethod.GET, "/prenotazioni/ombrelloni/disponibili/{data}/{fasciaOraria}").hasRole("CLIENTE")
+                .antMatchers(HttpMethod.POST, "/prenotazioni/ombrelloni").hasRole("CLIENTE")
                 .antMatchers("/prenotazioni/ombrelloni/**").hasRole("GESTORE")
                 .antMatchers("/catalogo/**").hasRole("GESTORE")
-                .antMatchers(HttpMethod.POST,"/utenti").permitAll()
+                .antMatchers(HttpMethod.POST, "/utenti").permitAll()
                 .antMatchers("/utenti/**").hasRole("GESTORE")
-                .antMatchers("/vendite/utente/{idUtente}/da-pagare").hasAnyRole("CLIENTE","CASSIERE")
-                .antMatchers("/vendite/utente/{idUtente}/all").hasAnyRole("CLIENTE","CASSIERE")
-                .antMatchers(HttpMethod.PATCH,"/vendite/{idVendita}/{isPagato}").hasRole("CASSIERE")
+                .antMatchers("/vendite/utente/{idUtente}/da-pagare").hasAnyRole("CLIENTE", "CASSIERE")
+                .antMatchers("/vendite/utente/{idUtente}/all").hasAnyRole("CLIENTE", "CASSIERE")
+                .antMatchers(HttpMethod.PATCH, "/vendite/{idVendita}/{isPagato}").hasRole("CASSIERE")
                 .antMatchers("/vendite/all").hasRole("CASSIERE")
                 .antMatchers("/vendite/**").hasRole("GESTORE")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
-                .and()
-                .logout().permitAll();
+                .logout()
+                .logoutSuccessHandler((httpServletRequest, httpServletResponse, authentication) -> httpServletResponse.setStatus(HttpServletResponse.SC_OK))
+                .deleteCookies(this.jwtConfig.getCookieName());
     }
 }

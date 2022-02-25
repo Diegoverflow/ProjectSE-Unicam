@@ -103,10 +103,4 @@ public class RigaCatalogoAttivitaController {
         return this.rigaCatalogoAttivitaService.removeBy(idRiga).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @ExceptionHandler(ConstraintViolationException.class)
-    private ResponseEntity<Object> handleConstraintViolation() {
-        return ResponseEntity.badRequest().build();
-    }
-
-
 }
