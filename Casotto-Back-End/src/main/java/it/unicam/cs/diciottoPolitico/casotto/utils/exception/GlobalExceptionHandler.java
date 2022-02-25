@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    private ResponseEntity<SimpleRigaCatalogoOmbrellone> handleDataIntegrityViolation() {
+    private ResponseEntity<?> handleDataIntegrityViolation() {
         return ResponseEntity.badRequest().build();
     }
 
