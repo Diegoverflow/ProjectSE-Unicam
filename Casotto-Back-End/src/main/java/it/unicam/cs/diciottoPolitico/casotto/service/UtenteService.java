@@ -39,5 +39,8 @@ public class UtenteService extends AbstractService<SimpleUtente, UtenteRepositor
         return super.getBy(u -> u.getRuoloUtente().equals(ruoloUtente));
     }
 
+    public SimpleUtente getBy(String email){
+        return super.getBy(u -> u.getEmail().equals(email)).stream().findFirst().orElse(null);
+    }
 
 }
