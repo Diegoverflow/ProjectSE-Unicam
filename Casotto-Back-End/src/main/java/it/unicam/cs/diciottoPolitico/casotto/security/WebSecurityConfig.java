@@ -126,7 +126,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers(HttpMethod.PATCH, "/vendite/{idVendita}/{isPagato}").hasRole("CASSIERE")
                 .antMatchers("/vendite/all").hasRole("CASSIERE")
                 .antMatchers("/vendite/**").hasRole("GESTORE")
-                .antMatchers(HttpMethod.GET,"/login").permitAll()
+                .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout()

@@ -1,6 +1,8 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
+import com.google.zxing.common.StringUtils;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
+import it.unicam.cs.diciottoPolitico.casotto.security.UtenteWrapper;
 import it.unicam.cs.diciottoPolitico.casotto.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -24,20 +27,16 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String,Object>> login() {
-        var utente = this.service.getBy((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        var utenteWrapper = (UtenteWrapper)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        var utente = this.service.getBy(utenteWrapper.getUsername()); // il getUsername ritorna l'email
 
         return ResponseEntity.ok(this.login(utente));
     }
 
     @GetMapping("/login")
-    public ResponseEntity<Cookie> getCrsfToken(HttpServletRequest request){
-        var cookies = request.getCookies();
-
-        for (Cookie c: cookies)
-            if (c.getName().equals("XSRF-TOKEN"))
-                return ResponseEntity.ok(c);
-
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    public ResponseEntity<?> getCrsfToken(){
+        return ResponseEntity.ok(null);
     }
 
     private Map<String, Object> login(SimpleUtente utente){

@@ -50,7 +50,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         response.addCookie(cookie);
 
-        SecurityContextHolder.getContext().setAuthentication(authResult);//todo si può togliere
+        SecurityContextHolder.getContext().setAuthentication(authResult);
 
         chain.doFilter(request,response);
     }
