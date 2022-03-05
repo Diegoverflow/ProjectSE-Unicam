@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { RIGHEATTIVITA } from './mock-righeAttivita';
 import { RigaCatalogoAttivita } from './riga-catalogo-attivita';
 
@@ -8,11 +10,12 @@ import { RigaCatalogoAttivita } from './riga-catalogo-attivita';
 })
 export class RigheAttivitaService {
 
-  constructor() { }
+  private apiServerUrl:string = '//localhost:8080/catalogo/attivita';
+
+  constructor(private http : HttpClient) { }
 
   getRighe(): Observable<RigaCatalogoAttivita[]> {
-    const righe = of(RIGHEATTIVITA);
-    return righe;
+    return this.http.get<RigaCatalogoAttivita[]>(this.apiServerUrl+'/all',{withCredentials:true});
   }
 
   addRiga(riga: RigaCatalogoAttivita){

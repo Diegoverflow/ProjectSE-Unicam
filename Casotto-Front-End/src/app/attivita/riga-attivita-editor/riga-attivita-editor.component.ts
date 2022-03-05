@@ -20,15 +20,19 @@ export class RigaAttivitaEditorComponent implements OnInit {
   _defaultPostiOccupati: number = 0;
   _defaultPrezzo: number = 15;
 
-  _nuovaAttivita: Attivita = new Attivita(this._defaultNome, 
-                                          new Date(this._defaultDataInizio), 
-                                          new Date(this._defaultDataFine),
-                                          this._defaultDescrizione)
+  _nuovaAttivita: Attivita = {
+    nome: this._defaultNome,
+    dataInizio: new Date(this._defaultDataInizio),
+    dataFine: new Date(this._defaultDataFine),
+    descrizione: this._defaultDescrizione
+  }
 
-  _nuovaRiga: RigaCatalogoAttivita = new RigaCatalogoAttivita(this._nuovaAttivita, 
-                                                              this._defaultPostiTotali, 
-                                                              this._defaultPostiOccupati, 
-                                                              this._defaultPrezzo)
+  _nuovaRiga: RigaCatalogoAttivita = {
+    valore: this._nuovaAttivita,
+    numPostiTot: this._defaultPostiTotali,
+    numPostiOccupati: this._defaultPostiOccupati,
+    prezzo: this._defaultPrezzo
+  }
 
   /*setToDefault(){
     this._nuovaAttivita = new Attivita(this._defaultNome, 
@@ -41,17 +45,23 @@ export class RigaAttivitaEditorComponent implements OnInit {
                                                                 this._defaultPrezzo)
   }*/
 
-  save(){ 
-    let rigaDaAggiungere = new RigaCatalogoAttivita(
-      new Attivita(this._nuovaAttivita.nome, 
-                   this._nuovaAttivita.dataInizio, 
-                   this._nuovaAttivita.dataFine,
-                   this._defaultDescrizione),
-      this._nuovaRiga.numPostiTot, this._nuovaRiga.numPostiOccupati, this._nuovaRiga.prezzo);
-      this.righeAttivitaService.addRiga(rigaDaAggiungere)
+  save() {
+    let rigaDaAggiungere: RigaCatalogoAttivita =
+    {
+      valore: {
+        nome: this._nuovaAttivita.nome,
+        dataInizio: this._nuovaAttivita.dataInizio,
+        dataFine: this._nuovaAttivita.dataFine,
+        descrizione: this._defaultDescrizione
+      },
+      numPostiTot: this._nuovaRiga.numPostiTot,
+      numPostiOccupati: this._nuovaRiga.numPostiOccupati,
+      prezzo: this._nuovaRiga.prezzo
+    }
+    this.righeAttivitaService.addRiga(rigaDaAggiungere)
   }
 
-  constructor(private righeAttivitaService: RigheAttivitaService) {}
+  constructor(private righeAttivitaService: RigheAttivitaService) { }
 
   ngOnInit(): void {
   }

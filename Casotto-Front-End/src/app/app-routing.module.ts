@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RigheOmbrelloniComponent } from './righe-ombrelloni/righe-ombrelloni.component';
 import { RigheBarComponent } from './righe-bar/righe-bar.component';
 import { RigaAttiviaComponent } from './attivita/riga-attivita/riga-attivita.component';
+import { AuthenticationComponent } from './authentication/component/authentication.component';
 
 // TODO: modificare sul backend le routes righe ombrelloni(etc) da ../catalgo/ombrelloni(etc) 
 // in --> ../catalogo-ombelloni
@@ -16,6 +17,7 @@ const routes: Routes = [
     //  { path: 'riga-editor', component: RigaOmbrelloneEditorComponent, }
     //]
   },
+  {path : 'login' , component: AuthenticationComponent}
 ];
 
 @NgModule({

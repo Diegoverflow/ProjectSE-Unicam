@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RIGHEATTIVITA } from '../mock-righeAttivita';
 import { RigaCatalogoAttivita } from '../riga-catalogo-attivita';
 import { RigheAttivitaService } from '../righe-attivita.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-riga-attivita',
@@ -13,20 +13,24 @@ import { Location } from '@angular/common';
 })
 export class RigaAttiviaComponent implements OnInit {
 
-  title: string = 'Catalogo Attivita'
+  //FIXME: risolvere nella miglior maniera
+  public righe?: RigaCatalogoAttivita[];
 
-  private _righeCatalogoAttivita: RigaCatalogoAttivita[] = RIGHEATTIVITA
+  title: string = 'Catalogo Attivita'
 
   constructor(private righeAttivitaService: RigheAttivitaService,
               private route: ActivatedRoute,  
               private location: Location,     
-              private router: Router) {}
+              private router: Router) {
+  }
 
-  get righeCatalogoAttivita() { return this._righeCatalogoAttivita }
+  public getRigheAttivita():void{ 
+
+    this.righeAttivitaService.getRighe().subscribe(r => {this.righe = r; console.log(this.righe[1]);console.log(r)});
+  }
 
   ngOnInit(): void {
-    this.righeAttivitaService.getRighe().
-      subscribe(righe => this._righeCatalogoAttivita = righe)
+    this.getRigheAttivita();
   }
 
   eliminaRiga(riga: RigaCatalogoAttivita){
