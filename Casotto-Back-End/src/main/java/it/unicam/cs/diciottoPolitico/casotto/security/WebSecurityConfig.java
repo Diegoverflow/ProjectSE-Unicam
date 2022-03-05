@@ -75,19 +75,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         return roleHierarchy;
     }
 
-
-    private CorsConfigurationSource corsConfigurationSource() {
-        return request -> {
-            CorsConfiguration configuration = new CorsConfiguration();
-            //the below three lines will add the relevant CORS response headers
-            configuration.addAllowedOrigin("*");
-            configuration.addAllowedHeader("*");
-            configuration.addAllowedMethod("*");
-            configuration.setAllowCredentials(true);
-            return configuration;
-        };
-    }
-
     private SecurityExpressionHandler<FilterInvocation> webExpressionHandler() {
         DefaultWebSecurityExpressionHandler defaultWebSecurityExpressionHandler = new DefaultWebSecurityExpressionHandler();
         defaultWebSecurityExpressionHandler.setRoleHierarchy(roleHierarchy());
@@ -96,10 +83,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        var cookieRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+        cookieRepository.setSecure(true);
         http
-                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .csrf().csrfTokenRepository(cookieRepository)
                 .and()
-                .cors()/*.configurationSource(corsConfigurationSource())todo*/
+                .cors()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
