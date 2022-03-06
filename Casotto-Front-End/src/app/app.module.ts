@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './authentication/service/authentication.service';
 import { AuthenticationComponent } from './authentication/component/authentication.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
+import { AuthGuard } from './Auth-Guard';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { HomeComponentComponent } from './home-component/home-component.componen
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

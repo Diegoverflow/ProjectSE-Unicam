@@ -12,10 +12,12 @@ import { AuthGuard } from './Auth-Guard';
 //TODO: inserie redirect e NOTFOUND
 const routes: Routes = [
   { path : 'login' , component: AuthenticationComponent},
-  { path : '' , component: HomeComponentComponent, canActivate: [AuthGuard]},
+  { path : '' , component: HomeComponentComponent,
+  children: [{ path: 'catalogo-attivita', component: RigaAttiviaComponent}],
+  canActivate: [AuthGuard]},
   { path : '**' , redirectTo:''},
   { path: 'catalogo-bar', component: RigheBarComponent },
-  { path: 'catalogo-attivita', component: RigaAttiviaComponent },
+  //{ path: 'catalogo-attivita', component: RigaAttiviaComponent },
   { path: 'catalogo-ombrelloni', 
     component: RigheOmbrelloniComponent,
     //children: [

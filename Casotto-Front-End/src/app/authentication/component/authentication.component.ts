@@ -38,9 +38,8 @@ export class AuthenticationComponent implements OnInit {
 
   public onLogin(){
     this.authenticationService
-      .login(this.loginForm.get('email')?.value,this.loginForm.get('password')?.value).subscribe();
-    this.authenticationService.getRuolo().subscribe(ruolo=> localStorage.setItem("ruolo", ruolo));
-    this.router.navigate([''])
+      .login(this.loginForm.get('email')?.value,this.loginForm.get('password')?.value)
+      .subscribe(() => this.localStorageSave());
   }
 
   public get login():boolean{
@@ -61,6 +60,12 @@ export class AuthenticationComponent implements OnInit {
     this._register = true;
   }
 
+  private localStorageSave(){
+    this.authenticationService
+    .getRuolo()
+    .subscribe(ruolo=> {sessionStorage.setItem("ruolo", ruolo);
+                        this.router.navigate([''])})
+  }
 
   ngOnInit(): void {
     this.getCsrfToken();
