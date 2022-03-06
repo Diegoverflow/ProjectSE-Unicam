@@ -47,7 +47,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         var cookie = new Cookie(this.jwtConfig.getCookieName(), token);
         //cookie.setHttpOnly(true);
-        //cookie.setSecure(true);
+        cookie.setSecure(true);
 
         response.addCookie(cookie);
 

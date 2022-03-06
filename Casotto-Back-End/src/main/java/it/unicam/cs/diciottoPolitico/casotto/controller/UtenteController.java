@@ -123,8 +123,8 @@ public class UtenteController{
 
     @GetMapping("ruolo")
     public RuoloUtente getRuoloUtente(){
-        var utenteWrapper = (UtenteWrapper)SecurityContextHolder.getContext().getAuthentication().getDetails();
-        var utente = this.utenteService.getBy(utenteWrapper.getUsername());//getUsername ritorna l'email
+        var email = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var utente = this.utenteService.getBy(email);
         return utente.getRuoloUtente();
     }
 
