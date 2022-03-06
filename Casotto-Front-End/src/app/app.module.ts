@@ -12,6 +12,7 @@ import { RigaAttivitaEditorComponent } from './attivita/riga-attivita-editor/rig
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './authentication/service/authentication.service';
 import { AuthenticationComponent } from './authentication/component/authentication.component';
+import { HomeComponentComponent } from './home-component/home-component.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AuthenticationComponent } from './authentication/component/authenticati
     RigaBarEditorComponent,
     RigaAttiviaComponent,
     RigaAttivitaEditorComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    HomeComponentComponent
   ],
   imports: [
     BrowserModule,

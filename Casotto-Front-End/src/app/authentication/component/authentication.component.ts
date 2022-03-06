@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../service/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -17,7 +18,9 @@ export class AuthenticationComponent implements OnInit {
   private _loginForm : FormGroup;
 
 
-  constructor(private authenticationService : AuthenticationService, private formBuilder : FormBuilder) { 
+  constructor(private authenticationService : AuthenticationService, 
+              private formBuilder : FormBuilder,
+              private router: Router) { 
     this._login = true;
     this._register = false;
     this._loginForm = this.formBuilder.group({
@@ -34,7 +37,10 @@ export class AuthenticationComponent implements OnInit {
   get loginForm() { return this._loginForm; }
 
   public onLogin(){
-    this.authenticationService.login(this.loginForm.get('email')?.value,this.loginForm.get('password')?.value).subscribe();
+    this.authenticationService
+      .login(this.loginForm.get('email')?.value,this.loginForm.get('password')?.value).subscribe();
+    this.authenticationService.getRuolo().subscribe(ruolo=> localStorage.setItem("ruolo", ruolo));
+    this.router.navigate([''])
   }
 
   public get login():boolean{

@@ -21,5 +21,8 @@ export class AuthenticationService {
       return this.http.post<Utente>(`${this.apiServerUrl}/login`,{email,password},{withCredentials:true});
   }
 
+  public getRuolo(): Observable<string>{
+    return this.http.get<string>(`${this.apiServerUrl}/utente/roulo`, {withCredentials:true});
+  }
 
 }
