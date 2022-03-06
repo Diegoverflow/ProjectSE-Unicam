@@ -1,12 +1,16 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
+import it.unicam.cs.diciottoPolitico.casotto.model.RuoloUtente;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
+import it.unicam.cs.diciottoPolitico.casotto.security.UtenteWrapper;
+import it.unicam.cs.diciottoPolitico.casotto.security.jwt.JwtUtil;
 import it.unicam.cs.diciottoPolitico.casotto.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -115,6 +119,13 @@ public class UtenteController{
     @DeleteMapping("/{id}")
     public SimpleUtente removeUtente(@PathVariable UUID id) {
         return this.utenteService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("ruolo")
+    public RuoloUtente getRuoloUtente(){
+        var utenteWrapper = (UtenteWrapper)SecurityContextHolder.getContext().getAuthentication().getDetails();
+        var utente = this.utenteService.getBy(utenteWrapper.getUsername());//getUsername ritorna l'email
+        return utente.getRuoloUtente();
     }
 
 }
