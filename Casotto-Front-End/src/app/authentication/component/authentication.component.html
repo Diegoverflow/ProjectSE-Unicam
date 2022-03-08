@@ -1,70 +1,83 @@
 <div class="page-holder align-items-center py-4 bg-gray-100 vh-100">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 px-lg-4"  *ngIf="login">
-          <div class="card">
-            <div class="card-header px-lg-5">
-              <div class="card-heading text-primary">Sign in</div>
-            </div>
-            <div class="card-body p-lg-5">
-              <h3 class="mb-4">Ciao, benvenuto!</h3>
-              <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-                <div class="form-floating mb-3">
-                  <input formControlName="email" class="form-control" id="floatingInput" type="email" placeholder="name@example.com" required>
-                  <label for="floatingInput">Email</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input formControlName="password" class="form-control" id="floatingPassword" type="password" placeholder="Password" required>
-                  <label for="floatingPassword">Password</label>
-                </div>
-                <button class="btn btn-primary" type="button" (click)="onLogin()">Submit</button>
-              </form>
-            </div>
-            <div class="card-footer px-lg-5 py-lg-4">
-              <div class="text-sm text-muted">Don't have an account? <a role="button" (click)="showRegister()">Register</a>.</div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 px-lg-4" *ngIf="login">
+        <div class="card">
+          <div class="card-header px-lg-5">
+            <div class="card-heading text-primary">Sign in</div>
+          </div>
+          <div class="card-body p-lg-5">
+            <h3 class="mb-4">Ciao, benvenuto!</h3>
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+              <div class="form-floating mb-3">
+                <input formControlName="email" class="form-control" id="floatingInput" type="email"
+                  placeholder="name@example.com" required>
+                <label for="floatingInput">Email</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="password" class="form-control" id="floatingPassword" type="password"
+                  placeholder="Password" required>
+                <label for="floatingPassword">Password</label>
+              </div>
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+          </div>
+          <div class="card-footer px-lg-5 py-lg-4">
+            <div class="text-sm text-muted">Non hai un account? <a role="button" (click)="showRegister()">Register</a>.
             </div>
           </div>
         </div>
-        <!-- register -->
-         <div class="col-lg-6 px-lg-4" *ngIf="register">
-          <div class="card">
-            <div class="card-header px-lg-5">
-              <div class="card-heading text-primary">Jassa Register</div>
-            </div>
-            <div class="card-body p-lg-5">
-              <h3 class="mb-4">Get started with Chamkila</h3>
-              <p class="text-muted text-sm mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-              <form action="index.html">
-                <div class="form-floating mb-3">
-                  <input class="form-control" id="username" type="email" placeholder="name@example.com" required>
-                  <label for="username">Username</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input class="form-control" id="floatingInput" type="email" placeholder="name@example.com" required>
-                  <label for="floatingInput">Email address</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input class="form-control" id="floatingPassword" type="password" placeholder="Password" required>
-                  <label for="floatingPassword">Password</label>
-                </div>
-                <div class="form-check mb-3">
-                  <input class="form-check-input" type="checkbox" name="agree" id="agree">
-                  <label class="form-check-label" for="agree">I agree with the <a href="#">Terms & Conditions</a>.</label>
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-primary" id="regidter" type="button" name="registerSubmit">Register</button>
-                </div>
-              </form>
-            </div>
-            <div class="card-footer px-lg-5 py-lg-4">
-              <div class="text-sm text-muted">Already have an account? <a >Login</a>.</div>
+      </div>
+      <!-- register -->
+      <div class="col-lg-6 px-lg-4" *ngIf="register">
+        <div class="card">
+          <div class="card-header px-lg-5">
+            <div class="card-heading text-primary">Sign Up</div>
+          </div>
+          <div class="card-body p-lg-5">
+            <h3 class="mb-4">Registrati subito!</h3>
+            <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+              <div class="form-floating mb-3">
+                <input formControlName="email" class="form-control" id="floatingInput" type="text" placeholder="name@example.com" required>
+                <label for="floatingInput">Email</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="password" class="form-control" id="floatingPassword" type="password"
+                  placeholder="Password" required>
+                <label for="floatingPassword">Password</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="nome" class="form-control" id="floatingPassword" type="text"
+                  placeholder="Password" required>
+                <label for="floatingPassword">Nome</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="cognome" class="form-control" id="floatingPassword" type="text"
+                  placeholder="Password" required>
+                <label for="floatingPassword">Cognome</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="cellulare" class="form-control" id="floatingPassword" type="text"
+                  placeholder="Cellulare" required>
+                <label for="floatingPassword">Cellulare</label>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary" id="regidter" type="submit" name="registerSubmit">Register</button>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer px-lg-5 py-lg-4">
+            <div class="text-sm text-muted">Hai già un account? <a role="button" (click)="showLogin()">Login</a>.
             </div>
           </div>
         </div>
-       <div class="col-lg-6 col-xl-5 ms-xl-auto px-lg-4 text-center text-primary"><img class="img-fluid mb-4" width="300" src="https://therichpost.com/wp-content/uploads/2021/06/login_page_image.png" alt="" style="transform: rotate(10deg)">
-          <h1 class="mb-4">casotto.it</h1>
-          <p class="lead text-muted">Vieni a visitare il miglior balneare delle Marche! </p>
-        </div>
+      </div>
+      <div class="col-lg-6 col-xl-5 ms-xl-auto px-lg-4 text-center text-primary"><img class="img-fluid mb-4" width="300"
+          src="https://therichpost.com/wp-content/uploads/2021/06/login_page_image.png" alt=""
+          style="transform: rotate(10deg)">
+        <h1 class="mb-4">casotto.it</h1>
+        <p class="lead text-muted">Vieni a visitare il miglior balneare delle Marche! </p>
       </div>
     </div>
   </div>
+</div>

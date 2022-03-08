@@ -21,16 +21,12 @@ export class AuthenticationService {
     return this.http.post<Utente>(`${this.apiServerUrl}/login`, { email, password }, { withCredentials: true });
   }
 
+  public register(utente : Utente){
+    return this.http.post<Utente>(`${this.apiServerUrl}/utenti`,utente,{withCredentials:true})
+  }
+
   public getRuolo(): Observable<string> {
     return this.http.get<string>(`${this.apiServerUrl}/utenti/ruolo`, { withCredentials: true });
-  }
-
-  public getRuoloFromStorage(): string | null {
-    return sessionStorage.getItem('ruolo');
-  }
-
-  public setRuoloOnStorage(ruolo : string):void{
-    sessionStorage.setItem('ruolo',ruolo);
   }
 
   public checkToken():Observable<boolean>{

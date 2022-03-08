@@ -18,6 +18,8 @@ export class AuthenticationComponent implements OnInit {
 
   private _loginForm: FormGroup;
 
+  private _registerForm: FormGroup;
+
 
   constructor(private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder,
@@ -28,6 +30,13 @@ export class AuthenticationComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this._registerForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      nome: ['', Validators.required],
+      cognome: ['', Validators.required],
+      cellulare: ['', Validators.required]
+    })
   }
 
   public getCsrfToken(): void {
@@ -35,7 +44,9 @@ export class AuthenticationComponent implements OnInit {
   }
 
 
-  get loginForm() { return this._loginForm; }
+  get loginForm() { return this._loginForm}
+
+  get registerForm() { return this._registerForm}
 
   public onLogin(): void {
     this.authenticationService.login(this.loginForm.get('email')!.value, this.loginForm.get('password')!.value)
@@ -43,6 +54,11 @@ export class AuthenticationComponent implements OnInit {
         complete: () => { this.authenticationService.getRuolo().subscribe(r => this.redirect(r)) },
         error: () => alert('ritenta il login')
       })
+  }
+
+  public onRegister():void{
+    this.authenticationService.register(this.registerForm.value).subscribe();
+    this.showLogin();
   }
 
   public get login(): boolean {
@@ -64,7 +80,6 @@ export class AuthenticationComponent implements OnInit {
   }
 
   private redirect(ruolo: string) {
-    console.log(ruolo === 'GESTORE');
     if (ruolo === 'GESTORE')
       this.router.navigate(['/gestore-home']);
     if (ruolo === 'CLIENTE')
