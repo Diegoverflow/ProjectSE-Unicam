@@ -19,7 +19,7 @@ export class RigheAttivitaService {
   }
 
   addRiga(riga: RigaCatalogoAttivita){
-    this.http.post<RigaCatalogoAttivita>(this.apiServerUrl, riga);
+    this.http.post<RigaCatalogoAttivita>(this.apiServerUrl, riga,{withCredentials:true}).subscribe();
   }
 
   removeRiga(riga: RigaCatalogoAttivita){

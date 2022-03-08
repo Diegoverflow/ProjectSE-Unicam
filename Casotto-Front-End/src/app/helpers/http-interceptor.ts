@@ -14,21 +14,16 @@ export class DefaultHttpInterceptor implements HttpInterceptor {
     constructor(private router : Router){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.url ===`${this.apiServerUrl}/check-token`)
-            return next.handle(req);
-
         return next.handle(req).pipe(
             catchError((e: HttpErrorResponse) => {
-                if(e.status == 401){
+                if(e.status === 401 && req.url !== `${this.apiServerUrl}/login`){
                     sessionStorage.clear()
                     this.router.navigate(['/login']);
                 }
-                alert(e.message);
+                console.log(e.status);
                 return EMPTY;
             })
         );
     }
-
-
 
 }

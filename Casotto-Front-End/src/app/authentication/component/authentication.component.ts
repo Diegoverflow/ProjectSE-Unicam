@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../service/authentication.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { EMPTY, of } from 'rxjs';
+import { catchError, EMPTY, of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-authentication',
@@ -77,10 +77,11 @@ export class AuthenticationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCsrfToken();
-    this.authenticationService.checkToken().subscribe({
-      complete: () => this.authenticationService.getRuolo().subscribe(r => this.redirect(r)),
-      error: () => {return EMPTY }
-    })
+    this.authenticationService.checkToken()
+      .subscribe(b => {
+        if (b)
+          this.authenticationService.getRuolo().subscribe(r => this.redirect(r))
+      })
   }
-
+  
 }

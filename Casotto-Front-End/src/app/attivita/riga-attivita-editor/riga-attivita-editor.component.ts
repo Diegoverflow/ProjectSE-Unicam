@@ -15,14 +15,14 @@ export class RigaAttivitaEditorComponent implements OnInit {
 
   //TODO: validators
   rigaForm = new FormGroup({
-    attivita : new FormGroup({
+    valore : new FormGroup({
       nome: new FormControl('nome attivita'),
-      dataInizio: new FormControl(Date.now),
-      dataFine: new FormControl(Date.now()),
+      dataOrarioInizio: new FormControl(new Date().toISOString().substring(0,10)),
+      dataOrarioFine: new FormControl(new Date().toISOString().substring(0,10)),
       descrizione: new FormControl('descrizione')
     }),
-    postiDisponibili: new FormControl(10),
-    //postiOccupati: new FormControl(0),
+    postiTotali: new FormControl(10),
+    postiOccupati: new FormControl(0),
     prezzo: new FormControl(0)
   })
   
