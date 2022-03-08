@@ -46,7 +46,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 authResult.getAuthorities());
 
         var cookie = new Cookie(this.jwtConfig.getCookieName(), token);
-        //cookie.setHttpOnly(true);
+        cookie.setHttpOnly(true);
         cookie.setSecure(true);
 
         response.addCookie(cookie);
@@ -56,4 +56,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         chain.doFilter(request,response);
     }
 
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed){
+        throw failed;
+    }
 }

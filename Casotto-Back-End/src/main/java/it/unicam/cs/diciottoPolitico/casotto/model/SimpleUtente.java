@@ -40,7 +40,6 @@ public class SimpleUtente implements Utente {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    @NotNull
     private RuoloUtente ruoloUtente;
 
     @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "utenti", fetch = FetchType.LAZY)

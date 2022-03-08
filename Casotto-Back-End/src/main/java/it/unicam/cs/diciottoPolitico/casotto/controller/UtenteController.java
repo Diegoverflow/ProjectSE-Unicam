@@ -3,22 +3,15 @@ package it.unicam.cs.diciottoPolitico.casotto.controller;
 import it.unicam.cs.diciottoPolitico.casotto.model.RuoloUtente;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
-import it.unicam.cs.diciottoPolitico.casotto.security.UtenteWrapper;
-import it.unicam.cs.diciottoPolitico.casotto.security.jwt.JwtUtil;
 import it.unicam.cs.diciottoPolitico.casotto.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.UUID;
 
@@ -84,6 +77,7 @@ public class UtenteController{
     public SimpleUtente addUtente(@Valid @RequestBody SimpleUtente utente){
         var u = this.utenteService.getBy(utente.getId());
         utente.setPassword(bCryptPasswordEncoder.encode(utente.getPassword()));
+        utente.setRuoloUtente(RuoloUtente.CLIENTE);
         if (u.isEmpty())
             return this.utenteService.save(utente);
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -101,7 +95,6 @@ public class UtenteController{
     @PatchMapping
     public SimpleUtente updateUtente(@RequestBody SimpleUtente utente) {
         var u = this.utenteService.getBy(utente.getId());
-        //utente.setPassword(bCryptPasswordEncoder.encode(utente.getPassword()));
         if (u.isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         return this.utenteService.save(utente);

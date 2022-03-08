@@ -1,9 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.utils.exception;
 
-import io.jsonwebtoken.JwtException;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 

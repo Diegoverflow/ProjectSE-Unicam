@@ -1,7 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.utils.exception;
 
 import io.jsonwebtoken.JwtException;
-import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +24,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(JwtException.class)
-    private ResponseEntity<?> handleJwtException() {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    private ResponseEntity<Object> handleJwtException() {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{message : Token invalido}");
     }
 
     @ExceptionHandler(AuthenticationException.class)
-    private ResponseEntity<?> handleAuthenticationException() {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    private ResponseEntity<Object> handleAuthenticationException() {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{message : Email e/o password non valide}");
     }
 }

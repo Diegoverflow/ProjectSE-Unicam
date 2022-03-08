@@ -1,5 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.security.jwt;
 
+import io.jsonwebtoken.JwtException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -22,10 +23,8 @@ public class JwrAuthorizationFilter extends OncePerRequestFilter {
                 .filter(c -> c.getName().equals("access-token"))
                 .findFirst();
 
-        if (cookie.isEmpty()) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+        if (cookie.isEmpty())
+            throw new JwtException("");
 
         var token = cookie.get().getValue();
 
@@ -38,9 +37,9 @@ public class JwrAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getRequestURI().equals("/login")
-                &&
-                (request.getMethod().equals("GET") || request.getMethod().equals("POST"));
+        return request.getRequestURI().equals("/check-token") ||
+                (request.getRequestURI().equals("/utenti") && request.getMethod().equals("POST")) ||
+                (request.getRequestURI().equals("/login") && (request.getMethod().equals("GET") || request.getMethod().equals("POST")));
     }
 
 }
