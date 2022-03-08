@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RIGHEBAR } from '../mock-righebar';
-import { RigaCatalogoBar } from '../riga-catalogo-bar';
-import { RigheBarService } from '../righe-bar.service';
+import { RIGHEBAR } from './mock-righebar';
+import { RigaCatalogoBar } from './riga-catalogo-bar';
+import { RigheBarService } from './righe-bar.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';

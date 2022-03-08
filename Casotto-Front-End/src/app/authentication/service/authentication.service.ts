@@ -25,4 +25,16 @@ export class AuthenticationService {
     return this.http.get<string>(`${this.apiServerUrl}/utenti/ruolo`, { withCredentials: true });
   }
 
+  public getRuoloFromStorage(): string | null {
+    return sessionStorage.getItem('ruolo');
+  }
+
+  public setRuoloOnStorage(ruolo : string):void{
+    sessionStorage.setItem('ruolo',ruolo);
+  }
+
+  public checkToken():Observable<boolean>{
+    return this.http.get<boolean>(`${this.apiServerUrl}/check-token`,{withCredentials:true});
+  }
+
 }
