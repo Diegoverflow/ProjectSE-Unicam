@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RigaCatalogoOmbrellone } from '../riga-catalogo-ombrellone';
-import { RigheOmbrelloniService } from '../righe-ombrelloni.service';
-import { Ombrellone } from '../ombrellone';
+import { RigaCatalogoOmbrellone } from '../righe-ombrelloni/riga-catalogo-ombrellone';
+import { RigheOmbrelloniService } from '../righe-ombrelloni/righe-ombrelloni.service';
+import { Ombrellone } from '../righe-ombrelloni/ombrellone';
 import { CategoriaOmbrellone } from '../categoria-ombrellone';
 
 //import { ActivatedRoute } from '@angular/router';

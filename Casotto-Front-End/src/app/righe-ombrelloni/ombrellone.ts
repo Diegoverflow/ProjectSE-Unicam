@@ -1,4 +1,4 @@
-import { CategoriaOmbrellone } from "./categoria-ombrellone";
+import { CategoriaOmbrellone } from "../categoria-ombrellone";
 
 /*export interface Ombrellone{
     //id: string,

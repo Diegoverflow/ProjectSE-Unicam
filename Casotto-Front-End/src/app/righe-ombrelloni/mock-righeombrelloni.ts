@@ -1,4 +1,4 @@
-import { CategoriaOmbrellone } from "./categoria-ombrellone"
+import { CategoriaOmbrellone } from "../categoria-ombrellone"
 import { Ombrellone } from "./ombrellone"
 import { RigaCatalogoOmbrellone } from "./riga-catalogo-ombrellone"
 

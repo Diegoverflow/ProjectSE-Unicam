@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticoloBar } from '../articolo';
-import { RigaCatalogoBar } from '../riga-catalogo-bar';
-import { RigheBarService } from '../righe-bar.service';
+import { ArticoloBar } from '../righe-bar/articolo';
+import { RigaCatalogoBar } from '../righe-bar/riga-catalogo-bar';
+import { RigheBarService } from '../righe-bar/righe-bar.service';
 
 @Component({
   selector: 'app-riga-bar-editor',
