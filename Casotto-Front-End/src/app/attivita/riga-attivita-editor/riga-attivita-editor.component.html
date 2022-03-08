@@ -1,4 +1,33 @@
-<div>
+<form [formGroup]="rigaForm" (ngSubmit)="save()">
+
+    <div formGroupName="attivita">
+        <h2>Attivita</h2>
+      
+        <label for="nome-attvitia">Nome attivita: </label>
+        <input id="nome-attvitia" type="text" formControlName="nome-attvitia">
+      
+        <label for="data-inizio">Data inizio: </label>
+        <input id="data-inizio" type="date" formControlName="data-inizio">
+      
+        <label for="data-fine">Data fine: </label>
+        <input id="data-fine" type="date" formControlName="data-fine">
+      
+        <label for="descrizione">Zip Code: </label>
+        <input id="descrizione" type="text" formControlName="descrizione">
+      </div>
+
+    <label for="posti-disponibili">Posti disponibili: </label>
+    <input id="posti-disponibili" type="number" formControlName="postiDisponibili">
+  
+    <label for="prezzo">Prezzo: </label>
+    <input id="prezzo" type="number" formControlName="prezzo">
+
+    <button type="submit">Submit</button>
+   <!-- commento -->
+</form>
+
+
+<!-- <div>
     <h3>{{title}}</h3>
     <form (ngSubmit)="save()">
         <div>
@@ -24,4 +53,6 @@
         <br>
         <button type="submit">salva attivita</button>
     </form>
-</div>
+</div> -->
+
+
