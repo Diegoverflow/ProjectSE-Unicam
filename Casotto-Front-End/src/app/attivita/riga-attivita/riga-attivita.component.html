@@ -9,4 +9,6 @@
         <button type="button" (click)="eliminaRiga(riga)">rimuovi</button>
     </li>
 </ul>
-<app-riga-attivita-editor></app-riga-attivita-editor>
+<!-- TODO: niente parentesi? -->
+<app-riga-attivita-editor (rigaAggiunta)="rigaAttivitaAggiunta"> 
+</app-riga-attivita-editor>
