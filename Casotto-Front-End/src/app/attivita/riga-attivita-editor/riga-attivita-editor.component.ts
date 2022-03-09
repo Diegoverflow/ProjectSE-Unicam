@@ -13,7 +13,7 @@ export class RigaAttivitaEditorComponent implements OnInit {
 
   title: string = 'Editor riga catalogo attivita'
 
-  @Output() righeAggiornate = new EventEmitter<RigaAttivitaEditorComponent>();
+  @Output() rigaAggiunta = new EventEmitter<RigaAttivitaEditorComponent>();
 
   //TODO: validators
   rigaForm = new FormGroup({
@@ -30,7 +30,7 @@ export class RigaAttivitaEditorComponent implements OnInit {
 
   save(){
     this.righeAttivitaService.addRiga(this.rigaForm.value)
-    this.righeAggiornate.emit(this.rigaForm.value)
+    this.rigaAggiunta.emit(this.rigaForm.value)
   }
   
 

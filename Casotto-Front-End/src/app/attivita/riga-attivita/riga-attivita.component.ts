@@ -29,6 +29,10 @@ export class RigaAttiviaComponent implements OnInit {
     this.righeAttivitaService.getRighe().subscribe(r => {this.righe = r; console.log(this.righe[1]);console.log(r)});
   }
 
+  public rigaAttivitaAggiunta(rigaAggiunta : RigaCatalogoAttivita){
+    this.righe?.push(rigaAggiunta)
+  }
+
   ngOnInit(): void {
     this.getRigheAttivita();
   }
