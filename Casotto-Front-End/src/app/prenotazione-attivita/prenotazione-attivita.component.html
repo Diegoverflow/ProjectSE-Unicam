@@ -25,9 +25,7 @@
                 <td>{{r.postiTotali-r.postiOccupati}}</td>
                 <td>
                     <button type="button" class="btn btn-success" autocomplete="off"
-                        (click)="prenotaAttivita(r)" *ngIf="r.postiTotali-r.postiOccupati!=0">Prenota</button>
-                    <button type="button" class="btn btn-danger" autocomplete="off"
-                        (click)="printAlert(r.valore.nome)" *ngIf="r.postiTotali-r.postiOccupati==0">Prenotazione terminata</button>
+                        (click)="prenotaAttivita(r)">Prenota</button>
                 </td>
             </tr>
         </tbody>

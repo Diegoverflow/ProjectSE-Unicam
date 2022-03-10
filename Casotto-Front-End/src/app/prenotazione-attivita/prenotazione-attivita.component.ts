@@ -19,17 +19,13 @@ export class PrenotazioneAttivitaComponent implements OnInit {
   }
 
   getRigheCatalogoAttivita() {
-    this.attivitaService.getRighe().subscribe(r => {
+    this.attivitaService.getRigheAttivitaDisponibili().subscribe(r => {
       this.righeAttivita = r;
     })
   }
 
   prenotaAttivita(rigaAttivita : RigaCatalogoAttivita) {
       this.attivitaService.prenotaAttivita(rigaAttivita);
-  }
-
-  printAlert(nomeAttivita: string) {
-    alert("L' attività " +"' "+ nomeAttivita+" '" + " è terminata!");
   }
 
 
