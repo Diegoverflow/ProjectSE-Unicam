@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PrenotazioneAttivitaService } from '../attivita/prenotazione-attivita.service';
 import { RigaCatalogoAttivita } from '../attivita/riga-catalogo-attivita';
-import { RigheAttivitaService } from '../attivita/righe-attivita.service';
 
 @Component({
   selector: 'app-prenotazione-attivita',
@@ -11,7 +11,7 @@ export class PrenotazioneAttivitaComponent implements OnInit {
 
   righeAttivita: RigaCatalogoAttivita[] = new Array();
 
-  constructor(private attivitaService: RigheAttivitaService) {
+  constructor(private attivitaService: PrenotazioneAttivitaService) {
   }
 
   ngOnInit(): void {
@@ -24,8 +24,8 @@ export class PrenotazioneAttivitaComponent implements OnInit {
     })
   }
 
-  prenotaAttivita(rigaAttivita : RigaCatalogoAttivita) {
-      this.attivitaService.prenotaAttivita(rigaAttivita);
+  prenotaAttivita(r: RigaCatalogoAttivita) {
+    this.attivitaService.prenotaAttivita(r);
   }
 
 
