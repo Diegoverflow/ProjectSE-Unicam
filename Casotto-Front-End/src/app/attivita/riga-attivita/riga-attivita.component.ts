@@ -26,7 +26,7 @@ export class RigaAttiviaComponent implements OnInit {
 
   public getRigheAttivita():void{ 
 
-    this.righeAttivitaService.getRighe().subscribe(r => {this.righe = r; console.log(this.righe[1]);console.log(r)});
+    this.righeAttivitaService.getRighe().subscribe(r => {this.righe = r; /*console.log(this.righe[1]);console.log(r)*/});
   }
 
   public rigaAttivitaAggiunta(rigaAggiunta : RigaCatalogoAttivita){
