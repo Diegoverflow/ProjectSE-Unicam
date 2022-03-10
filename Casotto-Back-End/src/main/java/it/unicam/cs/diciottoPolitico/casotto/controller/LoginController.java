@@ -2,6 +2,7 @@ package it.unicam.cs.diciottoPolitico.casotto.controller;
 
 import com.google.zxing.common.StringUtils;
 import io.jsonwebtoken.JwtException;
+import it.unicam.cs.diciottoPolitico.casotto.model.RuoloUtente;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.security.UtenteWrapper;
 import it.unicam.cs.diciottoPolitico.casotto.security.jwt.JwtConfig;
@@ -33,12 +34,12 @@ public class LoginController {
     private JwtConfig jwtConfig;
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String,Object>> login() {
+    public ResponseEntity<RuoloUtente> login() {
         var utenteWrapper = (UtenteWrapper)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         var utente = this.service.getBy(utenteWrapper.getUsername()); // il getUsername ritorna l'email
 
-        return ResponseEntity.ok(this.login(utente));
+        return ResponseEntity.ok(utente.getRuoloUtente());
     }
 
     @GetMapping("/login")
@@ -48,27 +49,7 @@ public class LoginController {
 
     @GetMapping("check-token")
     public boolean checkToken(HttpServletRequest request){
-        var cookie = Arrays.stream(request.getCookies())
-                .filter(c -> c.getName().equals("access-token"))
-                .findFirst();
-        if(cookie.isEmpty())
-            return false;
-        try{
-            JwtUtil.parseToken(cookie.get().getValue(),this.jwtConfig);
-        }
-        catch (JwtException e) {
-            return false;
-        }
-        return true;
+        return JwtUtil.checkToken(request.getCookies(),this.jwtConfig);
     }
 
-    private Map<String, Object> login(SimpleUtente utente){
-        var map = new LinkedHashMap<String,Object>();
-        map.put("id",utente.getId());
-        map.put("email",utente.getEmail());
-        map.put("cognome",utente.getCognome());
-        map.put("cellulare",utente.getCellulare());
-        map.put("ruolo",utente.getRuoloUtente());
-        return map;
-    }
 }
