@@ -18,27 +18,15 @@ export class PrenotazioneAttivitaService {
         return this.http.get<RigaCatalogoAttivita[]>(this.urlPrenotazioniAttivita + '/disponibili', { withCredentials: true });
     }
 
-    prenotaAttivita(riga: RigaCatalogoAttivita) {
-        console.log(riga);
-        /*let prenotazione : PrenotazioneAttivita = {
-            request: "createUser",
-            valore: {
-                dataOrarioInizio: riga.valore.dataOrarioInizio,
-                dataOrarioFine: riga.valore.dataOrarioFine,
-                descrizione: riga.valore.descrizione,
-                nome: riga.valore.nome
-            },
-            prezzo: riga.prezzo,
-            postiTotali: riga.postiTotali
-        };*/
-        this.http.post(this.urlPrenotazioniAttivita, {
+    prenotaAttivita(riga: RigaCatalogoAttivita): Observable<PrenotazioneAttivita> {
+        return this.http.post<PrenotazioneAttivita>(this.urlPrenotazioniAttivita, {
             request: "createPrenotazioneAttivita",
             attivita: riga.valore,
-            vendita:{
+            vendita: {
                 costo: riga.prezzo
             }
         }
-        , { withCredentials: true }).subscribe();
+            , { withCredentials: true });
     }
 
 }
