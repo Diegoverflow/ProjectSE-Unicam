@@ -1,7 +1,7 @@
 <p>prenotazione-attivita works!</p>
 <h1>Catalogo Attività disponibili</h1>
 <div class="table">
-    <table id="table-attivita" class="table" data-show-refresh="true">
+    <table class="table" data-show-refresh="true">
         <thead>
             <tr class="table-danger">
                 <th>Nome Attività</th>
@@ -18,9 +18,9 @@
             <tr class="table-primary" *ngFor="let r of righeAttivita">
                 <td>{{r.valore.nome}}</td>
                 <td>{{r.valore.descrizione}}</td>
-                <td>{{r.valore.dataOrarioInizio}}</td>
-                <td>{{r.valore.dataOrarioFine}}</td>
-                <td>{{r.prezzo}}</td>
+                <td>{{r.valore.dataOrarioInizio | date:'dd EEEE MMMM yyyy'}}</td>
+                <td>{{r.valore.dataOrarioFine | date:'dd EEEE MMMM yyyy'}}</td>
+                <td>{{r.prezzo | currency}}</td>
                 <td>{{r.postiTotali}}</td>
                 <td>{{r.postiTotali-r.postiOccupati}}</td>
                 <td>
