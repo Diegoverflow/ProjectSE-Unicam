@@ -4,6 +4,7 @@ import it.unicam.cs.diciottoPolitico.casotto.model.RuoloUtente;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,6 +42,10 @@ public class UtenteService extends AbstractService<SimpleUtente, UtenteRepositor
 
     public SimpleUtente getBy(String email){
         return super.getBy(u -> u.getEmail().equals(email)).stream().findFirst().orElse(null);
+    }
+
+    public SimpleUtente getLoggedUser(){
+        return this.getBy((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 
 }

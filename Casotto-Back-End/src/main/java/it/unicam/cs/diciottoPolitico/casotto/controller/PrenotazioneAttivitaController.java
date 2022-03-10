@@ -4,8 +4,11 @@ import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneAttivitaRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.PrenotazioneAttivitaService;
+import it.unicam.cs.diciottoPolitico.casotto.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,6 +30,9 @@ public class PrenotazioneAttivitaController {
 
     @Autowired
     private PrenotazioneAttivitaService prenotazioneAttivitaService;
+
+    @Autowired
+    private UtenteService utenteService;
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
@@ -108,7 +114,7 @@ public class PrenotazioneAttivitaController {
      *                                 una {@code SimplePrenotazioneAttivita} non presente nel catalogo attivit&agrave; dello chalet oppure se la {@code SimplePrenotazioneAttivita} non &egrave; valida
      */
     @PostMapping
-    public SimplePrenotazioneAttivita addPrenotazione(@RequestBody SimplePrenotazioneAttivita prenotazioneAttivita) {
+    public SimplePrenotazioneAttivita addPrenotazione(@Validated @RequestBody SimplePrenotazioneAttivita prenotazioneAttivita) {
         var v = this.prenotazioneAttivitaService.save(prenotazioneAttivita);
         if (v == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

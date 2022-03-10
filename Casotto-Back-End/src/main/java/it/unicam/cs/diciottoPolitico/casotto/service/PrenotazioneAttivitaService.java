@@ -5,6 +5,7 @@ import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneAttivitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +15,12 @@ import java.util.UUID;
 public class PrenotazioneAttivitaService extends AbstractService<SimplePrenotazioneAttivita, PrenotazioneAttivitaRepository> {
 
     private final RigaCatalogoAttivitaService catalogoAttivita;
-
+    private final UtenteService utenteService;
     @Autowired
-    public PrenotazioneAttivitaService(PrenotazioneAttivitaRepository repository, RigaCatalogoAttivitaService catalogoAttivita) {
+    public PrenotazioneAttivitaService(PrenotazioneAttivitaRepository repository, RigaCatalogoAttivitaService catalogoAttivita, UtenteService utenteService) {
         super(repository);
         this.catalogoAttivita = catalogoAttivita;
+        this.utenteService = utenteService;
     }
 
     public List<SimpleRigaCatalogoAttivita> getAttivitaDisponibili() {
@@ -49,6 +51,8 @@ public class PrenotazioneAttivitaService extends AbstractService<SimplePrenotazi
 
     @Override
     public SimplePrenotazioneAttivita save(SimplePrenotazioneAttivita prenotazioneAttivita) {
+        prenotazioneAttivita.getVendita().setUtente(this.utenteService.getLoggedUser());
+
         if (this.getBy(prenotazioneAttivita.getId()).isPresent())
             return null;
         if (this.clientIsFurbetto(prenotazioneAttivita))
