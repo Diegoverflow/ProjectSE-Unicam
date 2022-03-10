@@ -114,7 +114,7 @@ public class PrenotazioneAttivitaController {
      *                                 una {@code SimplePrenotazioneAttivita} non presente nel catalogo attivit&agrave; dello chalet oppure se la {@code SimplePrenotazioneAttivita} non &egrave; valida
      */
     @PostMapping
-    public SimplePrenotazioneAttivita addPrenotazione(@Validated @RequestBody SimplePrenotazioneAttivita prenotazioneAttivita) {
+    public SimplePrenotazioneAttivita addPrenotazione(@RequestBody SimplePrenotazioneAttivita prenotazioneAttivita) {
         var v = this.prenotazioneAttivitaService.save(prenotazioneAttivita);
         if (v == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

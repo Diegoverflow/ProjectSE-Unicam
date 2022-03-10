@@ -34,7 +34,6 @@ public class SimpleVendita implements Vendita {
 
     @ManyToOne
     @JoinColumn(name = "utente_id", updatable = false)
-    @NotNull
     private SimpleUtente utente;
 
     public SimpleVendita() {
