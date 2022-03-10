@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RigaCatalogoAttivita } from '../attivita/riga-catalogo-attivita';
+import { RigheAttivitaService } from '../attivita/righe-attivita.service';
 
 @Component({
   selector: 'app-prenotazione-attivita',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrenotazioneAttivitaComponent implements OnInit {
 
-  constructor() { }
+  righeAttivita: RigaCatalogoAttivita[] = new Array();
+
+  constructor(private attivitaService: RigheAttivitaService) {
+  }
 
   ngOnInit(): void {
+    this.getRigheCatalogoAttivita();
   }
+
+  getRigheCatalogoAttivita() {
+    this.attivitaService.getRighe().subscribe(r => {
+      this.righeAttivita = r;
+    })
+  }
+
+  prenotaAttivita(rigaAttivita : RigaCatalogoAttivita) {
+      this.attivitaService.prenotaAttivita(rigaAttivita);
+  }
+
+  printAlert(nomeAttivita: string) {
+    alert("L' attività " +"' "+ nomeAttivita+" '" + " è terminata!");
+  }
+
 
 }

@@ -1,7 +1,7 @@
 export interface Attivita {
     id: string;
-    dataInizio: Date;
-    dataFine: Date;
+    dataOrarioInizio: Date;
+    dataOrarioFine: Date;
     descrizione: string;
     nome: string;
 }

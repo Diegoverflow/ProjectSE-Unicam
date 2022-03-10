@@ -1,6 +1,6 @@
 export interface Attivita {
     nome: string,
-    dataInizio: Date,
-    dataFine: Date,
+    dataOrarioInizio: Date,
+    dataOrarioFine: Date,
     descrizione: string
 }

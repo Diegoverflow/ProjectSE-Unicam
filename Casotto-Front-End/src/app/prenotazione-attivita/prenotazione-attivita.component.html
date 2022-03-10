@@ -1,1 +1,35 @@
 <p>prenotazione-attivita works!</p>
+<h1>Catalogo Attività disponibili</h1>
+<div class="table">
+    <table class="table">
+        <thead>
+            <tr class="table-danger">
+                <th>Nome Attività</th>
+                <th>Descrizione</th>
+                <th>Inizio</th>
+                <th>Fine</th>
+                <th>Prezzo</th>
+                <th>Posti Totali</th>
+                <th>Posti disponibili</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-primary" *ngFor="let r of righeAttivita">
+                <td>{{r.valore.nome}}</td>
+                <td>{{r.valore.descrizione}}</td>
+                <td>{{r.valore.dataOrarioInizio}}</td>
+                <td>{{r.valore.dataOrarioFine}}</td>
+                <td>{{r.prezzo}}</td>
+                <td>{{r.postiTotali}}</td>
+                <td>{{r.postiTotali-r.postiOccupati}}</td>
+                <td>
+                    <button type="button" class="btn btn-success" autocomplete="off"
+                        (click)="prenotaAttivita(r)" *ngIf="r.postiTotali-r.postiOccupati!=0">Prenota</button>
+                    <button type="button" class="btn btn-danger" autocomplete="off"
+                        (click)="printAlert(r.valore.nome)" *ngIf="r.postiTotali-r.postiOccupati==0">Prenotazione terminata</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

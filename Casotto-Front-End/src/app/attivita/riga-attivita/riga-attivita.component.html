@@ -2,8 +2,8 @@
 <ul>
     <li *ngFor="let riga of righe">
         <em>Nome Attivita:</em> {{riga.valore.nome}} - 
-        <em>Data Inizio Attivita:</em> {{riga.valore.dataInizio}} - 
-        <em>Data Fine Attivita:</em> {{riga.valore.dataFine}} - 
+        <em>Data Inizio Attivita:</em> {{riga.valore.dataOrarioInizio}} - 
+        <em>Data Fine Attivita:</em> {{riga.valore.dataOrarioFine}} - 
         <em>Descrizione Attivita:</em> {{riga.valore.descrizione}} - 
         <em>Prezzo Articolo:</em> €{{riga.prezzo}}
         <button type="button" (click)="eliminaRiga(riga)">rimuovi</button>
