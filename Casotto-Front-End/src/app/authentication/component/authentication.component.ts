@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../service/authentication.service';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
-import { catchError, EMPTY, of, tap } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.scss']
 })
+
 export class AuthenticationComponent implements OnInit {
 
   private _login: boolean;
@@ -44,21 +44,21 @@ export class AuthenticationComponent implements OnInit {
   }
 
 
-  get loginForm() { return this._loginForm}
+  get loginForm() { return this._loginForm }
 
-  get registerForm() { return this._registerForm}
+  get registerForm() { return this._registerForm }
 
   public onLogin(): void {
     this.authenticationService.login(this.loginForm.get('email')!.value, this.loginForm.get('password')!.value)
       .subscribe({
-        complete: () => { this.authenticationService.getRuolo().subscribe(r => this.redirect(r)) },
+        next: r => this.redirect(r),
         error: () => alert('ritenta il login')
       })
   }
 
-  public onRegister():void{
-    this.authenticationService.register(this.registerForm.value).subscribe();
-    this.showLogin();
+  public onRegister(): void {
+    this.authenticationService.register(this.registerForm.value).subscribe(
+      () => this.showLogin());
   }
 
   public get login(): boolean {
@@ -90,13 +90,10 @@ export class AuthenticationComponent implements OnInit {
       this.router.navigate(['/cassiere-home']);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getCsrfToken();
-    this.authenticationService.checkToken()
-      .subscribe(b => {
-        if (b)
-          this.authenticationService.getRuolo().subscribe(r => this.redirect(r))
-      })
+    let ruolo = this.authenticationService.getRuoloFromStorage();
+    if (ruolo !== null)
+      this.redirect(ruolo);
   }
-  
 }

@@ -17,20 +17,30 @@ export class AuthenticationService {
     return this.http.get<string>(`${this.apiServerUrl}/login`, { withCredentials: true });
   }
 
-  public login(email: string, password: string): Observable<Utente> {
-    return this.http.post<Utente>(`${this.apiServerUrl}/login`, { email, password }, { withCredentials: true });
+  public login(email: string, password: string): Observable<string> {
+    let observable = this.http.post<string>(`${this.apiServerUrl}/login`, { email, password }, { withCredentials: true })
+    observable.subscribe(r => this.saveRuolo(r));
+    return observable
   }
 
-  public register(utente : Utente){
-    return this.http.post<Utente>(`${this.apiServerUrl}/utenti`,utente,{withCredentials:true})
+  public register(utente: Utente) {
+    return this.http.post<Utente>(`${this.apiServerUrl}/utenti`, utente, { withCredentials: true })
   }
 
   public getRuolo(): Observable<string> {
     return this.http.get<string>(`${this.apiServerUrl}/utenti/ruolo`, { withCredentials: true });
   }
 
-  public checkToken():Observable<boolean>{
-    return this.http.get<boolean>(`${this.apiServerUrl}/check-token`,{withCredentials:true});
+  public saveRuolo(ruolo: string): void {
+    sessionStorage.setItem('ruolo',ruolo);
+  }
+
+  public getRuoloFromStorage(): string | null {
+    return sessionStorage.getItem('ruolo');
+  }
+
+  public checkToken(): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiServerUrl}/check-token`, { withCredentials: true });
   }
 
 }

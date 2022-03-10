@@ -13,7 +13,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationService } from './authentication/service/authentication.service';
 import { AuthenticationComponent } from './authentication/component/authentication.component';
 import { GestoreHomeComponent} from './gestore-home/gestore-home.component';
-import { AuthGuard } from './helpers/auth-guard';
 import { ClienteHomeComponent } from './cliente-home/cliente-home.component';
 import { PrenotazioneOmbrelloneComponent } from './prenotazione-ombrellone/prenotazione-ombrellone.component';
 import { PrenotazioneAttivitaComponent } from './prenotazione-attivita/prenotazione-attivita.component';
@@ -21,6 +20,7 @@ import { OrdinazioneBarComponent } from './ordinazione-bar/ordinazione-bar.compo
 import { DefaultHttpInterceptor } from './helpers/http-interceptor';
 import { CassiereHomeComponent } from './cassiere-home/cassiere-home.component';
 import { AddettoBarHomeComponent } from './addetto-bar-home/addetto-bar-home.component';
+import { LoginGuard } from './helpers/login-guard';
 
 
 @NgModule({
@@ -50,7 +50,8 @@ import { AddettoBarHomeComponent } from './addetto-bar-home/addetto-bar-home.com
   ],
   providers: [
     AuthenticationService,
-    AuthGuard,
+    LoginGuard,
+    LoginGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: DefaultHttpInterceptor,

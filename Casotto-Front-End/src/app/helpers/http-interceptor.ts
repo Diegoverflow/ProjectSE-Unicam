@@ -14,9 +14,6 @@ export class DefaultHttpInterceptor implements HttpInterceptor {
     constructor(private router : Router){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        /*if(req.url === `${this.apiServerUrl}/login`)
-            return next.handle(req);*/
-
         return next.handle(req).pipe(
             catchError((e: HttpErrorResponse) => {
                 if(req.url === `${this.apiServerUrl}/login` )
