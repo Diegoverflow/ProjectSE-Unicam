@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { Attivita } from '../attivita';
-import { RigaCatalogoAttivita } from '../riga-catalogo-attivita';
 import { RigheAttivitaService } from '../righe-attivita.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { RigaCatalogoAttivita } from 'src/app/model/riga-catalogo-attivita';
 
 @Component({
   selector: 'app-riga-attivita-editor',
@@ -13,7 +12,7 @@ export class RigaAttivitaEditorComponent implements OnInit {
 
   title: string = 'Editor riga catalogo attivita'
 
-  @Output() rigaAggiunta = new EventEmitter<RigaAttivitaEditorComponent>();
+  @Output() rigaAggiunta = new EventEmitter<RigaCatalogoAttivita>();
 
   //TODO: validators
   rigaForm = new FormGroup({

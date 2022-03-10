@@ -15,11 +15,24 @@ export class LoginGuard implements CanActivate {
         let tokenValidation!: boolean
         await lastValueFrom(this.authService.checkToken()).then(b => tokenValidation = b)
         if (tokenValidation === true) {
-            if (this.authService.getRuoloFromStorage === null)
-                this.authService.getRuolo().subscribe(r => this.authService.saveRuolo(r));
+            if (this.authService.getRuoloFromStorage() === null){
+                await lastValueFrom(this.authService.getRuolo()).then(r => this.authService.saveRuolo(r));
+            }
+            this.redirect(this.authService.getRuoloFromStorage()!)
             return false
         }
         return true
     }
+
+    private redirect(ruolo: string) {
+        if (ruolo === 'GESTORE')
+          this.router.navigate(['/gestore-home']);
+        if (ruolo === 'CLIENTE')
+          this.router.navigate(['/cliente-home']);
+        if (ruolo === 'ADDETTO_BAR')
+          this.router.navigate(['/addetto-bar-home']);
+        if (ruolo === 'CASSIERE')
+          this.router.navigate(['/cassiere-home']);
+      }
 
 }
