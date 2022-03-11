@@ -1,12 +1,20 @@
 <p>cliente-home works!</p>
 
-<nav>
-    <a routerLink="./prenotazione-ombrellone" >prenota ombrellone</a>
-    <br>
-    <a routerLink="./prenotazione-attivita" >prenota attività</a>
-    <br>
-    <a routerLink="./ordinazione-bar" >ordina dal bar</a>
-    <br>
-    <a routerLink="/login" >login</a>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home <span class="sr-only"></span></a>
+      <a class="nav-item nav-link" routerLink="./prenotazione-ombrellone">Prenotazione Ombrellone</a>
+      <a class="nav-item nav-link" routerLink="./prenotazione-attivita">Prenotazione Attività</a>
+      <a class="nav-item nav-link" routerLink="./ordinazione-bar">Ordinazione Bar</a>
+      <a class="nav-item nav-link" routerLink="/login">Login</a>
+    </div>
+  </div>
+</nav>
+
 <router-outlet></router-outlet>
