@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { last, lastValueFrom } from 'rxjs';
-import { PrenotazioneAttivitaService } from '../attivita/prenotazione-attivita.service';
+import { PrenotazioneAttivitaService } from './prenotazione-attivita.service';
 import { RigaCatalogoAttivita } from '../attivita/riga-catalogo-attivita';
 
 @Component({

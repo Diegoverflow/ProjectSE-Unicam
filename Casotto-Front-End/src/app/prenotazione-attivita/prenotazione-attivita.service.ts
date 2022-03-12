@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { PrenotazioneAttivita } from '../model/prenotazione-attivita';
-import { RigaCatalogoAttivita } from './riga-catalogo-attivita';
+import { RigaCatalogoAttivita } from '../attivita/riga-catalogo-attivita';
 
 @Injectable({
     providedIn: 'root'

@@ -7,24 +7,22 @@ import { RigaCatalogoBar } from "../model/riga-catalogo-bar";
 @Injectable({
     providedIn: 'root'
 })
-export class CatalogoBarService {
+export class OrdinazioneBarService {
 
-    private urlCatalogoBar: string = '//localhost:8080/bar/ordinazioni';
+    private urlOrdinazioniBar: string = '//localhost:8080/bar/ordinazioni';
 
     constructor(private http: HttpClient) {
     }
 
     getRigheBarDisponibili(): Observable<RigaCatalogoBar[]> {
-        return this.http.get<RigaCatalogoBar[]>(this.urlCatalogoBar + '/disponibili', { withCredentials: true });
+        return this.http.get<RigaCatalogoBar[]>(this.urlOrdinazioniBar + '/disponibili', { withCredentials: true });
     }
 
     ordina(riga: RigaCatalogoBar): Observable<OrdinazioneBar> {
-        return this.http.post<OrdinazioneBar>(this.urlCatalogoBar, {
-            request: "createPrenotazioneAttivita",
-            articoloBar: {
-                nome: riga.valore.nome,
-                descrizione: riga.valore.descrizione
-            },
+        console.log(riga);
+        return this.http.post<OrdinazioneBar>(this.urlOrdinazioniBar, {
+            request: "createOrdinazioneBar",
+            articoloBar: riga.valore,
             vendita: {
                 costo: riga.prezzo
             },

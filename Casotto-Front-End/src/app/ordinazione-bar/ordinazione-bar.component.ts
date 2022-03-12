@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { OrdinazioneBar } from '../model/ordinazione-bar';
 import { RigaCatalogoBar } from '../model/riga-catalogo-bar';
-import { CatalogoBarService } from './catalogo-bar.service';
+import { OrdinazioneBarService } from './ordinazione-bar.service';
 
 @Component({
   selector: 'app-ordinazione-bar',
@@ -14,7 +15,7 @@ export class OrdinazioneBarComponent implements OnInit {
 
   menuButton: boolean = false;
 
-  constructor(private barService: CatalogoBarService) { }
+  constructor(private barService: OrdinazioneBarService) { }
 
   ngOnInit(): void {
     this.getRigheCatalogoBar();
@@ -31,11 +32,16 @@ export class OrdinazioneBarComponent implements OnInit {
     })
   }
 
-  async ordinaDalBar(r: RigaCatalogoBar) {
+  /*async ordinaDalBar(r: RigaCatalogoBar) {
     if (this.askConfirm(r.valore.nome))
       await lastValueFrom(this.barService.ordina(r)).then(() => {
-        this.getRigheCatalogoBar();
+        console.log(this.getRigheCatalogoBar());
       })
+  }*/
+
+  ordinaDalBar(r: RigaCatalogoBar) {
+    if (this.askConfirm(r.valore.nome))
+      this.barService.ordina(r);
   }
 
   askConfirm(nomeArticolo: string): boolean {
