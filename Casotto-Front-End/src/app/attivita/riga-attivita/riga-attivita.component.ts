@@ -38,8 +38,7 @@ export class RigaAttiviaComponent implements OnInit {
   ngOnInit(): void {
     this.getRigheAttivita();
   }
-
-  //TODO: quando aggiungo devo tornare dal server l'UUID
+  
   eliminaRiga(riga : RigaCatalogoAttivita){
     // (versione_1) this.righeAttivitaService.removeRiga(riga.id).subscribe(()=> this.righeAttivitaService.getRighe().subscribe(r => {this.righe = r;}))
     /*(versione_2)*/ this.righeAttivitaService.removeRiga(riga.id).subscribe(()=> this.getRigheAttivita())
