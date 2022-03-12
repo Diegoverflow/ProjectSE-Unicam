@@ -1,7 +1,7 @@
 import { Attivita } from "./attivita";
 
 export interface RigaCatalogoAttivita{
-    id?: string,
+    id: string,
     valore: Attivita,
     postiTotali: number,
     postiOccupati: number,

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
-import { RIGHEATTIVITA } from './mock-righeAttivita';
 import { RigaCatalogoAttivita } from './riga-catalogo-attivita';
 
 @Injectable({
@@ -23,13 +22,13 @@ export class RigheAttivitaService {
     return this.http.get<RigaCatalogoAttivita[]>(this.urlPrenotazioniAttivita + '/disponibili', { withCredentials: true });
   }
 
-  addRiga(riga: RigaCatalogoAttivita) {
-    this.http.post<RigaCatalogoAttivita>(this.apiServerUrl, riga, { withCredentials: true }).subscribe();
+  addRiga(riga: RigaCatalogoAttivita) : Observable<RigaCatalogoAttivita> {
+    return this.http.post<RigaCatalogoAttivita>(this.apiServerUrl, riga, { withCredentials: true });
   }
 
-  removeRiga(riga: RigaCatalogoAttivita) {
-    RIGHEATTIVITA.splice(RIGHEATTIVITA.indexOf(riga), 1);
-    console.log('riga attivita rimossa')
+  removeRiga(idRiga : string): Observable<unknown>{
+    const url = `${this.apiServerUrl}/${idRiga}`;
+    return this.http.delete(url, {withCredentials : true})
   }
 
   prenotaAttivita(riga: RigaCatalogoAttivita) {

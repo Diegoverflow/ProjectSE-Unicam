@@ -29,7 +29,8 @@ export class RigaAttivitaEditorComponent implements OnInit {
 
   save(){
     this.righeAttivitaService.addRiga(this.rigaForm.value)
-    this.rigaAggiunta.emit(this.rigaForm.value)
+      .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
+    //this.rigaAggiunta.emit(this.rigaForm.value)
   }
   
 

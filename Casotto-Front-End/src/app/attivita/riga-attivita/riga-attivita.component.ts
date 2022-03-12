@@ -4,7 +4,7 @@ import { RigheAttivitaService } from '../righe-attivita.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'app-riga-attivita',
@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 export class RigaAttiviaComponent implements OnInit {
 
   //FIXME: risolvere nella miglior maniera
+  //public righe?: Observable<RigaCatalogoAttivita[]>;
   public righe?: RigaCatalogoAttivita[];
 
   title: string = 'Catalogo Attivita'
@@ -25,11 +26,12 @@ export class RigaAttiviaComponent implements OnInit {
   }
 
   public getRigheAttivita():void{ 
-
+    //this.righe =this.righeAttivitaService.getRighe()
     this.righeAttivitaService.getRighe().subscribe(r => {this.righe = r; /*console.log(this.righe[1]);console.log(r)*/});
   }
 
   public rigaAttivitaAggiunta(rigaAggiunta : RigaCatalogoAttivita){
+    //this.righe?.subscribe(righe => righe.push(rigaAggiunta))//
     this.righe?.push(rigaAggiunta)
   }
 
@@ -37,8 +39,12 @@ export class RigaAttiviaComponent implements OnInit {
     this.getRigheAttivita();
   }
 
-  eliminaRiga(riga: RigaCatalogoAttivita){
-    this.righeAttivitaService.removeRiga(riga)
+  //TODO: quando aggiungo devo tornare dal server l'UUID
+  eliminaRiga(riga : RigaCatalogoAttivita){
+    // (versione_1) this.righeAttivitaService.removeRiga(riga.id).subscribe(()=> this.righeAttivitaService.getRighe().subscribe(r => {this.righe = r;}))
+    /*(versione_2)*/ this.righeAttivitaService.removeRiga(riga.id).subscribe(()=> this.getRigheAttivita())
+    //this.righeAttivitaService.removeRiga(riga.id)
+    //  .subscribe(rigaRimossa => {this.righe?.subscribe(righe => righe.filter(r => r ==rigaRimossa as RigaCatalogoAttivita ))})
   }
 
 }
