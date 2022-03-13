@@ -1,0 +1,13 @@
+<div>
+    <h2>{{title}}</h2>
+    <ul>
+        <li *ngFor="let riga of righe ">
+            <em><mark>Nome Articolo:</mark></em> {{riga.valore.nome}} -
+            <em><mark>Descrizione Articolo:</mark></em> {{riga.valore.descrizione}} - 
+            <em><mark>Quantità Articolo:</mark></em> {{riga.quantita}} - 
+            <em><mark>Prezzo Articolo:</mark></em> €{{riga.prezzo}}
+            <button type="button" (click)="eliminaRiga(riga)">rimuovi</button>
+        </li>
+</ul>
+    <app-riga-bar-editor (rigaAggiunta)="rigaBarAggiunta($event)"></app-riga-bar-editor> 
+</div>

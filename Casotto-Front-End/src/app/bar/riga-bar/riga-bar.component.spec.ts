@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RigheBarComponent } from './righe-bar.component';
+import { RigaBarComponent } from './riga-bar.component';
 
-describe('RigheBarComponent', () => {
-  let component: RigheBarComponent;
-  let fixture: ComponentFixture<RigheBarComponent>;
+describe('RigaBarComponent', () => {
+  let component: RigaBarComponent;
+  let fixture: ComponentFixture<RigaBarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RigheBarComponent ]
+      declarations: [ RigaBarComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RigheBarComponent);
+    fixture = TestBed.createComponent(RigaBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

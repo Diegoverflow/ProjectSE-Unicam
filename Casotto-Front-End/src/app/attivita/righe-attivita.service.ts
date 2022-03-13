@@ -10,7 +10,7 @@ export class RigheAttivitaService {
 
   private apiServerUrl: string = '//localhost:8080/catalogo/attivita';
 
-  private urlPrenotazioniAttivita: string = '//localhost:8080/prenotazioni/attivita';
+  //private urlPrenotazioniAttivita: string = '//localhost:8080/prenotazioni/attivita';
 
   constructor(private http: HttpClient) { }
 
@@ -18,9 +18,9 @@ export class RigheAttivitaService {
     return this.http.get<RigaCatalogoAttivita[]>(this.apiServerUrl + '/all', { withCredentials: true });
   }
 
-  getRigheAttivitaDisponibili(): Observable<RigaCatalogoAttivita[]> {
+  /*getRigheAttivitaDisponibili(): Observable<RigaCatalogoAttivita[]> {
     return this.http.get<RigaCatalogoAttivita[]>(this.urlPrenotazioniAttivita + '/disponibili', { withCredentials: true });
-  }
+  }*/
 
   addRiga(riga: RigaCatalogoAttivita) : Observable<RigaCatalogoAttivita> {
     return this.http.post<RigaCatalogoAttivita>(this.apiServerUrl, riga, { withCredentials: true });
@@ -31,8 +31,8 @@ export class RigheAttivitaService {
     return this.http.delete(url, {withCredentials : true})
   }
 
-  prenotaAttivita(riga: RigaCatalogoAttivita) {
+  /*prenotaAttivita(riga: RigaCatalogoAttivita) {
     this.http.post(this.urlPrenotazioniAttivita, riga, { withCredentials: true }).subscribe();
-  }
+  }*/
 
 }

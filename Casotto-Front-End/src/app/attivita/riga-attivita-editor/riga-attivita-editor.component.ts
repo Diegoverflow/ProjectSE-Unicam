@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { RigheAttivitaService } from '../righe-attivita.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { RigaCatalogoAttivita } from 'src/app/model/riga-catalogo-attivita';
 
 @Component({
@@ -17,22 +17,20 @@ export class RigaAttivitaEditorComponent implements OnInit {
   //TODO: validators
   rigaForm = new FormGroup({
     valore : new FormGroup({
-      nome: new FormControl('nome attivita'),
-      dataOrarioInizio: new FormControl(new Date().toISOString().substring(0,10)),
-      dataOrarioFine: new FormControl(new Date().toISOString().substring(0,10)),
-      descrizione: new FormControl('descrizione')
+      nome : new FormControl('nome attivita'),
+      dataOrarioInizio : new FormControl(new Date().toISOString().substring(0,10)),
+      dataOrarioFine : new FormControl(new Date().toISOString().substring(0,10)),
+      descrizione : new FormControl('descrizione')
     }),
-    postiTotali: new FormControl(10),
-    postiOccupati: new FormControl(0),
-    prezzo: new FormControl(0)
+    postiTotali : new FormControl(10),
+    postiOccupati : new FormControl(0),
+    prezzo : new FormControl(0)
   })
 
   save(){
     this.righeAttivitaService.addRiga(this.rigaForm.value)
       .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
-    //this.rigaAggiunta.emit(this.rigaForm.value)
   }
-  
 
   constructor(private righeAttivitaService: RigheAttivitaService) { }
 
