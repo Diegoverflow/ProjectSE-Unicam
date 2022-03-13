@@ -3,10 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RigheOmbrelloniComponent } from './righe-ombrelloni/righe-ombrelloni.component';
-import { RigaOmbrelloneEditorComponent } from './riga-ombrellone-editor/riga-ombrellone-editor.component';
-import { RigheBarComponent } from './righe-bar/righe-bar.component';
-import { RigaBarEditorComponent } from './riga-bar-editor/riga-bar-editor.component';
 import { RigaAttiviaComponent } from './attivita/riga-attivita/riga-attivita.component';
 import { RigaAttivitaEditorComponent } from './attivita/riga-attivita-editor/riga-attivita-editor.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -24,16 +20,14 @@ import { LoginGuard } from './helpers/login-guard';
 // Per impostare la data in italiano
 import localeIt from '@angular/common/locales/it';
 import { registerLocaleData } from '@angular/common';
+import { RigaBarComponent } from './bar/riga-bar/riga-bar.component';
+import { RigaBarEditorComponent } from './bar/riga-bar-editor/riga-bar-editor.component';
 registerLocaleData(localeIt, 'it');
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RigheOmbrelloniComponent,
-    RigaOmbrelloneEditorComponent,
-    RigheBarComponent,
-    RigaBarEditorComponent,
     RigaAttiviaComponent,
     RigaAttivitaEditorComponent,
     AuthenticationComponent,
@@ -43,7 +37,9 @@ registerLocaleData(localeIt, 'it');
     PrenotazioneAttivitaComponent,
     OrdinazioneBarComponent,
     CassiereHomeComponent,
-    AddettoBarHomeComponent
+    AddettoBarHomeComponent,
+    RigaBarComponent,
+    RigaBarEditorComponent
   ],
   imports: [
     BrowserModule,

@@ -2,11 +2,11 @@
 <h2>{{title}}</h2>
 <ul>
     <li *ngFor="let riga of righe ">
-        <em>Nome Attivita:</em> {{riga.valore.nome}} - 
-        <em>Data Inizio Attivita:</em> {{riga.valore.dataOrarioInizio}} - 
-        <em>Data Fine Attivita:</em> {{riga.valore.dataOrarioFine}} - 
-        <em>Descrizione Attivita:</em> {{riga.valore.descrizione}} - 
-        <em>Prezzo Articolo:</em> €{{riga.prezzo}}
+        <mark><em>Nome Attivita:</em></mark> {{riga.valore.nome}} - 
+        <mark><em>Data Inizio Attivita:</em></mark> {{riga.valore.dataOrarioInizio}} - 
+        <mark><em>Data Fine Attivita:</em></mark> {{riga.valore.dataOrarioFine}} - 
+        <mark><em>Descrizione Attivita:</em></mark> {{riga.valore.descrizione}} - 
+        <mark><em>Prezzo Attivita:</em></mark> €{{riga.prezzo}}
         <button type="button" (click)="eliminaRiga(riga)">rimuovi</button>
     </li>
 </ul>

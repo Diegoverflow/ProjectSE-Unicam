@@ -1,10 +1,10 @@
 <form [formGroup]="rigaForm" (ngSubmit)="save()">
 
     <div formGroupName="valore" >
-        <h2>Attivita</h2>
+        <h4>{{title}}</h4>
       
         <label for="nome-attvitia">Nome attivita: </label>
-        <input id="nome-attvitia" type="text" formControlName="nome" #nome>
+        <input id="nome-attvitia" type="text" formControlName="nome">
         <br>
         <label for="data-inizio">Data inizio: </label>
         <input id="data-inizio" type="date" formControlName="dataOrarioInizio">
@@ -14,8 +14,8 @@
         <br>
         <label for="descrizione">Descrizione: </label>
         <input id="descrizione" type="text" formControlName="descrizione">
-      </div>
-      <br> 
+    </div>
+    <br> 
     <label for="posti-disponibili">Posti disponibili: </label>
     <input id="posti-disponibili" type="number" formControlName="postiTotali">
     <br>

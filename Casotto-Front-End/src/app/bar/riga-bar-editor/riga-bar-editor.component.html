@@ -1,0 +1,20 @@
+<form [formGroup]="rigaForm" (ngSubmit)="save()">
+
+    <div formGroupName="valore" >
+        <h4>{{title}}</h4>
+      
+        <label for="nome-articolo">Nome Articolo: </label>
+        <input id="nome-articolo" type="text" formControlName="nome">
+        <br>
+        <label for="descrizione">Descrizione: </label>
+        <input id="descrizione" type="text" formControlName="descrizione">
+    </div>
+    <br>
+    <label for="quantita-articoli">Quantita Articoli: </label>
+    <input id="quantita-articoli" type="number" formControlName="quantita">
+    <br>
+    <label for="prezzo">Prezzo: </label>
+    <input id="prezzo" type="number" formControlName="prezzo">
+    <br>
+    <button type="submit">Salva Articolo</button>
+</form>

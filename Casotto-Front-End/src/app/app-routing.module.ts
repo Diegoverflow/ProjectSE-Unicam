@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RigheOmbrelloniComponent } from './righe-ombrelloni/righe-ombrelloni.component';
-import { RigheBarComponent } from './righe-bar/righe-bar.component';
 import { RigaAttiviaComponent } from './attivita/riga-attivita/riga-attivita.component';
+import { RigaBarComponent } from './bar/riga-bar/riga-bar.component';
 import { AuthenticationComponent } from './authentication/component/authentication.component';
 import { GestoreHomeComponent } from './gestore-home/gestore-home.component'
 import { AuthGuard } from './helpers/home-guard';
@@ -14,8 +13,6 @@ import { CassiereHomeComponent } from './cassiere-home/cassiere-home.component';
 import { AddettoBarHomeComponent } from './addetto-bar-home/addetto-bar-home.component';
 import { LoginGuard } from './helpers/login-guard';
 
-// TODO: modificare sul backend le routes righe ombrelloni(etc) da ../catalgo/ombrelloni(etc) 
-// in --> ../catalogo-ombelloni
 //TODO: inserie redirect e NOTFOUND
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
@@ -39,9 +36,9 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     data: { ruolo: 'GESTORE' },
     children: [
-      { path: 'catalogo-bar', component: RigheBarComponent },
+      { path: 'catalogo-bar', component: RigaBarComponent },
       { path: 'catalogo-attivita', component: RigaAttiviaComponent },
-      { path: 'catalogo-ombrelloni', component: RigheOmbrelloniComponent },
+      //{ path: 'catalogo-ombrelloni', component: RigheOmbrelloniComponent },
     ]
   },
 
