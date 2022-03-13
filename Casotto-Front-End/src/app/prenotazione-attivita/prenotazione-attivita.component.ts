@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PrenotazioneAttivitaService } from '../attivita/prenotazione-attivita.service';
+import { last, lastValueFrom } from 'rxjs';
+import { PrenotazioneAttivitaService } from './prenotazione-attivita.service';
 import { RigaCatalogoAttivita } from '../attivita/riga-catalogo-attivita';
 
 @Component({
@@ -24,9 +25,22 @@ export class PrenotazioneAttivitaComponent implements OnInit {
     })
   }
 
-  prenotaAttivita(r: RigaCatalogoAttivita) {
-    this.attivitaService.prenotaAttivita(r);
+  async prenotaAttivita(r: RigaCatalogoAttivita) {
+    if (this.askConfirm(r.valore.nome))
+      await lastValueFrom(this.attivitaService.prenotaAttivita(r)).then(() => {
+        this.getRigheCatalogoAttivita();
+      })
   }
 
+  askConfirm(nomeAttivita: string): boolean {
+    if (confirm("Sei sicuro di voler prenotare l' attività " + "' " + nomeAttivita + " '" + " ?")) {
+      window.alert("Attività prenotata con successo");
+      return true;
+    }
+    else {
+      window.alert("Nessuna attività prenotata");
+      return false;
+    }
+  }
 
 }

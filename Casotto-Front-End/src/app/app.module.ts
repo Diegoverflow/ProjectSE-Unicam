@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +12,7 @@ import { RigaAttivitaEditorComponent } from './attivita/riga-attivita-editor/rig
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationService } from './authentication/service/authentication.service';
 import { AuthenticationComponent } from './authentication/component/authentication.component';
-import { GestoreHomeComponent} from './gestore-home/gestore-home.component';
+import { GestoreHomeComponent } from './gestore-home/gestore-home.component';
 import { ClienteHomeComponent } from './cliente-home/cliente-home.component';
 import { PrenotazioneOmbrelloneComponent } from './prenotazione-ombrellone/prenotazione-ombrellone.component';
 import { PrenotazioneAttivitaComponent } from './prenotazione-attivita/prenotazione-attivita.component';
@@ -21,6 +21,10 @@ import { DefaultHttpInterceptor } from './helpers/http-interceptor';
 import { CassiereHomeComponent } from './cassiere-home/cassiere-home.component';
 import { AddettoBarHomeComponent } from './addetto-bar-home/addetto-bar-home.component';
 import { LoginGuard } from './helpers/login-guard';
+// Per impostare la data in italiano
+import localeIt from '@angular/common/locales/it';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeIt, 'it');
 
 
 @NgModule({
@@ -56,7 +60,9 @@ import { LoginGuard } from './helpers/login-guard';
       provide: HTTP_INTERCEPTORS,
       useClass: DefaultHttpInterceptor,
       multi: true
-    }
+    },
+    [{ provide: LOCALE_ID, useValue: 'it' }  // BISOGNA INSERIRE LA DATA NEL PROVIDER!
+      , { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' }], // Per visualizzare in euro
   ],
   bootstrap: [AppComponent]
 })
