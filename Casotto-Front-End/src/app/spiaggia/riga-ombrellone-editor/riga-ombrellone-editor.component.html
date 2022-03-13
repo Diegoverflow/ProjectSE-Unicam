@@ -1,0 +1,22 @@
+<form [formGroup]="rigaForm" (ngSubmit)="save()">
+
+    <div formGroupName="valore" >
+        <h4>{{title}}</h4>
+      
+        <!-- <label for="categoria-ombrellone">Categoria Ombrellone: </label>
+        <input id="categoria-ombrellone" type="text" formControlName="categoria"> -->
+        <label for="categoria-ombrellone">Categoria Ombrellone: </label>
+        <select formControlName="categoria">
+            <option>Scegli</option>
+            <option *ngFor="let categoria of categorie">{{categoria}}</option>
+        </select>
+        <br>
+        <label for="codice-spiaggia">Codice Spiaggia: </label>
+        <input id="codice-spiaggia" type="text" formControlName="codiceSpiaggia">
+    </div>
+    <br>
+    <label for="prezzo-ombrellone">Prezzo Ombrellone: </label>
+    <input id="prezzo-ombrellone" type="number" formControlName="prezzoOmbrellone">
+    <br>
+    <button type="submit">Salva Ombrellone</button>
+</form>

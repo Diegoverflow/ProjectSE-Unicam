@@ -22,6 +22,8 @@ import localeIt from '@angular/common/locales/it';
 import { registerLocaleData } from '@angular/common';
 import { RigaBarComponent } from './bar/riga-bar/riga-bar.component';
 import { RigaBarEditorComponent } from './bar/riga-bar-editor/riga-bar-editor.component';
+import { RigaOmbrelloneComponent } from './spiaggia/riga-ombrellone/riga-ombrellone.component';
+import { RigaOmbrelloneEditorComponent } from './spiaggia/riga-ombrellone-editor/riga-ombrellone-editor.component';
 registerLocaleData(localeIt, 'it');
 
 
@@ -39,7 +41,9 @@ registerLocaleData(localeIt, 'it');
     CassiereHomeComponent,
     AddettoBarHomeComponent,
     RigaBarComponent,
-    RigaBarEditorComponent
+    RigaBarEditorComponent,
+    RigaOmbrelloneComponent,
+    RigaOmbrelloneEditorComponent
   ],
   imports: [
     BrowserModule,

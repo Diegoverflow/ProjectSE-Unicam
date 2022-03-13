@@ -12,6 +12,7 @@ import { OrdinazioneBarComponent } from './ordinazione-bar/ordinazione-bar.compo
 import { CassiereHomeComponent } from './cassiere-home/cassiere-home.component';
 import { AddettoBarHomeComponent } from './addetto-bar-home/addetto-bar-home.component';
 import { LoginGuard } from './helpers/login-guard';
+import { RigaOmbrelloneComponent } from './spiaggia/riga-ombrellone/riga-ombrellone.component';
 
 //TODO: inserie redirect e NOTFOUND
 const routes: Routes = [
@@ -38,7 +39,7 @@ const routes: Routes = [
     children: [
       { path: 'catalogo-bar', component: RigaBarComponent },
       { path: 'catalogo-attivita', component: RigaAttiviaComponent },
-      //{ path: 'catalogo-ombrelloni', component: RigheOmbrelloniComponent },
+      { path: 'catalogo-ombrelloni', component: RigaOmbrelloneComponent },
     ]
   },
 
