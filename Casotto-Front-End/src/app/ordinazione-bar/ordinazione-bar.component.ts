@@ -32,16 +32,11 @@ export class OrdinazioneBarComponent implements OnInit {
     })
   }
 
-  /*async ordinaDalBar(r: RigaCatalogoBar) {
+  async ordinaDalBar(r: RigaCatalogoBar) {
     if (this.askConfirm(r.valore.nome))
       await lastValueFrom(this.barService.ordina(r)).then(() => {
-        console.log(this.getRigheCatalogoBar());
+        this.getRigheCatalogoBar();
       })
-  }*/
-
-  ordinaDalBar(r: RigaCatalogoBar) {
-    if (this.askConfirm(r.valore.nome))
-      this.barService.ordina(r);
   }
 
   askConfirm(nomeArticolo: string): boolean {
