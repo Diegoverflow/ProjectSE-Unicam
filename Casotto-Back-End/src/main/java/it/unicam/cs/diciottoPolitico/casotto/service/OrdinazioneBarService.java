@@ -87,6 +87,8 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
      * specificata nel database e restituisce un {@code Optional} che descrive la {@code SimpleOrdinazioneBar} memorizzata.
      */
     public Optional<SimpleOrdinazioneBar> checkAndSave(SimpleOrdinazioneBar ordinazione) {
+        ordinazione.getVendita().setUtente(this.utenteService.getLoggedUser());
+
         SimpleNotifica notifica = new SimpleNotifica();
         var riga = this.barService.getRigaBy(ordinazione.getArticoloBar().getId());
         if (riga.isPresent() && riga.get().getQuantita() > 0
