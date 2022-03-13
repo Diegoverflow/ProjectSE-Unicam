@@ -21,8 +21,9 @@
     <div id="home" class="w3-content">
 
         <!-- Header image -->
-        <div style="height:800px;background-image:url('assets/img/menuBar.jpg');background-size:cover"
-            class="w3-display-container w3-grayscale-min">
+        <div style="height:800px;background-image:url('assets/img/menuBar.jpg');background-size:cover;background-repeat:no-repeat;
+        background-size:contain;
+        background-position:center;" class="w3-display-container w3-grayscale-min">
             <div class="w3-display-bottomleft">
                 <span class="w3-tag w3-xlarge">Aperti dalle 8 alle 00</span>
             </div>
@@ -42,7 +43,7 @@
             <h1 class="w3-center w3-jumbo w3-padding-32">IL MENU</h1>
             <div class="w3-row w3-center w3-border w3-border-dark-grey">
                 <!-- <a href="#bibite"> -->
-                    <a>
+                <a>
                     <div class="w3-third w3-padding-large w3-red">Bibite</div>
                 </a>
                 <!--<a href="#pasta">-->
@@ -50,14 +51,16 @@
                     <div class="w3-third w3-padding-large w3-hover-red">Pizze</div>
                 </a>
                 <!-- <a href="#starters"> -->
-                    <a><div class="w3-third w3-padding-large w3-hover-red">Altro</div>
+                <a>
+                    <div class="w3-third w3-padding-large w3-hover-red">Altro</div>
                 </a>
             </div>
             <div id="bibite" class="w3-container w3-white w3-padding-32">
                 <div *ngFor="let r of righeBar">
-                    <h1><b>{{r.valore.nome}}</b> <span class="w3-right w3-tag w3-dark-grey w3-round">{{r.prezzo | currency}}</span></h1>
-                        <h1><span class="w3-right w3-round"><button type="button" class="btn btn-success btn-lg" autocomplete="off"
-                        (click)="ordinaDalBar(r)">Ordina</button></span></h1>
+                    <h1><b>{{r.valore.nome}}</b> <span class="w3-right w3-tag w3-dark-grey w3-round">{{r.prezzo |
+                            currency}}</span></h1>
+                    <h1><span class="w3-right w3-round"><button type="button" class="btn btn-success btn-lg"
+                                autocomplete="off" (click)="ordinaDalBar(r)">Ordina</button></span></h1>
                     <p class="w3-text-grey">{{r.valore.descrizione}}</p>
                     <hr>
                 </div>
