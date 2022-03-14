@@ -71,6 +71,18 @@ export class OrdinazioneBarComponent implements OnInit {
       case this.menuVoices[1]:
         this.selectedMenuVoice = this.menuVoices[1];
         break;
+        case this.menuVoices[2]:
+        this.selectedMenuVoice = this.menuVoices[2];
+        break;
+      case this.menuVoices[3]:
+        this.selectedMenuVoice = this.menuVoices[3];
+        break;
+        case this.menuVoices[4]:
+        this.selectedMenuVoice = this.menuVoices[4];
+        break;
+      case this.menuVoices[5]:
+        this.selectedMenuVoice = this.menuVoices[5];
+        break;
     }
   }
 
