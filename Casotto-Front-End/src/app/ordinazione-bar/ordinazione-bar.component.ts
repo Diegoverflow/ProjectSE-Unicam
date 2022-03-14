@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { OrdinazioneBar } from '../model/ordinazione-bar';
 import { RigaCatalogoBar } from '../model/riga-catalogo-bar';
-import { OrdinazioneBarService } from './ordinazione-bar.service';
+import { OrdinazioneBarService } from '../service/ordinazione-bar.service';
 
 @Component({
   selector: 'app-ordinazione-bar',
