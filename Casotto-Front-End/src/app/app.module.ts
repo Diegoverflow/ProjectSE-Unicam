@@ -25,6 +25,9 @@ import { RigaBarEditorComponent } from './bar/riga-bar-editor/riga-bar-editor.co
 import { RigaOmbrelloneComponent } from './spiaggia/riga-ombrellone/riga-ombrellone.component';
 import { RigaOmbrelloneEditorComponent } from './spiaggia/riga-ombrellone-editor/riga-ombrellone-editor.component';
 import { PrenotazioneOmbrelloneService } from './prenotazione-ombrellone/service/prenotazione-ombrellone.service';
+import { HomeGuard } from './helpers/home-guard';
+import { VenditaComponent } from './vendita/vendita.component';
+import { OrdinazioneBarStoricoComponent } from './ordinazione-bar/ordinazione-bar-storico/ordinazione-bar-storico.component';
 registerLocaleData(localeIt, 'it');
 
 
@@ -44,7 +47,9 @@ registerLocaleData(localeIt, 'it');
     RigaBarComponent,
     RigaBarEditorComponent,
     RigaOmbrelloneComponent,
-    RigaOmbrelloneEditorComponent
+    RigaOmbrelloneEditorComponent,
+    VenditaComponent,
+    OrdinazioneBarStoricoComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,7 @@ registerLocaleData(localeIt, 'it');
   providers: [
     AuthenticationService,
     LoginGuard,
-    LoginGuard,
+    HomeGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: DefaultHttpInterceptor,

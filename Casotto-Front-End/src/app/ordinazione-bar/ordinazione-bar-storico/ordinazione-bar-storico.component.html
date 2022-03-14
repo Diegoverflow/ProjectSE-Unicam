@@ -1,0 +1,30 @@
+<div class="container">
+    <h1>Storico Ordinazioni Bar</h1>
+    <div class="table">
+        <input class="form-control" id="myInput" type="text" placeholder="Cerca...">
+        <br>
+        <table class="table" data-show-refresh="true">
+            <thead>
+                <tr class="table-danger">
+                    <th>Nome Articolo Bar</th>
+                    <th>Data Acquisto</th>
+                    <th>Costo</th>
+                    <th>Codice Spiaggia</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-primary" *ngFor="let o of ordinazioniDaPagare">
+                    <td>{{o.articoloBar.nome}}</td>
+                    <td>{{o.vendita.dataAcquisto | date:'dd EEEE MMMM yyyy'}}</td>
+                    <td>{{o.vendita.costo | currency}}</td>
+                    <td>{{o.codiceSpiaggia}}</td>
+                    <td style="color:green" *ngIf="o.vendita.pagata;else daPagare">Pagato</td>
+                    <ng-template #daPagare>
+                        <td style="color:red">Non Pagato</td>
+                    </ng-template>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

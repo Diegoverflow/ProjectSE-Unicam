@@ -1,1 +1,5 @@
-# ProjectSE-Unicam
+Il progetto Casotto è una single page application scritta in Java che fa uso dei frameworks SpringBoot&SpringSecurity al backend e del framework Angular al frontend.
+
+Il programma si inserisce nel contesto della realizzazione di uno Chalet smart. In particolare il sistema lato cliente, una volta essersi registrati e aver effettuato il login, permette di informarsi su come la struttura si compone, la prenotazione di diverse tipologie di ombrelloni per mezza o intera giornata, l'ordinazione di articoli bar dall'ombrellone tramite un QRcode e l'iscizione ad attività ludico/sportive proposte in giornata.
+Invece lato gestionale è possibile, con diverse granularità di permessi definiti dall'autenticazione, amministrare il sistema, partendo dalla gestione delle ordinazioni bar direttamente notificate sui terminali degli adetti che possono poi prenderle in carico, saldo delle vendite in cassa, per arrivare infine all'intera gestione del personale/clienti, il delinemento delle informazioni circa lo chalet e dei cataloghi dei servizi proposti, prezzi annessi.
+Tutti i dati vengono salvati e in un database per garantire la perdita dei dati stessi.

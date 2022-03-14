@@ -5,10 +5,8 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Service delle ordinazioni bar.
@@ -88,7 +86,6 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
      */
     public Optional<SimpleOrdinazioneBar> checkAndSave(SimpleOrdinazioneBar ordinazione) {
         ordinazione.getVendita().setUtente(this.utenteService.getLoggedUser());
-
         SimpleNotifica notifica = new SimpleNotifica();
         var riga = this.barService.getRigaBy(ordinazione.getArticoloBar().getId());
         if (riga.isPresent() && riga.get().getQuantita() > 0
@@ -119,5 +116,29 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         return null;
     }
 
+    public List<SimpleOrdinazioneBar> getAllByLoggedUser(){
+        var l =  this.getAllDaPagareByLoggedUser();
+        l.addAll(this.getAllPagateByLoggedUser());
+        return l;
+    }
 
+    public List<SimpleOrdinazioneBar> getAllPagateByLoggedUser() {
+        Comparator<SimpleOrdinazioneBar> reversDateOrder = (o1, o2) ->
+                o2.getVendita().getDataAcquisto().compareTo(o1.getVendita().getDataAcquisto());
+        return this.getAll().stream().filter(o -> o.getVendita().isPagata())
+                .sorted((Comparator.comparing(o -> o.getArticoloBar().getNome()))).
+                parallel()
+                .sorted(reversDateOrder)
+                .collect(Collectors.toList());
+    }
+
+    public List<SimpleOrdinazioneBar> getAllDaPagareByLoggedUser(){
+        Comparator<SimpleOrdinazioneBar> reversDateOrder = (o1, o2) ->
+                o2.getVendita().getDataAcquisto().compareTo(o1.getVendita().getDataAcquisto());
+        return this.getAll().stream().filter(o -> !o.getVendita().isPagata())
+                .sorted((Comparator.comparing(o -> o.getArticoloBar().getNome()))).
+                parallel()
+                .sorted(reversDateOrder)
+                .collect(Collectors.toList());
+    }
 }
