@@ -30,7 +30,7 @@ export class HomeGuard implements CanActivate, CanActivateChild {
     }
 
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-        return this.canActivate(childRoute,state) 
+        return this.canActivate(childRoute.parent!,state) 
     }
 
     private redirect(ruolo: string) {
