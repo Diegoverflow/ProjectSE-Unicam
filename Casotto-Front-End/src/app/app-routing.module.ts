@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'cliente-home',
     component: ClienteHomeComponent,
-    canLoad: [HomeGuard],
+    canActivate: [HomeGuard],
     canActivateChild: [HomeGuard],
     data: { ruolo: 'CLIENTE' },
     children: [
