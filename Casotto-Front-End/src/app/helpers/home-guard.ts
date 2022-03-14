@@ -7,7 +7,7 @@ import { AuthenticationService } from '../authentication/service/authentication.
     providedIn: 'root'
 })
 
-export class AuthGuard implements CanActivate, CanActivateChild {
+export class HomeGuard implements CanActivate, CanActivateChild {
 
     constructor(private router: Router, private authService: AuthenticationService) { }
 
@@ -25,8 +25,17 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
     }
 
-    canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        return this.canActivate(childRoute.parent!, state);
+    async canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+        let tokenValidation !: boolean
+        await lastValueFrom(this.authService.checkToken()).then(b => tokenValidation = b)
+        if (tokenValidation === true) {
+            let ruolo !: string
+            await lastValueFrom(this.authService.getRuolo()).then(r => ruolo = r)
+            this.authService.saveRuolo(ruolo)
+            return childRoute.data!['ruolo'] === ruolo
+        }
+        
+        return false;
     }
 
 }

@@ -4,7 +4,7 @@ import { RigaAttiviaComponent } from './attivita/riga-attivita/riga-attivita.com
 import { RigaBarComponent } from './bar/riga-bar/riga-bar.component';
 import { AuthenticationComponent } from './authentication/component/authentication.component';
 import { GestoreHomeComponent } from './gestore-home/gestore-home.component'
-import { AuthGuard } from './helpers/home-guard';
+import { HomeGuard } from './helpers/home-guard';
 import { ClienteHomeComponent } from './cliente-home/cliente-home.component';
 import { PrenotazioneOmbrelloneComponent } from './prenotazione-ombrellone/prenotazione-ombrellone.component';
 import { PrenotazioneAttivitaComponent } from './prenotazione-attivita/prenotazione-attivita.component';
@@ -20,8 +20,8 @@ const routes: Routes = [
   {
     path: 'cliente-home',
     component: ClienteHomeComponent,
-    canLoad: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    canLoad: [HomeGuard],
+    canActivateChild: [HomeGuard],
     data: { ruolo: 'CLIENTE' },
     children: [
       { path: 'prenotazione-ombrellone', component: PrenotazioneOmbrelloneComponent },
@@ -33,8 +33,8 @@ const routes: Routes = [
   {
     path: 'gestore-home',
     component: GestoreHomeComponent,
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    canActivate: [HomeGuard],
+    canActivateChild: [HomeGuard],
     data: { ruolo: 'GESTORE' },
     children: [
       { path: 'catalogo-bar', component: RigaBarComponent },
@@ -46,8 +46,8 @@ const routes: Routes = [
   {
     path: 'cassiere-home',
     component: CassiereHomeComponent,
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    canActivate: [HomeGuard],
+    canActivateChild: [HomeGuard],
     data: { ruolo: 'CASSIERE' },
     children: [
     ]
@@ -56,8 +56,8 @@ const routes: Routes = [
   {
     path: 'addetto-bar-home',
     component: AddettoBarHomeComponent,
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    canActivate: [HomeGuard],
+    canActivateChild: [HomeGuard],
     data: { ruolo: 'ADDETTO_BAR' },
     children: [
     ]
