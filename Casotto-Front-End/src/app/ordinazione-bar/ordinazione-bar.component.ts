@@ -13,6 +13,8 @@ export class OrdinazioneBarComponent implements OnInit {
 
   righeBar: RigaCatalogoBar[] = new Array();
 
+  
+
   menuButton: boolean = false;
 
   constructor(private barService: OrdinazioneBarService) { }

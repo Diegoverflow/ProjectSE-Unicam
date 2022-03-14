@@ -7,6 +7,8 @@ import it.unicam.cs.diciottoPolitico.casotto.model.SimpleArticoloBar;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOrdinazioneBar;
 import it.unicam.cs.diciottoPolitico.casotto.repository.OrdinazioneBarRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.OrdinazioneBarService;
+import it.unicam.cs.diciottoPolitico.casotto.service.UtenteService;
+import it.unicam.cs.diciottoPolitico.casotto.service.VenditaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * RestController delle ordinazioni bar che effettuano i clienti.
@@ -30,6 +33,8 @@ public class OrdinazioneBarController {
 
     @Autowired
     private OrdinazioneBarService ordinazioneBarService;
+    @Autowired
+    private UtenteService utenteService;
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
@@ -40,6 +45,11 @@ public class OrdinazioneBarController {
     @GetMapping("/all")
     public List<SimpleOrdinazioneBar> getAllOrdinazioni() {
         return this.ordinazioneBarService.getAll();
+    }
+
+    @GetMapping("/all/loggedUser")
+    public List<SimpleOrdinazioneBar> getAllOrdinazioniByLoggedUser(){
+        return this.ordinazioneBarService.getAllByLoggedUser();
     }
 
     /**
