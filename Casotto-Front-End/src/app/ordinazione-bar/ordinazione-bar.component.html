@@ -37,36 +37,52 @@
             </div>
         </div>
 
-        
+
 
         <!-- Menu -->
         <div *ngIf="menuButton" id="menu" class="w3-container w3-black w3-xxlarge w3-padding-64">
             <h1 class="w3-center w3-jumbo w3-padding-32">IL MENU</h1>
             <div class="w3-row w3-center w3-border w3-border-dark-grey">
-                <!-- <a href="#bibite"> -->
-                <a>
-                    <div class="w3-third w3-padding-large w3-red">Bibite</div>
-                </a>
-                <!--<a href="#pasta">-->
-                <a>
-                    <div class="w3-third w3-padding-large w3-hover-red">Pizze</div>
-                </a>
-                <!-- <a href="#starters"> -->
-                <a>
-                    <div class="w3-third w3-padding-large w3-hover-red">Altro</div>
-                </a>
+                <button class="w3-third w3-padding-large w3-red" (click)="selectMenuVoice(t)"
+                    *ngFor="let t of menuVoices">{{t}}</button>
             </div>
-            <div id="bibite" class="w3-container w3-white w3-padding-32">
+            <div *ngFor="let t of menuVoices" class="w3-container w3-white w3-padding-32">
                 <div *ngFor="let r of righeBar">
+                    <div *ngIf="r.valore.tipoArticoloBar===t">
+                        <h1><b>{{r.valore.nome}}</b> <span class="w3-right w3-tag w3-dark-grey w3-round">{{r.prezzo |
+                                currency}}</span></h1>
+                        <h1><span class="w3-right w3-round"><button type="button" class="btn btn-success btn-lg"
+                                    autocomplete="off" (click)="ordinaDalBar(r)">Ordina</button></span></h1>
+                        <p class="w3-text-grey">{{r.valore.descrizione}}</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <!-- <div *ngIf="selectedMenuVoice===menuVoices[0]" class="w3-container w3-white w3-padding-32">
+                <div *ngFor="let r of righeBar">
+                    <div *ngIf="r.valore.tipoArticoloBar===menuVoices[0]">
                     <h1><b>{{r.valore.nome}}</b> <span class="w3-right w3-tag w3-dark-grey w3-round">{{r.prezzo |
                             currency}}</span></h1>
                     <h1><span class="w3-right w3-round"><button type="button" class="btn btn-success btn-lg"
                                 autocomplete="off" (click)="ordinaDalBar(r)">Ordina</button></span></h1>
                     <p class="w3-text-grey">{{r.valore.descrizione}}</p>
                     <hr>
+                    </div>
                 </div>
             </div>
-            <!-- <div id="pizza" class="w3-container w3-white w3-padding-32">
+            <div *ngIf="selectedMenuVoice===menuVoices[1]" class="w3-container w3-white w3-padding-32">
+                <div *ngFor="let r of righeBar">
+                    <div *ngIf="r.valore.tipoArticoloBar===menuVoices[0]">
+                    <h1><b>{{r.valore.nome}}</b> <span class="w3-right w3-tag w3-dark-grey w3-round">{{r.prezzo |
+                            currency}}</span></h1>
+                    <h1><span class="w3-right w3-round"><button type="button" class="btn btn-success btn-lg"
+                                autocomplete="off" (click)="ordinaDalBar(r)">Ordina</button></span></h1>
+                    <p class="w3-text-grey">{{r.valore.descrizione}}</p>
+                    <hr>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div *ngIf="selectedMenuVoice==='PIZZA'"class="w3-container w3-white w3-padding-32">
                 <h1><b>Margherita</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$12.50</span></h1>
                 <p class="w3-text-grey">Fresh tomatoes, fresh mozzarella, fresh basil</p>
                 <hr>
@@ -84,7 +100,7 @@
                 </h1>
                 <p class="w3-text-grey">Fresh tomatoes, mozzarella, hot pepporoni, hot sausage, beef, chicken</p>
             </div>
-            <h1 id="pasta" class="w3-center w3-jumbo w3-padding-32">PASTA</h1>
+            <!-- <h1 id="pasta" class="w3-center w3-jumbo w3-padding-32">PASTA</h1>
             <div class="w3-container w3-white w3-padding-32">
                 <h1><b>Lasagna</b> <span class="w3-tag w3-grey w3-round">Popular</span>
                     <span class="w3-right w3-tag w3-dark-grey w3-round">$13.50</span>

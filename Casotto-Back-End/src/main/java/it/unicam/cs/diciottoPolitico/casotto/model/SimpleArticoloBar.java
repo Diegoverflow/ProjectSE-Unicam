@@ -18,7 +18,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = "id")
-@ToString
 public class SimpleArticoloBar implements ArticoloBar {
 
     @Id
@@ -31,6 +30,10 @@ public class SimpleArticoloBar implements ArticoloBar {
 
     @Column(length = 1000)
     private String descrizione;
+
+    @Enumerated(EnumType.STRING)
+    @Column
+    private TipoArticoloBar tipoArticoloBar;
 
     protected SimpleArticoloBar() {
         this.id = UUID.randomUUID();

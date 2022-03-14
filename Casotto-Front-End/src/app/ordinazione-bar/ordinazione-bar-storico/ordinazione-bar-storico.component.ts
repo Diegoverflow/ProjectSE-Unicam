@@ -12,13 +12,12 @@ export class OrdinazioneBarStoricoComponent implements OnInit, AfterViewInit {
   ordinazioniDaPagare: OrdinazioneBar[] = new Array();
 
   constructor(private barService: OrdinazioneBarService) { }
-  
+
   ngAfterViewInit(): void {
     this.getOrdinazioniDaPagare();
   }
 
   ngOnInit(): void {
-    this.getOrdinazioniDaPagare();
   }
 
   getOrdinazioniDaPagare() {

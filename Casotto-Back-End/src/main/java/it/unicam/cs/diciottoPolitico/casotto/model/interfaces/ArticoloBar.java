@@ -1,5 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.model.interfaces;
 
+import it.unicam.cs.diciottoPolitico.casotto.model.TipoArticoloBar;
+
 import java.util.UUID;
 
 /**
@@ -29,7 +31,31 @@ public interface ArticoloBar {
      */
     void setDescrizione(String descrizione);
 
+    /**
+     * Restituisce il tipo di questo articolo bar.
+     *
+     * @return il tipo di questo articolo bar
+     */
+    TipoArticoloBar getTipoArticoloBar();
+
+    /**
+     * Imposta il tipo specificato a questo articolo bar.
+     *
+     * @param tipo il tipo da specificare a questo articolo bar
+     */
+    void setTipoArticoloBar(TipoArticoloBar tipo);
+
+    /**
+     * Restituisce il nome di questo articolo bar.
+     *
+     * @return il nome di questo articolo bar
+     */
     String getNome();
 
+    /**
+     * Imposta il nome specificato a questo articolo bar.
+     *
+     * @param nome il nome da specificare a questo articolo bar
+     */
     void setNome(String nome);
 }

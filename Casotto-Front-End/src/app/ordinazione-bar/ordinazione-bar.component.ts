@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { OrdinazioneBar } from '../model/ordinazione-bar';
 import { RigaCatalogoBar } from '../model/riga-catalogo-bar';
+import { TipoArticoloBar } from '../model/tipo-articolo-bar';
 import { OrdinazioneBarService } from '../service/ordinazione-bar.service';
 
 @Component({
@@ -13,14 +14,19 @@ export class OrdinazioneBarComponent implements OnInit {
 
   righeBar: RigaCatalogoBar[] = new Array();
 
-  
-
   menuButton: boolean = false;
 
-  constructor(private barService: OrdinazioneBarService) { }
+  menuVoices: TipoArticoloBar[] = new Array();
+
+  selectedMenuVoice: TipoArticoloBar;
+
+  constructor(private barService: OrdinazioneBarService) {
+    this.selectedMenuVoice = TipoArticoloBar.BEVANDA;
+  }
 
   ngOnInit(): void {
     this.getRigheCatalogoBar();
+    this.initializeMenuVoices();
   }
 
   showMenu() {
@@ -51,5 +57,22 @@ export class OrdinazioneBarComponent implements OnInit {
       return false;
     }
   }
+
+  initializeMenuVoices() {
+    for (var t in TipoArticoloBar)
+      this.menuVoices.push(<TipoArticoloBar>t);
+  }
+
+  selectMenuVoice(t: string) {
+    switch (t) {
+      case this.menuVoices[0]:
+        this.selectedMenuVoice = this.menuVoices[0];
+        break;
+      case this.menuVoices[1]:
+        this.selectedMenuVoice = this.menuVoices[1];
+        break;
+    }
+  }
+
 
 }
