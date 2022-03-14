@@ -24,6 +24,7 @@ import { RigaBarComponent } from './bar/riga-bar/riga-bar.component';
 import { RigaBarEditorComponent } from './bar/riga-bar-editor/riga-bar-editor.component';
 import { RigaOmbrelloneComponent } from './spiaggia/riga-ombrellone/riga-ombrellone.component';
 import { RigaOmbrelloneEditorComponent } from './spiaggia/riga-ombrellone-editor/riga-ombrellone-editor.component';
+import { PrenotazioneOmbrelloneService } from './prenotazione-ombrellone/service/prenotazione-ombrellone.service';
 registerLocaleData(localeIt, 'it');
 
 
@@ -63,7 +64,8 @@ registerLocaleData(localeIt, 'it');
     },
     [{ provide: LOCALE_ID, useValue: 'it' }  // BISOGNA INSERIRE LA DATA NEL PROVIDER!
       , { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' }], // Per visualizzare in euro
-  ],
+    PrenotazioneOmbrelloneService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
