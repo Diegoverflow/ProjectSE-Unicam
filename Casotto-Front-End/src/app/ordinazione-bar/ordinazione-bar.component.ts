@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { OrdinazioneBar } from '../model/ordinazione-bar';
 import { RigaCatalogoBar } from '../model/riga-catalogo-bar';
 import { TipoArticoloBar } from '../model/tipo-articolo-bar';
 import { OrdinazioneBarService } from '../service/ordinazione-bar.service';
@@ -16,12 +15,15 @@ export class OrdinazioneBarComponent implements OnInit {
 
   menuButton: boolean = false;
 
-  menuVoices: TipoArticoloBar[] = new Array();
+  ArticoloBartypes: TipoArticoloBar[] = new Array();
 
-  selectedMenuVoice: TipoArticoloBar;
+  selectedMenuVoice?: TipoArticoloBar;
+
+  menuVoices: string[] = new Array();
+
+  voiceTextMenu?: string;
 
   constructor(private barService: OrdinazioneBarService) {
-    this.selectedMenuVoice = TipoArticoloBar.BEVANDA;
   }
 
   ngOnInit(): void {
@@ -59,32 +61,43 @@ export class OrdinazioneBarComponent implements OnInit {
   }
 
   initializeMenuVoices() {
-    for (var t in TipoArticoloBar)
-      this.menuVoices.push(<TipoArticoloBar>t);
+    for (var t in TipoArticoloBar){
+      this.ArticoloBartypes.push(<TipoArticoloBar>t);
+    }
+    this.menuVoices = ["BEVANDE", "PIZZE", "PRIMI PIATTI", "SECONDI PIATTI", "DOLCI", "PANINI"];
+    this.selectedMenuVoice = this.ArticoloBartypes[0];
+    this.voiceTextMenu = this.menuVoices[0];
   }
 
   selectMenuVoice(t: string) {
     switch (t) {
       case this.menuVoices[0]:
-        this.selectedMenuVoice = this.menuVoices[0];
+        this.selectedMenuVoice = this.ArticoloBartypes[0];
+        this.voiceTextMenu = this.menuVoices[0];
         break;
       case this.menuVoices[1]:
-        this.selectedMenuVoice = this.menuVoices[1];
+        this.selectedMenuVoice = this.ArticoloBartypes[1];
+        this.voiceTextMenu = this.menuVoices[1];
         break;
-        case this.menuVoices[2]:
-        this.selectedMenuVoice = this.menuVoices[2];
+      case this.menuVoices[2]:
+        this.selectedMenuVoice = this.ArticoloBartypes[2];
+        this.voiceTextMenu = this.menuVoices[2];
         break;
       case this.menuVoices[3]:
-        this.selectedMenuVoice = this.menuVoices[3];
+        this.selectedMenuVoice = this.ArticoloBartypes[3];
+        this.voiceTextMenu = this.menuVoices[3];
         break;
-        case this.menuVoices[4]:
-        this.selectedMenuVoice = this.menuVoices[4];
+      case this.menuVoices[4]:
+        this.selectedMenuVoice = this.ArticoloBartypes[4];
+        this.voiceTextMenu = this.menuVoices[4];
         break;
       case this.menuVoices[5]:
-        this.selectedMenuVoice = this.menuVoices[5];
+        this.selectedMenuVoice = this.ArticoloBartypes[5];
+        this.voiceTextMenu = this.menuVoices[5];
         break;
     }
+    console.log(this.selectedMenuVoice);
+    console.log(this.voiceTextMenu);
   }
-
 
 }

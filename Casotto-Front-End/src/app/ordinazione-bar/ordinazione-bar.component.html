@@ -35,16 +35,19 @@
             </div>
         </div>
 
-
-
         <!-- Menu -->
         <div *ngIf="menuButton" id="menu" class="w3-container w3-black w3-xxlarge w3-padding-64">
             <h1 class="w3-center w3-jumbo w3-padding-32">IL MENU</h1>
+            <div class="w3-container w3-white">
+                <p class="w3-text-grey">Nota che questo non è un menù completo, bensì il catalogo degli articoli bar
+                    attualmente disponibili.</p>
+            </div>
             <div class="w3-row w3-center w3-border w3-border-dark-grey">
-                <button class="w3-third w3-padding-large w3-red" (click)="selectMenuVoice(v)"
+                <button type="button" class="w3-third w3-padding-large w3-red" (click)="selectMenuVoice(v)"
                     *ngFor="let v of menuVoices">{{v}}</button>
             </div>
             <div class="w3-container w3-white w3-padding-32">
+                <h1 class="w3-center w3-jumbo w3-padding-32">{{voiceTextMenu}}</h1>
                 <div *ngFor="let r of righeBar">
                     <div *ngIf="r.valore.tipoArticoloBar===selectedMenuVoice">
                         <h1><b>{{r.valore.nome}}</b> <span
