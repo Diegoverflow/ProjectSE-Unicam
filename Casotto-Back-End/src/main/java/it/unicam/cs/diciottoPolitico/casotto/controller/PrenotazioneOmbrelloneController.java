@@ -29,7 +29,7 @@ import java.util.UUID;
  * @see PrenotazioneOmbrelloneService
  */
 @RestController
-@RequestMapping("/prenotazioni/ombrelloni")
+    @RequestMapping("/prenotazioni/ombrelloni")
 public class PrenotazioneOmbrelloneController{
 
     @Autowired
@@ -43,8 +43,8 @@ public class PrenotazioneOmbrelloneController{
      * @param fasciaOraria la fascia oraria in cui cercare il {@link SimpleOmbrellone} disponibile
      * @return la lista di tutte le righe del catalogo degli ombrelloni disponibili in base alla data e alla {@code FasciaOraria} specificate.
      */
-    @GetMapping("/disponibili/{data}/{fasciaOraria}")
-    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data, @PathVariable FasciaOraria fasciaOraria) {
+    @GetMapping("/disponibili")
+    public List<SimpleRigaCatalogoOmbrellone> getOmbrelloniDisponibili(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data, @RequestParam FasciaOraria fasciaOraria) {
         return this.prenotazioneOmbrelloneService.getRigheDisponibiliBy(data, fasciaOraria);
     }
 
