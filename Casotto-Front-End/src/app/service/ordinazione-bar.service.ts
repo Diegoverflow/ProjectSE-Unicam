@@ -10,7 +10,7 @@ import { RigaCatalogoBar } from "../model/riga-catalogo-bar";
 })
 export class OrdinazioneBarService {
 
-    private urlOrdinazioniBar: string = environment.apiBaseUrl+'/bar/ordinazioni';
+    private urlOrdinazioniBar: string = environment.apiBaseUrl + '/bar/ordinazioni';
 
     constructor(private http: HttpClient) {
     }
@@ -19,8 +19,8 @@ export class OrdinazioneBarService {
         return this.http.get<RigaCatalogoBar[]>(this.urlOrdinazioniBar + '/disponibili', { withCredentials: true });
     }
 
-    getOrdinazioniDaPagare(): Observable<OrdinazioneBar[]>{
-        return this.http.get<OrdinazioneBar[]>(this.urlOrdinazioniBar+'/all/loggedUser', { withCredentials: true });
+    getOrdinazioniDaPagare(): Observable<OrdinazioneBar[]> {
+        return this.http.get<OrdinazioneBar[]>(this.urlOrdinazioniBar + '/all/loggedUser', { withCredentials: true });
     }
 
     ordina(riga: RigaCatalogoBar): Observable<OrdinazioneBar> {
@@ -31,7 +31,7 @@ export class OrdinazioneBarService {
             vendita: {
                 costo: riga.prezzo
             },
-            codiceSpiaggia: "1"
+            codiceSpiaggia: "1" // TODO: mettere ombrellone vero
         }
             , { withCredentials: true });
     }

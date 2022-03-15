@@ -17,8 +17,9 @@ export class AddettoBarHomeComponent implements OnInit {
   ngOnInit(): void {
     this.addettoService.getAllOrdinazioniBy(StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO).subscribe(o=>{
       this.ordinazioniBar = o;
+      console.log(this.ordinazioniBar);
     })
-    console.log(this.ordinazioniBar);
+    
   }
 
 }
