@@ -1,1 +1,24 @@
 <p>prenotazione-ombrellone works!</p>
+<form [formGroup]="dataFasciaOraria" (ngSubmit)="getOmbrelloniLiberi()">
+    <input formControlName="datePicker" matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <br>
+    <label>Choose a dog name:</label>
+    <br>
+    <select formControlName="fasciaOraria">
+        <option *ngFor="let f of fascieOrarie" value={{f}}>{{f}}</option>
+    </select>
+
+    <br>
+    <ul>
+        <li *ngFor="let r of righeOmbrellone ">
+            Ombrellone : {{r.valore.codiceSpiaggia}}<br>
+            Categoria : {{r.valore.categoria}}<br>
+            Prezzo : {{r.prezzoOmbrellone | currency}}<br>
+            <button type="button" class="btn btn-success" autocomplete="off"
+                (click)="prenotaOmbrellone(r)">Prenota</button>
+        </li>
+    </ul>
+</form>

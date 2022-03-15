@@ -1,6 +1,6 @@
 export interface Vendita{
-    id: string;
-    dataAcquisto: Date;
+    id?: string;
+    dataAcquisto?: Date;
     costo: number;
-    pagata: boolean;
+    pagata?: boolean;
 }

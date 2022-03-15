@@ -24,10 +24,15 @@ import { RigaBarComponent } from './bar/riga-bar/riga-bar.component';
 import { RigaBarEditorComponent } from './bar/riga-bar-editor/riga-bar-editor.component';
 import { RigaOmbrelloneComponent } from './spiaggia/riga-ombrellone/riga-ombrellone.component';
 import { RigaOmbrelloneEditorComponent } from './spiaggia/riga-ombrellone-editor/riga-ombrellone-editor.component';
-import { PrenotazioneOmbrelloneService } from './prenotazione-ombrellone/service/prenotazione-ombrellone.service';
+import { PrenotazioneOmbrelloneService } from './service/prenotazione-ombrellone.service';
 import { HomeGuard } from './helpers/home-guard';
 import { VenditaComponent } from './vendita/vendita.component';
 import { OrdinazioneBarStoricoComponent } from './ordinazione-bar/ordinazione-bar-storico/ordinazione-bar-storico.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker'
+import { MatInputModule } from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core'
 registerLocaleData(localeIt, 'it');
 
 
@@ -56,7 +61,11 @@ registerLocaleData(localeIt, 'it');
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatDatepickerModule
   ],
   providers: [
     AuthenticationService,

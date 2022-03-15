@@ -1,0 +1,12 @@
+ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    display: inline-block;
+    width: 33%;
+    min-height: 100px;
+    background: #ccc;
+    border: solid 1px black;
+}

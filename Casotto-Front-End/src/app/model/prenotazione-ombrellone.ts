@@ -3,9 +3,9 @@ import { FasciaOraria } from "./fascia-oraria";
 import { Vendita } from "./vendita";
 
 export interface PrenotazioneOmbrellone{
-    id: string;
+    id?: string;
     fasciaOraria: FasciaOraria;
     ombrellone: Ombrellone;
-    dataPrenotazione: Date;
+    dataPrenotazione: Date|String;
     vendita: Vendita;
 }

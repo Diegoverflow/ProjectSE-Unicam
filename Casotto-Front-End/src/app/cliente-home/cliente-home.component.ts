@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../authentication/service/authentication.service';
 
 @Component({
   selector: 'app-cliente-home',
@@ -8,9 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ClienteHomeComponent implements OnInit {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService) { }
+
+  onLogout() {
+    this.authenticationService.logout().subscribe(() => {
+      this.router.navigate(['/login'])
+      sessionStorage.clear()
+    })
+  }
 
   ngOnInit(): void {
   }
-  
+
 }

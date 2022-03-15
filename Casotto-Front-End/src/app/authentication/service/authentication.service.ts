@@ -43,4 +43,8 @@ export class AuthenticationService {
     return this.http.get<boolean>(`${this.apiServerUrl}/check-token`, { withCredentials: true });
   }
 
+  public logout():Observable<void>{
+    return this.http.post<void>(`${this.apiServerUrl}/logout`,null,{withCredentials:true})
+  }
+
 }
