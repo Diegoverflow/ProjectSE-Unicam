@@ -16,9 +16,9 @@ export class AddettoBarService {
 
     getAllOrdinazioniBy(status: StatusOrdinazioneBar): Observable<OrdinazioneBar[]> {
         let queryParams = new HttpParams();
-        queryParams.append("status", status);
+        queryParams = queryParams.append("status", status);
         return this.http.get<OrdinazioneBar[]>(this.urlOrdinazioniBar,
-            { params: queryParams ,  withCredentials: true });
+            { params: queryParams, withCredentials: true });
     }
 
 }
