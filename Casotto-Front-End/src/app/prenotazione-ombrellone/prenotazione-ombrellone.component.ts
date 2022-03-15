@@ -26,7 +26,7 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
     this._fascieOrarie = [FasciaOraria.GIORNATA_INTERA, FasciaOraria.MATTINO, FasciaOraria.POMERIGGIO];
     this.righeOmbrellone = [];
     this._dataFasciaOraria = this.formBuilder.group({
-      datePicker: new Date().toISOString().substring(0, 10),
+      datePicker: new Date(),
       fasciaOraria: FasciaOraria.GIORNATA_INTERA
     })
   }
