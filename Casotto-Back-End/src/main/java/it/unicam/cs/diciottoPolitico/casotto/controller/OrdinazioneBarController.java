@@ -78,18 +78,6 @@ public class OrdinazioneBarController {
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
-     * Restituisce la lista di tutte le ordinazioni bar effettuate dai clienti che si trovano nello {@link StatusOrdinazioneBar} specificato nel {@link RequestParam}.
-     *
-     * @param status lo status in cui si devono trovare le ordinazioni bar
-     * @return la lista di tutte le ordinazioni bar che si trovano nello {@code StatusOrdinazioneBar} specificato
-     */
-    @GetMapping(params = "status")
-    public List<SimpleOrdinazioneBar> filtraByStatus(@RequestParam(value = "status") StatusOrdinazioneBar status) {
-        return this.ordinazioneBarService.filtraBy(status);
-    }
-
-    /**
-     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
      * Restituisce la lista di tutte le ordinazioni bar effettuate dai clienti che hanno ordinato il {@link SimpleArticoloBar} specificato nel {@link RequestParam}.
      *
      * @param articoloBar il {@code SimpleArticoloBar} che devono contenere le ordinazioni bar
@@ -98,6 +86,18 @@ public class OrdinazioneBarController {
     @GetMapping(params = "articolo-bar")
     public List<SimpleOrdinazioneBar> filtraByArticoloBar(@RequestParam(value = "articolo_bar") SimpleArticoloBar articoloBar) {
         return this.ordinazioneBarService.filtraBy(articoloBar);
+    }
+
+    /**
+     * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
+     * Restituisce la lista di tutte le ordinazioni bar effettuate dai clienti che si trovano nello {@link StatusOrdinazioneBar} specificato nel {@link RequestParam}.
+     *
+     * @param status lo status in cui si devono trovare le ordinazioni bar
+     * @return la lista di tutte le ordinazioni bar che si trovano nello {@code StatusOrdinazioneBar} specificato
+     */
+    @GetMapping(params = "status")
+    public List<SimpleOrdinazioneBar> filtraByStatus(@RequestParam(value = "status") StatusOrdinazioneBar status) {
+        return this.ordinazioneBarService.filtraBy(status);
     }
 
     /**
