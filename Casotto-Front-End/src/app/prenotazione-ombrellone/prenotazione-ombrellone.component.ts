@@ -20,9 +20,12 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
 
   private _fascieOrarie !: FasciaOraria[];
 
+  private _minDate !: Date;
+
   constructor(private prenotazioneOmbrelloniservice: PrenotazioneOmbrelloneService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this._minDate = new Date();
     this._fascieOrarie = [FasciaOraria.GIORNATA_INTERA, FasciaOraria.MATTINO, FasciaOraria.POMERIGGIO];
     this.righeOmbrellone = [];
     this._dataFasciaOraria = this.formBuilder.group({
@@ -30,6 +33,10 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
       fasciaOraria: FasciaOraria.GIORNATA_INTERA
     })
   }
+
+get minDate(){
+  return this._minDate;
+}
 
   get fascieOrarie() {
     return this._fascieOrarie;
