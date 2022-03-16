@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { AuthenticationService } from '../authentication/service/authentication.service';
+import { Notifica } from '../model/notifica';
 import { OrdinazioneBar } from '../model/ordinazione-bar';
 import { StatusOrdinazioneBar } from '../model/status-ordinazione';
 import { AddettoBarService } from '../service/addetto-bar.service';
@@ -20,13 +22,19 @@ export class AddettoBarHomeComponent implements OnInit {
 
   statuses: StatusOrdinazioneBar[] = new Array();
 
-  constructor(private addettoService: AddettoBarService) {
+  notifiche: Notifica[] = new Array();
+
+  constructor(private addettoService: AddettoBarService, private aService: AuthenticationService) {
 
     this.selectedStatus = StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO;
   }
 
   ngOnInit(): void {
     this.initializeStatuses();
+    console.log(this.aService.getNotifiche().subscribe((n) => {
+      this.notifiche = n;
+      console.log(this.notifiche);
+    }));
   }
 
   selectStatus(s: string) {
@@ -79,7 +87,7 @@ export class AddettoBarHomeComponent implements OnInit {
   async consegna(o: OrdinazioneBar) {
     if (this.askConfirm("consegnare", "conegnata"))
       await lastValueFrom(this.addettoService.consegna(o.id)).then(() => {
-        this.getOrdinazioniByStatus(StatusOrdinazioneBar.CONSEGNATO);
+        this.getOrdinazioniByStatus(StatusOrdinazioneBar.PRESO_IN_CARICO);
       })
   }
 

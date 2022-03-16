@@ -28,5 +28,5 @@ public interface Notifica {
     *
     * @return la lista di utenti della notifica
     */
-   Set<SimpleUtente> getUtenti();
+   List<SimpleUtente> getUtenti();
 }

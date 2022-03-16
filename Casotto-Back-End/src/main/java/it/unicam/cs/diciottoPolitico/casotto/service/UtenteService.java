@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.RuoloUtente;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleNotifica;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,10 @@ public class UtenteService extends AbstractService<SimpleUtente, UtenteRepositor
 
     public SimpleUtente getLoggedUser(){
         return this.getBy((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    }
+
+    public List<SimpleNotifica> getAllNotificheLoggedUser(){
+        return this.getLoggedUser().getNotifiche();
     }
 
 }

@@ -44,11 +44,11 @@ public class SimpleUtente implements Utente {
 
     @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "utenti", fetch = FetchType.LAZY)
     @NonNull
-    private  Set<SimpleNotifica> notifiche;
+    private  List<SimpleNotifica> notifiche;
 
     public SimpleUtente(){
         this.id = UUID.randomUUID();
-        this.notifiche = new HashSet<>();
+        this.notifiche = new ArrayList<>();
     }
 
 }

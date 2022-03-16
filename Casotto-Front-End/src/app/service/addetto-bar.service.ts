@@ -29,12 +29,12 @@ export class AddettoBarService {
     prendiInCarico(id: string) {
         const url = `${this.urlOrdinazioniBar}/prendi-in-carico/${id}`;
         console.log(url);
-        return this.http.patch<OrdinazioneBar>(this.urlOrdinazioniBar + url, { withCredentials: true });
+        return this.http.patch<OrdinazioneBar>(url, null, { withCredentials: true });
     }
 
     consegna(id: string) {
         const url = `${this.urlOrdinazioniBar}/consegna/${id}`;
-        return this.http.patch<OrdinazioneBar>(this.urlOrdinazioniBar + url, { withCredentials: true });
+        return this.http.patch<OrdinazioneBar>(url, null, { withCredentials: true });
     }
 
 }
