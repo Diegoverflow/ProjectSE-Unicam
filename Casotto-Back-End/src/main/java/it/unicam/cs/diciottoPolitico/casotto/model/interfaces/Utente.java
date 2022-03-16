@@ -94,7 +94,7 @@ public interface Utente {
      *
      * @return la lista di notifiche dell' utente
      */
-    Set<SimpleNotifica> getNotifiche();
+    List<SimpleNotifica> getNotifiche();
 
     /**
      * Confronta l' elemento specificato con questo utente.

@@ -1,32 +1,34 @@
-<h1>Catalogo Attività disponibili</h1>
-<div class="table">
-    <table class="table" data-show-refresh="true">
-        <thead>
-            <tr class="table-danger">
-                <th>Nome Attività</th>
-                <th>Descrizione</th>
-                <th>Inizio</th>
-                <th>Fine</th>
-                <th>Prezzo</th>
-                <th>Posti Totali</th>
-                <th>Posti disponibili</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="table-primary" *ngFor="let r of righeAttivita">
-                <td>{{r.valore.nome}}</td>
-                <td>{{r.valore.descrizione}}</td>
-                <td>{{r.valore.dataOrarioInizio | date:'dd EEEE MMMM yyyy'}}</td>
-                <td>{{r.valore.dataOrarioFine | date:'dd EEEE MMMM yyyy'}}</td>
-                <td>{{r.prezzo | currency}}</td>
-                <td>{{r.postiTotali}}</td>
-                <td>{{r.postiTotali-r.postiOccupati}}</td>
-                <td>
-                    <button type="button" class="btn btn-success" autocomplete="off"
-                        (click)="prenotaAttivita(r)">Prenota</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container">
+    <h1 style="text-align:center">Catalogo Attività disponibili</h1>
+    <div class="table">
+        <table class="table" data-show-refresh="true">
+            <thead>
+                <tr class="table-danger">
+                    <th>Nome Attività</th>
+                    <th>Descrizione</th>
+                    <th>Inizio</th>
+                    <th>Fine</th>
+                    <th>Prezzo</th>
+                    <th>Posti Totali</th>
+                    <th>Posti disponibili</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-primary" *ngFor="let r of righeAttivita">
+                    <td>{{r.valore.nome}}</td>
+                    <td>{{r.valore.descrizione}}</td>
+                    <td>{{r.valore.dataOrarioInizio | date:'dd EEEE MMMM yyyy'}}</td>
+                    <td>{{r.valore.dataOrarioFine | date:'dd EEEE MMMM yyyy'}}</td>
+                    <td>{{r.prezzo | currency}}</td>
+                    <td>{{r.postiTotali}}</td>
+                    <td>{{r.postiTotali-r.postiOccupati}}</td>
+                    <td>
+                        <button type="button" class="btn btn-success" autocomplete="off"
+                            (click)="prenotaAttivita(r)">Prenota</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

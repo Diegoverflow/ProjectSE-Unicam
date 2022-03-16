@@ -23,15 +23,14 @@ export class OrdinazioneBarService {
         return this.http.get<OrdinazioneBar[]>(this.urlOrdinazioniBar + '/all/loggedUser', { withCredentials: true });
     }
 
-    ordina(riga: RigaCatalogoBar): Observable<OrdinazioneBar> {
-        console.log(riga);
+    ordina(riga: RigaCatalogoBar, codSpiaggia : string): Observable<OrdinazioneBar> {
         return this.http.post<OrdinazioneBar>(this.urlOrdinazioniBar, {
             request: "createOrdinazioneBar",
             articoloBar: riga.valore,
             vendita: {
                 costo: riga.prezzo
             },
-            codiceSpiaggia: "1" // TODO: mettere ombrellone vero
+            codiceSpiaggia: codSpiaggia
         }
             , { withCredentials: true });
     }

@@ -35,10 +35,10 @@ public class SimpleNotifica implements Notifica {
                             nullable = false, updatable = false)}
     )
     @JsonIgnore
-    private Set<SimpleUtente> utenti;
+    private List<SimpleUtente> utenti;
 
     public SimpleNotifica() {
         this.id = UUID.randomUUID();
-        this.utenti = new HashSet<>();
+        this.utenti = new ArrayList<>();
     }
 }

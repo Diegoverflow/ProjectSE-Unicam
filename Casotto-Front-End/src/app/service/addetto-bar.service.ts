@@ -21,19 +21,20 @@ export class AddettoBarService {
             { params: queryParams, withCredentials: true });
     }
 
-    removeOrdinazione(id: string) {
-        return this.http.delete<OrdinazioneBar>(this.urlOrdinazioniBar + '${id}'
-            , { withCredentials: true });
-    }
+    // removeOrdinazione(id: string) {
+    //     return this.http.delete<OrdinazioneBar>(this.urlOrdinazioniBar + '${id}'
+    //         , { withCredentials: true });
+    // }
 
     prendiInCarico(id: string) {
         const url = `${this.urlOrdinazioniBar}/prendi-in-carico/${id}`;
-        return this.http.patch<OrdinazioneBar>(this.urlOrdinazioniBar + url, { withCredentials: true });
+        console.log(url);
+        return this.http.patch<OrdinazioneBar>(url, null, { withCredentials: true });
     }
 
     consegna(id: string) {
         const url = `${this.urlOrdinazioniBar}/consegna/${id}`;
-        return this.http.patch<OrdinazioneBar>(this.urlOrdinazioniBar + url, { withCredentials: true });
+        return this.http.patch<OrdinazioneBar>(url, null, { withCredentials: true });
     }
 
 }

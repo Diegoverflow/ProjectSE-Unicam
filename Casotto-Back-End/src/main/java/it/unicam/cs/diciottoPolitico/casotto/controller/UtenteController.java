@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.RuoloUtente;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimpleNotifica;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleUtente;
 import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.UtenteService;
@@ -114,11 +115,16 @@ public class UtenteController{
         return this.utenteService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("ruolo")
+    @GetMapping("/ruolo")
     public RuoloUtente getRuoloUtente(){
         var email = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         var utente = this.utenteService.getBy(email);
         return utente.getRuoloUtente();
+    }
+
+    @GetMapping("/notifiche")
+    public List<SimpleNotifica> getNotificheByLoggedUser(){
+        return this.utenteService.getAllNotificheLoggedUser();
     }
 
 }

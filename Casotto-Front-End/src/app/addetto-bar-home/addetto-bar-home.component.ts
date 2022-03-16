@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { AuthenticationService } from '../authentication/service/authentication.service';
+import { Notifica } from '../model/notifica';
 import { OrdinazioneBar } from '../model/ordinazione-bar';
 import { StatusOrdinazioneBar } from '../model/status-ordinazione';
 import { AddettoBarService } from '../service/addetto-bar.service';
@@ -20,13 +22,19 @@ export class AddettoBarHomeComponent implements OnInit {
 
   statuses: StatusOrdinazioneBar[] = new Array();
 
-  constructor(private addettoService: AddettoBarService) {
+  notifiche: Notifica[] = new Array();
+
+  constructor(private addettoService: AddettoBarService, private aService: AuthenticationService) {
 
     this.selectedStatus = StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO;
   }
 
   ngOnInit(): void {
     this.initializeStatuses();
+    console.log(this.aService.getNotifiche().subscribe((n) => {
+      this.notifiche = n;
+      console.log(this.notifiche);
+    }));
   }
 
   selectStatus(s: string) {
@@ -61,12 +69,13 @@ export class AddettoBarHomeComponent implements OnInit {
     })
   }
 
-  async eliminaOrdinazione(o: OrdinazioneBar) {
-    if (this.askConfirm("eliminare", "eliminata"))
-      await lastValueFrom(this.addettoService.removeOrdinazione(o.id)).then(() => {
-        this.getOrdinazioniByStatus(this.selectedStatus);
-      })
-  }
+  // TODO: serve solo al gestore misa
+  // async eliminaOrdinazione(o: OrdinazioneBar) {
+  //   if (this.askConfirm("eliminare", "eliminata"))
+  //     await lastValueFrom(this.addettoService.removeOrdinazione(o.id)).then(() => {
+  //       this.getOrdinazioniByStatus(this.selectedStatus);
+  //     })
+  // }
 
   async prendiInCarico(o: OrdinazioneBar) {
     if (this.askConfirm("prendere in carico", "presa in carico"))
@@ -78,19 +87,17 @@ export class AddettoBarHomeComponent implements OnInit {
   async consegna(o: OrdinazioneBar) {
     if (this.askConfirm("consegnare", "conegnata"))
       await lastValueFrom(this.addettoService.consegna(o.id)).then(() => {
-        this.getOrdinazioniByStatus(StatusOrdinazioneBar.CONSEGNATO);
+        this.getOrdinazioniByStatus(StatusOrdinazioneBar.PRESO_IN_CARICO);
       })
   }
 
-  askConfirm(s0: string, s1: string): boolean {
+  private askConfirm(s0: string, s1: string): boolean {
     if (confirm("Sei sicuro di voler " + s0 + " l' ordinazione selezionata?")) {
-      window.alert("ordinazione " + s1 + " con successo");
+      window.alert("Ordinazione " + s1 + " con successo");
       return true;
     }
-    else {
-      window.alert("Nessuna ordinazione " + s1);
-      return false;
-    }
+    window.alert("Nessuna ordinazione " + s1);
+    return false;
   }
 
 }
