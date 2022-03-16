@@ -86,32 +86,29 @@ export class OrdinazioneBarComponent implements OnInit {
   }
 
   selectMenuVoice(t: string) {
+    let i = 0;
     switch (t) {
       case this.menuVoices[0]:
-        this.selectedMenuVoice = this.ArticoloBartypes[0];
-        this.voiceTextMenu = this.menuVoices[0];
+        i = 0;
         break;
       case this.menuVoices[1]:
-        this.selectedMenuVoice = this.ArticoloBartypes[1];
-        this.voiceTextMenu = this.menuVoices[1];
+        i = 1;
         break;
       case this.menuVoices[2]:
-        this.selectedMenuVoice = this.ArticoloBartypes[2];
-        this.voiceTextMenu = this.menuVoices[2];
+        i = 2;
         break;
       case this.menuVoices[3]:
-        this.selectedMenuVoice = this.ArticoloBartypes[3];
-        this.voiceTextMenu = this.menuVoices[3];
+        i = 3;
         break;
       case this.menuVoices[4]:
-        this.selectedMenuVoice = this.ArticoloBartypes[4];
-        this.voiceTextMenu = this.menuVoices[4];
+        i = 4;
         break;
       case this.menuVoices[5]:
-        this.selectedMenuVoice = this.ArticoloBartypes[5];
-        this.voiceTextMenu = this.menuVoices[5];
+        i = 5
         break;
     }
+    this.selectedMenuVoice = this.ArticoloBartypes[i];
+    this.voiceTextMenu = this.menuVoices[i];
   }
 
   selectUmbrella(codiceSpiaggia: string) {
@@ -122,20 +119,13 @@ export class OrdinazioneBarComponent implements OnInit {
   // Funzione per aprire popup selezione ombrelloni
   openUmbrellaSelection(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
-      this.getDismissReason();
+      this.disableButtonOnClosingPopup();
     }, () => {
-      this.getDismissReason();
+      this.disableButtonOnClosingPopup();
     });
   }
 
-  private getDismissReason() {
-    // if (reason === ModalDismissReasons.ESC) {
-    //   return 'by pressing ESC';
-    // } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-    //   return 'by clicking on a backdrop';
-    // } else {
-    //   return `with: ${reason}`;
-    // }
+  private disableButtonOnClosingPopup() {
     this.isOrdinaEnabled = false;
   }
 
