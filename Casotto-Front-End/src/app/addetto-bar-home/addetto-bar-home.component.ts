@@ -61,12 +61,13 @@ export class AddettoBarHomeComponent implements OnInit {
     })
   }
 
-  async eliminaOrdinazione(o: OrdinazioneBar) {
-    if (this.askConfirm("eliminare", "eliminata"))
-      await lastValueFrom(this.addettoService.removeOrdinazione(o.id)).then(() => {
-        this.getOrdinazioniByStatus(this.selectedStatus);
-      })
-  }
+  // TODO: serve solo al gestore misa
+  // async eliminaOrdinazione(o: OrdinazioneBar) {
+  //   if (this.askConfirm("eliminare", "eliminata"))
+  //     await lastValueFrom(this.addettoService.removeOrdinazione(o.id)).then(() => {
+  //       this.getOrdinazioniByStatus(this.selectedStatus);
+  //     })
+  // }
 
   async prendiInCarico(o: OrdinazioneBar) {
     if (this.askConfirm("prendere in carico", "presa in carico"))
@@ -82,15 +83,13 @@ export class AddettoBarHomeComponent implements OnInit {
       })
   }
 
-  askConfirm(s0: string, s1: string): boolean {
+  private askConfirm(s0: string, s1: string): boolean {
     if (confirm("Sei sicuro di voler " + s0 + " l' ordinazione selezionata?")) {
-      window.alert("ordinazione " + s1 + " con successo");
+      window.alert("Ordinazione " + s1 + " con successo");
       return true;
     }
-    else {
-      window.alert("Nessuna ordinazione " + s1);
-      return false;
-    }
+    window.alert("Nessuna ordinazione " + s1);
+    return false;
   }
 
 }

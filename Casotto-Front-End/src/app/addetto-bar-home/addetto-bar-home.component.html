@@ -14,11 +14,12 @@
         </div>
     </div>
 </nav>
-<h1>Ordinazioni Bar : <p style="display:inline;color:red">{{selectedButton}}</p>
-</h1>
+
 <div class="container">
     <div class="row">
         <div class="col text-center">
+            <h1>Ordinazioni Bar: <p style="display:inline;color:red">{{selectedButton}}</p>
+            </h1>
             <button class="btn btn-success" *ngFor="let s of statusButtons" (click)="selectStatus(s)">{{s}}</button>
         </div>
     </div>

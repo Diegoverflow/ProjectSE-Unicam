@@ -32,7 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker'
 import { MatInputModule } from '@angular/material/input';
-import {MatNativeDateModule} from '@angular/material/core'
+import {MatNativeDateModule} from '@angular/material/core';
 registerLocaleData(localeIt, 'it');
 
 
