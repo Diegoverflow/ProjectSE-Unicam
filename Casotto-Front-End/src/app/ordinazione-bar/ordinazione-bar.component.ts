@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { Ombrellone } from '../model/ombrellone';
 import { RigaCatalogoBar } from '../model/riga-catalogo-bar';
 import { TipoArticoloBar } from '../model/tipo-articolo-bar';
 import { OrdinazioneBarService } from '../service/ordinazione-bar.service';
+import { RigheOmbrelloniService } from '../spiaggia/righe-ombrelloni.service';
 
 @Component({
   selector: 'app-ordinazione-bar',
@@ -23,7 +25,9 @@ export class OrdinazioneBarComponent implements OnInit {
   menuVoices: string[] = new Array();
   voiceTextMenu?: string;
 
-  constructor(private barService: OrdinazioneBarService) {
+  myUmbrellas: Ombrellone[] = new Array();
+
+  constructor(private barService: OrdinazioneBarService, private oService: RigheOmbrelloniService) {
   }
 
   ngOnInit(): void {

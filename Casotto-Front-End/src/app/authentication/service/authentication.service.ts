@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Utente } from 'src/app/model/user';
+import { Notifica } from 'src/app/model/notifica';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class AuthenticationService {
   }
 
   public saveRuolo(ruolo: string): void {
-    sessionStorage.setItem('ruolo',ruolo);
+    sessionStorage.setItem('ruolo', ruolo);
   }
 
   public getRuoloFromStorage(): string | null {
@@ -43,8 +44,12 @@ export class AuthenticationService {
     return this.http.get<boolean>(`${this.apiServerUrl}/check-token`, { withCredentials: true });
   }
 
-  public logout():Observable<void>{
-    return this.http.post<void>(`${this.apiServerUrl}/logout`,null,{withCredentials:true})
+  public logout(): Observable<void> {
+    return this.http.post<void>(`${this.apiServerUrl}/logout`, null, { withCredentials: true });
+  }
+
+  public getNotifiche(): Observable<Notifica[]> {
+    return this.http.get<Notifica[]>(`${this.apiServerUrl}/utenti/notifiche`, { withCredentials: true });
   }
 
 }
