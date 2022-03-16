@@ -1,1 +1,51 @@
-<p>addetto-bar-home works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="./cliente-home.component.html">Chalet Casotto</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" routerLink="./addetto-bar-home.component.html">Ordinazioni Bar <span
+                        class="sr-only"></span></a>
+                <!-- <a role="button" class="nav-item nav-link" (click)="onLogout()">Logout</a> -->
+            </div>
+        </div>
+    </div>
+</nav>
+<h1>Ordinazioni Bar : <p style="display:inline;color:red">{{selectedButton}}</p>
+</h1>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <button class="btn btn-success" *ngFor="let s of statusButtons" (click)="selectStatus(s)">{{s}}</button>
+        </div>
+    </div>
+</div>
+<br>
+<div class="table">
+    <table class="table" data-show-refresh="true">
+        <thead>
+            <tr class="table-danger">
+                <th>Nome Articolo Bar</th>
+                <th>Codice Spiaggia</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-primary" *ngFor="let o of ordinazioniBar">
+                <td>{{o.articoloBar.nome}}</td>
+                <td>{{o.codiceSpiaggia}}</td>
+                <td>
+                    <button type="button" class="btn btn-success" autocomplete="off" (click)="prendiInCarico(o)"
+                        *ngIf="selectedButton===statusButtons[0]">Prendi
+                        In Carico</button>
+                    <button type="button" class="btn btn-success" autocomplete="off" (click)="consegna(o)"
+                        *ngIf="selectedButton===statusButtons[1]">Consegna</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<router-outlet></router-outlet>

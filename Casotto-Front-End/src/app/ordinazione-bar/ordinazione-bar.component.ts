@@ -15,12 +15,12 @@ export class OrdinazioneBarComponent implements OnInit {
 
   menuButton: boolean = false;
 
+  // Per filtrare gli articoli in base alla voce selezionata nella view
   ArticoloBartypes: TipoArticoloBar[] = new Array();
-
   selectedMenuVoice?: TipoArticoloBar;
 
+  // Per visualizzare voci menu nella view
   menuVoices: string[] = new Array();
-
   voiceTextMenu?: string;
 
   constructor(private barService: OrdinazioneBarService) {
@@ -61,7 +61,7 @@ export class OrdinazioneBarComponent implements OnInit {
   }
 
   initializeMenuVoices() {
-    for (var t in TipoArticoloBar){
+    for (var t in TipoArticoloBar) {
       this.ArticoloBartypes.push(<TipoArticoloBar>t);
     }
     this.menuVoices = ["BEVANDE", "PIZZE", "PRIMI PIATTI", "SECONDI PIATTI", "DOLCI", "PANINI"];
@@ -96,8 +96,6 @@ export class OrdinazioneBarComponent implements OnInit {
         this.voiceTextMenu = this.menuVoices[5];
         break;
     }
-    console.log(this.selectedMenuVoice);
-    console.log(this.voiceTextMenu);
   }
 
 }
