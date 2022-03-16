@@ -22,7 +22,7 @@ public class PasswordConfig {
                 registry.addMapping("/**")
                         .allowCredentials(true)
                         .allowedOrigins("http://localhost:4200")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH")
                         .allowedHeaders("*")
                         .maxAge(3600);
             }
