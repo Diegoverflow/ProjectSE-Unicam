@@ -30,10 +30,11 @@ import { VenditaComponent } from './vendita/vendita.component';
 import { OrdinazioneBarStoricoComponent } from './ordinazione-bar/ordinazione-bar-storico/ordinazione-bar-storico.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDatepickerModule} from '@angular/material/datepicker'
+import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatInputModule } from '@angular/material/input';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 registerLocaleData(localeIt, 'it');
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ registerLocaleData(localeIt, 'it');
     BrowserAnimationsModule,
     MatNativeDateModule,
     MatInputModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    NgbModule
   ],
   providers: [
     AuthenticationService,
@@ -79,7 +81,7 @@ registerLocaleData(localeIt, 'it');
     [{ provide: LOCALE_ID, useValue: 'it' }  // BISOGNA INSERIRE LA DATA NEL PROVIDER!
       , { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' }], // Per visualizzare in euro
     PrenotazioneOmbrelloneService
-    ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

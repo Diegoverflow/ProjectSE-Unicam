@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Ombrellone } from '../model/ombrellone';
 import { RigaCatalogoBar } from '../model/riga-catalogo-bar';
+import { RigaCatalogoOmbrellone } from '../model/riga-catalogo-ombrellone';
 import { TipoArticoloBar } from '../model/tipo-articolo-bar';
 import { OrdinazioneBarService } from '../service/ordinazione-bar.service';
 import { RigheOmbrelloniService } from '../spiaggia/righe-ombrelloni.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ordinazione-bar',
@@ -25,20 +26,31 @@ export class OrdinazioneBarComponent implements OnInit {
   menuVoices: string[] = new Array();
   voiceTextMenu?: string;
 
-  myUmbrellas: Ombrellone[] = new Array();
+  myUmbrellas: RigaCatalogoOmbrellone[] = new Array();
+  selectedUmbrella: string;
 
-  constructor(private barService: OrdinazioneBarService, private oService: RigheOmbrelloniService) {
+  isOrdinaEnabled: boolean;
+
+  constructor(private barService: OrdinazioneBarService, private oService: RigheOmbrelloniService, private modalService: NgbModal) {
+    this.selectedUmbrella = "";
+    this.isOrdinaEnabled = false;
   }
 
   ngOnInit(): void {
     this.getRigheCatalogoBar();
     this.initializeMenuVoices();
+    this.initializeUmbrellas();
+  }
+
+  initializeUmbrellas() {
+    this.oService.getRighe().subscribe((u) => {
+      this.myUmbrellas = u;
+    });
   }
 
   showMenu() {
     this.menuButton = !this.menuButton;
   }
-
 
   getRigheCatalogoBar() {
     this.barService.getRigheBarDisponibili().subscribe(r => {
@@ -46,15 +58,15 @@ export class OrdinazioneBarComponent implements OnInit {
     })
   }
 
-  async ordinaDalBar(r: RigaCatalogoBar) {
+  async ordinaDalBar(r: RigaCatalogoBar, codiceSpiaggia: string) {
     if (this.askConfirm(r.valore.nome))
-      await lastValueFrom(this.barService.ordina(r)).then(() => {
+      await lastValueFrom(this.barService.ordina(r, codiceSpiaggia)).then(() => {
         this.getRigheCatalogoBar();
       })
   }
 
   askConfirm(nomeArticolo: string): boolean {
-    if (confirm("Sei sicuro di voler ordinare:  " + "' " + nomeArticolo + " '" + " ?")) {
+    if (confirm("Sei sicuro di voler ordinare:  " + "' " + nomeArticolo + " '" + " da consegnare all' ombrellone ' " + this.selectedUmbrella + " '?")) {
       window.alert("Ordinazione effettuata con successo");
       return true;
     }
@@ -100,6 +112,31 @@ export class OrdinazioneBarComponent implements OnInit {
         this.voiceTextMenu = this.menuVoices[5];
         break;
     }
+  }
+
+  selectUmbrella(codiceSpiaggia: string) {
+    this.selectedUmbrella = codiceSpiaggia;
+    this.isOrdinaEnabled = true;
+  }
+
+  // Funzione per aprire popup selezione ombrelloni
+  openUmbrellaSelection(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
+      this.getDismissReason();
+    }, () => {
+      this.getDismissReason();
+    });
+  }
+
+  private getDismissReason() {
+    // if (reason === ModalDismissReasons.ESC) {
+    //   return 'by pressing ESC';
+    // } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    //   return 'by clicking on a backdrop';
+    // } else {
+    //   return `with: ${reason}`;
+    // }
+    this.isOrdinaEnabled = false;
   }
 
 }
