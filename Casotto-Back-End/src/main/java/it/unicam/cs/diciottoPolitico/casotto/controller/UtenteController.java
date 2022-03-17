@@ -7,6 +7,7 @@ import it.unicam.cs.diciottoPolitico.casotto.repository.UtenteRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -50,18 +51,13 @@ public class UtenteController{
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
      * Restituisce una {@link SimpleUtente} avente id specificato nel {@link PathVariable}.
      *
-     * @param id l' id di cui ricavare un {@code SimpleUtente}
      * @return l' utente avente id specificato
      * @throws ResponseStatusException con {@link HttpStatus#NOT_FOUND} se non viene trovato nessun {@code SimpleUtente} con id specificato
      */
-    @GetMapping("/{id}")
-    public SimpleUtente getUtentiById(@PathVariable UUID id) {
-        return this.utenteService.getBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-    }
-
-    @GetMapping(params = "idUtente")
-    public SimpleUtente getUtentiByIdd(@RequestParam UUID idUtente) {
-        return this.utenteService.getBy(idUtente).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    @GetMapping("utente")
+    public ResponseEntity<SimpleUtente> getUtentiById() {
+        var utente = this.utenteService.getLoggedUser();
+        return ResponseEntity.ok(utente);
     }
 
     /**

@@ -99,6 +99,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/catalogo/**").hasRole("GESTORE")
                 .antMatchers(HttpMethod.POST, "/utenti").permitAll()
                 .antMatchers("/utenti/ruolo").permitAll()
+                .antMatchers("/utenti/utente").permitAll()
                 .antMatchers(HttpMethod.POST,"/utenti").permitAll()
                 .antMatchers("/utenti/notifiche").permitAll()
                 .antMatchers("/utenti/**").hasRole("GESTORE")
