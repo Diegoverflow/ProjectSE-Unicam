@@ -18,6 +18,7 @@ import { OrdinazioneBarStoricoComponent } from './ordinazione-bar/ordinazione-ba
 //TODO: inserie redirect e NOTFOUND
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
+  
   {
     path: 'cliente-home',
     component: ClienteHomeComponent,

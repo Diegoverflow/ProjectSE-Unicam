@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { catchError, EMPTY, Observable, tap, throwError } from "rxjs";
@@ -11,20 +11,17 @@ export class DefaultHttpInterceptor implements HttpInterceptor {
 
     private apiServerUrl: string = environment.apiBaseUrl;
 
-    constructor(private router : Router){}
+    constructor(private router: Router) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
             catchError((e: HttpErrorResponse) => {
-                if(req.url === `${this.apiServerUrl}/login` )
-                    return throwError(()=>e);
-        
-                if(e.status === 401){
+                if (e.status === 401) {
                     sessionStorage.clear()
                     this.router.navigate(['/login']);
                 }
-                console.log(e.status);
-                return EMPTY;
+
+                return throwError(() => e)
             })
         );
     }
