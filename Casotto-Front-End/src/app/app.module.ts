@@ -35,6 +35,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 registerLocaleData(localeIt, 'it');
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CasottoNavbarComponent } from './casottoNavbar/casottonavbar.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RigaOmbrelloneComponent,
     RigaOmbrelloneEditorComponent,
     VenditaComponent,
-    OrdinazioneBarStoricoComponent
+    OrdinazioneBarStoricoComponent,
+    CasottoNavbarComponent
   ],
   imports: [
     BrowserModule,
