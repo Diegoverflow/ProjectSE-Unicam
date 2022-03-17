@@ -1,5 +1,5 @@
 import { DatePipe, formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FasciaOraria } from '../model/fascia-oraria';
 import { PrenotazioneOmbrellone } from '../model/prenotazione-ombrellone';
@@ -22,7 +22,9 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
 
   private _minDate !: Date;
 
-  constructor(private prenotazioneOmbrelloniservice: PrenotazioneOmbrelloneService, private formBuilder: FormBuilder) { }
+  constructor(private prenotazioneOmbrelloniservice: PrenotazioneOmbrelloneService,
+    private formBuilder: FormBuilder,
+    private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this._minDate = new Date();
@@ -34,9 +36,9 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
     })
   }
 
-get minDate(){
-  return this._minDate;
-}
+  get minDate() {
+    return this._minDate;
+  }
 
   get fascieOrarie() {
     return this._fascieOrarie;
@@ -56,19 +58,20 @@ get minDate(){
 
   getOmbrelloniLiberi() {
     this.prenotazioneOmbrelloniservice.getOmbrelloniLiberi(
-      this.dataFasciaOraria.get('datePicker')?.value.toISOString().substring(0,10), this.dataFasciaOraria.get('fasciaOraria')?.value)
-      .subscribe(r => this.righeOmbrellone = r)
+      this.dataFasciaOraria.get('datePicker')?.value.toISOString().substring(0, 10), this.dataFasciaOraria.get('fasciaOraria')?.value)
+      .subscribe(r => { this.righeOmbrellone = []; this.righeOmbrellone = r })
   }
 
   prenotaOmbrellone(r: RigaCatalogoOmbrellone) {
     let prenotazione: PrenotazioneOmbrellone = {
       fasciaOraria: this.dataFasciaOraria.get('fasciaOraria')?.value,
       ombrellone: r.valore,
-      dataPrenotazione : this.dataFasciaOraria.get('datePicker')?.value.toISOString().substring(0,10),
-      vendita : {costo:r.prezzoOmbrellone}
+      dataPrenotazione: this.dataFasciaOraria.get('datePicker')?.value.toISOString().substring(0, 10),
+      vendita: { costo: r.prezzoOmbrellone }
     }
-
-    this.prenotazioneOmbrelloniservice.prenotaOmbrellone(prenotazione).subscribe()
+    this.prenotazioneOmbrelloniservice.prenotaOmbrellone(prenotazione).subscribe(
+      ()=> this.getOmbrelloniLiberi()
+    )
   }
 
 }
