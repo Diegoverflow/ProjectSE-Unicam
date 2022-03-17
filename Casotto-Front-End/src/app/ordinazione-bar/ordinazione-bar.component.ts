@@ -26,7 +26,7 @@ export class OrdinazioneBarComponent implements OnInit {
   menuVoices: string[] = new Array();
   voiceTextMenu?: string;
 
-  myUmbrellas: RigaCatalogoOmbrellone[] = new Array();
+  umbrellas: RigaCatalogoOmbrellone[] = new Array();
   selectedUmbrella: string;
 
   isOrdinaEnabled: boolean;
@@ -44,7 +44,7 @@ export class OrdinazioneBarComponent implements OnInit {
 
   initializeUmbrellas() {
     this.oService.getRighe().subscribe((u) => {
-      this.myUmbrellas = u;
+      this.umbrellas = u;
     });
   }
 

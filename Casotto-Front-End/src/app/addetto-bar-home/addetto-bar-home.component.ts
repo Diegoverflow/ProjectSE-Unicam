@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { AuthenticationService } from '../authentication/service/authentication.service';
 import { Notifica } from '../model/notifica';
@@ -24,8 +25,7 @@ export class AddettoBarHomeComponent implements OnInit {
 
   notifiche: Notifica[] = new Array();
 
-  constructor(private addettoService: AddettoBarService, private aService: AuthenticationService) {
-
+  constructor(private addettoService: AddettoBarService, private router: Router, private aService: AuthenticationService) {
     this.selectedStatus = StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO;
   }
 
@@ -35,6 +35,13 @@ export class AddettoBarHomeComponent implements OnInit {
       this.notifiche = n;
       console.log(this.notifiche);
     }));
+  }
+
+  onLogout() {
+    this.aService.logout().subscribe(() => {
+      this.router.navigate(['/login'])
+      sessionStorage.clear()
+    })
   }
 
   selectStatus(s: string) {
