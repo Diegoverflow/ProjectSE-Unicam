@@ -23,8 +23,7 @@
             <button class="btn btn-success" *ngFor="let s of statusButtons" (click)="selectStatus(s)">{{s}}</button>
         </div>
     </div>
-</div>
-<br>
+    <br>
 <div class="table">
     <table class="table" data-show-refresh="true">
         <thead>
@@ -49,4 +48,6 @@
         </tbody>
     </table>
 </div>
+</div>
+
 <router-outlet></router-outlet>
