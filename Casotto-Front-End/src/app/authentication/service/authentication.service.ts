@@ -52,4 +52,8 @@ export class AuthenticationService {
     return this.http.get<Notifica[]>(`${this.apiServerUrl}/utenti/notifiche`, { withCredentials: true });
   }
 
+  public getUtente():Observable<Utente>{
+    return this.http.get<Utente>(`${this.apiServerUrl}/utenti/utente`,{withCredentials:true});
+  }
+
 }

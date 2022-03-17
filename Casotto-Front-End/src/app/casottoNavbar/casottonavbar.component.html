@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <!-- LOGGED USER -->
-                <a *ngIf="ruolo!=null" class="nav-item nav-link active">Benvenuto, NOME<span class="sr-only"></span></a>
+                <a *ngIf="ruolo!=null" class="nav-item nav-link active">Benvenuto, {{nome}}<span class="sr-only"></span></a>
                 <!-- END-LOGGED USER -->
                 <!-- CLIENTE -->
                 <a *ngIf="ruolo==='CLIENTE'" class="nav-item nav-link" routerLink="./cliente-home">Home</a>

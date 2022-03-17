@@ -11,11 +11,14 @@ export class CasottoNavbarComponent implements OnInit {
 
   ruolo: string | null;
 
+  nome !:string;
+
   constructor(private router: Router, private authenticationService: AuthenticationService) {
     this.ruolo = this.authenticationService.getRuoloFromStorage();
   }
 
   ngOnInit(): void {
+    this.authenticationService.getUtente().subscribe(u => this.nome = u.nome)
   }
 
   onLogout() {
