@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CasottoNavbarComponent } from './casottonavbar.component';
+import { CasottoNavbarComponent } from './casottoNavbar.component';
 
 describe('CasottoNavbarComponent', () => {
   let component: CasottoNavbarComponent;

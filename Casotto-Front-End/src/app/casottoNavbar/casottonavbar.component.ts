@@ -4,8 +4,8 @@ import { AuthenticationService } from '../authentication/service/authentication.
 
 @Component({
   selector: 'app-casottonavbar',
-  templateUrl: './casottonavbar.component.html',
-  styleUrls: ['./casottonavbar.component.scss']
+  templateUrl: './casottoNavbar.component.html',
+  styleUrls: ['./casottoNavbar.component.scss']
 })
 export class CasottoNavbarComponent implements OnInit {
 
