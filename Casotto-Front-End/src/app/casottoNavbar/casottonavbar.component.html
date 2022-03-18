@@ -1,27 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="./cliente-home.component.html">Chalet Casotto</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        <img src="../../assets/img/logo.png" width="40" height="40">
+        <a class="navbar-brand" routerLink="./cliente-home.component.html">
+            Chalet Casotto</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <!-- LOGGED USER -->
-                <a *ngIf="ruolo!=null" class="nav-item nav-link active">Benvenuto, {{nome}}<span
+                <a id="prova" *ngIf="ruolo!=null" class="nav-item nav-link active">Benvenuto, {{nome}}<span
                         class="sr-only"></span></a>
                 <!-- END-LOGGED USER -->
                 <!-- CLIENTE -->
                 <a *ngIf="ruolo==='CLIENTE'" class="nav-item nav-link" routerLink="./cliente-home">Home</a>
                 <li *ngIf="ruolo==='CLIENTE'" class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Ombrelloni</a>
-                    <div class="dropdown-menu">
-                        <a style="color:green" class="dropdown-item nav-item nav-link"
-                            routerLink="./prenotazione-ombrellone">Prenota Un Ombrellone</a>
-                        <div class="dropdown-divider"></div>
-                        <a style="color:green" class="dropdown-item nav-item nav-link"
-                            routerLink="./le-mie-prenotazioni-ombrelloni">I Miei Ombrelloni</a>
-                        <div class="dropdown-divider"></div>
+
+                    <div class="dropdown">
+                        <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Ombrelloni</a>
+                        <div class="dropdown-content">
+                            <a routerLink="./prenotazione-ombrellone">Prenota Un Ombrellone</a>
+                            <div class="dropdown-divider"></div>
+                            <a routerLink="./le-mie-prenotazioni-ombrelloni">I Miei Ombrelloni</a>
+                        </div>
                     </div>
                 </li>
                 <li *ngIf="ruolo==='CLIENTE'" class="nav-item dropdown">
@@ -76,6 +78,9 @@
                 <a *ngIf="ruolo!=null" role="button" class="nav-item nav-link" (click)="onLogout()">Logout<span
                         class="sr-only"></span></a>
                 <!-- END-LOGGED USER -->
+            </div>
+            <div class="navbar-nav ms-auto">
+                <a href="#" class="nav-item nav-link">Login</a>
             </div>
         </div>
     </div>

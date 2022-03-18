@@ -25,6 +25,7 @@ export class CasottoNavbarComponent implements OnInit {
     this.authenticationService.logout().subscribe(() => {
       this.router.navigate(['/login'])
       sessionStorage.clear()
+      this.ruolo = null;
     })
   }
 
