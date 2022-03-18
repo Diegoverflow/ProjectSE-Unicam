@@ -28,7 +28,8 @@ import { PrenotazioneOmbrelloneService } from './service/prenotazione-ombrellone
 import { HomeGuard } from './helpers/home-guard';
 import { VenditaComponent } from './vendita/vendita.component';
 import { OrdinazioneBarStoricoComponent } from './ordinazione-bar/ordinazione-bar-storico/ordinazione-bar-storico.component';
-import { CasottoNavbarComponent } from './casottoNavbar/casottonavbar.component';
+import { HomeComponent } from './home/home.component';
+import { CasottoNavbarComponent } from './casotto-navbar/casotto-navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker'
@@ -36,6 +37,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 registerLocaleData(localeIt, 'it');
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CasottoFooterComponent } from './casotto-footer/casotto-footer.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RigaOmbrelloneEditorComponent,
     VenditaComponent,
     OrdinazioneBarStoricoComponent,
-    CasottoNavbarComponent
+    CasottoNavbarComponent,
+    HomeComponent,
+    CasottoFooterComponent
   ],
   imports: [
     BrowserModule,

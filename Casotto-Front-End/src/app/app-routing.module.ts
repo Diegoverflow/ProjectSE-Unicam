@@ -14,11 +14,12 @@ import { AddettoBarHomeComponent } from './addetto-bar-home/addetto-bar-home.com
 import { LoginGuard } from './helpers/login-guard';
 import { RigaOmbrelloneComponent } from './spiaggia/riga-ombrellone/riga-ombrellone.component';
 import { OrdinazioneBarStoricoComponent } from './ordinazione-bar/ordinazione-bar-storico/ordinazione-bar-storico.component';
+import { HomeComponent } from './home/home.component';
 
 //TODO: inserie redirect e NOTFOUND
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
-  
+  { path: 'home', component: HomeComponent },
   {
     path: 'cliente-home',
     component: ClienteHomeComponent,
@@ -26,6 +27,7 @@ const routes: Routes = [
     canActivateChild: [HomeGuard],
     data: { ruolo: 'CLIENTE' },
     children: [
+      { path: 'home', component: HomeComponent },
       { path: 'prenotazione-ombrellone', component: PrenotazioneOmbrelloneComponent },
       { path: 'prenotazione-attivita', component: PrenotazioneAttivitaComponent },
       { path: 'ordinazione-bar', component: OrdinazioneBarComponent },
@@ -66,7 +68,6 @@ const routes: Routes = [
     ]
   },
 
-  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
