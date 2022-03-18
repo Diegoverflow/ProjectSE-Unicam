@@ -16,7 +16,6 @@
                 <!-- CLIENTE -->
                 <a *ngIf="ruolo==='CLIENTE'" class="nav-item nav-link" routerLink="./cliente-home">Home</a>
                 <li *ngIf="ruolo==='CLIENTE'" class="nav-item dropdown">
-
                     <div class="dropdown">
                         <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Ombrelloni</a>
                         <div class="dropdown-content">
@@ -27,6 +26,15 @@
                     </div>
                 </li>
                 <li *ngIf="ruolo==='CLIENTE'" class="nav-item dropdown">
+                    <div class="dropdown">
+                        <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Attivi&agrave;</a>
+                        <div class="dropdown-content">
+                            <a routerLink="./prenotazione-ombrellone">Prenota Un'Attivit&agrave;</a>
+                            <div class="dropdown-divider"></div>
+                            <a routerLink="./le-mie-prenotazioni-ombrelloni">Le Mie Attivit&agrave;</a>
+                        </div>
+                    </div>
+
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Attivit&agrave;</a>
                     <div class="dropdown-menu">
                         <a style="color:green" class="dropdown-item nav-item nav-link"
