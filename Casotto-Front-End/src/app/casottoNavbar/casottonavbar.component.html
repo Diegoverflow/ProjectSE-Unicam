@@ -1,63 +1,81 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-success">
-    <div class="container-fluid">
-        <a class="navbar-brand" routerLink="./cliente-home.component.html">Chalet Casotto</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <!-- LOGGED USER -->
-                <a *ngIf="ruolo!=null" class="nav-item nav-link active">Benvenuto, {{nome}}<span class="sr-only"></span></a>
-                <!-- END-LOGGED USER -->
-                <!-- CLIENTE -->
-                <a *ngIf="ruolo==='CLIENTE'" class="nav-item nav-link" routerLink="./cliente-home">Home</a>
-                <a *ngIf="ruolo==='CLIENTE'" class="nav-item nav-link"
-                    routerLink="./prenotazione-ombrellone">Prenotazione Ombrellone</a>
-                <a *ngIf="ruolo==='CLIENTE'" class="nav-item nav-link" routerLink="./prenotazione-attivita">Prenotazione
-                    Attività</a>
-                <li *ngIf="ruolo==='CLIENTE'" class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Ordinazioni Bar</a>
-                    <div class="dropdown-menu">
-                        <a style="color:green" class="dropdown-item nav-item nav-link"
-                            routerLink="./ordinazione-bar-storico">Le Mie
-                            Ordinazioni</a>
-                        <div class="dropdown-divider"></div>
-                        <a style="color:green" class="dropdown-item nav-item nav-link"
-                            routerLink="./ordinazione-bar">Ordinazione
-                            Bar</a>
-                        <div class="dropdown-divider"></div>
-                    </div>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+                <a class="navbar-brand" href="index.html">Casotto</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                        aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="oi oi-menu"></span> Menu
+                </button>
+
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                        <ul class="navbar-nav ml-auto">
+                                <!--NOT LOGGED USER -->
+                                <li class="nav-item"><a *ngIf="ruolo==null" role="button" class="nav-item nav-link"
+                                                routerLink="./login">Login<span class="sr-only"></span></a></li>
+                                <!--END-NOT LOGGED USER -->
+                                <!-- LOGGED USER -->
+                                <li class="nav-item active"><a *ngIf="ruolo!=null"
+                                                class="nav-item nav-link active">Benvenuto,
+                                                {{nome}}<span class="sr-only"></span></a></li>
+                                <!-- END-LOGGED USER -->
+                                <!-- CLIENTE -->
+                                <li class="nav-item"><a *ngIf="ruolo==='CLIENTE'" class="nav-item nav-link"
+                                                routerLink="./cliente-home">Home</a></li>
+                                <li class="nav-item"><a *ngIf="ruolo==='CLIENTE'" class="nav-item nav-link"
+                                                routerLink="./prenotazione-ombrellone">Prenotazione Ombrellone</a></li>
+                                <li class="nav-item"><a *ngIf="ruolo==='CLIENTE'" class="nav-item nav-link"
+                                                routerLink="./prenotazione-attivita">Prenotazione
+                                                Attività</a></li>
+                                <li *ngIf="ruolo==='CLIENTE'" class="nav-item dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle"
+                                                data-bs-toggle="dropdown">Ordinazioni
+                                                Bar</a>
+                                        <div class="dropdown-menu">
+                                <li class="nav-item"><a class="dropdown-item nav-item nav-link"
+                                                routerLink="./ordinazione-bar-storico">Le Mie
+                                                Ordinazioni</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li class="nav-item"><a class="dropdown-item nav-item nav-link"
+                                                routerLink="./ordinazione-bar">Ordinazione
+                                                Bar</a></li>
+                                <div class="dropdown-divider"></div>
+                </div>
                 </li>
                 <!-- END-CLIENTE -->
                 <!-- ADDETTO BAR -->
-                <a *ngIf="ruolo==='ADDETTO_BAR'" class="nav-item nav-link" routerLink="./addetto-bar-home">Ordinazioni
-                    Bar</a>
+                <li class="nav-item"><a *ngIf="ruolo==='ADDETTO_BAR'" class="nav-item nav-link"
+                                routerLink="./addetto-bar-home">Ordinazioni
+                                Bar</a></li>
                 <!-- END-ADDETTO-BAR -->
                 <!-- GESTORE -->
                 <li *ngIf="ruolo==='GESTORE'" class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Gestione Cataloghi</a>
-                    <div class="dropdown-menu">
-                        <a style="color:green" class="dropdown-item nav-item nav-link"
-                            routerLink="./catalogo-bar">Catalogo Bar</a>
-                        <div class="dropdown-divider"></div>
-                        <a style="color:green" class="dropdown-item nav-item nav-link"
-                            routerLink="./catalogo-attivita">Catalogo Attivit&agrave;</a>
-                        <div class="dropdown-divider"></div>
-                        <a style="color:green" class="dropdown-item nav-item nav-link"
-                            routerLink="./catalogo-ombrelloni">Catalogo Ombrelloni</a>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                </li>
-                <!-- END-GESTORE -->
-                <!-- CASSIERE -->
-                <a *ngIf="ruolo==='CASSIERE'" class="nav-item nav-link" routerLink="./cassiere-home">Salda Vendita</a>
-                <!-- END-CASSIERE -->
-                <!-- LOGGED USER -->
-                <a *ngIf="ruolo!=null" role="button" class="nav-item nav-link" (click)="onLogout()">Logout<span
-                        class="sr-only"></span></a>
-                <!-- END-LOGGED USER -->
-            </div>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Gestione
+                                Cataloghi</a>
+                        <div class="dropdown-menu">
+                <li class="nav-item"><a class="dropdown-item nav-item nav-link" routerLink="./catalogo-bar">Catalogo
+                                Bar</a></li>
+                <div class="dropdown-divider"></div>
+                <li class="nav-item"><a class="dropdown-item nav-item nav-link"
+                                routerLink="./catalogo-attivita">Catalogo
+                                Attivit&agrave;</a></li>
+                <div class="dropdown-divider"></div>
+                <li class="nav-item"><a class="dropdown-item nav-item nav-link"
+                                routerLink="./catalogo-ombrelloni">Catalogo
+                                Ombrelloni</a></li>
+                <div class="dropdown-divider"></div>
         </div>
-    </div>
+        </li>
+
+        <!-- END-GESTORE -->
+        <!-- CASSIERE -->
+        <li class="nav-item"><a *ngIf="ruolo==='CASSIERE'" class="nav-item nav-link" routerLink="./cassiere-home">Salda
+                        Vendita</a></li>
+        <!-- END-CASSIERE -->
+        <!-- LOGGED USER -->
+        <li class="nav-item"><a *ngIf="ruolo!=null" role="button" class="nav-item nav-link"
+                        (click)="onLogout()">Logout<span class="sr-only"></span></a></li>
+        <!-- END-LOGGED USER -->
+        </ul>
+        </div>
+        </div>
 </nav>
+<!-- END nav -->

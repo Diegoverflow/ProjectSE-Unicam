@@ -1,4 +1,4 @@
-<div class="page-holder align-items-center py-4 bg-gray-100 vh-100">
+<!-- <div class="page-holder align-items-center py-4 bg-gray-100 vh-100">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6 px-lg-4" *ngIf="login">
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <!-- register -->
+      <!-- register
       <div class="col-lg-6 px-lg-4" *ngIf="register">
         <div class="card">
           <div class="card-header px-lg-5">
@@ -81,4 +81,108 @@
     </div>
   </div>
 </div>
+<router-outlet></router-outlet> -->
+
+<div class="hero-wrap" style="background-image: url('assets/images/bg_1.jpg');">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+      <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+        <div class="text">
+          <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home</a></span> <span>Contact</span></p>
+          <h1 class="mb-4 bread">Contact Us</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="ftco-section contact-section bg-light">
+  <div class="container">
+    <div class="row d-flex mb-5 contact-info">
+      <div class="col-md-12 mb-4">
+        <h2 class="h3">Accedi per usufruire di tutti i nostri servizi</h2>
+      </div>
+      <div class="w-100"></div>
+      <div class="col-md-3 d-flex">
+        <div class="info bg-white p-4">
+          <h5 class="h5">Chalet Casotto</h5>
+          <p>Semplicemente il migliore stabilimento balneare al mondo!</p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex">
+        <div class="info bg-white p-4">
+          <p><span>Indirizzo:</span> Via Politico, 18</p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex">
+        <div class="info bg-white p-4">
+          <p><span>Chiamaci al </span> <a href="tel://1818181818">+39 1818181818</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex">
+        <div class="info bg-white p-4">
+          <p><span>Email: </span> <a href="mailto:diciotto@politico.it">diciotto@politico.it</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="row block-9">
+      <div class="col-md-6 order-md-last d-flex">
+        <!-- <form action="#" class="bg-white p-5 contact-form">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Your Name">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Your Email">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Subject">
+          </div>
+          <div class="form-group">
+            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+          </div>
+        </form> -->
+
+        <h3 class="mb-4">Registrati subito!</h3>
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+          <div class="form-floating mb-3">
+            <input formControlName="email" class="form-control" id="floatingInput" type="text"
+              placeholder="name@example.com" required>
+            <label for="floatingInput">Email</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input formControlName="password" class="form-control" id="floatingPassword" type="password"
+              placeholder="Password" required>
+            <label for="floatingPassword">Password</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input formControlName="nome" class="form-control" id="floatingPassword" type="text" placeholder="Password"
+              required>
+            <label for="floatingPassword">Nome</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input formControlName="cognome" class="form-control" id="floatingPassword" type="text"
+              placeholder="Password" required>
+            <label for="floatingPassword">Cognome</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input formControlName="cellulare" class="form-control" id="floatingPassword" type="text"
+              placeholder="Cellulare" required>
+            <label for="floatingPassword">Cellulare</label>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary" id="regidter" type="submit" name="registerSubmit">Register</button>
+          </div>
+        </form>
+
+      </div>
+
+      <div class="col-md-6 d-flex">
+        <div id="map" class="bg-white"></div>
+      </div>
+    </div>
+  </div>
+</section>
 <router-outlet></router-outlet>
