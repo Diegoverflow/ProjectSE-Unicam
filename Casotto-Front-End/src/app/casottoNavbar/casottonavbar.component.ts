@@ -26,6 +26,7 @@ export class CasottoNavbarComponent implements OnInit {
       this.router.navigate(['/login'])
       sessionStorage.clear()
       this.ruolo = null;
+      this.nome = '';
     })
   }
 
