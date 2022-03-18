@@ -6,6 +6,7 @@ import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.service.PrenotazioneOmbrelloneService;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneOmbrelloneRepository;
+import it.unicam.cs.diciottoPolitico.casotto.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,8 @@ public class PrenotazioneOmbrelloneController{
 
     @Autowired
     private PrenotazioneOmbrelloneService prenotazioneOmbrelloneService;
+    @Autowired
+    private UtenteService utenteService;
 
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#GET}.
@@ -69,6 +72,11 @@ public class PrenotazioneOmbrelloneController{
     @GetMapping("/{id}")
     public SimplePrenotazioneOmbrellone getPrenotazioneOmbrelloneById(@PathVariable UUID id) {
         return this.prenotazioneOmbrelloneService.getBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/loggedUser")
+    public List<SimplePrenotazioneOmbrellone> getPrenotazioniOmbrelloniByUserId(){
+        return this.prenotazioneOmbrelloneService.filtraBy(this.utenteService.getLoggedUser());
     }
 
     /**

@@ -36,6 +36,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 registerLocaleData(localeIt, 'it');
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LeMiePrenotazioniOmbrelloniComponent } from './prenotazione-ombrellone/le-mie-prenotazioni-ombrelloni/le-mie-prenotazioni-ombrelloni.component';
+import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-mie-prenotazioni-attivita/le-mie-prenotazioni-attivita.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RigaOmbrelloneEditorComponent,
     VenditaComponent,
     OrdinazioneBarStoricoComponent,
-    CasottoNavbarComponent
+    CasottoNavbarComponent,
+    LeMiePrenotazioniOmbrelloniComponent,
+    LeMiePrenotazioniAttivitaComponent
   ],
   imports: [
     BrowserModule,

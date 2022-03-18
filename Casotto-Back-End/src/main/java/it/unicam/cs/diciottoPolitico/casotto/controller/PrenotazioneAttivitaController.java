@@ -1,6 +1,7 @@
 package it.unicam.cs.diciottoPolitico.casotto.controller;
 
 import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneOmbrellone;
 import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoAttivita;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneAttivitaRepository;
 import it.unicam.cs.diciottoPolitico.casotto.service.PrenotazioneAttivitaService;
@@ -103,6 +104,11 @@ public class PrenotazioneAttivitaController {
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/loggedUser")
+    public List<SimplePrenotazioneAttivita> getPrenotazioniOmbrelloniByUserId(){
+        return this.prenotazioneAttivitaService.filtraBy(this.utenteService.getLoggedUser());
+    }
+
     /**
      * Gestisce una richiesta HTTP con metodo {@link RequestMethod#POST}.
      * Aggiunge la {@link SimplePrenotazioneAttivita} contenuta nel {@link RequestBody} della richiesta HTTP alle prenotazioni delle attivit&agrave; effettuate dai clienti.
@@ -151,6 +157,8 @@ public class PrenotazioneAttivitaController {
     public SimplePrenotazioneAttivita deletePrenotazione(@PathVariable UUID id) {
         return this.prenotazioneAttivitaService.removeBy(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
+
+
 
 
 }

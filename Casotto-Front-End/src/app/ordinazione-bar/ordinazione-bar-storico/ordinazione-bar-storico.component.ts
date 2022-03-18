@@ -9,7 +9,7 @@ import { OrdinazioneBarService } from 'src/app/service/ordinazione-bar.service';
 })
 export class OrdinazioneBarStoricoComponent implements OnInit, AfterViewInit {
 
-  ordinazioniDaPagare: OrdinazioneBar[] = new Array();
+  storicoOrdinazioni: OrdinazioneBar[] = new Array();
 
   constructor(private barService: OrdinazioneBarService) { }
 
@@ -22,7 +22,7 @@ export class OrdinazioneBarStoricoComponent implements OnInit, AfterViewInit {
 
   getOrdinazioniDaPagare() {
     this.barService.getOrdinazioniDaPagare().subscribe(o => {
-      this.ordinazioniDaPagare = o;
+      this.storicoOrdinazioni = o;
     })
   }
 

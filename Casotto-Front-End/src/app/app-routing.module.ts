@@ -14,7 +14,8 @@ import { AddettoBarHomeComponent } from './addetto-bar-home/addetto-bar-home.com
 import { LoginGuard } from './helpers/login-guard';
 import { RigaOmbrelloneComponent } from './spiaggia/riga-ombrellone/riga-ombrellone.component';
 import { OrdinazioneBarStoricoComponent } from './ordinazione-bar/ordinazione-bar-storico/ordinazione-bar-storico.component';
-
+import { LeMiePrenotazioniOmbrelloniComponent } from './prenotazione-ombrellone/le-mie-prenotazioni-ombrelloni/le-mie-prenotazioni-ombrelloni.component';
+import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-mie-prenotazioni-attivita/le-mie-prenotazioni-attivita.component';
 //TODO: inserie redirect e NOTFOUND
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
@@ -27,7 +28,9 @@ const routes: Routes = [
     data: { ruolo: 'CLIENTE' },
     children: [
       { path: 'prenotazione-ombrellone', component: PrenotazioneOmbrelloneComponent },
+      { path: 'le-mie-prenotazioni-ombrelloni', component: LeMiePrenotazioniOmbrelloniComponent },
       { path: 'prenotazione-attivita', component: PrenotazioneAttivitaComponent },
+      { path: 'le-mie-prenotazioni-attivita', component: LeMiePrenotazioniAttivitaComponent },
       { path: 'ordinazione-bar', component: OrdinazioneBarComponent },
       { path: 'ordinazione-bar-storico', component: OrdinazioneBarStoricoComponent }
     ]

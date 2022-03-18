@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-primary" *ngFor="let o of ordinazioniDaPagare">
+                <tr class="table-primary" *ngFor="let o of storicoOrdinazioni">
                     <td>{{o.articoloBar.nome}}</td>
                     <td>{{o.vendita.dataAcquisto | date:'dd EEEE MMMM yyyy'}}</td>
                     <td>{{o.vendita.costo | currency}}</td>

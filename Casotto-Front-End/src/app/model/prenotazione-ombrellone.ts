@@ -6,6 +6,6 @@ export interface PrenotazioneOmbrellone{
     id?: string;
     fasciaOraria: FasciaOraria;
     ombrellone: Ombrellone;
-    dataPrenotazione: Date|String;
+    dataPrenotazione: Date;
     vendita: Vendita;
 }

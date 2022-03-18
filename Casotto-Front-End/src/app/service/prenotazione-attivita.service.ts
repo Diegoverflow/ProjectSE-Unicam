@@ -29,4 +29,8 @@ export class PrenotazioneAttivitaService {
             , { withCredentials: true });
     }
 
+    getPrenotazioniAttivitaLoggedUser() {
+        return this.http.get<PrenotazioneAttivita[]>(this.urlPrenotazioniAttivita + '/loggedUser', { withCredentials: true });
+      }
+
 }

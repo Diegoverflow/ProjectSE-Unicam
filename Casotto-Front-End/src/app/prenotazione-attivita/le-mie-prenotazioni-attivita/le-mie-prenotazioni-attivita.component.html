@@ -1,0 +1,32 @@
+<div class="container">
+    <h1 style="text-align:center">Storico Prenotazioni Attivit&agrave;</h1>
+    <div class="table">
+        <input class="form-control" id="myInput" type="text" placeholder="Cerca...">
+        <br>
+        <table class="table" data-show-refresh="true">
+            <thead>
+                <tr class="table-danger">
+                    <th>Nome Attivit&agrave;</th>
+                    <th>Data Inizio</th>
+                    <th>Data Fine</th>
+                    <th>Data Acquisto</th>
+                    <th>Costo</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-primary" *ngFor="let p of storicoPrenotazioni">
+                    <td>{{p.attivita.nome}}</td>
+                    <td>{{p.attivita.dataOrarioInizio}}</td>
+                    <td>{{p.attivita.dataOrarioFine | date:'dd EEEE MMMM yyyy'}}</td>
+                    <td>{{p.vendita.dataAcquisto | date:'dd EEEE MMMM yyyy'}}</td>
+                    <td>{{p.vendita.costo | currency}}</td>
+                    <td style="color:green" *ngIf="p.vendita.pagata;else daPagare">Pagato</td>
+                    <ng-template #daPagare>
+                        <td style="color:red">Non Pagato</td>
+                    </ng-template>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

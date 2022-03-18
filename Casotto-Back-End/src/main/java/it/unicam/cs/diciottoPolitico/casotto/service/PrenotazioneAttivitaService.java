@@ -1,8 +1,6 @@
 package it.unicam.cs.diciottoPolitico.casotto.service;
 
-import it.unicam.cs.diciottoPolitico.casotto.model.SimpleAttivita;
-import it.unicam.cs.diciottoPolitico.casotto.model.SimplePrenotazioneAttivita;
-import it.unicam.cs.diciottoPolitico.casotto.model.SimpleRigaCatalogoAttivita;
+import it.unicam.cs.diciottoPolitico.casotto.model.*;
 import it.unicam.cs.diciottoPolitico.casotto.repository.PrenotazioneAttivitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -84,6 +82,10 @@ public class PrenotazioneAttivitaService extends AbstractService<SimplePrenotazi
         if (this.clientIsFurbetto(prenotazioneAttivita))
             return null;
         return super.save(prenotazioneAttivita);
+    }
+
+    public List<SimplePrenotazioneAttivita> filtraBy(SimpleUtente utente) {
+        return super.getBy(p -> p.getVendita().getUtente().equals(utente));
     }
 
 }
