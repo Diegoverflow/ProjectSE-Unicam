@@ -70,8 +70,15 @@
                                                         <label class="btn btn-secondary active">
                                                             <div style="display: inline-block; padding-left: 6px;"
                                                                 *ngFor="let o of umbrellas">
-                                                                <img width="80" height="80" align="left"
-                                                                    src="assets/img/beach-umbrella.png" />
+                                                                <img *ngIf="o.valore.categoria==='STANDARD'" width="80"
+                                                                    height="80" align="left"
+                                                                    src="assets/img/beach-umbrella-standard.png" />
+                                                                <img *ngIf="o.valore.categoria==='VIP'" width="80"
+                                                                    height="80" align="left"
+                                                                    src="assets/img/beach-umbrella-vip.png" />
+                                                                <img *ngIf="o.valore.categoria==='PREMIUM'" width="80"
+                                                                    height="80" align="left"
+                                                                    src="assets/img/beach-umbrella-premium.png" />
                                                                 <input type="radio" name="options"
                                                                     (click)="selectUmbrella(o.valore.codiceSpiaggia)">{{o.valore.codiceSpiaggia}}
                                                             </div>

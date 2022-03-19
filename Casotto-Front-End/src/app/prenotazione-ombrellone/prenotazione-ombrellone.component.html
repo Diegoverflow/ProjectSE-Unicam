@@ -2,9 +2,9 @@
     <input formControlName="datePicker" matInput [matDatepicker]="picker" [min]="minDate" readonly>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-success" type="submit">Cerca</button>
     <br>
-    <label>Choose a dog name:</label>
+    <label>Scegli un'ombrellone:</label>
     <br>
     <select formControlName="fasciaOraria">
         <option *ngFor="let f of fascieOrarie" value={{f}}>{{f}}</option>
@@ -12,12 +12,14 @@
 </form>
 
 <br>
-    <ul>
-        <li *ngFor="let r of righeOmbrellone">
-            Ombrellone : {{r.valore.codiceSpiaggia}}<br>
-            Categoria : {{r.valore.categoria}}<br>
-            Prezzo : {{r.prezzoOmbrellone | currency}}<br>
-            <button type="button" class="btn btn-success" autocomplete="off"
-                (click)="prenotaOmbrellone(r)">Prenota</button>
-        </li>
-    </ul>
+<ul>
+    <li *ngFor="let r of righeOmbrellone">
+        Ombrellone : {{r.valore.codiceSpiaggia}}<br>
+        Categoria : {{r.valore.categoria}}<br>
+        Prezzo : {{r.prezzoOmbrellone | currency}}<br>
+            <img *ngIf="r.valore.categoria==='STANDARD'"width="80" height="80" align="left" src="assets/img/beach-umbrella-standard.png" />
+            <img *ngIf="r.valore.categoria==='VIP'"width="80" height="80" align="left" src="assets/img/beach-umbrella-vip.png" />
+            <img *ngIf="r.valore.categoria==='PREMIUM'"width="80" height="80" align="left" src="assets/img/beach-umbrella-premium.png" />
+            <button type="button" class="btn btn-success" autocomplete="off" (click)="prenotaOmbrellone(r)">Prenota</button>
+    </li>
+</ul>

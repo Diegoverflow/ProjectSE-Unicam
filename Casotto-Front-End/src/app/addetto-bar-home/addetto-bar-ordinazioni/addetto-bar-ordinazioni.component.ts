@@ -50,7 +50,7 @@ export class AddettoBarOrdinazioniComponent implements OnInit {
   initializeStatuses() {
     for (var s in StatusOrdinazioneBar)
       this.statuses.push(<StatusOrdinazioneBar>s);
-    this.statusButtons = ["Da prendere in carico", "Prese in carico", "Consegnate"];
+    this.statusButtons = ["Da Prendere In Carico", "Prese In Carico", "Consegnate"];
     this.selectedButton = this.statusButtons[0];
     this.getOrdinazioniByStatus(this.selectedStatus);
   }
