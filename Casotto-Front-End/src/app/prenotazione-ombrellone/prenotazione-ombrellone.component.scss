@@ -1,12 +1,79 @@
-ul {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+.table td {
+   vertical-align: middle;
 }
-ul li {
-    display: inline-block;
-    width: 33%;
-    min-height: 100px;
-    background: #ccc;
-    border: solid 1px black;
+
+.codice {
+   vertical-align: middle;
+}
+
+#formOmbrelloni {
+   margin-top: 10%;
+   padding: 2rem;
+   border-radius: 3%;
+   border-width: 2px;
+   border-style: solid;
+}
+
+.btn {
+   width: 40%;
+   margin-left: 30%;
+   margin-right: 30%;
+}
+
+p {
+   font-family: "Fredoka", sans-serif;
+   font-weight: 900;
+   font-size: large;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=League+Gothic&display=swap");
+#titoloForm {
+   text-align: center;
+   font-family: "League Gothic", sans-serif;
+   font-size: 60px;
+   padding-bottom: 15px;
+   background-image: linear-gradient(#000, #000);
+   background-position: 0 100%; /*OR bottom left*/
+   background-size: 0% 2px;
+   background-repeat: no-repeat;
+   transition: background-size 0.3s, background-position 0s 0.3s;
+}
+
+mat-datepicker-toggle {
+   color: black;
+}
+
+#mat-input-0 {
+   font-size: medium;
+}
+
+select option {
+   background-color: transparent;
+}
+
+.form-select {
+   padding: 0;
+}
+
+#formOmbrelloni:hover {
+   #titoloForm {
+      text-decoration-color: black;
+      color: black;
+      background-position: 100% 100%; /*OR bottom right*/
+      background-size: 100% 3px;
+   }
+}
+
+@keyframes slideInFromLeft {
+   0% {
+      transform: translateX(-100%);
+   }
+   100% {
+      transform: translateX(0);
+   }
+}
+
+.container {
+   animation: 1s ease-out 0s 1 slideInFromLeft;
+   padding: 30px;
 }

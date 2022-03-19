@@ -2,9 +2,9 @@
     <br>
     <h1 style="text-align:center">Storico Ordinazioni Bar</h1>
     <div class="table">
-        <table class="table" data-show-refresh="true">
+        <table class="table table-striped" data-show-refresh="true">
             <thead>
-                <tr class="table-danger">
+                <tr>
                     <th>Nome Articolo Bar</th>
                     <th>Data Acquisto</th>
                     <th>Costo</th>
@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-primary" *ngFor="let o of storicoOrdinazioni">
+                <tr *ngFor="let o of storicoOrdinazioni">
                     <td>{{o.articoloBar.nome}}</td>
                     <td>{{o.vendita.dataAcquisto | date:'dd EEEE MMMM yyyy'}}</td>
                     <td>{{o.vendita.costo | currency}}</td>

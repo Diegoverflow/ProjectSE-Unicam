@@ -2,9 +2,9 @@
     <br>
     <h1 style="text-align:center">Catalogo Attività disponibili</h1>
     <div class="table">
-        <table class="table" data-show-refresh="true">
+        <table class="table table-striped" data-show-refresh="true">
             <thead>
-                <tr class="table-danger">
+                <tr>
                     <th>Nome Attività</th>
                     <th>Descrizione</th>
                     <th>Inizio</th>
@@ -16,8 +16,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-primary" *ngFor="let r of righeAttivita">
-                    <td>{{r.valore.nome}}</td>
+                <tr *ngFor="let r of righeAttivita">
+                    <th class="codice">{{r.valore.nome}}</th>
                     <td>{{r.valore.descrizione}}</td>
                     <td>{{r.valore.dataOrarioInizio | date:'dd EEEE MMMM yyyy'}}</td>
                     <td>{{r.valore.dataOrarioFine | date:'dd EEEE MMMM yyyy'}}</td>
@@ -25,7 +25,7 @@
                     <td>{{r.postiTotali}}</td>
                     <td>{{r.postiTotali-r.postiOccupati}}</td>
                     <td>
-                        <button type="button" class="btn btn-success" autocomplete="off"
+                        <button type="button" class="btn btn-success btn-sm" autocomplete="off"
                             (click)="prenotaAttivita(r)">Prenota</button>
                     </td>
                 </tr>

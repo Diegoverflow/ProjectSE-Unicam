@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <img src="../../assets/img/logo.png" width="40" height="40">
-        <a class="navbar-brand" routerLink="./">
+        <a id="titoloNav" class="navbar-brand" routerLink="./">
             <!--funziona grazie alle guardie-->
-            Chalet Casotto
+            Casotto
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,10 +11,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <!-- LOGGED USER -->
-                <a id="prova" *ngIf="ruolo!=null" class="nav-item nav-link active">Benvenuto, {{nome}}<span
-                        class="sr-only"></span></a>
-                <!-- END-LOGGED USER -->
                 <!-- CLIENTE -->
                 <li *ngIf="ruolo==='CLIENTE'" class="nav-item dropdown">
                     <div class="dropdown">

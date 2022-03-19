@@ -1,25 +1,61 @@
-<form [formGroup]="dataFasciaOraria" (ngSubmit)="getOmbrelloniLiberi()">
-    <input formControlName="datePicker" matInput [matDatepicker]="picker" [min]="minDate" readonly>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-    <button class="btn btn-success" type="submit">Cerca</button>
-    <br>
-    <label>Scegli un'ombrellone:</label>
-    <br>
-    <select formControlName="fasciaOraria">
-        <option *ngFor="let f of fascieOrarie" value={{f}}>{{f}}</option>
-    </select>
-</form>
+<div *ngIf="isFormVisible" class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <form id="formOmbrelloni" [formGroup]="dataFasciaOraria" (ngSubmit)="getOmbrelloniLiberi()">
+                <h1 id="titoloForm">Prenotazione</h1>
+                <br>
+                <p>Per quando vuoi prenotare?</p>
+                <input formControlName="datePicker" matInput [matDatepicker]="picker" [min]="minDate" readonly>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <br>
+                <br>
+                <p>Scegli la fascia oraria:</p>
+                <select class="form-select " aria-label="Disabled select example" formControlName="fasciaOraria">
+                    <option class="opzioneFascia" *ngFor="let f of fascieOrarie" value={{f}}>{{f}}</option>
+                </select>
+                <br>
+                <br>
+                <button type="submit" class="btn btn-outline-success">Prenota</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-<br>
-<ul>
-    <li *ngFor="let r of righeOmbrellone">
-        Ombrellone : {{r.valore.codiceSpiaggia}}<br>
-        Categoria : {{r.valore.categoria}}<br>
-        Prezzo : {{r.prezzoOmbrellone | currency}}<br>
-            <img *ngIf="r.valore.categoria==='STANDARD'"width="80" height="80" align="left" src="assets/img/beach-umbrella-standard.png" />
-            <img *ngIf="r.valore.categoria==='VIP'"width="80" height="80" align="left" src="assets/img/beach-umbrella-vip.png" />
-            <img *ngIf="r.valore.categoria==='PREMIUM'"width="80" height="80" align="left" src="assets/img/beach-umbrella-premium.png" />
-            <button type="button" class="btn btn-success" autocomplete="off" (click)="prenotaOmbrellone(r)">Prenota</button>
-    </li>
-</ul>
+<div *ngIf="isTableVisible" class="container">
+    <br>
+    <h1 style="text-align:center">Ombrelloni Disponibili</h1>
+    <div class="table">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Codice Spiaggia</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Prezzo</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r of righeOmbrellone">
+                    <th class="codice" scope="row">{{r.valore.codiceSpiaggia}}</th>
+                    <td>{{r.valore.categoria}}</td>
+                    <td>{{r.prezzoOmbrellone | currency}}</td>
+                    <td>
+                        <img *ngIf="r.valore.categoria==='STANDARD'" width="35" height="35" align="left"
+                            src="assets/img/beach-umbrella-standard.png" />
+                        <img *ngIf="r.valore.categoria==='VIP'" width="35" height="35" align="left"
+                            src="assets/img/beach-umbrella-vip.png" />
+                        <img *ngIf="r.valore.categoria==='PREMIUM'" width="35" height="35" align="left"
+                            src="assets/img/beach-umbrella-premium.png" />
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success btn-sm"
+                            (click)="prenotaOmbrellone(r)">Prenota</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-outline-dark" (click)="showForm()">Effettua una nuova ricerca</button>
+</div>

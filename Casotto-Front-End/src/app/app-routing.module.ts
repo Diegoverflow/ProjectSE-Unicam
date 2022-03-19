@@ -19,6 +19,7 @@ import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-m
 import { ProfiloComponent } from './profilo/profilo.component';
 import { NotificaComponent } from './notifica/notifica.component';
 import { AddettoBarOrdinazioniComponent } from './addetto-bar-home/addetto-bar-ordinazioni/addetto-bar-ordinazioni.component';
+import { RicercaOmbrelloneComponent } from './ricerca-ombrellone/ricerca-ombrellone.component';
 //TODO: inserie redirect e NOTFOUND
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
@@ -30,6 +31,7 @@ const routes: Routes = [
     canActivateChild: [HomeGuard],
     data: { ruolo: 'CLIENTE' },
     children: [
+      { path: 'ricerca-ombrellone', component: RicercaOmbrelloneComponent },
       { path: 'prenotazione-ombrellone', component: PrenotazioneOmbrelloneComponent },
       { path: 'le-mie-prenotazioni-ombrelloni', component: LeMiePrenotazioniOmbrelloniComponent },
       { path: 'prenotazione-attivita', component: PrenotazioneAttivitaComponent },

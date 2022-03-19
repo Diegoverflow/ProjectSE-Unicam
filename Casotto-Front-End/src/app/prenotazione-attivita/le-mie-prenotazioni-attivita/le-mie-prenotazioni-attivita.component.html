@@ -2,11 +2,10 @@
     <br>
     <h1 style="text-align:center">Storico Prenotazioni Attivit&agrave;</h1>
     <div class="table">
-        <input class="form-control" id="myInput" type="text" placeholder="Cerca...">
-        <br>
-        <table class="table" data-show-refresh="true">
+
+        <table class="table table-striped" data-show-refresh="true">
             <thead>
-                <tr class="table-danger">
+                <tr >
                     <th>Nome Attivit&agrave;</th>
                     <th>Data Inizio</th>
                     <th>Data Fine</th>
@@ -16,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-primary" *ngFor="let p of storicoPrenotazioni">
+                <tr *ngFor="let p of storicoPrenotazioni">
                     <td>{{p.attivita.nome}}</td>
                     <td>{{p.attivita.dataOrarioInizio}}</td>
                     <td>{{p.attivita.dataOrarioFine | date:'dd EEEE MMMM yyyy'}}</td>

@@ -22,11 +22,19 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
 
   private _minDate !: Date;
 
+  private _isTableVisible !: boolean;
+
+  private _isFormVisible !: boolean;
+
   constructor(private prenotazioneOmbrelloniservice: PrenotazioneOmbrelloneService,
     private formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef) { }
+    private cdr: ChangeDetectorRef) {
+      this._isFormVisible = true;
+     }
 
   ngOnInit(): void {
+    this._isFormVisible = true;
+    this._isTableVisible = false;
     this._minDate = new Date();
     this._fascieOrarie = [FasciaOraria.GIORNATA_INTERA, FasciaOraria.MATTINO, FasciaOraria.POMERIGGIO];
     this.righeOmbrellone = [];
@@ -34,6 +42,14 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
       datePicker: new Date(),
       fasciaOraria: FasciaOraria.GIORNATA_INTERA
     })
+  }
+
+  get isFormVisible() {
+    return this._isFormVisible;
+  }
+
+  get isTableVisible() {
+    return this._isTableVisible;
   }
 
   get minDate() {
@@ -59,7 +75,7 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
   getOmbrelloniLiberi() {
     this.prenotazioneOmbrelloniservice.getOmbrelloniLiberi(
       this.dataFasciaOraria.get('datePicker')?.value.toISOString().substring(0, 10), this.dataFasciaOraria.get('fasciaOraria')?.value)
-      .subscribe(r => { this.righeOmbrellone = []; this.righeOmbrellone = r })
+      .subscribe(r => { this.righeOmbrellone = []; this.righeOmbrellone = r; this.showTable()})
   }
 
   prenotaOmbrellone(r: RigaCatalogoOmbrellone) {
@@ -70,8 +86,18 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
       vendita: { costo: r.prezzoOmbrellone }
     }
     this.prenotazioneOmbrelloniservice.prenotaOmbrellone(prenotazione).subscribe(
-      ()=> this.getOmbrelloniLiberi()
+      () => this.getOmbrelloniLiberi()
     )
+  }
+
+  showForm(){
+    this._isFormVisible = true;
+    this._isTableVisible = false;
+  }
+
+  showTable() {
+    this._isFormVisible = false;
+    this._isTableVisible = true;
   }
 
 }
