@@ -22,7 +22,6 @@ export class AddettoBarHomeComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.aService.getNotifiche().subscribe((n) => {
       this.notifiche = n;
-      console.log(this.notifiche);
     }));
   }
 

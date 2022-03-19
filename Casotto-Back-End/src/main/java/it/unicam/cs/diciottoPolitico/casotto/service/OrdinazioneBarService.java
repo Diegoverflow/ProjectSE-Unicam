@@ -91,32 +91,40 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         if (riga.isPresent() && riga.get().getQuantita() > 0
                 && riga.get().getPrezzo() == ordinazione.getVendita().getCosto() && this.ombrelloniService.filterBy(ordinazione.getCodiceSpiaggia()).isPresent()) {
             riga.get().setQuantita(riga.get().getQuantita() - 1);
-            notifica.setMessaggio("Arrivata ordinazione : " + riga.get().getValore().getNome() + " all'ombrellone : " + ordinazione.getCodiceSpiaggia());
-            this.notificaService.inviaNotifica(notifica, new HashSet<>(this.utenteService.filtraBy(RuoloUtente.ADDETTO_BAR)));
+            notifica.setMessaggio("DA PRENDERE IN CARICO: " + riga.get().getValore().getNome() + " ALL'OMBRELLONE : " + ordinazione.getCodiceSpiaggia());
+            Set<SimpleUtente> set = new HashSet<>(this.utenteService.filtraBy(RuoloUtente.ADDETTO_BAR));
+            set.addAll(this.utenteService.filtraBy(RuoloUtente.GESTORE));
+            this.notificaService.inviaNotifica(notifica, set);
             return Optional.of(super.save(ordinazione));
         }
         return Optional.empty();
     }
 
     public SimpleOrdinazioneBar prendiInCaricoOrdinazione(UUID idOrdinazione){
+        var u = this.utenteService.getLoggedUser();
         var o =super.getBy(idOrdinazione);
         if (o.isPresent() && o.get().getStatusOrdinazioneBar() == StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO) {
             o.get().setStatusOrdinazioneBar(StatusOrdinazioneBar.PRESO_IN_CARICO);
             SimpleNotifica notifica = new SimpleNotifica();
-            notifica.setMessaggio("Presa in carico ordinazione : " + o.get().getArticoloBar().getNome() + " all'ombrellone: "+ o.get().getCodiceSpiaggia());
-            this.notificaService.inviaNotifica(notifica, Set.of(this.utenteService.getLoggedUser()));
+            notifica.setMessaggio("PRESA IN CARICO: " + o.get().getArticoloBar().getNome() + " ALL'OMBRELLONE: "+ o.get().getCodiceSpiaggia() +" DA: "+ u.getNome()+ " "+ u.getCognome());
+            Set<SimpleUtente> set = new HashSet<>(this.utenteService.filtraBy(RuoloUtente.GESTORE));
+            set.add(this.utenteService.getLoggedUser());
+            this.notificaService.inviaNotifica(notifica, set);
             return super.save(o.get());
         }
         return null;
     }
 
     public SimpleOrdinazioneBar consegnaOrdinazione(UUID idOrdinazione){
+        var u = this.utenteService.getLoggedUser();
         var o =super.getBy(idOrdinazione);
         if (o.isPresent() && o.get().getStatusOrdinazioneBar() == StatusOrdinazioneBar.PRESO_IN_CARICO) {
             o.get().setStatusOrdinazioneBar(StatusOrdinazioneBar.CONSEGNATO);
             SimpleNotifica notifica = new SimpleNotifica();
-            notifica.setMessaggio("Consegnata ordinazione : " + o.get().getArticoloBar().getNome() + " all'ombrellone: "+ o.get().getCodiceSpiaggia());
-            this.notificaService.inviaNotifica(notifica, Set.of(this.utenteService.getLoggedUser()));
+            notifica.setMessaggio("CONSEGNATA: " + o.get().getArticoloBar().getNome() + " ALL'OMBRELLONE: "+ o.get().getCodiceSpiaggia() + " DA: "+u.getNome()+ " "+ u.getCognome());
+            Set<SimpleUtente> set = new HashSet<>(this.utenteService.filtraBy(RuoloUtente.GESTORE));
+            set.add(u);
+            this.notificaService.inviaNotifica(notifica, set);
             return super.save(o.get());
         }
         return null;

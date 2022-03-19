@@ -80,7 +80,7 @@
                 <a *ngIf="ruolo==='CASSIERE'" class="nav-item nav-link" routerLink="./cassiere-home">Salda Vendita</a>
                 <!-- END-CASSIERE -->
                 <!-- LOGGED USER -->
-                <a *ngIf="ruolo!=null" class="nav-item nav-link" routerLink="./notifica">Notifiche</a>
+                <a *ngIf="ruolo!='CLIENTE' && ruolo!='CASSIERE'" class="nav-item nav-link" routerLink="./notifica">Notifiche</a>
                 
                 <!-- END-LOGGED USER -->
             </div>

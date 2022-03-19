@@ -24,7 +24,6 @@ export class NotificaComponent implements OnInit, AfterViewInit {
   getNotifiche() {
     this.aService.getNotifiche().subscribe(n => {
       this.notifiche = n;
-      console.log(this.notifiche);
     });
   }
 
