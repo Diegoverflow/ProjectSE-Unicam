@@ -56,7 +56,8 @@
                 </li>
                 <!-- END-CLIENTE -->
                 <!-- ADDETTO BAR -->
-                <a *ngIf="ruolo==='ADDETTO_BAR'" class="nav-item nav-link" routerLink="./addetto-ordinazioni">Ordinazioni
+                <a *ngIf="ruolo==='ADDETTO_BAR'" class="nav-item nav-link"
+                    routerLink="./addetto-ordinazioni">Ordinazioni
                     Bar</a>
                 <!-- END-ADDETTO-BAR -->
                 <!-- GESTORE -->
@@ -64,15 +65,14 @@
 
                     <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Gestione Cataloghi</a>
                     <div class="dropdown-content">
-                        <a routerLink="./ordinazione-bar"></a>
                         <div class="dropdown-divider"></div>
-                        <a routerLink="./catalogo-bar">Catalogo Bar</a>
-                        <a routerLink="./ordinazione-bar"></a>
+                        <a role="button" class="nav-item nav-link" routerLink="./catalogo-bar">Catalogo Bar</a>
                         <div class="dropdown-divider"></div>
-                        <a routerLink="./catalogo-attivita">Catalogo Attivit&agrave;</a>
-                        <a routerLink="./ordinazione-bar"></a>
+                        <a role="button" class="nav-item nav-link" routerLink="./catalogo-attivita">Catalogo
+                            Attivit&agrave;</a>
                         <div class="dropdown-divider"></div>
-                        <a routerLink="./catalogo-ombrelloni">Catalogo Ombrelloni</a>
+                        <a role="button" class="nav-item nav-link" routerLink="./catalogo-ombrelloni">Catalogo
+                            Ombrelloni</a>
                     </div>
                 </li>
                 <!-- END-GESTORE -->
@@ -80,8 +80,9 @@
                 <a *ngIf="ruolo==='CASSIERE'" class="nav-item nav-link" routerLink="./cassiere-home">Salda Vendita</a>
                 <!-- END-CASSIERE -->
                 <!-- LOGGED USER -->
-                <a *ngIf="ruolo!='CLIENTE' && ruolo!='CASSIERE'" class="nav-item nav-link" routerLink="./notifica">Notifiche</a>
-                
+                <a *ngIf="ruolo!='CLIENTE' && ruolo!='CASSIERE'" class="nav-item nav-link"
+                    routerLink="./notifica">Notifiche</a>
+
                 <!-- END-LOGGED USER -->
             </div>
             <div class="navbar-nav ms-auto">
