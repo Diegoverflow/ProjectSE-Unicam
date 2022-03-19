@@ -41,7 +41,6 @@ import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-m
 import { ProfiloComponent } from './profilo/profilo.component';
 import { NotificaComponent } from './notifica/notifica.component';
 import { AddettoBarOrdinazioniComponent } from './addetto-bar-home/addetto-bar-ordinazioni/addetto-bar-ordinazioni.component';
-import { RicercaOmbrelloneComponent } from './ricerca-ombrellone/ricerca-ombrellone.component';
 
 
 @NgModule({
@@ -69,7 +68,6 @@ import { RicercaOmbrelloneComponent } from './ricerca-ombrellone/ricerca-ombrell
     ProfiloComponent,
     NotificaComponent,
     AddettoBarOrdinazioniComponent,
-    RicercaOmbrelloneComponent
   ],
   imports: [
     BrowserModule,
