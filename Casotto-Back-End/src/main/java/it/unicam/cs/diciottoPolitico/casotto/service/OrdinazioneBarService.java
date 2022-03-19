@@ -102,6 +102,9 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         var o =super.getBy(idOrdinazione);
         if (o.isPresent() && o.get().getStatusOrdinazioneBar() == StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO) {
             o.get().setStatusOrdinazioneBar(StatusOrdinazioneBar.PRESO_IN_CARICO);
+            SimpleNotifica notifica = new SimpleNotifica();
+            notifica.setMessaggio("Presa in carico ordinazione : " + o.get().getArticoloBar().getNome() + " all'ombrellone: "+ o.get().getCodiceSpiaggia());
+            this.notificaService.inviaNotifica(notifica, Set.of(this.utenteService.getLoggedUser()));
             return super.save(o.get());
         }
         return null;
@@ -111,6 +114,9 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         var o =super.getBy(idOrdinazione);
         if (o.isPresent() && o.get().getStatusOrdinazioneBar() == StatusOrdinazioneBar.PRESO_IN_CARICO) {
             o.get().setStatusOrdinazioneBar(StatusOrdinazioneBar.CONSEGNATO);
+            SimpleNotifica notifica = new SimpleNotifica();
+            notifica.setMessaggio("Consegnata ordinazione : " + o.get().getArticoloBar().getNome() + " all'ombrellone: "+ o.get().getCodiceSpiaggia());
+            this.notificaService.inviaNotifica(notifica, Set.of(this.utenteService.getLoggedUser()));
             return super.save(o.get());
         }
         return null;

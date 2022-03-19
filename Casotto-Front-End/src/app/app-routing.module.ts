@@ -17,10 +17,12 @@ import { OrdinazioneBarStoricoComponent } from './ordinazione-bar/ordinazione-ba
 import { LeMiePrenotazioniOmbrelloniComponent } from './prenotazione-ombrellone/le-mie-prenotazioni-ombrelloni/le-mie-prenotazioni-ombrelloni.component';
 import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-mie-prenotazioni-attivita/le-mie-prenotazioni-attivita.component';
 import { ProfiloComponent } from './profilo/profilo.component';
+import { NotificaComponent } from './notifica/notifica.component';
+import { AddettoBarOrdinazioniComponent } from './addetto-bar-home/addetto-bar-ordinazioni/addetto-bar-ordinazioni.component';
 //TODO: inserie redirect e NOTFOUND
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
-  
+
   {
     path: 'cliente-home',
     component: ClienteHomeComponent,
@@ -34,7 +36,8 @@ const routes: Routes = [
       { path: 'le-mie-prenotazioni-attivita', component: LeMiePrenotazioniAttivitaComponent },
       { path: 'ordinazione-bar', component: OrdinazioneBarComponent },
       { path: 'ordinazione-bar-storico', component: OrdinazioneBarStoricoComponent },
-      { path: 'profilo', component: ProfiloComponent }
+      { path: 'profilo', component: ProfiloComponent },
+      { path: 'notifica', component: NotificaComponent }
     ]
   },
 
@@ -48,6 +51,8 @@ const routes: Routes = [
       { path: 'catalogo-bar', component: RigaBarComponent },
       { path: 'catalogo-attivita', component: RigaAttiviaComponent },
       { path: 'catalogo-ombrelloni', component: RigaOmbrelloneComponent },
+      { path: 'profilo', component: ProfiloComponent },
+      { path: 'notifica', component: NotificaComponent }
     ]
   },
 
@@ -58,6 +63,8 @@ const routes: Routes = [
     canActivateChild: [HomeGuard],
     data: { ruolo: 'CASSIERE' },
     children: [
+      { path: 'profilo', component: ProfiloComponent },
+      { path: 'notifica', component: NotificaComponent }
     ]
   },
 
@@ -68,6 +75,9 @@ const routes: Routes = [
     canActivateChild: [HomeGuard],
     data: { ruolo: 'ADDETTO_BAR' },
     children: [
+      { path: 'profilo', component: ProfiloComponent },
+      { path: 'notifica', component: NotificaComponent },
+      { path: 'addetto-ordinazioni', component: AddettoBarOrdinazioniComponent }
     ]
   },
 

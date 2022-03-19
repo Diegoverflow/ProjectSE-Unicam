@@ -56,7 +56,7 @@
                 </li>
                 <!-- END-CLIENTE -->
                 <!-- ADDETTO BAR -->
-                <a *ngIf="ruolo==='ADDETTO_BAR'" class="nav-item nav-link" routerLink="./addetto-bar-home">Ordinazioni
+                <a *ngIf="ruolo==='ADDETTO_BAR'" class="nav-item nav-link" routerLink="./addetto-ordinazioni">Ordinazioni
                     Bar</a>
                 <!-- END-ADDETTO-BAR -->
                 <!-- GESTORE -->
@@ -81,6 +81,7 @@
                 <!-- END-CASSIERE -->
                 <!-- LOGGED USER -->
                 <a *ngIf="ruolo!=null" class="nav-item nav-link" routerLink="./notifica">Notifiche</a>
+                
                 <!-- END-LOGGED USER -->
             </div>
             <div class="navbar-nav ms-auto">

@@ -39,6 +39,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LeMiePrenotazioniOmbrelloniComponent } from './prenotazione-ombrellone/le-mie-prenotazioni-ombrelloni/le-mie-prenotazioni-ombrelloni.component';
 import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-mie-prenotazioni-attivita/le-mie-prenotazioni-attivita.component';
 import { ProfiloComponent } from './profilo/profilo.component';
+import { NotificaComponent } from './notifica/notifica.component';
+import { AddettoBarOrdinazioniComponent } from './addetto-bar-home/addetto-bar-ordinazioni/addetto-bar-ordinazioni.component';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { ProfiloComponent } from './profilo/profilo.component';
     CasottoNavbarComponent,
     LeMiePrenotazioniOmbrelloniComponent,
     LeMiePrenotazioniAttivitaComponent,
-    ProfiloComponent
+    ProfiloComponent,
+    NotificaComponent,
+    AddettoBarOrdinazioniComponent
   ],
   imports: [
     BrowserModule,
