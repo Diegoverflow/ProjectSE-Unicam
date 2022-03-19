@@ -1,8 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <img src="../../assets/img/logo.png" width="40" height="40">
-        <a class="navbar-brand" routerLink="./"> <!--funziona grazie alle guardie-->
-            Chalet Casotto</a>
+        <a class="navbar-brand" routerLink="./">
+            <!--funziona grazie alle guardie-->
+            Chalet Casotto
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,9 +20,11 @@
                     <div class="dropdown">
                         <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Ombrelloni</a>
                         <div class="dropdown-content">
-                            <a routerLink="./prenotazione-ombrellone">Prenota Un Ombrellone</a>
+                            <a role="button" class="nav-item nav-link" routerLink="./prenotazione-ombrellone">Prenota Un
+                                Ombrellone</a>
                             <div class="dropdown-divider"></div>
-                            <a routerLink="./le-mie-prenotazioni-ombrelloni">I Miei Ombrelloni</a>
+                            <a role="button" class="nav-item nav-link" routerLink="./le-mie-prenotazioni-ombrelloni">I
+                                Miei Ombrelloni</a>
                         </div>
                     </div>
                 </li>
@@ -28,9 +32,11 @@
                     <div class="dropdown">
                         <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Attivit&agrave;</a>
                         <div class="dropdown-content">
-                            <a routerLink="./prenotazione-attivita">Prenota Un'Attivit&agrave;</a>
+                            <a role="button" class="nav-item nav-link" routerLink="./prenotazione-attivita">Prenota
+                                Un'Attivit&agrave;</a>
                             <div class="dropdown-divider"></div>
-                            <a routerLink="./le-mie-prenotazioni-attivita">Le Mie Attivit&agrave;</a>
+                            <a role="button" class="nav-item nav-link" routerLink="./le-mie-prenotazioni-attivita">Le
+                                Mie Attivit&agrave;</a>
                         </div>
                     </div>
                 </li>
@@ -39,10 +45,11 @@
                     <div class="dropdown">
                         <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Ordinazioni Bar</a>
                         <div class="dropdown-content">
-                            <a routerLink="./ordinazione-bar">Ordinazione
+                            <a role="button" class="nav-item nav-link" routerLink="./ordinazione-bar">Ordinazione
                                 Bar</a>
                             <div class="dropdown-divider"></div>
-                            <a routerLink="./ordinazione-bar-storico">Le Mie Ordinazioni</a>
+                            <a role="button" class="nav-item nav-link" routerLink="./ordinazione-bar-storico">Le Mie
+                                Ordinazioni</a>
                         </div>
                     </div>
 
@@ -72,9 +79,12 @@
                 <!-- CASSIERE -->
                 <a *ngIf="ruolo==='CASSIERE'" class="nav-item nav-link" routerLink="./cassiere-home">Salda Vendita</a>
                 <!-- END-CASSIERE -->
+                <!-- LOGGED USER -->
+                <a *ngIf="ruolo!=null" class="nav-item nav-link" routerLink="./notifica">Notifiche</a>
                 <!-- END-LOGGED USER -->
             </div>
             <div class="navbar-nav ms-auto">
+                <!-- LOGGED USER -->
                 <li class="nav-item dropdown" *ngIf="ruolo !== null; else notLogged">
                     <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">{{nome}}</a>
                     <div class="dropdown-content">
@@ -84,9 +94,12 @@
                                 class="sr-only"></span></a>
                     </div>
                 </li>
+                <!-- END-LOGGED USER -->
+                <!-- UNLOGGED USER -->
                 <ng-template #notLogged>
                     <a href="#" class="nav-item nav-link">Login</a>
                 </ng-template>
+                <!-- END-UNLOGGED USER -->
             </div>
         </div>
     </div>

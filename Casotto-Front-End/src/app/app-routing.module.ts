@@ -16,6 +16,7 @@ import { RigaOmbrelloneComponent } from './spiaggia/riga-ombrellone/riga-ombrell
 import { OrdinazioneBarStoricoComponent } from './ordinazione-bar/ordinazione-bar-storico/ordinazione-bar-storico.component';
 import { LeMiePrenotazioniOmbrelloniComponent } from './prenotazione-ombrellone/le-mie-prenotazioni-ombrelloni/le-mie-prenotazioni-ombrelloni.component';
 import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-mie-prenotazioni-attivita/le-mie-prenotazioni-attivita.component';
+import { ProfiloComponent } from './profilo/profilo.component';
 //TODO: inserie redirect e NOTFOUND
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
@@ -32,7 +33,8 @@ const routes: Routes = [
       { path: 'prenotazione-attivita', component: PrenotazioneAttivitaComponent },
       { path: 'le-mie-prenotazioni-attivita', component: LeMiePrenotazioniAttivitaComponent },
       { path: 'ordinazione-bar', component: OrdinazioneBarComponent },
-      { path: 'ordinazione-bar-storico', component: OrdinazioneBarStoricoComponent }
+      { path: 'ordinazione-bar-storico', component: OrdinazioneBarStoricoComponent },
+      { path: 'profilo', component: ProfiloComponent }
     ]
   },
 

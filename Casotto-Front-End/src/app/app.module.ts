@@ -28,7 +28,7 @@ import { PrenotazioneOmbrelloneService } from './service/prenotazione-ombrellone
 import { HomeGuard } from './helpers/home-guard';
 import { VenditaComponent } from './vendita/vendita.component';
 import { OrdinazioneBarStoricoComponent } from './ordinazione-bar/ordinazione-bar-storico/ordinazione-bar-storico.component';
-import { CasottoNavbarComponent } from './casottoNavbar/casottonavbar.component';
+import { CasottoNavbarComponent } from './casotto-navbar/casotto-navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker'
@@ -38,6 +38,7 @@ registerLocaleData(localeIt, 'it');
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LeMiePrenotazioniOmbrelloniComponent } from './prenotazione-ombrellone/le-mie-prenotazioni-ombrelloni/le-mie-prenotazioni-ombrelloni.component';
 import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-mie-prenotazioni-attivita/le-mie-prenotazioni-attivita.component';
+import { ProfiloComponent } from './profilo/profilo.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-m
     OrdinazioneBarStoricoComponent,
     CasottoNavbarComponent,
     LeMiePrenotazioniOmbrelloniComponent,
-    LeMiePrenotazioniAttivitaComponent
+    LeMiePrenotazioniAttivitaComponent,
+    ProfiloComponent
   ],
   imports: [
     BrowserModule,

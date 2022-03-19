@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication/service/authentication.service';
 
 @Component({
-  selector: 'app-casottonavbar',
-  templateUrl: './casottoNavbar.component.html',
-  styleUrls: ['./casottoNavbar.component.scss']
+  selector: 'app-casotto-navbar',
+  templateUrl: './casotto-navbar.component.html',
+  styleUrls: ['./casotto-navbar.component.scss']
 })
 export class CasottoNavbarComponent implements OnInit {
 
