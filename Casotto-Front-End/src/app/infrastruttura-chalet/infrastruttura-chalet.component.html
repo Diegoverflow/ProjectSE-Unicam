@@ -1,33 +1,21 @@
 <app-casotto-navbar></app-casotto-navbar>
-<div class="row">
-    <div class="col-md-4">
-        <div class="thumbnail">
-            <a>
-                <img src="/src/assets/img/area-spiaggia.webp" alt="Lights" style="width:100%">
-                <div class="caption">
-                    <p>Lorem ipsum...</p>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="thumbnail">
-            <a href="/w3images/nature.jpg">
-                <img src="/w3images/nature.jpg" alt="Nature" style="width:100%">
-                <div class="caption">
-                    <p>Lorem ipsum...</p>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="thumbnail">
-            <a href="/w3images/fjords.jpg">
-                <img src="/w3images/fjords.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p>Lorem ipsum...</p>
-                </div>
-            </a>
-        </div>
+<div class="container">
+    <br>
+    <h1 style="text-align:center">Infrastruttura Chalet</h1>
+    <div class="table">
+        <table class="table table-striped" data-show-refresh="true">
+            <thead>
+                <tr>
+                    <th>Nome Area Infrastruttura</th>
+                    <th>Descrizione</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of aree">
+                    <th class="codice">{{a.nome}}</th>
+                    <td>{{a.descrizione}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

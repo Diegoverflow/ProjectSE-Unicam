@@ -72,7 +72,7 @@ import { InfrastrutturaChaletComponent } from './infrastruttura-chalet/infrastru
     AddettoBarOrdinazioniComponent,
     HomeComponent,
     CasottoFooterComponent,
-    InfrastrutturaChaletComponent,
+    InfrastrutturaChaletComponent
   ],
   imports: [
     BrowserModule,
