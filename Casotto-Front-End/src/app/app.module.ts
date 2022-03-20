@@ -43,6 +43,7 @@ import { NotificaComponent } from './notifica/notifica.component';
 import { AddettoBarOrdinazioniComponent } from './addetto-bar-home/addetto-bar-ordinazioni/addetto-bar-ordinazioni.component';
 import { HomeComponent } from './home/home.component';
 import { CasottoFooterComponent } from './casotto-footer/casotto-footer.component';
+import { InfrastrutturaChaletComponent } from './infrastruttura-chalet/infrastruttura-chalet.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { CasottoFooterComponent } from './casotto-footer/casotto-footer.componen
     AddettoBarOrdinazioniComponent,
     HomeComponent,
     CasottoFooterComponent,
+    InfrastrutturaChaletComponent,
   ],
   imports: [
     BrowserModule,

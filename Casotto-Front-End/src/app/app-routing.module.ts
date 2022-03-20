@@ -20,10 +20,12 @@ import { ProfiloComponent } from './profilo/profilo.component';
 import { NotificaComponent } from './notifica/notifica.component';
 import { AddettoBarOrdinazioniComponent } from './addetto-bar-home/addetto-bar-ordinazioni/addetto-bar-ordinazioni.component';
 import { HomeComponent } from './home/home.component';
+import { InfrastrutturaChaletComponent } from './infrastruttura-chalet/infrastruttura-chalet.component';
 
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
-  { path: 'home', component: HomeComponent, canActivate:[LoginGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [LoginGuard] },
+  { path: 'aree-infrastruttura', component: InfrastrutturaChaletComponent, canActivate: [LoginGuard] },
   {
     path: 'cliente-home',
     component: ClienteHomeComponent,
