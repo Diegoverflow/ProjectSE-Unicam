@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/HTTPiego/ProjectSE-Unicam">
-    <img src="photo_2022-03-20_17-17-21.jpg" alt="Logo" width="250" height="250">
+    <img src="logo.jpg" alt="Logo" width="250" height="250">
   </a>
 
 <h3 align="center">Casotto</h3>
@@ -25,34 +25,32 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Tabella dei Contenuti</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#riguardo-al-progetto">Riguardo al Progetto</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#costruito-con">Costruito Con</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#per-iniziare">Per Iniziare</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisiti">Prerequisiti</a></li>
+        <li><a href="#installazione">Installazione</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#contribuzione">Contribuzione</a></li>
+    <li><a href="#licenza">Licenza</a></li>
+    <li><a href="#contatti">Contatti</a></li>
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Riguardo al Progetto
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
@@ -66,7 +64,7 @@ Tutti i dati vengono salvati e in un database per garantire la perdita dei dati 
 
 
 
-### Built With
+### Costruito Con
 * [Angular](https://angular.io/)
 * [Bootstrap](https://getbootstrap.com)
 * [Spring Boot](https://spring.io/projects/spring-boot)
@@ -76,26 +74,20 @@ Tutti i dati vengono salvati e in un database per garantire la perdita dei dati 
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Per Iniziare
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+### Prerequisiti
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* un server online/locale
+* clonare la repository ```git clone https://github.com/HTTPiego/ProjectSE-Unicam.git ```
 
-### Installation
+### Installazione
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
+1. Andare sulla cartella  ProjectSE-Unicam/Casotto-Back-End/src/main/resources/application.properties e impostare il proprio database nelle prime 5 righe
+2. 
 3. Install NPM packages
    ```sh
    npm install
@@ -104,17 +96,6 @@ This is an example of how to list things you need to use the software and how to
    ```js
    const API_KEY = 'ENTER YOUR API';
    ```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -135,7 +116,7 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## Contribuzione
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -153,7 +134,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
-## License
+## Licenza
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
@@ -162,7 +143,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
-## Contact
+## Contatti
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
@@ -170,32 +151,4 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
 
