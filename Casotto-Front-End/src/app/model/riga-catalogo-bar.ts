@@ -1,4 +1,4 @@
-import { ArticoloBar } from "./articolo-bar";
+import { ArticoloBar } from "./articolo-bar";{}
 
 export interface RigaCatalogoBar {
     id: string;

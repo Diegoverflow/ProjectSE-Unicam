@@ -1,20 +1,29 @@
 <form [formGroup]="rigaForm" (ngSubmit)="save()">
 
-    <div formGroupName="valore" >
-        <h4>{{title}}</h4>
-      
-        <label for="nome-articolo">Nome Articolo: </label>
-        <input id="nome-articolo" type="text" formControlName="nome">
+    <div formGroupName="valore">
+        <h1 style="text-align:center">{{title}}</h1>
+
+        <label for="nome-articolo">Nome Articolo</label>
+        <input class="form-control" id="nome-articolo" type="text" formControlName="nome"
+            placeholder="Nome articolo bar">
         <br>
-        <label for="descrizione">Descrizione: </label>
-        <input id="descrizione" type="text" formControlName="descrizione">
+        <label for="descrizione">Descrizione</label>
+        <input class="form-control" id="descrizione" type="text" formControlName="descrizione"
+            placeholder="Descrizione articolo bar">
+        <!-- Finire select tipo articolo -->
+        <br>
+        <label for="tipo">Tipo Articolo Bar</label>
+        <select class="form-select" id="tipo" aria-label="Default select example" formControlName="tipoArticoloBar">
+            <option *ngFor="let t of tipiArticoli" class="form-control" value={{t}}>{{t}}</option>
+        </select>
     </div>
     <br>
-    <label for="quantita-articoli">Quantita Articoli: </label>
-    <input id="quantita-articoli" type="number" formControlName="quantita">
+    <label for="quantita-articoli">Quantit&agrave; Articoli</label>
+    <input class="form-control" id="quantita-articoli" type="number" formControlName="quantita" min="0" />
     <br>
-    <label for="prezzo">Prezzo: </label>
-    <input id="prezzo" type="number" formControlName="prezzo">
+    <label for="prezzo">Prezzo</label>
+    <input class="form-control" id="prezzo" type="number" formControlName="prezzo" min="0" />
     <br>
-    <button type="submit">Salva Articolo</button>
+    <button class="btn btn-success" type="submit">Salva Articolo</button>
+    <br>
 </form>
