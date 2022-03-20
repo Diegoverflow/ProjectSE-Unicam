@@ -1,14 +1,30 @@
-<div>
-<h2>{{title}}</h2>
-<ul>
-    <li *ngFor="let riga of righe ">
-        <mark><em>Nome Attivita:</em></mark> {{riga.valore.nome}} - 
-        <mark><em>Data Inizio Attivita:</em></mark> {{riga.valore.dataOrarioInizio}} - 
-        <mark><em>Data Fine Attivita:</em></mark> {{riga.valore.dataOrarioFine}} - 
-        <mark><em>Descrizione Attivita:</em></mark> {{riga.valore.descrizione}} - 
-        <mark><em>Prezzo Attivita:</em></mark> €{{riga.prezzo}}
-        <button type="button" (click)="eliminaRiga(riga)">rimuovi</button>
-    </li>
-</ul>
- <app-riga-attivita-editor (rigaAggiunta)="rigaAttivitaAggiunta($event)"></app-riga-attivita-editor>
+<div class="container">
+    <br>
+    <h1 style="text-align:center">Catalogo Attivit&agrave;</h1>
+    <div class="table">
+        <table class="table table-striped" data-show-refresh="true">
+            <thead>
+                <tr>
+                    <th>Nome Attivit&agrave;</th>
+                    <th>Data Inizio Attivit&agrave;</th>
+                    <th>Data Fine Attivit&agrave;</th>
+                    <th>Descrizione Attivit&agrave;</th>
+                    <th>Prezzo Attivit&agrave;</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let riga of righe">
+                    <td>{{riga.valore.nome}}</td>
+                    <td>{{riga.valore.dataOrarioInizio}}</td>
+                    <td>{{riga.valore.dataOrarioFine}}</td>
+                    <td>{{riga.valore.descrizione}}</td>
+                    <td>{{riga.prezzo | currency}}</td>
+                    <td><button class="btn btn-lg btn-outline-danger" type="button"
+                            (click)="eliminaRiga(riga)">Rimuovi</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-riga-attivita-editor (rigaAggiunta)="rigaAttivitaAggiunta($event)"></app-riga-attivita-editor>
 </div>

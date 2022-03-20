@@ -1,30 +1,28 @@
 <form [formGroup]="rigaForm" (ngSubmit)="save()">
+    <div formGroupName="valore">
+        <h1 style="text-align:center">Aggiungi un' Attivit&agrave; al Catalogo Attivit&agrave;</h1>
 
-    <div formGroupName="valore" >
-        <h4>{{title}}</h4>
-      
-        <label for="nome-attvitia">Nome attivita: </label>
-        <input id="nome-attvitia" type="text" formControlName="nome">
+        <label for="nome-attivita">Nome Attivit&agrave;: </label>
+        <input class="form-control" id="nome-attivita" type="text" formControlName="nome"
+            placeholder="Nome Attivit&agrave;">
         <br>
-        <label for="data-inizio">Data inizio: </label>
-        <input id="data-inizio" type="date" formControlName="dataOrarioInizio">
+        <label for="data-inizio">Data Inizio: </label>
+        <input class="form-control" id="data-inizio" type="date" formControlName="dataOrarioInizio" placeholder="date">
         <br>
-        <label for="data-fine">Data fine: </label>
-        <input id="data-fine" type="date" formControlName="dataOrarioFine">
+        <label for="data-fine">Data Fine: </label>
+        <input class="form-control" id="data-fine" type="date" formControlName="dataOrarioFine" placeholder="date">
         <br>
         <label for="descrizione">Descrizione: </label>
-        <input id="descrizione" type="text" formControlName="descrizione">
+        <input class="form-control" id="descrizione" type="text" formControlName="descrizione"
+            placeholder="Descrizione Attivit&agrave;">
     </div>
-    <br> 
-    <label for="posti-disponibili">Posti disponibili: </label>
-    <input id="posti-disponibili" type="number" formControlName="postiTotali">
     <br>
-    <label for="posti-occupati">Posti occupati: </label>
-    <input id="posti-occupati" type="number" formControlName="postiOccupati">
+    <label for="posti-totali">Posti Totali: </label>
+    <input class="form-control" id="posti-totali" type="number" formControlName="postiTotali">
     <br>
     <label for="prezzo">Prezzo: </label>
-    <input id="prezzo" type="number" formControlName="prezzo">
+    <input class="form-control" id="prezzo" type="number" formControlName="prezzo" placeholder="Prezzo Attivit&agrave;">
     <br>
-    <button type="submit">Salva Attivita</button>
+    <button class="btn btn-success" type="submit">Salva Attivit&agrave;</button>
+    <br>
 </form>
-

@@ -16,8 +16,6 @@ export class RigaAttiviaComponent implements OnInit {
   public righe?: RigaCatalogoAttivita[];
   //public righe?: Observable<RigaCatalogoAttivita[]>;
 
-  title: string = 'Catalogo Attivita'
-
   constructor(private righeAttivitaService: RigheAttivitaService,
               private route: ActivatedRoute,  
               private location: Location,     

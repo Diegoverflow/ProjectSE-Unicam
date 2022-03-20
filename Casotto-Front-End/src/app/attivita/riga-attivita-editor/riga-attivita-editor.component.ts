@@ -10,26 +10,25 @@ import { RigaCatalogoAttivita } from 'src/app/model/riga-catalogo-attivita';
 })
 export class RigaAttivitaEditorComponent implements OnInit {
 
-  title: string = 'Editor riga catalogo attivita'
-
   @Output() rigaAggiunta = new EventEmitter<RigaCatalogoAttivita>();
 
   //TODO: validators
   rigaForm = new FormGroup({
-    valore : new FormGroup({
-      nome : new FormControl('nome attivita'),
-      dataOrarioInizio : new FormControl(new Date().toISOString().substring(0,10)),
-      dataOrarioFine : new FormControl(new Date().toISOString().substring(0,10)),
-      descrizione : new FormControl('descrizione')
+    valore: new FormGroup({
+      nome: new FormControl(''),
+      dataOrarioInizio: new FormControl(new Date().toISOString().substring(0, 10)),
+      dataOrarioFine: new FormControl(new Date().toISOString().substring(0, 10)),
+      descrizione: new FormControl('')
     }),
-    postiTotali : new FormControl(10),
-    postiOccupati : new FormControl(0),
-    prezzo : new FormControl(0)
+    postiTotali: new FormControl(10),
+    postiOccupati: new FormControl(0),
+    prezzo: new FormControl(0)
   })
 
-  save(){
-    this.righeAttivitaService.addRiga(this.rigaForm.value)
-      .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
+  save() {
+    if (this.righeAttivitaService.askConfirm("salvare", "salvata"))
+      this.righeAttivitaService.addRiga(this.rigaForm.value)
+        .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
   }
 
   constructor(private righeAttivitaService: RigheAttivitaService) { }

@@ -12,25 +12,26 @@ import { Location } from '@angular/common';
 })
 export class RigaOmbrelloneComponent implements OnInit {
 
-  public righe? : RigaCatalogoOmbrellone[];
+  public righe?: RigaCatalogoOmbrellone[];
 
-  title : string = "Catalogo Ombrelloni"
+  title: string = "Catalogo Ombrelloni"
 
   constructor(private righeOmbrelloniService: RigheOmbrelloniService,
-              private route: ActivatedRoute,  
-              private location: Location,     
-              private router: Router) { }
+    private route: ActivatedRoute,
+    private location: Location,
+    private router: Router) { }
 
-  public getRigheOmbrelloni() : void {
+  public getRigheOmbrelloni(): void {
     this.righeOmbrelloniService.getRighe().subscribe(r => this.righe = r)
   }
 
-  public rigaOmbrelloneAggiunta(rigaAggiunta : RigaCatalogoOmbrellone) {
+  public rigaOmbrelloneAggiunta(rigaAggiunta: RigaCatalogoOmbrellone) {
     this.righe?.push(rigaAggiunta)
   }
 
-  eliminaRiga(rigaDaEliminare : RigaCatalogoOmbrellone) {
-    this.righeOmbrelloniService.removeRiga(rigaDaEliminare.id).subscribe(() => this.getRigheOmbrelloni())
+  eliminaRiga(rigaDaEliminare: RigaCatalogoOmbrellone) {
+    if (this.righeOmbrelloniService.askConfirm("eliminare", "eliminato", "l'", "ombrellone", "selezionato"))
+      this.righeOmbrelloniService.removeRiga(rigaDaEliminare.id).subscribe(() => this.getRigheOmbrelloni())
   }
 
   ngOnInit(): void {

@@ -11,29 +11,30 @@ import { CategoriaOmbrellone } from 'src/app/categoria-ombrellone';
 })
 export class RigaOmbrelloneEditorComponent implements OnInit {
 
-  title: string = 'Editor riga catalogo ombrelloni';
+  title: string = 'Aggiungi un ombrellone al catalogo ombrelloni';
 
   @Output() rigaAggiunta = new EventEmitter<RigaCatalogoOmbrellone>();
 
-  categorie : CategoriaOmbrellone[] = [CategoriaOmbrellone.STANDARD,
-                                       CategoriaOmbrellone.VIP, 
-                                       CategoriaOmbrellone.PREMIUM]
+  categorie: CategoriaOmbrellone[] = [CategoriaOmbrellone.STANDARD,
+  CategoriaOmbrellone.VIP,
+  CategoriaOmbrellone.PREMIUM]
 
   rigaForm = new FormGroup({
-    valore : new FormGroup({
-      categoria : new FormControl('categoria ombrellone', Validators.required),
-      codiceSpiaggia : new FormControl('codice spiaggia')
+    valore: new FormGroup({
+      categoria: new FormControl(CategoriaOmbrellone.STANDARD, Validators.required),
+      codiceSpiaggia: new FormControl('1')
     }),
-    prezzoOmbrellone : new FormControl(10)
+    prezzoOmbrellone: new FormControl(10)
   })
 
 
-  save(){
-    this.righeOmbrelloniService.addRiga(this.rigaForm.value)
-      .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
+  save() {
+    if (this.righeOmbrelloniService.askConfirm("salvare", "salvato", "l'", "ombrellone", "selezionato"))
+      this.righeOmbrelloniService.addRiga(this.rigaForm.value)
+        .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
   }
 
-  constructor(private righeOmbrelloniService : RigheOmbrelloniService) { }
+  constructor(private righeOmbrelloniService: RigheOmbrelloniService) { }
 
   ngOnInit(): void {
   }

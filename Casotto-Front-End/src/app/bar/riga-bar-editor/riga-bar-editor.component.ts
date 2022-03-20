@@ -11,7 +11,7 @@ import { RigheBarService } from '../righe-bar.service';
 })
 export class RigaBarEditorComponent implements OnInit {
 
-  title: string = 'Aggiungi Un Articolo Bar';
+  title: string = "Aggiungi Un Articolo Bar al Catalogo Bar";
 
   @Output() rigaAggiunta = new EventEmitter<RigaCatalogoBar>();
 
@@ -38,8 +38,7 @@ export class RigaBarEditorComponent implements OnInit {
   })
 
   save() {
-    console.log(this.rigaForm.value);
-    if (this.righeBarService.askConfirm("salvare", "salvato"))
+    if (this.righeBarService.askConfirm("salvare", "salvato", "l'", "Articolo Bar", "selezionato"))
       this.righeBarService.addRiga(this.rigaForm.value)
         .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
   }

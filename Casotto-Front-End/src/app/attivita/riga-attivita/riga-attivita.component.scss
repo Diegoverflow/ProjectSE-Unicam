@@ -1,0 +1,23 @@
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.container {
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+    padding: 30px;
+}
+
+table,
+h1,
+li,
+h4,
+label,
+app-riga-attivita-editor {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 700;
+}

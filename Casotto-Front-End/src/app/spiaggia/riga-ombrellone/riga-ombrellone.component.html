@@ -1,12 +1,26 @@
-<div>
-    <h2>{{title}}</h2>
-    <ul>
-        <li *ngFor="let riga of righe ">
-            <em><mark>Categoria Ombrellone:</mark></em> {{riga.valore.categoria}} -
-            <em><mark>Codice Spiaggia Ombrellone:</mark></em> {{riga.valore.codiceSpiaggia}} - 
-            <em><mark>Prezzo Ombrellone:</mark></em> €{{riga.prezzoOmbrellone}}
-            <button type="button" (click)="eliminaRiga(riga)">rimuovi</button>
-        </li>
-</ul>
-    <app-riga-ombrellone-editor (rigaAggiunta)="rigaOmbrelloneAggiunta($event)"></app-riga-ombrellone-editor>  
+<div class="container">
+    <br>
+    <h1 style="text-align:center">{{title}}</h1>
+    <div class="table">
+        <table class="table table-striped" data-show-refresh="true">
+            <thead>
+                <tr>
+                    <th>Categoria Ombrellone</th>
+                    <th>Codice Spiaggia Ombrellone</th>
+                    <th>Prezzo Ombrellone</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let riga of righe">
+                    <td>{{riga.valore.categoria}}</td>
+                    <td>{{riga.valore.codiceSpiaggia}}</td>
+                    <td>{{riga.prezzoOmbrellone | currency}}</td>
+                    <td><button class="btn btn-lg btn-outline-danger" type="button"
+                            (click)="eliminaRiga(riga)">Rimuovi</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-riga-ombrellone-editor (rigaAggiunta)="rigaOmbrelloneAggiunta($event)"></app-riga-ombrellone-editor>
 </div>

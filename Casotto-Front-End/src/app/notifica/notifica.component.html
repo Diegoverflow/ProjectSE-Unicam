@@ -3,14 +3,14 @@
     <h1 style="text-align:center">Le mie notifiche</h1>
     <div class="table">
         <br>
-        <table class="table" data-show-refresh="true">
+        <table class="table table-striped" data-show-refresh="true">
             <thead>
-                <tr class="table-danger">
+                <tr>
                     <th>Notifica</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-primary" *ngFor="let n of notifiche">
+                <tr *ngFor="let n of notifiche">
                     <td>{{n.messaggio}}</td>
                 </tr>
             </tbody>
