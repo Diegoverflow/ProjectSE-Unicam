@@ -1,13 +1,29 @@
-<div>
-    <h2>{{title}}</h2>
-    <ul>
-        <li *ngFor="let riga of righe ">
-            <em><mark>Nome Articolo:</mark></em> {{riga.valore.nome}} -
-            <em><mark>Descrizione Articolo:</mark></em> {{riga.valore.descrizione}} - 
-            <em><mark>Quantità Articolo:</mark></em> {{riga.quantita}} - 
-            <em><mark>Prezzo Articolo:</mark></em> €{{riga.prezzo}}
-            <button type="button" (click)="eliminaRiga(riga)">rimuovi</button>
-        </li>
-</ul>
-    <app-riga-bar-editor (rigaAggiunta)="rigaBarAggiunta($event)"></app-riga-bar-editor> 
+<div class="container">
+    <br>
+    <h1 style="text-align:center">{{title}}</h1>
+    <div class="table">
+        <table class="table" data-show-refresh="true">
+            <thead>
+                <tr class="table-danger">
+                    <th>Nome Articolo Bar</th>
+                    <th>Descrizione Articolo</th>
+                    <th>Tipo</th>
+                    <th>Quantit&agrave; Articolo</th>
+                    <th>Prezzo Articolo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-primary" *ngFor="let riga of righe">
+                    <td>{{riga.valore.nome}}</td>
+                    <td>{{riga.valore.descrizione}}</td>
+                    <td>{{riga.valore.tipoArticoloBar}}</td>
+                    <td>{{riga.quantita}}</td>
+                    <td>{{riga.prezzo | currency}}</td>
+                    <td><button class="btn btn-lg btn-outline-danger" type="button" (click)="eliminaRiga(riga)">rimuovi</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-riga-bar-editor (rigaAggiunta)="rigaBarAggiunta($event)"></app-riga-bar-editor>
 </div>

@@ -2,9 +2,17 @@
     <br>
     <div class="row">
         <div class="col text-center">
-            <h1>Ordinazioni Bar: <p style="display:inline;color:red">{{selectedButton}}</p>
+            <h1>Ordinazioni Bar:
+                <p *ngIf="selectedButton=='' || selectedButton==statusButtons[0]" style="display:inline;color:red">
+                    {{selectedButton}}</p>
+                <p *ngIf="selectedButton=='' || selectedButton==statusButtons[1]" style="display:inline;color:orange">
+                    {{selectedButton}}</p>
+                <p *ngIf="selectedButton=='' || selectedButton==statusButtons[2]" style="display:inline;color:green">
+                    {{selectedButton}}</p>
             </h1>
-            <button class="btn btn-success" *ngFor="let s of statusButtons" (click)="selectStatus(s)">{{s}}</button>
+            <button class="btn btn-danger m-1" (click)="selectStatus(statusButtons[0])">{{statusButtons[0]}}</button>
+            <button class="btn btn-warning m-1" (click)="selectStatus(statusButtons[1])">{{statusButtons[1]}}</button>
+            <button class="btn btn-success" (click)="selectStatus(statusButtons[2])">{{statusButtons[2]}}</button>
         </div>
     </div>
     <br>

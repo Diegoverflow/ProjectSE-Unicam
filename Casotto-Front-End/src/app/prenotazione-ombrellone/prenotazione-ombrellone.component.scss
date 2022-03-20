@@ -14,11 +14,11 @@
    border-style: solid;
 }
 
-.btn {
-   width: 40%;
-   margin-left: 30%;
-   margin-right: 30%;
-}
+ .centeredBtn {
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+ }
 
 p {
    font-family: "Fredoka", sans-serif;
@@ -77,3 +77,8 @@ select option {
    animation: 1s ease-out 0s 1 slideInFromLeft;
    padding: 30px;
 }
+
+#disponibiliFredoka, #btnFredoka, table, li, h4, label{
+   font-family: 'Fredoka', sans-serif;
+   font-weight: 700;
+ }

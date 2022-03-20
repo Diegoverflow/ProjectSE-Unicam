@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { RigaCatalogoBar } from '../riga-catalogo-bar';
+import { TipoArticoloBar } from 'src/app/model/tipo-articolo-bar';
+import { RigaCatalogoBar } from '../../model/riga-catalogo-bar';
 import { RigheBarService } from '../righe-bar.service';
 
 @Component({
@@ -10,27 +11,38 @@ import { RigheBarService } from '../righe-bar.service';
 })
 export class RigaBarEditorComponent implements OnInit {
 
-  title: string = 'Editor riga catalogo bar';
+  title: string = 'Aggiungi Un Articolo Bar';
 
   @Output() rigaAggiunta = new EventEmitter<RigaCatalogoBar>();
 
-  rigaForm = new FormGroup({
-    valore : new FormGroup({
-      nome : new FormControl('nome articolo'),
-      descrizione : new FormControl('descrizione')
-    }),
-    quantita : new FormControl(20),
-    prezzo : new FormControl(0)
-  })
+  tipiArticoli: TipoArticoloBar[] = new Array();
 
-  save(){
-    this.righeBarService.addRiga(this.rigaForm.value)
-      .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
-  }
-
-  constructor(private righeBarService : RigheBarService) { }
+  constructor(private righeBarService: RigheBarService) { }
 
   ngOnInit(): void {
+    this.initializeTipi();
   }
+  initializeTipi() {
+    for (var t in TipoArticoloBar)
+      this.tipiArticoli.push(<TipoArticoloBar>t);
+  }
+
+  rigaForm = new FormGroup({
+    valore: new FormGroup({
+      nome: new FormControl(''),
+      descrizione: new FormControl(''),
+      tipoArticoloBar: new FormControl(TipoArticoloBar.BEVANDA)
+    }),
+    quantita: new FormControl(1),
+    prezzo: new FormControl(1),
+  })
+
+  save() {
+    console.log(this.rigaForm.value);
+    if (this.righeBarService.askConfirm("salvare", "salvato"))
+      this.righeBarService.addRiga(this.rigaForm.value)
+        .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
+  }
+
 
 }

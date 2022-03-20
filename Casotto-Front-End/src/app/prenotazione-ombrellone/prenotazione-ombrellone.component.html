@@ -16,15 +16,24 @@
                 </select>
                 <br>
                 <br>
-                <button type="submit" class="btn btn-outline-success">Prenota</button>
+                <button id="btnFredoka" type="submit" class=" centeredBtn btn btn-outline-success">Cerca</button>
             </form>
+            <div *ngIf="isAlertVisible" class="alert alert-danger" role="alert">
+                Nessun ombrellone disponibile per la data selezionata!
+            </div>
         </div>
     </div>
 </div>
 
 <div *ngIf="isTableVisible" class="container">
+    <button id="btnFredoka" type="button" class=" centeredBtn btn btn-outline-dark" (click)="showForm()">Effettua una
+        nuova
+        ricerca</button>
     <br>
-    <h1 style="text-align:center">Ombrelloni Disponibili</h1>
+    <br>
+    <h1 id="disponibiliFredoka" style="text-align:center">Ombrelloni Disponibili:
+        {{dataFasciaOraria.get('fasciaOraria')?.value.replace('_',' ')}} per
+        {{dataFasciaOraria.get('datePicker')?.value.toISOString().substring(0, 10) | date:'EEEE dd MMMM yyyy'}}</h1>
     <div class="table">
         <table class="table table-striped">
             <thead>
@@ -50,12 +59,90 @@
                             src="assets/img/beach-umbrella-premium.png" />
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-success btn-sm"
-                            (click)="prenotaOmbrellone(r)">Prenota</button>
+                        <!-- modal per conferma prenotazione -->
+                        <ng-template #content let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modal-basic-title">Scelta ombrellone</h4>
+                                <button type="button" class="btn-close" aria-label="Close"
+                                    (click)="modal.dismiss('Cross click')"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label>Confermare la prenotazione: </label>
+                                        <div fxLayout="row">
+                                            <div style="display: inline-block; padding-left: 6px;">
+                                                <ul>
+                                                    <li scope="col">Codice Spiaggia :
+                                                        {{r.valore.codiceSpiaggia}}</li>
+                                                    <li scope="col">Categoria: {{r.valore.categoria}}
+                                                    </li>
+                                                    <li scope="col">Prezzo : {{r.prezzoOmbrellone |
+                                                        currency}}
+                                                    </li>
+                                                    <li scope="col">Data Prenotazione:
+                                                        {{dataFasciaOraria.get('datePicker')?.value.toISOString().substring(0,
+                                                        10) | date:'EEEE dd MMMM yyyy'}}</li>
+                                                    <li scope="col">
+                                                        Fascia Oraria
+                                                        :{{dataFasciaOraria.get('fasciaOraria')?.value.replace('_','
+                                                        ')}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class=" modal-footer">
+                                <!-- modal per esito prenotazione -->
+                                <ng-template #content let-modal>
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="modal-basic-title">Esito Prenotazione</h4>
+                                        <button type="button" class="btn-close" aria-label="Close"
+                                            (click)="modal.dismiss('Cross click')"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <div fxLayout="row">
+                                                    <div *ngIf="showAlertSuccessResult;else alertCancel">
+                                                        <div class="alert alert-success" role="alert">
+                                                            <h4 class="alert-heading">Ben fatto
+                                                                {{getNomeLoggedUser()}}!</h4>
+                                                            <p>Ombrellone prenotato con successo!</p>
+                                                            <hr>
+                                                            <p class="mb-0">Ti aspettiamo, dallo staff di Casotto
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <ng-template #alertCancel>
+                                                        <div class="alert alert-secondary" role="alert">
+                                                            Nessun ombrellone prenotato!
+                                                        </div>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class=" modal-footer">
+                                        <button id="btnFredoka" type="button" class="btn btn-secondary"
+                                            (click)="modal.close('Save click') ">OK</button>
+                                    </div>
+                                </ng-template>
+                                <button id="btnFredoka" type="button" class="btn btn-secondary"
+                                    (click)="modal.close('Save click') " (click)="openResultReservation(content)"
+                                    (click)="prenotaOmbrellone(null)" data-dismiss="modal">Annulla</button>
+                                <button id="btnFredoka" type="button" class="btn btn-danger"
+                                    (click)="modal.close('Save click') " (click)="openResultReservation(content)"
+                                    (click)="prenotaOmbrellone(r)">Conferma e
+                                    Ordina</button>
+                            </div>
+                        </ng-template>
+                        <button id="btnFredoka" type="button" class="btn btn-outline-success btn-sm"
+                            (click)="openReservationUmbrellaSelection(content)">Prenota</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <button type="button" class="btn btn-outline-dark" (click)="showForm()">Effettua una nuova ricerca</button>
 </div>

@@ -1,11 +1,12 @@
-import { DatePipe, formatDate } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FasciaOraria } from '../model/fascia-oraria';
 import { PrenotazioneOmbrellone } from '../model/prenotazione-ombrellone';
-import { RigaCatalogoBar } from '../model/riga-catalogo-bar';
 import { RigaCatalogoOmbrellone } from '../model/riga-catalogo-ombrellone';
 import { PrenotazioneOmbrelloneService } from '../service/prenotazione-ombrellone.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from '../authentication/service/authentication.service';
+import { Utente } from '../model/user';
 
 @Component({
   selector: 'app-prenotazione-ombrellone',
@@ -26,11 +27,26 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
 
   private _isFormVisible !: boolean;
 
+  private _isAlertVisible !: boolean;
+
+  private _isPrenotaEnabled: boolean;
+
+  private _isResult !: boolean | null;
+
+  private _loggedUser !: Utente | null;
+
+  private _showAlertSuccessResult !: boolean;
+
   constructor(private prenotazioneOmbrelloniservice: PrenotazioneOmbrelloneService,
     private formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef) {
-      this._isFormVisible = true;
-     }
+    private cdr: ChangeDetectorRef,
+    private modalService: NgbModal,
+    private aService: AuthenticationService) {
+    this._isPrenotaEnabled = false;
+    this._isAlertVisible = false;
+    this._isResult = false;
+    this._showAlertSuccessResult = false;
+  }
 
   ngOnInit(): void {
     this._isFormVisible = true;
@@ -42,6 +58,7 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
       datePicker: new Date(),
       fasciaOraria: FasciaOraria.GIORNATA_INTERA
     })
+    this.getLoggedUser();
   }
 
   get isFormVisible() {
@@ -68,6 +85,36 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
     return this._righeOmbrellone
   }
 
+  get isTableEmpty() {
+    return this._isTableVisible;
+  }
+
+  get isPrenotaEnabled() {
+    return this._isPrenotaEnabled;
+  }
+
+  get isResult() {
+    return this._isResult;
+  }
+
+  getNomeLoggedUser(): string {
+    return this._loggedUser!.nome;
+  }
+
+  private getLoggedUser() {
+    this.aService.getUtente().subscribe(utente => {
+      this._loggedUser = utente;
+    });
+  }
+
+  get showAlertSuccessResult() {
+    return this._showAlertSuccessResult;
+  }
+
+  get isAlertVisible() {
+    return this._isAlertVisible;
+  }
+
   set righeOmbrellone(righeOmbrellone: RigaCatalogoOmbrellone[]) {
     this._righeOmbrellone = righeOmbrellone;
   }
@@ -75,22 +122,38 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
   getOmbrelloniLiberi() {
     this.prenotazioneOmbrelloniservice.getOmbrelloniLiberi(
       this.dataFasciaOraria.get('datePicker')?.value.toISOString().substring(0, 10), this.dataFasciaOraria.get('fasciaOraria')?.value)
-      .subscribe(r => { this.righeOmbrellone = []; this.righeOmbrellone = r; this.showTable()})
+      .subscribe(r => {
+        this._righeOmbrellone = []; this._righeOmbrellone = r;
+        console.log(this._righeOmbrellone.length == 0);
+        if (this._righeOmbrellone.length == 0)
+          this._isAlertVisible = true;
+        else {
+          this._isAlertVisible = false;
+          this.showTable()
+        }
+      })
+
   }
 
-  prenotaOmbrellone(r: RigaCatalogoOmbrellone) {
-    let prenotazione: PrenotazioneOmbrellone = {
-      fasciaOraria: this.dataFasciaOraria.get('fasciaOraria')?.value,
-      ombrellone: r.valore,
-      dataPrenotazione: this.dataFasciaOraria.get('datePicker')?.value.toISOString().substring(0, 10),
-      vendita: { costo: r.prezzoOmbrellone }
+  prenotaOmbrellone(r: RigaCatalogoOmbrellone | null) {
+    if (r != null) {
+      let prenotazione: PrenotazioneOmbrellone = {
+        fasciaOraria: this.dataFasciaOraria.get('fasciaOraria')?.value,
+        ombrellone: r.valore,
+        dataPrenotazione: this.dataFasciaOraria.get('datePicker')?.value.toISOString().substring(0, 10),
+        vendita: { costo: r.prezzoOmbrellone }
+      }
+      this.prenotazioneOmbrelloniservice.prenotaOmbrellone(prenotazione).subscribe(
+        () => this.getOmbrelloniLiberi()
+      )
+      this._showAlertSuccessResult = true;
     }
-    this.prenotazioneOmbrelloniservice.prenotaOmbrellone(prenotazione).subscribe(
-      () => this.getOmbrelloniLiberi()
-    )
+    else
+      this._showAlertSuccessResult = false;
+
   }
 
-  showForm(){
+  showForm() {
     this._isFormVisible = true;
     this._isTableVisible = false;
   }
@@ -98,6 +161,32 @@ export class PrenotazioneOmbrelloneComponent implements OnInit {
   showTable() {
     this._isFormVisible = false;
     this._isTableVisible = true;
+  }
+
+  // Funzione per aprire popup selezione prenotazioni ombrelloni
+  openReservationUmbrellaSelection(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
+      this.disableButtonOnClosingPopup();
+    }, () => {
+      this.disableButtonOnClosingPopup();
+    });
+  }
+
+  private disableButtonOnClosingPopup() {
+    this._isPrenotaEnabled = false;
+  }
+
+  // Funzione per aprire popup esito prenotazioni ombrelloni
+  openResultReservation(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
+      this.disableResult();
+    }, () => {
+      this.disableResult();
+    });
+  }
+
+  private disableResult() {
+    this._isResult = false;
   }
 
 }
