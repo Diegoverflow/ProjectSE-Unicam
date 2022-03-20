@@ -76,25 +76,36 @@ Tutti i dati vengono salvati e in un database per garantire la perdita dei dati 
 <!-- GETTING STARTED -->
 ## Per Iniziare
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+In seguito verrà illustrato come eseguire il progetto Casotto localmente. 
 
 ### Prerequisiti
 
 * un server online/locale
 * clonare la repository ```git clone https://github.com/HTTPiego/ProjectSE-Unicam.git ```
+* [Maven](https://maven.apache.org/)
+* [Node.js] (https://nodejs.org)
+* [npm package manager] (installato di default con Node.js)
 
 ### Installazione
 
-1. Andare sulla cartella  ProjectSE-Unicam/Casotto-Back-End/src/main/resources/application.properties e impostare il proprio database nelle prime 5 righe
-2. 
-3. Install NPM packages
+1. Andare sulla file  ```ProjectSE-Unicam/Casotto-Back-End/src/main/resources/application.properties``` ed impostare il proprio database (nelle prime cinque righe viene data una configurazione di default di un server mysql)
+2. Posizionarsi sulla cartella ```ProjectSE-Unicam/Casotto-Back-End```
+3. Eseguire il build con 
    ```sh
-   npm install
+   mvn install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Eseguire il run con
+   ```sh
+   mvn spring-boot:run
+   ```
+5. Posizionarsi sulla cartella ```ProjectSE-Unicam/Casotto-Front-End```
+6. Scaricare le dipendenze
+   ```sh
+   npm install 
+   ```
+7. Eseguire il build e servire l'applicazione
+   ```sh
+   ng serve 
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -104,9 +115,11 @@ To get a local copy up and running follow these simple example steps.
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
+Back-End
+- [ ] Autenticazione
+- [ ] Prenotazione Ombrelloni
+- [ ] Prenotazione Bar
+- [ ] Prenotazione Attività
     - [ ] Nested Feature
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
