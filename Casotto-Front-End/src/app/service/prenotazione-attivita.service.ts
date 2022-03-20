@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { PrenotazioneAttivita } from '../model/prenotazione-attivita';
-import { RigaCatalogoAttivita } from '../attivita/riga-catalogo-attivita';
+import { RigaCatalogoAttivita } from '../model/riga-catalogo-attivita';
 
 @Injectable({
     providedIn: 'root'
@@ -31,6 +31,6 @@ export class PrenotazioneAttivitaService {
 
     getPrenotazioniAttivitaLoggedUser() {
         return this.http.get<PrenotazioneAttivita[]>(this.urlPrenotazioniAttivita + '/loggedUser', { withCredentials: true });
-      }
+    }
 
 }

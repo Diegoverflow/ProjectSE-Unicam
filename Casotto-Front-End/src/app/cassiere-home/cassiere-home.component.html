@@ -1,5 +1,55 @@
-<div class="firstContainer">
-    <form id="searchForm" [formGroup]="searchForm" (ngSubmit)="onSearch()" *ngIf="isSearchFormVisible">
+<app-casotto-navbar></app-casotto-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <form id="searchForm" [formGroup]="searchForm" (ngSubmit)="onSearch()"
+                *ngIf="isSearchFormVisible; else showVendite">
+                <br>
+                <h1>Salda vendita</h1>
+                <p>Inserisci l'email dell'utente di cui vuoi ottenere le vendite</p>
+                <div class="form-floating mb-3">
+                    <input formControlName="email" type="email" class="form-control" id="floatingInput"
+                        placeholder="name@example.com" required>
+                    <label for="floatingInput">Email utente</label>
+                </div>
+                <button id="btnFredoka" type="submit" class=" centeredBtn btn btn-outline-success">Cerca Utente</button>
+            </form>
+
+            <ng-template #showVendite>
+                <div class="container">
+                    <br>
+                    <h1 style="text-align:center">Vendite da saldare per {{searchForm.get('email')?.value}}</h1>
+                    <div class="table">
+                        <table class="table table-striped" data-show-refresh="true">
+                            <thead>
+                                <tr>
+                                    <th>Data Acquisto</th>
+                                    <th>Costo</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let v of vendite">
+                                    <td>{{v.dataAcquisto | date:'EEEE dd MMMM yyyy'}}</td>
+                                    <td>{{v.costo | currency}}</td>
+                                    <td><button type="button" class="btn btn-outline-success"
+                                            (click)="onSaldaVendita(v)">Salda
+                                            vendita</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+</div>
+<!-- <div class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+    <form id="searchForm" [formGroup]="searchForm" (ngSubmit)="onSearch()"
+        *ngIf="isSearchFormVisible; else showVendite">
         <h1>Salda vendita</h1>
         <p>Inserisci l'email dell'utente di cui vuoi ottenere le vendite</p>
         <div class="form-floating mb-3">
@@ -7,14 +57,32 @@
                 placeholder="name@example.com" required>
             <label for="floatingInput">Email utente</label>
         </div>
-        <button type="submit" class="btn btn-primary">Cerca Utente</button>
+        <button id="btnFredoka" type="submit" class=" centeredBtn btn btn-outline-success">Cerca Utente</button>
     </form>
-    <ul class="list-group list-group-flush">
-        <li *ngFor="let v of vendite" class="list-group-item">
-            Data di acquisto : {{v.dataAcquisto}}<br>
-            Costo : {{v.costo | currency}}<br>
-            <button type="button" class="btn btn-success" (click)="onSaldaVendita(v)">Salda vendita</button>
-        </li>
-    </ul>
-</div>
-<app-casotto-navbar></app-casotto-navbar>
+
+    <ng-template #showVendite>
+        <div class="container">
+            <br>
+            <h1 style="text-align:center">Vendite da saldare per {{searchForm.get('email')?.value}}</h1>
+            <div class="table">
+                <table class="table table-striped" data-show-refresh="true">
+                    <thead>
+                        <tr>
+                            <th>Data Acquisto</th>
+                            <th>Costo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let v of vendite">
+                            <td>{{v.dataAcquisto | date:'EEEE dd MMMM yyyy'}}</td>
+                            <td>{{v.costo | currency}}</td>
+                            <td><button type="button" class="btn btn-outline-success" (click)="onSaldaVendita(v)">Salda
+                                    vendita</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-template>
+</div> -->

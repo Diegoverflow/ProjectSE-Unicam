@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RigaCatalogoBar } from 'src/app/model/riga-catalogo-bar';
-import { RigheBarService } from '../righe-bar.service';
+import { RigheBarService } from 'src/app/service/righe-bar.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -34,7 +34,7 @@ export class RigaBarComponent implements OnInit {
   }
 
   eliminaRiga(rigaDaEliminare: RigaCatalogoBar) {
-    if (this.righeBarService.askConfirm("eliminare","eliminato","l'", "Articolo Bar", "selezionato"))
+    if (this.righeBarService.askConfirm("eliminare", "eliminato", "l'", "Articolo Bar", "selezionato"))
       this.righeBarService.removeRiga(rigaDaEliminare.id).subscribe(() => this.getRigheBar())
   }
 

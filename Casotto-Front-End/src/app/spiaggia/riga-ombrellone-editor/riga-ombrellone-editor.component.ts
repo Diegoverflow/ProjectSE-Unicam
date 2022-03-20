@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RigaCatalogoOmbrellone } from 'src/app/model/riga-catalogo-ombrellone';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { RigheOmbrelloniService } from '../righe-ombrelloni.service';
+import { RigheOmbrelloniService } from '../../service/righe-ombrelloni.service';
 import { CategoriaOmbrellone } from 'src/app/categoria-ombrellone';
 
 @Component({
@@ -11,7 +11,7 @@ import { CategoriaOmbrellone } from 'src/app/categoria-ombrellone';
 })
 export class RigaOmbrelloneEditorComponent implements OnInit {
 
-  title: string = 'Aggiungi un ombrellone al catalogo ombrelloni';
+  title: string = 'Aggiungi Un Ombrellone Al Catalogo Ombrelloni';
 
   @Output() rigaAggiunta = new EventEmitter<RigaCatalogoOmbrellone>();
 

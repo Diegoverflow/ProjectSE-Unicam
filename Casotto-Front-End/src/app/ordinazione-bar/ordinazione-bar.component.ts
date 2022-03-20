@@ -4,7 +4,7 @@ import { RigaCatalogoBar } from '../model/riga-catalogo-bar';
 import { RigaCatalogoOmbrellone } from '../model/riga-catalogo-ombrellone';
 import { TipoArticoloBar } from '../model/tipo-articolo-bar';
 import { OrdinazioneBarService } from '../service/ordinazione-bar.service';
-import { RigheOmbrelloniService } from '../spiaggia/righe-ombrelloni.service';
+import { RigheOmbrelloniService } from '../service/righe-ombrelloni.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

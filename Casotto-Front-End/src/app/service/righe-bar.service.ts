@@ -27,7 +27,7 @@ export class RigheBarService {
   }
 
   askConfirm(verb: string, pastVerb: string, article: string, object: string, option: string): boolean {
-    if (confirm("Sei sicuro di voler " + verb + " " + article + object + " " + option + " ?")) {
+    if (confirm("Sei sicuro di voler" + " " + verb + " " + article + " " + object + " " + option + " ?")) {
       window.alert(object + " " + pastVerb + " con successo");
       return true;
     }

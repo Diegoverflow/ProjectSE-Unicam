@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RigaCatalogoAttivita } from './riga-catalogo-attivita';
+import { RigaCatalogoAttivita } from '../model/riga-catalogo-attivita';
 
 @Injectable({
   providedIn: 'root'
@@ -35,12 +35,12 @@ export class RigheAttivitaService {
     this.http.post(this.urlPrenotazioniAttivita, riga, { withCredentials: true }).subscribe();
   }*/
 
-  askConfirm(s0: string, s1: string): boolean {
-    if (confirm("Sei sicuro di voler " + s0 + " l' attività selezionata?")) {
-      window.alert("Attività" + s1 + " con successo");
+  askConfirm(verb: string, pastVerb: string, article: string, object: string, option: string): boolean {
+    if (confirm("Sei sicuro di voler" + " " + verb + " " + article + " " + object + " " + option + " ?")) {
+      window.alert(object + " " + pastVerb + " con successo");
       return true;
     }
-    window.alert("Nessun' attività " + s1);
+    window.alert(object + " non " + pastVerb);
     return false;
   }
 

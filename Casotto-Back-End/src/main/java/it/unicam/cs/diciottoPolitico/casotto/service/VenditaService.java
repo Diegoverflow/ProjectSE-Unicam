@@ -34,7 +34,7 @@ public class VenditaService extends AbstractService<SimpleVendita, VenditaReposi
     /**
      * Restituisce la lista di tutte le vendite ancora da pagare per l' utente avente l'email specificata.
      *
-     * @param idUtente l' id dell' utente di cui ricavare tutte le vendite ancora da saldare
+     * @param emailUtente l' id dell' utente di cui ricavare tutte le vendite ancora da saldare
      * @return la lista di tutte le vendite ancora da pagare per l' utente avente id specificato
      */
     public List<SimpleVendita> getVenditeClienteDaPagare(String emailUtente) {

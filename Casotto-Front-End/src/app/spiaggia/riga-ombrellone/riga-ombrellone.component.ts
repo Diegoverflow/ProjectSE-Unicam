@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RigaCatalogoOmbrellone } from 'src/app/model/riga-catalogo-ombrellone';
-import { RigheOmbrelloniService } from '../righe-ombrelloni.service';
+import { RigheOmbrelloniService } from 'src/app/service/righe-ombrelloni.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';

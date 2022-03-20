@@ -16,8 +16,8 @@
             <tbody>
                 <tr *ngFor="let riga of righe">
                     <td>{{riga.valore.nome}}</td>
-                    <td>{{riga.valore.dataOrarioInizio}}</td>
-                    <td>{{riga.valore.dataOrarioFine}}</td>
+                    <td>{{riga.valore.dataOrarioInizio | date:'dd EEEE MMMM yyyy'}}</td>
+                    <td>{{riga.valore.dataOrarioFine | date:'dd EEEE MMMM yyyy'}}</td>
                     <td>{{riga.valore.descrizione}}</td>
                     <td>{{riga.prezzo | currency}}</td>
                     <td><button class="btn btn-lg btn-outline-danger" type="button"

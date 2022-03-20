@@ -24,7 +24,6 @@
         </div>
     </div>
 </div>
-
 <div *ngIf="isTableVisible" class="container">
     <button id="btnFredoka" type="button" class=" centeredBtn btn btn-outline-dark" (click)="showForm()">Effettua una
         nuova
@@ -111,12 +110,13 @@
                                                                 {{getNomeLoggedUser()}}!</h4>
                                                             <p>Ombrellone prenotato con successo!</p>
                                                             <hr>
-                                                            <p class="mb-0">Ti aspettiamo, dallo staff di Casotto
+                                                            <p class="mb-0">Ti aspettiamo con piacere.<br>
+                                                                Dallo staff di Casotto.
                                                             </p>
                                                         </div>
                                                     </div>
                                                     <ng-template #alertCancel>
-                                                        <div class="alert alert-secondary" role="alert">
+                                                        <div id="alertResultReservation" class="alert alert-secondary" role="alert">
                                                             Nessun ombrellone prenotato!
                                                         </div>
                                                     </ng-template>

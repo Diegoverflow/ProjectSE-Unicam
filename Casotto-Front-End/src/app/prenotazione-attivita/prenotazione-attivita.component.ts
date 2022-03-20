@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { last, lastValueFrom } from 'rxjs';
 import { PrenotazioneAttivitaService } from '../service/prenotazione-attivita.service';
-import { RigaCatalogoAttivita } from '../attivita/riga-catalogo-attivita';
+import { RigaCatalogoAttivita } from '../model/riga-catalogo-attivita';
 
 @Component({
   selector: 'app-prenotazione-attivita',

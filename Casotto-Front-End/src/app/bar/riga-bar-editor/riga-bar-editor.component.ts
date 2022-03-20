@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TipoArticoloBar } from 'src/app/model/tipo-articolo-bar';
 import { RigaCatalogoBar } from '../../model/riga-catalogo-bar';
-import { RigheBarService } from '../righe-bar.service';
+import { RigheBarService } from 'src/app/service/righe-bar.service';
 
 @Component({
   selector: 'app-riga-bar-editor',

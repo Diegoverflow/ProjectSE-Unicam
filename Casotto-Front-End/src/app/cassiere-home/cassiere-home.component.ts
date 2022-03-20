@@ -20,9 +20,9 @@ export class CassiereHomeComponent implements OnInit {
 
   private _vendite !: Vendita[];
 
-  constructor(private builer: FormBuilder, 
+  constructor(private builer: FormBuilder,
     private cassiereService: CassiereService,
-    private authenticationService : AuthenticationService,
+    private authenticationService: AuthenticationService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class CassiereHomeComponent implements OnInit {
     });
   }
 
-  get vendite(){
+  get vendite() {
     return this._vendite;
   }
   get searchForm() {
@@ -52,16 +52,29 @@ export class CassiereHomeComponent implements OnInit {
 
   onSearch(): void {
     if (this.searchForm.get('email')?.value === '') {
-      alert('email vuota')
+      alert('Email vuota')
       return
     }
-    this.cassiereService.getVenditeDaPagare(this.searchForm.get('email')?.value)
-      .pipe(catchError((e: HttpErrorResponse) => { alert('email invalida'); return EMPTY }))
-      .subscribe(v => {this._vendite = v; this.isSearchFormVisible = false})
+    this.refreshVendite();
   }
 
-  onSaldaVendita(vendita : Vendita){
-    this.cassiereService.saldaVendita(vendita).subscribe();
+  onSaldaVendita(vendita: Vendita) {
+    if (this.cassiereService.askConfirm("saldare", "saldata", "la", "Vendita", "selezionata"))
+      this.cassiereService.saldaVendita(vendita).subscribe(() => {
+        this.refreshVendite();
+      });
+  }
+
+  private refreshVendite() {
+    this.cassiereService.getVenditeDaPagare(this.searchForm.get('email')?.value)
+      .subscribe(v => {
+        if (v.length == 0) {
+          alert('Email associata a nessuna vendita!');
+          return
+        }
+        this._vendite = v;
+        this.isSearchFormVisible = false
+      })
   }
 
   onLogout() {
