@@ -16,10 +16,12 @@
                     <div class="dropdown">
                         <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Ombrelloni</a>
                         <div class="dropdown-content">
-                            <a role="button" class="nav-item nav-link" routerLink="./prenotazione-ombrellone">Prenota Un
+                            <a role="button" class="nav-item nav-link"
+                                routerLink="/cliente-home/prenotazione-ombrellone">Prenota Un
                                 Ombrellone</a>
                             <div class="dropdown-divider"></div>
-                            <a role="button" class="nav-item nav-link" routerLink="./le-mie-prenotazioni-ombrelloni">I
+                            <a role="button" class="nav-item nav-link"
+                                routerLink="/cliente-home/le-mie-prenotazioni-ombrelloni">I
                                 Miei Ombrelloni</a>
                         </div>
                     </div>
@@ -28,10 +30,12 @@
                     <div class="dropdown">
                         <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Attivit&agrave;</a>
                         <div class="dropdown-content">
-                            <a role="button" class="nav-item nav-link" routerLink="./prenotazione-attivita">Prenota
+                            <a role="button" class="nav-item nav-link"
+                                routerLink="/cliente-home/prenotazione-attivita">Prenota
                                 Un' Attivit&agrave;</a>
                             <div class="dropdown-divider"></div>
-                            <a role="button" class="nav-item nav-link" routerLink="./le-mie-prenotazioni-attivita">Le
+                            <a role="button" class="nav-item nav-link"
+                                routerLink="/cliente-home/le-mie-prenotazioni-attivita">Le
                                 Mie Attivit&agrave;</a>
                         </div>
                     </div>
@@ -41,10 +45,12 @@
                     <div class="dropdown">
                         <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Ordinazioni Bar</a>
                         <div class="dropdown-content">
-                            <a role="button" class="nav-item nav-link" routerLink="./ordinazione-bar">Ordinazione
+                            <a role="button" class="nav-item nav-link"
+                                routerLink="/cliente-home/ordinazione-bar">Ordinazione
                                 Bar</a>
                             <div class="dropdown-divider"></div>
-                            <a role="button" class="nav-item nav-link" routerLink="./ordinazione-bar-storico">Le Mie
+                            <a role="button" class="nav-item nav-link"
+                                routerLink="/cliente-home/ordinazione-bar-storico">Le Mie
                                 Ordinazioni</a>
                         </div>
                     </div>
@@ -53,7 +59,7 @@
                 <!-- END-CLIENTE -->
                 <!-- ADDETTO BAR -->
                 <a *ngIf="ruolo==='ADDETTO_BAR'" class="nav-item nav-link"
-                    routerLink="./addetto-ordinazioni">Ordinazioni
+                    routerLink="/addetto-bar-home/addetto-ordinazioni">Ordinazioni
                     Bar</a>
                 <!-- END-ADDETTO-BAR -->
                 <!-- GESTORE -->
@@ -61,22 +67,27 @@
                     <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Gestione Cataloghi</a>
                     <div class="dropdown-content">
                         <div class="dropdown-divider"></div>
-                        <a role="button" class="nav-item nav-link" routerLink="./catalogo-bar">Catalogo Bar</a>
+                        <a role="button" class="nav-item nav-link" routerLink="/gestore-home/catalogo-bar">Catalogo
+                            Bar</a>
                         <div class="dropdown-divider"></div>
-                        <a role="button" class="nav-item nav-link" routerLink="./catalogo-attivita">Catalogo
+                        <a role="button" class="nav-item nav-link" routerLink="/gestore-home/catalogo-attivita">Catalogo
                             Attivit&agrave;</a>
                         <div class="dropdown-divider"></div>
-                        <a role="button" class="nav-item nav-link" routerLink="./catalogo-ombrelloni">Catalogo
+                        <a role="button" class="nav-item nav-link"
+                            routerLink="/gestore-home/catalogo-ombrelloni">Catalogo
                             Ombrelloni</a>
                     </div>
                 </li>
                 <!-- END-GESTORE -->
                 <!-- CASSIERE -->
-                <a *ngIf="ruolo==='CASSIERE'" class="nav-item nav-link" routerLink="./cassiere-home">Salda Vendita</a>
+                <a *ngIf="ruolo==='CASSIERE'" class="nav-item nav-link" routerLink="/cassiere-home/cassiere-home">Salda
+                    Vendita</a>
                 <!-- END-CASSIERE -->
                 <!-- LOGGED USER -->
-                <a *ngIf="ruolo!='CLIENTE' && ruolo!='CASSIERE' && ruolo !=null" class="nav-item nav-link"
-                    routerLink="./notifica">Notifiche</a>
+                <a *ngIf="ruolo!='CLIENTE' && ruolo!='CASSIERE' && ruolo !=null && ruolo !='GESTORE'"
+                    class="nav-item nav-link" routerLink="/addetto-bar-home/notifica">Notifiche</a>
+                <a *ngIf="ruolo!='CLIENTE' && ruolo!='CASSIERE' && ruolo !=null && ruolo !='ADDETTO_BAR'"
+                    class="nav-item nav-link" routerLink="/gestore-home/notifica">Notifiche</a>
 
                 <!-- END-LOGGED USER -->
             </div>
@@ -85,7 +96,7 @@
                 <li class="nav-item dropdown" *ngIf="ruolo !== null; else notLogged">
                     <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">{{nome}}</a>
                     <div class="dropdown-content">
-                        <a role="button" class="nav-item nav-link" routerLink="./profilo">Profilo</a>
+                        <a role="button" class="nav-item nav-link" routerLink="/cliente-home/profilo">Profilo</a>
                         <div class="dropdown-divider"></div>
                         <a role="button" class="nav-item nav-link" (click)="onLogout()">Logout<span
                                 class="sr-only"></span></a>
