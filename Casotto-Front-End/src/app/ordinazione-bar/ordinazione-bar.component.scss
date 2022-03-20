@@ -12,11 +12,20 @@
    padding: 30px;
 }
 
-table,
+body,
 h1,
-li,
+h2,
+h3,
 h4,
-label {
-   font-family: "Fredoka", sans-serif;
-   font-weight: 700;
+h5,
+h6,
+span,
+p,
+b,
+label,
+button,
+.w3-text-grey {
+   font-family: "Amatic SC", sans-serif;
+   font-size: 26px;
+   font-weight: 100;
 }

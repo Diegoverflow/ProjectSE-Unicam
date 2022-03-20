@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class RigheOmbrelloniService {
 
-  private apiServerUrl: string = environment.apiBaseUrl + + '/catalogo/ombrelloni';
+  private apiServerUrl: string = environment.apiBaseUrl + '/catalogo/ombrelloni';
 
   constructor(private http: HttpClient) { }
 
