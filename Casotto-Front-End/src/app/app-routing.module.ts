@@ -25,7 +25,7 @@ import { InfrastrutturaChaletComponent } from './infrastruttura-chalet/infrastru
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
   { path: 'home', component: HomeComponent, canActivate: [LoginGuard] },
-  { path: 'aree-infrastruttura', component: InfrastrutturaChaletComponent, canActivate: [LoginGuard] },
+  { path: 'aree-infrastruttura', component: InfrastrutturaChaletComponent },
   {
     path: 'cliente-home',
     component: ClienteHomeComponent,

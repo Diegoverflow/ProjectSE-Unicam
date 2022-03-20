@@ -38,6 +38,7 @@ public class JwrAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         return request.getRequestURI().equals("/check-token") ||
+                (request.getRequestURI().equals("/infrastruttura/aree/all") && request.getMethod().equals("GET")) ||
                 (request.getRequestURI().equals("/utenti") && request.getMethod().equals("POST")) ||
                 (request.getRequestURI().equals("/login") && (request.getMethod().equals("GET") || request.getMethod().equals("POST")));
     }

@@ -84,6 +84,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .addFilterBefore(new GlobalExceptionHandlerFilter(this.handlerExceptionResolver),JwtAuthenticationFilter.class)
                 .authorizeRequests()
                 .expressionHandler(webExpressionHandler())
+                .antMatchers("/infrastruttura/aree/all").permitAll()
                 .antMatchers("/infrastruttura/aree/**").hasRole("GESTORE")
                 .antMatchers(HttpMethod.POST, "/bar/ordinazioni").hasRole("CLIENTE")
                 .antMatchers(HttpMethod.GET, "/bar/ordinazioni/disponibili").hasRole("CLIENTE")
