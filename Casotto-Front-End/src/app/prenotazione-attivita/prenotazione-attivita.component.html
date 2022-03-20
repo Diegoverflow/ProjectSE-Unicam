@@ -1,17 +1,17 @@
 <div class="container">
     <br>
-    <h1 style="text-align:center">Catalogo Attività disponibili</h1>
+    <h1 style="text-align:center">Catalogo Attivit&agrave; Disponibili</h1>
     <div class="table">
         <table class="table table-striped" data-show-refresh="true">
             <thead>
                 <tr>
-                    <th>Nome Attività</th>
+                    <th>Nome Attivit&agrave;</th>
                     <th>Descrizione</th>
                     <th>Inizio</th>
                     <th>Fine</th>
                     <th>Prezzo</th>
                     <th>Posti Totali</th>
-                    <th>Posti disponibili</th>
+                    <th>Posti Disponibili</th>
                     <th></th>
                 </tr>
             </thead>
@@ -25,7 +25,7 @@
                     <td>{{r.postiTotali}}</td>
                     <td>{{r.postiTotali-r.postiOccupati}}</td>
                     <td>
-                        <button type="button" class="btn btn-success btn-sm" autocomplete="off"
+                        <button type="button" class="btn btn-outline-success btn-sm" autocomplete="off"
                             (click)="prenotaAttivita(r)">Prenota</button>
                     </td>
                 </tr>

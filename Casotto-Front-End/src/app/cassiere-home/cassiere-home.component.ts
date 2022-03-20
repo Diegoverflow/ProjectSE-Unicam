@@ -1,10 +1,9 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, EMPTY } from 'rxjs';
-import { AuthenticationService } from '../authentication/service/authentication.service';
+import { AuthenticationService } from '../service/authentication.service';
 import { Vendita } from '../model/vendita';
+import { AskConfirmService } from '../service/ask-confirm.service';
 import { CassiereService } from '../service/cassiere.service';
 
 @Component({
@@ -23,7 +22,8 @@ export class CassiereHomeComponent implements OnInit {
   constructor(private builer: FormBuilder,
     private cassiereService: CassiereService,
     private authenticationService: AuthenticationService,
-    private router: Router) { }
+    private router: Router,
+    private askService: AskConfirmService) { }
 
   ngOnInit(): void {
     this._vendite = [];
@@ -59,7 +59,7 @@ export class CassiereHomeComponent implements OnInit {
   }
 
   onSaldaVendita(vendita: Vendita) {
-    if (this.cassiereService.askConfirm("saldare", "saldata", "la", "Vendita", "selezionata"))
+    if (this.askService.askConfirm("saldare", "saldata", "la", "Vendita", "selezionata"))
       this.cassiereService.saldaVendita(vendita).subscribe(() => {
         this.refreshVendite();
       });

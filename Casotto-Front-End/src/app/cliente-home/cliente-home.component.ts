@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '../authentication/service/authentication.service';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-cliente-home',
@@ -9,7 +9,7 @@ import { AuthenticationService } from '../authentication/service/authentication.
 })
 export class ClienteHomeComponent implements OnInit {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
   onLogout() {
     this.authenticationService.logout().subscribe(() => {

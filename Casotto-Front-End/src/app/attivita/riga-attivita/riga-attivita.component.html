@@ -9,6 +9,8 @@
                     <th>Data Inizio Attivit&agrave;</th>
                     <th>Data Fine Attivit&agrave;</th>
                     <th>Descrizione Attivit&agrave;</th>
+                    <th>Posti Totali</th>
+                    <th>Posti Disponibili</th>
                     <th>Prezzo Attivit&agrave;</th>
                     <th></th>
                 </tr>
@@ -19,6 +21,8 @@
                     <td>{{riga.valore.dataOrarioInizio | date:'dd EEEE MMMM yyyy'}}</td>
                     <td>{{riga.valore.dataOrarioFine | date:'dd EEEE MMMM yyyy'}}</td>
                     <td>{{riga.valore.descrizione}}</td>
+                    <td>{{riga.postiTotali}}</td>
+                    <td>{{riga.postiTotali - riga.postiOccupati}}</td>
                     <td>{{riga.prezzo | currency}}</td>
                     <td><button class="btn btn-lg btn-outline-danger" type="button"
                             (click)="eliminaRiga(riga)">Rimuovi</button></td>

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { RigaAttiviaComponent } from './attivita/riga-attivita/riga-attivita.component';
 import { RigaAttivitaEditorComponent } from './attivita/riga-attivita-editor/riga-attivita-editor.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthenticationService } from './authentication/service/authentication.service';
+import { AuthenticationService } from './service/authentication.service';
 import { AuthenticationComponent } from './authentication/component/authentication.component';
 import { GestoreHomeComponent } from './gestore-home/gestore-home.component';
 import { ClienteHomeComponent } from './cliente-home/cliente-home.component';

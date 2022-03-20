@@ -106,7 +106,7 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         if (o.isPresent() && o.get().getStatusOrdinazioneBar() == StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO) {
             o.get().setStatusOrdinazioneBar(StatusOrdinazioneBar.PRESO_IN_CARICO);
             SimpleNotifica notifica = new SimpleNotifica();
-            notifica.setMessaggio("PRESA IN CARICO: " + o.get().getArticoloBar().getNome() + " ALL'OMBRELLONE: "+ o.get().getCodiceSpiaggia() +" DA: "+ u.getNome()+ " "+ u.getCognome());
+            notifica.setMessaggio("PRESA IN CARICO: " + o.get().getArticoloBar().getNome() + " ALL' OMBRELLONE: "+ o.get().getCodiceSpiaggia() +" DA: "+ u.getNome()+ " "+ u.getCognome());
             Set<SimpleUtente> set = new HashSet<>(this.utenteService.filtraBy(RuoloUtente.GESTORE));
             set.add(this.utenteService.getLoggedUser());
             this.notificaService.inviaNotifica(notifica, set);
@@ -121,7 +121,7 @@ public class OrdinazioneBarService extends AbstractService<SimpleOrdinazioneBar,
         if (o.isPresent() && o.get().getStatusOrdinazioneBar() == StatusOrdinazioneBar.PRESO_IN_CARICO) {
             o.get().setStatusOrdinazioneBar(StatusOrdinazioneBar.CONSEGNATO);
             SimpleNotifica notifica = new SimpleNotifica();
-            notifica.setMessaggio("CONSEGNATA: " + o.get().getArticoloBar().getNome() + " ALL'OMBRELLONE: "+ o.get().getCodiceSpiaggia() + " DA: "+u.getNome()+ " "+ u.getCognome());
+            notifica.setMessaggio("CONSEGNATA: " + o.get().getArticoloBar().getNome() + " ALL' OMBRELLONE: "+ o.get().getCodiceSpiaggia() + " DA: "+u.getNome()+ " "+ u.getCognome());
             Set<SimpleUtente> set = new HashSet<>(this.utenteService.filtraBy(RuoloUtente.GESTORE));
             set.add(u);
             this.notificaService.inviaNotifica(notifica, set);

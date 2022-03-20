@@ -3,6 +3,7 @@ import { lastValueFrom } from 'rxjs';
 import { OrdinazioneBar } from 'src/app/model/ordinazione-bar';
 import { StatusOrdinazioneBar } from 'src/app/model/status-ordinazione';
 import { AddettoBarService } from 'src/app/service/addetto-bar.service';
+import { AskConfirmService } from 'src/app/service/ask-confirm.service';
 
 @Component({
   selector: 'app-addetto-bar-ordinazioni',
@@ -20,12 +21,11 @@ export class AddettoBarOrdinazioniComponent implements OnInit {
 
   statuses: StatusOrdinazioneBar[] = new Array();
 
-  constructor(private addettoService: AddettoBarService) {
+  constructor(private addettoService: AddettoBarService, private askService: AskConfirmService) {
     this.selectedStatus = StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO;
   }
 
   ngOnInit(): void {
-
     this.initializeStatuses();
   }
 
@@ -62,26 +62,17 @@ export class AddettoBarOrdinazioniComponent implements OnInit {
   }
 
   async prendiInCarico(o: OrdinazioneBar) {
-    if (this.askConfirm("prendere in carico", "presa in carico"))
+    if (this.askService.askConfirm("prendere in carico", "presa in carico", "l'", "Ordinazione Bar", "selezionata"))
       await lastValueFrom(this.addettoService.prendiInCarico(o.id)).then(() => {
         this.getOrdinazioniByStatus(StatusOrdinazioneBar.DA_PRENDERE_IN_CARICO);
       })
   }
 
   async consegna(o: OrdinazioneBar) {
-    if (this.askConfirm("consegnare", "conegnata"))
+    if (this.askService.askConfirm("consegnare", "consegnata", "l'", "Ordinazione Bar", "selezionata"))
       await lastValueFrom(this.addettoService.consegna(o.id)).then(() => {
         this.getOrdinazioniByStatus(StatusOrdinazioneBar.PRESO_IN_CARICO);
       })
-  }
-
-  private askConfirm(s0: string, s1: string): boolean {
-    if (confirm("Sei sicuro di voler " + s0 + " l' ordinazione selezionata?")) {
-      window.alert("Ordinazione " + s1 + " con successo");
-      return true;
-    }
-    window.alert("Nessuna ordinazione " + s1);
-    return false;
   }
 
 }

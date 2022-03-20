@@ -5,7 +5,7 @@ import { PrenotazioneOmbrellone } from '../model/prenotazione-ombrellone';
 import { RigaCatalogoOmbrellone } from '../model/riga-catalogo-ombrellone';
 import { PrenotazioneOmbrelloneService } from '../service/prenotazione-ombrellone.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from '../authentication/service/authentication.service';
+import { AuthenticationService } from '../service/authentication.service';
 import { Utente } from '../model/user';
 
 @Component({

@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { TipoArticoloBar } from 'src/app/model/tipo-articolo-bar';
 import { RigaCatalogoBar } from '../../model/riga-catalogo-bar';
 import { RigheBarService } from 'src/app/service/righe-bar.service';
+import { AskConfirmService } from 'src/app/service/ask-confirm.service';
 
 @Component({
   selector: 'app-riga-bar-editor',
@@ -17,7 +18,7 @@ export class RigaBarEditorComponent implements OnInit {
 
   tipiArticoli: TipoArticoloBar[] = new Array();
 
-  constructor(private righeBarService: RigheBarService) { }
+  constructor(private righeBarService: RigheBarService, private askService: AskConfirmService) { }
 
   ngOnInit(): void {
     this.initializeTipi();
@@ -38,7 +39,7 @@ export class RigaBarEditorComponent implements OnInit {
   })
 
   save() {
-    if (this.righeBarService.askConfirm("salvare", "salvato", "l'", "Articolo Bar", "selezionato"))
+    if (this.askService.askConfirm("salvare", "salvato", "l'", "Articolo Bar", "selezionato"))
       this.righeBarService.addRiga(this.rigaForm.value)
         .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
   }

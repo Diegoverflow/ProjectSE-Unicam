@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication/service/authentication.service';
+import { AuthenticationService } from '../service/authentication.service';
 import { Notifica } from '../model/notifica';
 
 @Component({
@@ -13,11 +13,11 @@ export class NotificaComponent implements OnInit, AfterViewInit {
 
   constructor(private aService: AuthenticationService) { }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.getNotifiche();
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.getNotifiche();
   }
 

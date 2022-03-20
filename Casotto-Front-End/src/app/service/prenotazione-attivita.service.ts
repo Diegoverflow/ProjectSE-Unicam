@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { PrenotazioneAttivita } from '../model/prenotazione-attivita';
 import { RigaCatalogoAttivita } from '../model/riga-catalogo-attivita';
 
@@ -9,10 +10,9 @@ import { RigaCatalogoAttivita } from '../model/riga-catalogo-attivita';
 })
 export class PrenotazioneAttivitaService {
 
-    private urlPrenotazioniAttivita: string = '//localhost:8080/prenotazioni/attivita';
+    private urlPrenotazioniAttivita: string = environment.apiBaseUrl + '/prenotazioni/attivita';
 
     constructor(private http: HttpClient) { }
-
 
     getRigheAttivitaDisponibili(): Observable<RigaCatalogoAttivita[]> {
         return this.http.get<RigaCatalogoAttivita[]>(this.urlPrenotazioniAttivita + '/disponibili', { withCredentials: true });

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { RigheAttivitaService } from 'src/app/service/righe-attivita.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RigaCatalogoAttivita } from 'src/app/model/riga-catalogo-attivita';
+import { AskConfirmService } from 'src/app/service/ask-confirm.service';
 
 @Component({
   selector: 'app-riga-attivita-editor',
@@ -25,15 +26,15 @@ export class RigaAttivitaEditorComponent implements OnInit {
     prezzo: new FormControl(0)
   })
 
-  save() {
-    if (this.righeAttivitaService.askConfirm("salvare", "salvata", "l'", "Attività", "selezionata"))
-      this.righeAttivitaService.addRiga(this.rigaForm.value)
-        .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
-  }
-
-  constructor(private righeAttivitaService: RigheAttivitaService) { }
+  constructor(private righeAttivitaService: RigheAttivitaService, private askService: AskConfirmService) { }
 
   ngOnInit(): void {
+  }
+
+  save() {
+    if (this.askService.askConfirm("salvare", "salvata", "l'", "Attività", "selezionata"))
+      this.righeAttivitaService.addRiga(this.rigaForm.value)
+        .subscribe(rigaConId => this.rigaAggiunta.emit(rigaConId))
   }
 
 }

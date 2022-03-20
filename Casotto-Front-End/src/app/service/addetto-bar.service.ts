@@ -21,11 +21,6 @@ export class AddettoBarService {
             { params: queryParams, withCredentials: true });
     }
 
-    // removeOrdinazione(id: string) {
-    //     return this.http.delete<OrdinazioneBar>(this.urlOrdinazioniBar + '${id}'
-    //         , { withCredentials: true });
-    // }
-
     prendiInCarico(id: string) {
         const url = `${this.urlOrdinazioniBar}/prendi-in-carico/${id}`;
         console.log(url);

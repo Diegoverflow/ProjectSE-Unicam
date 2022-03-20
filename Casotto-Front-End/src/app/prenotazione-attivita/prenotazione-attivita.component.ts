@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { last, lastValueFrom } from 'rxjs';
 import { PrenotazioneAttivitaService } from '../service/prenotazione-attivita.service';
 import { RigaCatalogoAttivita } from '../model/riga-catalogo-attivita';
+import { AskConfirmService } from '../service/ask-confirm.service';
 
 @Component({
   selector: 'app-prenotazione-attivita',
@@ -12,7 +13,7 @@ export class PrenotazioneAttivitaComponent implements OnInit {
 
   righeAttivita: RigaCatalogoAttivita[] = new Array();
 
-  constructor(private attivitaService: PrenotazioneAttivitaService) {
+  constructor(private attivitaService: PrenotazioneAttivitaService, private askService: AskConfirmService) {
   }
 
   ngOnInit(): void {
@@ -26,21 +27,10 @@ export class PrenotazioneAttivitaComponent implements OnInit {
   }
 
   async prenotaAttivita(r: RigaCatalogoAttivita) {
-    if (this.askConfirm(r.valore.nome))
+    if (this.askService.askConfirm("prenotare", "prenotata", "l'", "attività: " + r.valore.nome, "selezionata"))
       await lastValueFrom(this.attivitaService.prenotaAttivita(r)).then(() => {
         this.getRigheCatalogoAttivita();
       })
-  }
-
-  askConfirm(nomeAttivita: string): boolean {
-    if (confirm("Sei sicuro di voler prenotare l' attività " + "' " + nomeAttivita + " '" + " ?")) {
-      window.alert("Attività prenotata con successo");
-      return true;
-    }
-    else {
-      window.alert("Nessuna attività prenotata");
-      return false;
-    }
   }
 
 }

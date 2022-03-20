@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FasciaOraria } from '../model/fascia-oraria';
 import { PrenotazioneOmbrellone } from '../model/prenotazione-ombrellone';
-import { RigaCatalogoBar } from '../model/riga-catalogo-bar';
 import { RigaCatalogoOmbrellone } from '../model/riga-catalogo-ombrellone';
 
 @Injectable({
@@ -12,12 +11,12 @@ import { RigaCatalogoOmbrellone } from '../model/riga-catalogo-ombrellone';
 })
 export class PrenotazioneOmbrelloneService {
 
-  private urlPrenotazioniOmbrelloni: string = environment.apiBaseUrl;
+  private urlPrenotazioniOmbrelloni: string = environment.apiBaseUrl + '/prenotazioni/ombrelloni';
 
   constructor(private http: HttpClient) { }
 
   getOmbrelloniLiberi(data: Date, fasciaOraria: FasciaOraria): Observable<RigaCatalogoOmbrellone[]> {
-    return this.http.get<RigaCatalogoOmbrellone[]>(`${this.urlPrenotazioniOmbrelloni}/prenotazioni/ombrelloni/disponibili`,
+    return this.http.get<RigaCatalogoOmbrellone[]>(`${this.urlPrenotazioniOmbrelloni}/disponibili`,
       {
         params: { data: `${data}`, fasciaOraria: `${fasciaOraria}` },
         withCredentials: true
@@ -26,13 +25,13 @@ export class PrenotazioneOmbrelloneService {
 
   prenotaOmbrellone(prenotazione: PrenotazioneOmbrellone): Observable<PrenotazioneOmbrellone> {
     return this.http.post<PrenotazioneOmbrellone>(
-      `${this.urlPrenotazioniOmbrelloni}/prenotazioni/ombrelloni`,
+      `${this.urlPrenotazioniOmbrelloni}`,
       prenotazione,
       { withCredentials: true })
   }
 
   getPrenotazioniOmbrelloniLoggedUser() {
-    return this.http.get<PrenotazioneOmbrellone[]>(this.urlPrenotazioniOmbrelloni + '/prenotazioni/ombrelloni/loggedUser', { withCredentials: true });
+    return this.http.get<PrenotazioneOmbrellone[]>(this.urlPrenotazioniOmbrelloni + '/loggedUser', { withCredentials: true });
   }
 
 }

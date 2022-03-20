@@ -4,6 +4,7 @@ import { RigheOmbrelloniService } from 'src/app/service/righe-ombrelloni.service
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AskConfirmService } from 'src/app/service/ask-confirm.service';
 
 @Component({
   selector: 'app-riga-ombrellone',
@@ -19,7 +20,8 @@ export class RigaOmbrelloneComponent implements OnInit {
   constructor(private righeOmbrelloniService: RigheOmbrelloniService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router) { }
+    private router: Router,
+    private askService: AskConfirmService) { }
 
   public getRigheOmbrelloni(): void {
     this.righeOmbrelloniService.getRighe().subscribe(r => this.righe = r)
@@ -30,7 +32,7 @@ export class RigaOmbrelloneComponent implements OnInit {
   }
 
   eliminaRiga(rigaDaEliminare: RigaCatalogoOmbrellone) {
-    if (this.righeOmbrelloniService.askConfirm("eliminare", "eliminato", "l'", "ombrellone", "selezionato"))
+    if (this.askService.askConfirm("eliminare", "eliminato", "l'", "ombrellone", "selezionato"))
       this.righeOmbrelloniService.removeRiga(rigaDaEliminare.id).subscribe(() => this.getRigheOmbrelloni())
   }
 

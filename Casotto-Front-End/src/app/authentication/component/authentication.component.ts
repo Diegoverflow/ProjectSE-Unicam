@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../service/authentication.service';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 import { Router } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-authentication',

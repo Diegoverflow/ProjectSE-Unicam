@@ -4,6 +4,7 @@ import { RigheBarService } from 'src/app/service/righe-bar.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AskConfirmService } from 'src/app/service/ask-confirm.service';
 
 @Component({
   selector: 'app-riga-bar',
@@ -19,7 +20,8 @@ export class RigaBarComponent implements OnInit {
   constructor(private righeBarService: RigheBarService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router) { }
+    private router: Router,
+    private askService: AskConfirmService) { }
 
   ngOnInit(): void {
     this.getRigheBar()
@@ -34,7 +36,7 @@ export class RigaBarComponent implements OnInit {
   }
 
   eliminaRiga(rigaDaEliminare: RigaCatalogoBar) {
-    if (this.righeBarService.askConfirm("eliminare", "eliminato", "l'", "Articolo Bar", "selezionato"))
+    if (this.askService.askConfirm("eliminare", "eliminato", "l'", "Articolo Bar", "selezionato"))
       this.righeBarService.removeRiga(rigaDaEliminare.id).subscribe(() => this.getRigheBar())
   }
 

@@ -17,20 +17,20 @@
     </div>
     <br>
     <div class="table">
-        <table class="table" data-show-refresh="true">
+        <table class="table table-striped" data-show-refresh="true">
             <thead>
-                <tr class="table-danger">
+                <tr>
                     <th>Nome Articolo Bar</th>
                     <th>Codice Spiaggia</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-primary" *ngFor="let o of ordinazioniBar">
+                <tr *ngFor="let o of ordinazioniBar">
                     <td>{{o.articoloBar.nome}}</td>
                     <td>{{o.codiceSpiaggia}}</td>
                     <td>
-                        <button type="button" class="btn btn-success" autocomplete="off" (click)="prendiInCarico(o)"
+                        <button type="button" class="btn btn-warning" autocomplete="off" (click)="prendiInCarico(o)"
                             *ngIf="selectedButton===statusButtons[0]">Prendi
                             In Carico</button>
                         <button type="button" class="btn btn-success" autocomplete="off" (click)="consegna(o)"

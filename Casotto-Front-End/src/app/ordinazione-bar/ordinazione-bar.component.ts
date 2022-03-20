@@ -6,6 +6,7 @@ import { TipoArticoloBar } from '../model/tipo-articolo-bar';
 import { OrdinazioneBarService } from '../service/ordinazione-bar.service';
 import { RigheOmbrelloniService } from '../service/righe-ombrelloni.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AskConfirmService } from '../service/ask-confirm.service';
 
 @Component({
   selector: 'app-ordinazione-bar',
@@ -31,7 +32,7 @@ export class OrdinazioneBarComponent implements OnInit {
 
   isOrdinaEnabled: boolean;
 
-  constructor(private barService: OrdinazioneBarService, private oService: RigheOmbrelloniService, private modalService: NgbModal) {
+  constructor(private barService: OrdinazioneBarService, private oService: RigheOmbrelloniService, private modalService: NgbModal, private askService: AskConfirmService) {
     this.selectedUmbrella = "";
     this.isOrdinaEnabled = false;
   }
@@ -59,21 +60,10 @@ export class OrdinazioneBarComponent implements OnInit {
   }
 
   async ordinaDalBar(r: RigaCatalogoBar, codiceSpiaggia: string) {
-    if (this.askConfirm(r.valore.nome))
-      await lastValueFrom(this.barService.ordina(r, codiceSpiaggia)).then(() => {
-        this.getRigheCatalogoBar();
-      })
-  }
-
-  askConfirm(nomeArticolo: string): boolean {
-    if (confirm("Sei sicuro di voler ordinare:  " + "' " + nomeArticolo + " '" + " da consegnare all' ombrellone ' " + this.selectedUmbrella + " '?")) {
-      window.alert("Ordinazione effettuata con successo");
-      return true;
-    }
-    else {
-      window.alert("Nessun' ordinazione effettuata");
-      return false;
-    }
+    this.askService.askConfirm("ordinare", "ordinata", "l'", "ordinazione: " + r.valore.nome + " da consegnare all' ombrellone: " + codiceSpiaggia, "")
+    await lastValueFrom(this.barService.ordina(r, codiceSpiaggia)).then(() => {
+      this.getRigheCatalogoBar();
+    })
   }
 
   initializeMenuVoices() {
