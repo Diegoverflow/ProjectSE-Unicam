@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <img src="../../assets/img/logo.png" width="40" height="40">
-        <a id="titoloNav" class="navbar-brand" routerLink="./">
+        <a id="titoloNav" class="navbar-brand" routerLink="/home">
             <!--funziona grazie alle guardie-->
             Casotto
         </a>
@@ -76,7 +76,7 @@
                 <a *ngIf="ruolo==='CASSIERE'" class="nav-item nav-link" routerLink="./cassiere-home">Salda Vendita</a>
                 <!-- END-CASSIERE -->
                 <!-- LOGGED USER -->
-                <a *ngIf="ruolo!='CLIENTE' && ruolo!='CASSIERE'" class="nav-item nav-link"
+                <a *ngIf="ruolo!='CLIENTE' && ruolo!='CASSIERE' && ruolo !=null" class="nav-item nav-link"
                     routerLink="./notifica">Notifiche</a>
 
                 <!-- END-LOGGED USER -->
@@ -95,7 +95,7 @@
                 <!-- END-LOGGED USER -->
                 <!-- UNLOGGED USER -->
                 <ng-template #notLogged>
-                    <a href="#" class="nav-item nav-link">Login</a>
+                    <a routerLink="/login" class="nav-item nav-link">Login</a>
                 </ng-template>
                 <!-- END-UNLOGGED USER -->
             </div>

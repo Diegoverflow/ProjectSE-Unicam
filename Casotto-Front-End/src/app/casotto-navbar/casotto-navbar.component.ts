@@ -18,12 +18,13 @@ export class CasottoNavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authenticationService.getUtente().subscribe(u => this.nome = u.nome)
+    if(this.ruolo !== null)
+      this.authenticationService.getUtente().subscribe(u => this.nome = u.nome)
   }
 
   onLogout() {
     this.authenticationService.logout().subscribe(() => {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/home'])
       sessionStorage.clear()
       this.ruolo = null;
       this.nome = '';

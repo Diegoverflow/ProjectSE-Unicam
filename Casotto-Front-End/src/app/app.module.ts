@@ -41,7 +41,8 @@ import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-m
 import { ProfiloComponent } from './profilo/profilo.component';
 import { NotificaComponent } from './notifica/notifica.component';
 import { AddettoBarOrdinazioniComponent } from './addetto-bar-home/addetto-bar-ordinazioni/addetto-bar-ordinazioni.component';
-
+import { HomeComponent } from './home/home.component';
+import { CasottoFooterComponent } from './casotto-footer/casotto-footer.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,8 @@ import { AddettoBarOrdinazioniComponent } from './addetto-bar-home/addetto-bar-o
     ProfiloComponent,
     NotificaComponent,
     AddettoBarOrdinazioniComponent,
+    HomeComponent,
+    CasottoFooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,10 +19,11 @@ import { LeMiePrenotazioniAttivitaComponent } from './prenotazione-attivita/le-m
 import { ProfiloComponent } from './profilo/profilo.component';
 import { NotificaComponent } from './notifica/notifica.component';
 import { AddettoBarOrdinazioniComponent } from './addetto-bar-home/addetto-bar-ordinazioni/addetto-bar-ordinazioni.component';
-//TODO: inserie redirect e NOTFOUND
+import { HomeComponent } from './home/home.component';
+
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
-
+  { path: 'home', component: HomeComponent, canActivate:[LoginGuard]},
   {
     path: 'cliente-home',
     component: ClienteHomeComponent,
@@ -81,7 +82,7 @@ const routes: Routes = [
     ]
   },
 
-  { path: '**', redirectTo: 'login' },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
