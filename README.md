@@ -52,11 +52,17 @@
 <!-- ABOUT THE PROJECT -->
 ## Riguardo al Progetto
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<br>
 
+<div align="center" text-align: center;>
+  prenotazione di un ombrellone:
+    <img src="prenotazione-ombrellone.png" alt="Logo" width="80%" height="400px">
+ </div> 
+
+<br>
 Il progetto Casotto è una single page application scritta in Java che fa uso dei frameworks SpringBoot&SpringSecurity al backend e del framework Angular al frontend.
 
-Il programma si inserisce nel contesto della realizzazione di uno Chalet smart. In particolare il sistema lato cliente, una volta essersi registrati e aver effettuato il login, permette di informarsi su come la struttura si compone, la prenotazione di diverse tipologie di ombrelloni per mezza o intera giornata, l'ordinazione di articoli bar dall'ombrellone tramite un QRcode e l'iscizione ad attività ludico/sportive proposte in giornata.
+Il programma si inserisce nel contesto della realizzazione di uno Chalet smart. In particolare il sistema lato cliente, una volta essersi registrati e aver effettuato il login, permette di informarsi su come la struttura si compone, la prenotazione di diverse tipologie di ombrelloni per mezza o intera giornata, l'ordinazione di articoli bar dall'ombrellone e l'iscizione ad attività ludico/sportive proposte in giornata.
 Invece lato gestionale è possibile, con diverse granularità di permessi definiti dall'autenticazione, amministrare il sistema, partendo dalla gestione delle ordinazioni bar direttamente notificate sui terminali degli adetti che possono poi prenderle in carico, saldo delle vendite in cassa, per arrivare infine all'intera gestione del personale/clienti, il delinemento delle informazioni circa lo chalet e dei cataloghi dei servizi proposti, prezzi annessi.
 Tutti i dati vengono salvati e in un database per garantire la perdita dei dati stessi.
 
@@ -83,12 +89,12 @@ In seguito verrà illustrato come eseguire il progetto Casotto localmente.
 * un server online/locale
 * clonare la repository ```git clone https://github.com/HTTPiego/ProjectSE-Unicam.git ```
 * [Maven](https://maven.apache.org/)
-* [Node.js] (https://nodejs.org)
-* [npm package manager] (installato di default con Node.js)
+* [Node.js](https://nodejs.org)
+* npm package manager (installato di default con Node.js)
 
 ### Installazione
 
-1. Andare sulla file  ```ProjectSE-Unicam/Casotto-Back-End/src/main/resources/application.properties``` ed impostare il proprio database (nelle prime cinque righe viene data una configurazione di default di un server mysql)
+1. Posizionarsi sul file  ```ProjectSE-Unicam/Casotto-Back-End/src/main/resources/application.properties``` ed impostare il proprio database (nelle prime cinque righe viene data una configurazione di default di un server mysql)
 2. Posizionarsi sulla cartella ```ProjectSE-Unicam/Casotto-Back-End```
 3. Eseguire il build con 
    ```sh
@@ -116,13 +122,23 @@ In seguito verrà illustrato come eseguire il progetto Casotto localmente.
 ## Roadmap
 
 Back-End
-- [ ] Autenticazione
-- [ ] Prenotazione Ombrelloni
-- [ ] Prenotazione Bar
-- [ ] Prenotazione Attività
-    - [ ] Nested Feature
+- [x] Autenticazione (JWT) e Registrazione Utenti
+- [x] Prenotazione (Bar/Attività/Ombrelloni)
+- [x] Saldare Vendite
+- [x] Catalogo Bar
+- [x] Catalogo Attività
+- [x] Catalogo Ombrelloni
+- [x] Notifiche
+- [x] Storico Prenotazioni (Bar/Attività/Ombrelloni) 
+- [x] Csrf Token
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+Front-End
+- [x] Home per tutti gli utenti
+- [x] Home dedicata agli utenti loggati
+- [x] Guardie
+- [x] Salvare i token Crsf e JWT come cookie (JWT come cookie HttpOnly)
+- [x] Mandare a ogni richiesta http i cookie necessari
+- [ ] Qr Code per comprare gli articoli bar
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -131,16 +147,15 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 <!-- CONTRIBUTING -->
 ## Contribuzione
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+I contributi sono ciò che rende la comunità open source un posto incredibile per imparare, ispirare e creare. Qualsiasi tuo contributo è **molto apprezzato**.
+Se vuoi contribuire al progetto per renderlo migliore, perfavore esegui un fork di questo repository e crea una pull request. Puoi anche , semplicement, aprire una issue con il tag "enhancement".
+Non dimenticare di dare al progetto una stella! Grazie ancora!
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Esegui un Fork del progetto
+2. Crea un branch per il tuo miglioramento (`git checkout -b feature/AmazingFeature`)
+3. Esegui un Commit dei tuoi miglioramenti (`git commit -m 'Add some AmazingFeature'`)
+4. Esegui un Push sul branch (`git push origin feature/AmazingFeature`)
+5. Apri una Pull Request
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -149,7 +164,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## Licenza
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distribuito sotto la licenza MIT. Controlla `LICENSE.txt` per maggiori informazioni.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -158,9 +173,10 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contatti
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Piermichele - piermichele.rosati@studenti.unicam.it
+Diego - diegoan.belardinelli@studenti.unicam.it
+Piero - piero.hierro1@gmail.com
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
