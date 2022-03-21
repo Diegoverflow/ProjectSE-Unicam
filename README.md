@@ -152,7 +152,7 @@ Front-End
 ## Contribuzione
 
 I contributi sono ciò che rende la comunità open source un posto incredibile per imparare, ispirare e creare. Qualsiasi tuo contributo è **molto apprezzato**.
-Se vuoi contribuire al progetto per renderlo migliore, perfavore esegui un fork di questo repository e crea una pull request. Puoi anche , semplicement, aprire una issue con il tag "enhancement".
+Se vuoi contribuire al progetto per renderlo migliore, perfavore esegui un fork di questo repository e crea una pull request,oppure, apri una issue con il tag "enhancement".
 Non dimenticare di dare al progetto una stella! Grazie ancora!
 
 1. Esegui un Fork del progetto
