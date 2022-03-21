@@ -45,6 +45,7 @@ import { HomeComponent } from './home/home.component';
 import { CasottoFooterComponent } from './casotto-footer/casotto-footer.component';
 import { InfrastrutturaChaletComponent } from './infrastruttura-chalet/infrastruttura-chalet.component';
 import { InfoComponent } from './home/info/info.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { InfoComponent } from './home/info/info.component';
     HomeComponent,
     CasottoFooterComponent,
     InfrastrutturaChaletComponent,
-    InfoComponent
+    InfoComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

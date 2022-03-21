@@ -23,11 +23,13 @@ import { HomeComponent } from './home/home.component';
 import { InfrastrutturaChaletComponent } from './infrastruttura-chalet/infrastruttura-chalet.component';
 import { InfoComponent } from './home/info/info.component';
 import { VenditaComponent } from './vendita/vendita.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
   { path: 'home', component: HomeComponent, canActivate: [LoginGuard] },
   { path: 'aree-infrastruttura', component: InfrastrutturaChaletComponent },
+  { path: '18-politico', component: AboutComponent },
   {
     path: 'cliente-home', component: ClienteHomeComponent,
     canActivate: [HomeGuard],
@@ -70,7 +72,7 @@ const routes: Routes = [
     data: { ruolo: 'CASSIERE' },
     children: [
       { path: '', component: InfoComponent },
-      { path: 'salda-vendita', component: VenditaComponent},
+      { path: 'salda-vendita', component: VenditaComponent },
       { path: 'profilo', component: ProfiloComponent },
       { path: 'notifica', component: NotificaComponent }
     ]
