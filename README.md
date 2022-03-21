@@ -123,7 +123,9 @@ In seguito verrà illustrato come eseguire il progetto Casotto localmente.
 
 Back-End
 - [x] Autenticazione (JWT) e Registrazione Utenti
+- [x] Modifica credenziali utente
 - [x] Prenotazione (Bar/Attività/Ombrelloni)
+- [x] Cancellare Prenotazione (Bar/Attività/Ombrelloni)
 - [x] Saldare Vendite
 - [x] Catalogo Bar
 - [x] Catalogo Attività
@@ -131,6 +133,7 @@ Back-End
 - [x] Notifiche
 - [x] Storico Prenotazioni (Bar/Attività/Ombrelloni) 
 - [x] Csrf Token
+- [ ] Caricamento immagine profilo utenti
 
 Front-End
 - [x] Home per tutti gli utenti
@@ -139,6 +142,7 @@ Front-End
 - [x] Salvare i token Crsf e JWT come cookie (JWT come cookie HttpOnly)
 - [x] Mandare a ogni richiesta http i cookie necessari
 - [ ] Qr Code per comprare gli articoli bar
+- [ ] Profilo Utente
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
