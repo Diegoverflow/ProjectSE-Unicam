@@ -123,7 +123,9 @@ In seguito verrà illustrato come eseguire il progetto Casotto localmente.
 
 Back-End
 - [x] Autenticazione (JWT) e Registrazione Utenti
+- [x] Modifica credenziali utente
 - [x] Prenotazione (Bar/Attività/Ombrelloni)
+- [x] Cancellare Prenotazione (Bar/Attività/Ombrelloni)
 - [x] Saldare Vendite
 - [x] Catalogo Bar
 - [x] Catalogo Attività
@@ -131,6 +133,7 @@ Back-End
 - [x] Notifiche
 - [x] Storico Prenotazioni (Bar/Attività/Ombrelloni) 
 - [x] Csrf Token
+- [ ] Caricamento immagine profilo utenti
 
 Front-End
 - [x] Home per tutti gli utenti
@@ -139,6 +142,7 @@ Front-End
 - [x] Salvare i token Crsf e JWT come cookie (JWT come cookie HttpOnly)
 - [x] Mandare a ogni richiesta http i cookie necessari
 - [ ] Qr Code per comprare gli articoli bar
+- [ ] Profilo Utente
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -148,7 +152,7 @@ Front-End
 ## Contribuzione
 
 I contributi sono ciò che rende la comunità open source un posto incredibile per imparare, ispirare e creare. Qualsiasi tuo contributo è **molto apprezzato**.
-Se vuoi contribuire al progetto per renderlo migliore, perfavore esegui un fork di questo repository e crea una pull request. Puoi anche , semplicement, aprire una issue con il tag "enhancement".
+Se vuoi contribuire al progetto per renderlo migliore, perfavore esegui un fork di questo repository e crea una pull request,oppure, apri una issue con il tag "enhancement".
 Non dimenticare di dare al progetto una stella! Grazie ancora!
 
 1. Esegui un Fork del progetto
@@ -174,8 +178,8 @@ Distribuito sotto la licenza MIT. Controlla `LICENSE.txt` per maggiori informazi
 ## Contatti
 
 
-Piermichele - piermichele.rosati@studenti.unicam.it
-Diego - diegoan.belardinelli@studenti.unicam.it
+Piermichele - piermichele.rosati@studenti.unicam.it<br>
+Diego - diegoan.belardinelli@studenti.unicam.it<br>
 Piero - piero.hierro1@gmail.com
 
 <p align="right">(<a href="#top">back to top</a>)</p>
