@@ -178,8 +178,8 @@ Distribuito sotto la licenza MIT. Controlla `LICENSE.txt` per maggiori informazi
 ## Contatti
 
 
-Piermichele - piermichele.rosati@studenti.unicam.it
-Diego - diegoan.belardinelli@studenti.unicam.it
+Piermichele - piermichele.rosati@studenti.unicam.it<br>
+Diego - diegoan.belardinelli@studenti.unicam.it<br>
 Piero - piero.hierro1@gmail.com
 
 <p align="right">(<a href="#top">back to top</a>)</p>
