@@ -80,7 +80,7 @@
                 </li>
                 <!-- END-GESTORE -->
                 <!-- CASSIERE -->
-                <a *ngIf="ruolo==='CASSIERE'" class="nav-item nav-link" routerLink="/cassiere-home/cassiere-home">Salda
+                <a *ngIf="ruolo==='CASSIERE'" class="nav-item nav-link" routerLink="/cassiere-home/salda-vendita">Salda
                     Vendita</a>
                 <!-- END-CASSIERE -->
                 <!-- LOGGED USER -->
@@ -96,8 +96,8 @@
                 <li class="nav-item dropdown" *ngIf="ruolo !== null; else notLogged">
                     <a class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">{{nome}}</a>
                     <div class="dropdown-content">
-                        <a role="button" class="nav-item nav-link" routerLink="/cliente-home/profilo">Profilo</a>
-                        <div class="dropdown-divider"></div>
+                        <!--<a role="button" class="nav-item nav-link" routerLink="/cliente-home/profilo">Profilo</a>
+                        <div class="dropdown-divider"></div> PROFILO -->
                         <a role="button" class="nav-item nav-link" (click)="onLogout()">Logout<span
                                 class="sr-only"></span></a>
                     </div>

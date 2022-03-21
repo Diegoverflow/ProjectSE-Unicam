@@ -21,18 +21,20 @@ import { NotificaComponent } from './notifica/notifica.component';
 import { AddettoBarOrdinazioniComponent } from './addetto-bar-home/addetto-bar-ordinazioni/addetto-bar-ordinazioni.component';
 import { HomeComponent } from './home/home.component';
 import { InfrastrutturaChaletComponent } from './infrastruttura-chalet/infrastruttura-chalet.component';
+import { InfoComponent } from './home/info/info.component';
+import { VenditaComponent } from './vendita/vendita.component';
 
 const routes: Routes = [
   { path: 'login', component: AuthenticationComponent, canActivate: [LoginGuard] },
   { path: 'home', component: HomeComponent, canActivate: [LoginGuard] },
   { path: 'aree-infrastruttura', component: InfrastrutturaChaletComponent },
   {
-    path: 'cliente-home',
-    component: ClienteHomeComponent,
+    path: 'cliente-home', component: ClienteHomeComponent,
     canActivate: [HomeGuard],
     canActivateChild: [HomeGuard],
     data: { ruolo: 'CLIENTE' },
     children: [
+      { path: '', component: InfoComponent },
       { path: 'prenotazione-ombrellone', component: PrenotazioneOmbrelloneComponent },
       { path: 'le-mie-prenotazioni-ombrelloni', component: LeMiePrenotazioniOmbrelloniComponent },
       { path: 'prenotazione-attivita', component: PrenotazioneAttivitaComponent },
@@ -51,6 +53,7 @@ const routes: Routes = [
     canActivateChild: [HomeGuard],
     data: { ruolo: 'GESTORE' },
     children: [
+      { path: '', component: InfoComponent },
       { path: 'catalogo-bar', component: RigaBarComponent },
       { path: 'catalogo-attivita', component: RigaAttiviaComponent },
       { path: 'catalogo-ombrelloni', component: RigaOmbrelloneComponent },
@@ -66,6 +69,8 @@ const routes: Routes = [
     canActivateChild: [HomeGuard],
     data: { ruolo: 'CASSIERE' },
     children: [
+      { path: '', component: InfoComponent },
+      { path: 'salda-vendita', component: VenditaComponent},
       { path: 'profilo', component: ProfiloComponent },
       { path: 'notifica', component: NotificaComponent }
     ]
@@ -78,6 +83,7 @@ const routes: Routes = [
     canActivateChild: [HomeGuard],
     data: { ruolo: 'ADDETTO_BAR' },
     children: [
+      { path: '', component: InfoComponent },
       { path: 'profilo', component: ProfiloComponent },
       { path: 'notifica', component: NotificaComponent },
       { path: 'addetto-ordinazioni', component: AddettoBarOrdinazioniComponent }

@@ -60,7 +60,6 @@ h3,
     display: flex;
     overflow-x: hidden;
     width: 100%;
-    min-height: calc(100vh - 72px);
 
     flex-wrap: wrap;
 }
@@ -87,3 +86,20 @@ table {
     font-family: "Fredoka", sans-serif;
     font-weight: 700;
 }
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.container {
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
+
